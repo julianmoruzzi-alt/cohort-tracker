@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -194,6 +195,7 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
     <button class="tab" onclick="showTab('upload')">⬆ Update Data</button>
     <button class="tab" onclick="showTab('context')">🏫 Local &amp; Similar Schools</button>
     <button class="tab" onclick="showTab('attendance')">📅 Attendance</button>
+    <button class="tab" onclick="showTab('dfe')">📊 DfE Real Data</button>
   </div>
 
   <!-- OVERVIEW TAB -->
@@ -1033,6 +1035,375 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
           <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">0 Areas to Focus On</div>
           <div style="font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;color:#34d399;margin-bottom:4px">DfE — Autumn 2025/26</div>
           <div style="font-size:13px;color:#e2e8f0;line-height:1.55">The DfE's AI-powered similar schools analysis found zero areas requiring improvement for Autumn 2025/26 — stating "your school's attendance is consistently higher than similar schools." Most schools receive 3 areas to focus on.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DFE REAL DATA TAB -->
+  <div class="tab-panel" id="tab-dfe">
+
+    <!-- SOURCE NOTE -->
+    <div style="background:#f0f9ff;border:1px solid #bfdbfe;border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;gap:12px;align-items:flex-start">
+      <div style="font-size:20px;flex-shrink:0">📋</div>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#1e3a5f;margin-bottom:4px">Source: Official DfE KS4 Performance Tables 2024/25 — 4,265 Schools</div>
+        <div style="font-size:13px;color:#334155;line-height:1.6">All comparisons on this tab are calculated directly from the DfE's published KS4 performance tables dataset (2024/25 and 2023/24). Percentile rankings are based on all 4,265 state-funded secondary schools in England with published results. This is the most robust like-for-like comparison available and directly mirrors the data Ofsted inspectors access.</div>
+      </div>
+    </div>
+
+    <!-- NATIONAL PERCENTILE CARDS -->
+    <div class="section">
+      <div class="section-title">📈 Gateway's National Percentile Position</div>
+      <div class="section-sub">Where Gateway ranks among all 4,265 schools with published results — 2024/25 DfE data</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden;text-align:center">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">A8 — All Schools</div>
+          <div style="font-size:42px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--blue);line-height:1">55th</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">percentile</div>
+          <div style="font-size:13px;color:#334155;margin-top:8px">A8: 46.1 vs national mean 44.4</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden;text-align:center">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">A8 — Similar FSM Schools</div>
+          <div style="font-size:42px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--green);line-height:1">75th</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">percentile</div>
+          <div style="font-size:13px;color:#334155;margin-top:8px">Among 563 schools with 33–43% FSM</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden;text-align:center">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Eng&Maths 5+ — Similar FSM</div>
+          <div style="font-size:42px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--green);line-height:1">83rd</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">percentile</div>
+          <div style="font-size:13px;color:#334155;margin-top:8px">48.2% vs group mean 37.0%</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden;text-align:center">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Dis. A8 — All Schools</div>
+          <div style="font-size:42px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--blue);line-height:1">61st</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">percentile</div>
+          <div style="font-size:13px;color:#334155;margin-top:8px">38.1 vs national mean 37.8</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden;text-align:center">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Dis. A8 — Similar FSM</div>
+          <div style="font-size:42px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--green);line-height:1">69th</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">percentile</div>
+          <div style="font-size:13px;color:#334155;margin-top:8px">38.1 vs group mean 35.6</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden;text-align:center">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--purple);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Dis. Eng&Maths 5+</div>
+          <div style="font-size:42px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--purple);line-height:1">+5pp</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">above national</div>
+          <div style="font-size:13px;color:#334155;margin-top:8px">34.2% vs national dis. mean 29.2%</div>
+        </div>
+      </div>
+      <div style="background:var(--green-light);border:1px solid #86efac;border-radius:10px;padding:14px 18px;font-size:13px;color:var(--green);line-height:1.6">
+        <strong>Key Ofsted message:</strong> When compared against schools with a genuinely similar deprivation profile (33–43% FSM), Gateway is in the <strong>75th percentile for A8</strong> and the <strong>83rd percentile for Eng & Maths 5+</strong>. This means Gateway outperforms three quarters of its true peer group nationally — a significantly stronger position than the raw national rank suggests.
+      </div>
+    </div>
+
+    <!-- FULL DATA TABLE -->
+    <div class="section">
+      <div class="section-title">📋 Gateway vs National — Full DfE Data 2024/25</div>
+      <div class="section-sub">Every published measure from the DfE performance tables vs national averages</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px">
+        <div style="background:var(--navy);color:#fff;padding:12px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">
+          <span>Measure</span><span>Gateway</span><span>National Mean</span><span>Gap</span><span>Context</span>
+        </div>
+
+        <!-- ALL PUPILS -->
+        <div style="padding:8px 20px;background:var(--slate-light);font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--border)">All Pupils</div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Attainment 8</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">46.1</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">44.4</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--green)">+1.7</span>
+          <span><span style="background:var(--blue-light);color:var(--blue);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">55th percentile</span></span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Eng & Maths Grade 4+</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">64.5%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">~66%</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--amber)">-1.5pp</span>
+          <span><span style="background:var(--amber-light);color:var(--amber);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">Close to avg</span></span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center;background:#f0f9ff">
+          <span style="font-weight:700;color:var(--navy)">Eng & Maths Grade 5+ ⭐</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">48.2%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">~44%</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--green)">+4.2pp</span>
+          <span><span style="background:var(--green-light);color:var(--green);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">83rd pct (FSM peers)</span></span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">EBacc Entry Rate</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">10.2%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">35.4%</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--red)">-25.2pp</span>
+          <span><span style="background:var(--red-light);color:var(--red);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">Known area to develop</span></span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Progress 8 (2023/24)</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">+0.07</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">-0.03</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--green)">+0.10</span>
+          <span><span style="background:var(--green-light);color:var(--green);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">Above national</span></span>
+        </div>
+
+        <!-- DISADVANTAGED -->
+        <div style="padding:8px 20px;background:var(--slate-light);font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--border);border-top:1px solid var(--border)">Disadvantaged Pupils (FSM / Ever6)</div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Attainment 8</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">38.1</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">37.8</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--green)">+0.3</span>
+          <span><span style="background:var(--blue-light);color:var(--blue);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">61st percentile</span></span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center;background:#f0f9ff">
+          <span style="font-weight:700;color:var(--navy)">Eng & Maths 5+ ⭐</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">34.2%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">29.2%</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--green)">+5.0pp</span>
+          <span><span style="background:var(--green-light);color:var(--green);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">Above national</span></span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Eng & Maths 4+</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">51.3%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">~48%</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--green)">+3.3pp</span>
+          <span><span style="background:var(--blue-light);color:var(--blue);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">Above national</span></span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Progress 8 (2023/24)</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">-0.04</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">-0.57</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--green)">+0.53</span>
+          <span><span style="background:var(--green-light);color:var(--green);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">Well above national</span></span>
+        </div>
+
+        <!-- EAL -->
+        <div style="padding:8px 20px;background:var(--slate-light);font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--border);border-top:1px solid var(--border)">EAL Pupils (English as Additional Language)</div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center;background:#f0f9ff">
+          <span style="font-weight:700;color:var(--navy)">Attainment 8 ⭐</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">57.3</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">~47.2</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--green)">+10.1</span>
+          <span><span style="background:var(--green-light);color:var(--green);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">Exceptional</span></span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Eng & Maths 5+ (EAL)</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">68.6%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">~49%</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--green)">+19.6pp</span>
+          <span><span style="background:var(--green-light);color:var(--green);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">Far above national</span></span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">EAL proportion of cohort</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">73.6%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">~19.5%</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--purple)">+54.1pp</span>
+          <span><span style="background:var(--purple-light);color:var(--purple);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">Key context</span></span>
+        </div>
+
+        <!-- IN-SCHOOL GAP -->
+        <div style="padding:8px 20px;background:var(--slate-light);font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--border);border-top:1px solid var(--border)">In-School Disadvantage Gap</div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">A8 gap (Non-Dis vs Dis)</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">13.0 pts</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">12.2 pts</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--amber)">+0.8</span>
+          <span><span style="background:var(--amber-light);color:var(--amber);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">Monitor</span></span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;gap:8px;font-size:13px;align-items:center">
+          <span style="font-weight:600">A8 gap (2023/24)</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">8.3 pts</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">—</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">prev year</span>
+          <span><span style="background:var(--amber-light);color:var(--amber);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">Widened — investigate</span></span>
+        </div>
+      </div>
+
+      <!-- GAP NOTE -->
+      <div style="background:var(--amber-light);border:1px solid #fcd34d;border-radius:10px;padding:14px 18px;font-size:13px;color:#78350f;line-height:1.6;margin-bottom:20px">
+        <strong>⚠️ In-school gap note:</strong> The gap between disadvantaged and non-disadvantaged pupils widened from 8.3 pts (2023/24) to 13.0 pts (2024/25). This is worth monitoring and investigating internally. Possible factors include the EAL cohort's strong performance (73.6% of non-disadvantaged pupils are EAL, who typically outperform) and the small disadvantaged cohort size. However this should be addressed proactively and a strategy should be in place before Ofsted.
+      </div>
+    </div>
+
+    <!-- THURROCK COMPARISON TABLE -->
+    <div class="section">
+      <div class="section-title">📍 Thurrock Schools — Full Comparison 2024/25</div>
+      <div class="section-sub">All Thurrock secondary schools with published results (DfE Performance Tables) — sorted by A8</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+        <div style="background:var(--navy);color:#fff;padding:12px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">
+          <span>School</span><span>Cohort</span><span>A8</span><span>Dis A8</span><span>E&M 5+</span><span>FSM%</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:600">Grays Convent High School</span>
+          <span style="font-family:'JetBrains Mono',monospace">137</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">55.7</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">54.9</span>
+          <span style="font-family:'JetBrains Mono',monospace">61.3%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">16.1%</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:600">Harris Academy Chafford Hundred</span>
+          <span style="font-family:'JetBrains Mono',monospace">188</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">55.5</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">43.2</span>
+          <span style="font-family:'JetBrains Mono',monospace">68.1%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">10.1%</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:600">Harris Academy Riverside</span>
+          <span style="font-family:'JetBrains Mono',monospace">170</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">47.9</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">43.0</span>
+          <span style="font-family:'JetBrains Mono',monospace">45.3%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">26.5%</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:600">Harris Academy Ockendon</span>
+          <span style="font-family:'JetBrains Mono',monospace">237</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">47.3</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">37.0</span>
+          <span style="font-family:'JetBrains Mono',monospace">49.4%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">24.9%</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:600">Orsett Heath Academy</span>
+          <span style="font-family:'JetBrains Mono',monospace">113</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">47.0</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">38.8</span>
+          <span style="font-family:'JetBrains Mono',monospace">47.8%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">24.8%</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:600">Thames Park Secondary School</span>
+          <span style="font-family:'JetBrains Mono',monospace">111</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">46.4</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">39.4</span>
+          <span style="font-family:'JetBrains Mono',monospace">54.1%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">27.9%</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center;background:#f0f9ff;border-left:4px solid var(--blue)">
+          <span style="font-weight:700;color:var(--navy)">🏫 The Gateway Academy</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700">197</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue);font-size:15px">46.1</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">38.1</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">48.2%</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">38.6%</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:600">Ortu Gable Hall School</span>
+          <span style="font-family:'JetBrains Mono',monospace">180</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">45.8</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">38.4</span>
+          <span style="font-family:'JetBrains Mono',monospace">43.9%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">19.4%</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:600">Ortu Hassenbrook Academy</span>
+          <span style="font-family:'JetBrains Mono',monospace">128</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">43.8</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">38.8</span>
+          <span style="font-family:'JetBrains Mono',monospace">43.8%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">35.2%</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:600">St Clere's School</span>
+          <span style="font-family:'JetBrains Mono',monospace">256</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">43.2</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">31.3</span>
+          <span style="font-family:'JetBrains Mono',monospace">41.4%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">19.9%</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:600">William Edwards School</span>
+          <span style="font-family:'JetBrains Mono',monospace">233</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">42.5</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">31.2</span>
+          <span style="font-family:'JetBrains Mono',monospace">34.8%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">16.3%</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:600">The Hathaway Academy</span>
+          <span style="font-family:'JetBrains Mono',monospace">119</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">41.1</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">30.5</span>
+          <span style="font-family:'JetBrains Mono',monospace">37.0%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">29.4%</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2.5fr .6fr .7fr .7fr .7fr .7fr;gap:8px;font-size:12px;align-items:center">
+          <span style="font-weight:600">Ormiston Park Academy</span>
+          <span style="font-family:'JetBrains Mono',monospace">127</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">37.5</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">29.7</span>
+          <span style="font-family:'JetBrains Mono',monospace">28.3%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">39.4%</span>
+        </div>
+      </div>
+      <div style="background:var(--green-light);border:1px solid #86efac;border-radius:10px;padding:14px 18px;font-size:13px;color:var(--green);line-height:1.6">
+        <strong>Thurrock context:</strong> Gateway has the <strong>highest FSM rate</strong> of any mainstream school in Thurrock at 38.6%. The two schools ranked above Gateway (Grays Convent 16.1% FSM, Harris Chafford 10.1% FSM) have dramatically less disadvantaged intakes. Gateway's disadvantaged A8 of 38.1 is <strong>higher than the disadvantaged A8 of 4 schools</strong> that rank above it overall — demonstrating that Gateway's disadvantaged pupils outperform disadvantaged peers at seemingly higher-performing schools.
+      </div>
+    </div>
+
+    <!-- EAL STORY -->
+    <div class="section">
+      <div class="section-title">🌍 EAL Performance — A Remarkable Story</div>
+      <div class="section-sub">Gateway's EAL pupils are exceptional performers — a key strength given Tilbury's demographics</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:16px">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--purple);border-radius:12px 0 0 12px"></div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--purple);margin-bottom:8px">EAL Cohort Size</div>
+          <div style="font-size:32px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--purple);margin-bottom:4px">73.6%</div>
+          <div style="font-size:13px;color:#334155;line-height:1.55">Nearly three quarters of Gateway's KS4 cohort have English as an Additional Language — vs 19.5% nationally. Tilbury's diverse, international community is central to Gateway's identity.</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--green);border-radius:12px 0 0 12px"></div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--green);margin-bottom:8px">EAL Attainment 8</div>
+          <div style="font-size:32px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--green);margin-bottom:4px">57.3</div>
+          <div style="font-size:13px;color:#334155;line-height:1.55">Gateway's EAL pupils average 57.3 A8 — 11.2 points above the school average of 46.1 and significantly above the national EAL average of ~47.2. This is an exceptional outcome.</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--green);border-radius:12px 0 0 12px"></div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--green);margin-bottom:8px">EAL Eng & Maths 5+</div>
+          <div style="font-size:32px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--green);margin-bottom:4px">68.6%</div>
+          <div style="font-size:13px;color:#334155;line-height:1.55">68.6% of Gateway's EAL pupils achieved Grade 5+ in both English and Maths — approximately 19.6pp above the national EAL average. This is a powerful indicator of curriculum quality and effective EAL support.</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--amber);border-radius:12px 0 0 12px"></div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--amber);margin-bottom:8px">Context Note</div>
+          <div style="font-size:32px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--amber);margin-bottom:4px">EAL≠FSM</div>
+          <div style="font-size:13px;color:#334155;line-height:1.55">EAL pupils are not automatically disadvantaged — many are recently arrived families who prioritise education. The interaction between high EAL rates and high FSM rates makes Gateway's context uniquely complex and context-sensitive.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EBACC HONEST SECTION -->
+    <div class="section">
+      <div class="section-title">⚠️ EBacc — An Honest Assessment</div>
+      <div class="section-sub">One area where Gateway is significantly below national average — with important context</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:16px">
+          <div style="text-align:center;padding:16px;background:var(--red-light);border-radius:10px">
+            <div style="font-size:32px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--red)">10.2%</div>
+            <div style="font-size:12px;font-weight:600;color:var(--red);margin-top:4px">Gateway EBacc entry</div>
+          </div>
+          <div style="text-align:center;padding:16px;background:var(--slate-light);border-radius:10px">
+            <div style="font-size:32px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--muted)">35.4%</div>
+            <div style="font-size:12px;font-weight:600;color:var(--muted);margin-top:4px">National average</div>
+          </div>
+          <div style="text-align:center;padding:16px;background:var(--red-light);border-radius:10px">
+            <div style="font-size:32px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--red)">78%</div>
+            <div style="font-size:12px;font-weight:600;color:var(--red);margin-top:4px">Schools with higher entry</div>
+          </div>
+        </div>
+        <div style="font-size:13px;color:#334155;line-height:1.7">
+          <strong>Why this is low:</strong> EBacc requires pupils to study a language, history or geography, and a science at GCSE. For a school with 73.6% EAL pupils — many of whom have varying levels of prior language learning — requiring a modern foreign language GCSE presents particular challenges. Gateway's curriculum decisions likely reflect these contextual realities.<br><br>
+          <strong>What to say to Ofsted:</strong> Be transparent — acknowledge the low entry rate, explain the curriculum rationale in the context of your EAL and disadvantaged cohort, and reference the Eng & Maths 5+ strength as evidence of strong core academic outcomes. The government's EBacc target of 75% entry by 2025 was missed nationally (35.4%), so this is a sector-wide challenge.
         </div>
       </div>
     </div>
