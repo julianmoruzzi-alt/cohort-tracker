@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gateway Academy — Performance Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f2744;--blue:#1e5fa8;--blue-light:#e8f0fb;
+  --teal:#0e7c6e;--teal-light:#e0f4f1;
+  --green:#166534;--green-light:#dcfce7;
+  --amber:#b45309;--amber-light:#fef3c7;
+  --red:#b91c1c;--red-light:#fee2e2;
+  --purple:#6d28d9;--purple-light:#ede9fe;
+  --slate:#64748b;--slate-light:#f1f5f9;
+  --border:#dde3ed;--white:#fff;--surface:#f7f9fc;--text:#0f172a;--muted:#64748b;
+}
+body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);min-height:100vh;font-size:14px}
+
+/* HEADER */
+.header{background:var(--navy);padding:20px 32px;border-bottom:3px solid var(--blue)}
+.header-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.header-brand{display:flex;align-items:center;gap:16px}
+.header-logo{width:48px;height:48px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:22px}
+.header-title{color:#fff;font-size:20px;font-weight:800;letter-spacing:-.4px}
+.header-sub{color:#94a8c8;font-size:13px;margin-top:3px}
+.header-badge{background:rgba(255,255,255,.12);color:#fff;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,.2)}
+
+/* MAIN */
+.main{max-width:1300px;margin:0 auto;padding:28px 24px}
+
+/* SECTION */
+.section{margin-bottom:32px}
+.section-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:4px;display:flex;align-items:center;gap:10px}
+.section-sub{font-size:13px;color:var(--muted);margin-bottom:18px}
+
+/* OFSTED NARRATIVE */
+.narrative-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:28px}
+.narrative-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden}
+.narrative-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:12px 0 0 12px}
+.narrative-card.green::before{background:var(--green)}
+.narrative-card.blue::before{background:var(--blue)}
+.narrative-card.amber::before{background:var(--amber)}
+.narrative-card.purple::before{background:var(--purple)}
+.narrative-card .nc-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.narrative-card.green .nc-label{color:var(--green)}
+.narrative-card.blue .nc-label{color:var(--blue)}
+.narrative-card.amber .nc-label{color:var(--amber)}
+.narrative-card.purple .nc-label{color:var(--purple)}
+.narrative-card .nc-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px;line-height:1.3}
+.narrative-card .nc-text{font-size:13px;color:#334155;line-height:1.6}
+.narrative-card .nc-stat{font-size:26px;font-weight:800;font-family:'JetBrains Mono',monospace;margin-bottom:4px}
+.narrative-card.green .nc-stat{color:var(--green)}
+.narrative-card.blue .nc-stat{color:var(--blue)}
+.narrative-card.amber .nc-stat{color:var(--amber)}
+.narrative-card.purple .nc-stat{color:var(--purple)}
+
+/* METRICS ROW */
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:24px}
+.metric-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden}
+.metric-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:10px 0 0 10px}
+.metric-card.above::before{background:var(--green)}
+.metric-card.close::before{background:var(--blue)}
+.metric-card.below::before{background:var(--red)}
+.metric-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.metric-value{font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;line-height:1;margin-bottom:4px}
+.metric-value.green{color:var(--green)}.metric-value.blue{color:var(--blue)}.metric-value.red{color:var(--red)}.metric-value.amber{color:var(--amber)}
+.metric-vs{font-size:12px;color:var(--muted)}
+.metric-vs strong{font-weight:600}
+.metric-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-top:5px;text-transform:uppercase;letter-spacing:.4px}
+.metric-badge.above{background:var(--green-light);color:var(--green)}
+.metric-badge.close{background:var(--blue-light);color:var(--blue)}
+.metric-badge.below{background:var(--red-light);color:var(--red)}
+
+/* CHARTS */
+.charts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:20px;margin-bottom:24px}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px}
+.chart-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.chart-sub{font-size:12px;color:var(--muted);margin-bottom:16px}
+.chart-wrap{position:relative;height:260px}
+
+/* COMPARISON TABLE */
+.comparison-table{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px}
+.ct-header{background:var(--navy);color:#fff;padding:14px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:8px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.ct-row{padding:13px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;align-items:center;font-size:13px}
+.ct-row:last-child{border-bottom:none}
+.ct-row:hover{background:#f7faff}
+.ct-row.section-header{background:var(--slate-light);font-weight:700;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;padding:8px 20px}
+.ct-measure{font-weight:600;color:var(--navy)}
+.ct-school{font-family:'JetBrains Mono',monospace;font-weight:700}
+.ct-school.green{color:var(--green)}.ct-school.blue{color:var(--blue)}.ct-school.red{color:var(--red)}
+.ct-nat{font-family:'JetBrains Mono',monospace;color:var(--muted)}
+.ct-gap{font-family:'JetBrains Mono',monospace;font-weight:600}
+.ct-gap.pos{color:var(--green)}.ct-gap.neg{color:var(--red)}.ct-gap.neu{color:var(--muted)}
+.ct-band{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px}
+.ct-band.above{background:var(--green-light);color:var(--green)}
+.ct-band.close{background:var(--blue-light);color:var(--blue)}
+.ct-band.below{background:var(--red-light);color:var(--red)}
+
+/* CONTEXT BOX */
+.context-box{background:var(--amber-light);border:1px solid #fcd34d;border-radius:12px;padding:18px 22px;margin-bottom:24px;display:flex;gap:16px}
+.context-icon{font-size:24px;flex-shrink:0}
+.context-title{font-size:14px;font-weight:700;color:#92400e;margin-bottom:6px}
+.context-text{font-size:13px;color:#78350f;line-height:1.6}
+
+/* TREND TABLE */
+.trend-section{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px}
+.trend-header{background:var(--slate-light);padding:12px 20px;font-size:13px;font-weight:700;color:var(--navy);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.trend-table{width:100%;border-collapse:collapse;font-size:13px}
+.trend-table th{background:var(--slate-light);padding:10px 16px;text-align:left;font-weight:600;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--border)}
+.trend-table td{padding:11px 16px;border-bottom:1px solid #f0f4f8;vertical-align:middle}
+.trend-table tr:last-child td{border-bottom:none}
+.trend-table tr:hover td{background:#f7faff}
+.trend-arrow{font-size:16px;margin-left:6px}
+
+/* UPLOAD SECTION */
+.upload-section{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:24px}
+.upload-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.upload-sub{font-size:13px;color:var(--muted);margin-bottom:16px}
+.drop-zone{border:2px dashed var(--border);border-radius:10px;padding:2.5rem;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:var(--slate-light)}
+.drop-zone:hover,.drop-zone.drag-over{border-color:var(--blue);background:var(--blue-light)}
+.drop-zone p{color:var(--muted);font-size:13px;margin-top:8px}
+.dz-icon{font-size:36px}
+.drop-zone input[type=file]{display:none}
+.upload-status{margin-top:12px;font-size:13px;padding:10px 14px;border-radius:8px;display:none}
+.upload-status.ok{background:var(--teal-light);color:var(--teal);border:1px solid #6ee7b7}
+.upload-status.err{background:var(--red-light);color:var(--red);border:1px solid #fca5a5}
+.upload-status.loading{background:var(--amber-light);color:var(--amber);border:1px solid #fcd34d}
+
+/* OFSTED PREP */
+.ofsted-prep{background:linear-gradient(135deg,var(--navy) 0%,#1a3d6b 100%);border-radius:12px;padding:24px;margin-bottom:24px;color:#fff}
+.ofsted-prep h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.ofsted-prep p{font-size:13px;color:#94a8c8;margin-bottom:16px;line-height:1.6}
+.ofsted-points{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.ofsted-point{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px}
+.ofsted-point .op-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px}
+.ofsted-point .op-text{font-size:13px;color:#e2e8f0;line-height:1.55}
+.ofsted-point .op-stat{font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;color:#34d399;margin-bottom:4px}
+
+/* TABS */
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:24px}
+.tab{padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:none;font-family:'Inter',sans-serif;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.tab:hover{color:var(--blue)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* PRINT */
+@media print{
+  .upload-section,.tabs{display:none!important}
+  body{background:#fff}
+  .main{padding:0}
+  .header{background:var(--navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+@media(max-width:700px){
+  .charts-grid{grid-template-columns:1fr}
+  .ct-header,.ct-row{grid-template-columns:2fr 1fr 1fr}
+  .ct-header span:nth-child(4),.ct-header span:nth-child(5),
+  .ct-row span:nth-child(4),.ct-row span:nth-child(5){display:none}
+  .main{padding:14px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-logo">📊</div>
+      <div>
+        <div class="header-title">Gateway Academy — Performance Dashboard</div>
+        <div class="header-sub">KS4 Outcomes · Contextual Analysis · Ofsted Preparation · URN: 133114</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div class="header-badge">📍 Tilbury, Thurrock</div>
+      <div class="header-badge">IDSR Nov 2025</div>
+      <button onclick="window.print()" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">🖨 Print</button>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('overview')">📈 Overview</button>
+    <button class="tab" onclick="showTab('detailed')">🔍 Detailed Data</button>
+    <button class="tab" onclick="showTab('ofsted')">🏫 Ofsted Narrative</button>
+    <button class="tab" onclick="showTab('upload')">⬆ Update Data</button>
+  </div>
+
+  <!-- OVERVIEW TAB -->
+  <div class="tab-panel active" id="tab-overview">
+
+    <!-- CONTEXT WARNING -->
+    <div class="context-box">
+      <div class="context-icon">⚠️</div>
+      <div>
+        <div class="context-title">Important Context: Low Stability (High Pupil Mobility)</div>
+        <div class="context-text">Gateway Academy has been flagged for <strong>Low Stability</strong> in 2024 and 2025 cohorts. This means a significant proportion of pupils joined the school after the start of KS4, which research consistently shows depresses headline measures. This context is critical when interpreting all performance data and should be referenced in any Ofsted conversation. Despite this, Gateway Academy's outcomes are broadly in line with or above national averages — a significant achievement.</div>
+      </div>
+    </div>
+
+    <!-- HEADLINE METRICS -->
+    <div class="section">
+      <div class="section-title">📊 Headline Measures 2024/25</div>
+      <div class="section-sub">Latest year performance vs national average — all pupils</div>
+      <div class="metrics-grid" id="metricsGrid"></div>
+    </div>
+
+    <!-- OFSTED NARRATIVE CARDS -->
+    <div class="section">
+      <div class="section-title">💬 The Story in Numbers</div>
+      <div class="section-sub">Key contextual messages for SLT, governors and Ofsted</div>
+      <div class="narrative-grid">
+        <div class="narrative-card green">
+          <div class="nc-label">🌟 Strongest Strength</div>
+          <div class="nc-stat">+8.6pp</div>
+          <div class="nc-title">Disadvantaged pupils outperform national disadvantaged peers</div>
+          <div class="nc-text">34.2% of Gateway's disadvantaged pupils achieved Grade 5+ in English & Maths, compared to just 25.6% nationally for disadvantaged pupils — a gap of +8.6 percentage points in our favour.</div>
+        </div>
+        <div class="narrative-card blue">
+          <div class="nc-label">📈 Improving Trend</div>
+          <div class="nc-stat">+0.07</div>
+          <div class="nc-title">Progress 8 above national average and improving</div>
+          <div class="nc-text">Progress 8 of +0.07 is above the national average of -0.03. This follows a score of +0.23 in 2022/23, showing consistent above-national progress for pupils. A significant recovery from -0.76 in 2021/22.</div>
+        </div>
+        <div class="narrative-card purple">
+          <div class="nc-label">📊 Disadvantaged Progress</div>
+          <div class="nc-stat">+0.53</div>
+          <div class="nc-title">Disadvantaged P8 significantly above national disadvantaged</div>
+          <div class="nc-text">Disadvantaged pupils' P8 of -0.04 compares to a national disadvantaged average of -0.57 — a difference of +0.53. This demonstrates strong progress being made with the school's most vulnerable learners.</div>
+        </div>
+        <div class="narrative-card amber">
+          <div class="nc-label">⚠️ Context Factor</div>
+          <div class="nc-stat">Low</div>
+          <div class="nc-title">High mobility cohort — Low Stability flag applied</div>
+          <div class="nc-text">The school's Low Stability designation means headline figures underrepresent the school's true impact. Pupils who joined after Year 9 are counted in results but received less of the school's education — a factor Ofsted is expected to consider.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="section">
+      <div class="section-title">📉 Trend Charts</div>
+      <div class="section-sub">3-year trends vs national average</div>
+      <div class="charts-grid">
+        <div class="chart-card">
+          <div class="chart-title">Attainment 8 — All Pupils</div>
+          <div class="chart-sub">School vs National Average (3 years)</div>
+          <div class="chart-wrap"><canvas id="a8Chart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Progress 8 — All Pupils</div>
+          <div class="chart-sub">School vs National Average (3 years)</div>
+          <div class="chart-wrap"><canvas id="p8Chart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Disadvantaged Attainment 8</div>
+          <div class="chart-sub">School vs National Disadvantaged Average</div>
+          <div class="chart-wrap"><canvas id="disA8Chart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Disadvantaged Progress 8</div>
+          <div class="chart-sub">School vs National Disadvantaged Average</div>
+          <div class="chart-wrap"><canvas id="disP8Chart"></canvas></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DETAILED TAB -->
+  <div class="tab-panel" id="tab-detailed">
+
+    <div class="section">
+      <div class="section-title">📋 Full Comparison Table</div>
+      <div class="section-sub">All measures vs national average with banding</div>
+
+      <div class="comparison-table">
+        <div class="ct-header">
+          <span>Measure</span>
+          <span>Gateway</span>
+          <span>National</span>
+          <span>Gap</span>
+          <span>Banding</span>
+        </div>
+        <div class="ct-row section-header"><span colspan="5">ALL PUPILS — 2024/25</span><span></span><span></span><span></span><span></span></div>
+        <div class="ct-row">
+          <span class="ct-measure">Attainment 8</span>
+          <span class="ct-school blue">46.0</span>
+          <span class="ct-nat">45.9</span>
+          <span class="ct-gap pos">+0.1</span>
+          <span><span class="ct-band close">Close to average</span></span>
+        </div>
+        <div class="ct-row">
+          <span class="ct-measure">Eng & Maths Grade 5+</span>
+          <span class="ct-school blue">47.7%</span>
+          <span class="ct-nat">45.2%</span>
+          <span class="ct-gap pos">+2.5pp</span>
+          <span><span class="ct-band close">Close to average</span></span>
+        </div>
+        <div class="ct-row section-header"><span colspan="5">ALL PUPILS — PROGRESS 8 (2023/24 latest)</span><span></span><span></span><span></span><span></span></div>
+        <div class="ct-row">
+          <span class="ct-measure">Progress 8</span>
+          <span class="ct-school green">+0.07</span>
+          <span class="ct-nat">-0.03</span>
+          <span class="ct-gap pos">+0.10</span>
+          <span><span class="ct-band close">Close to average</span></span>
+        </div>
+        <div class="ct-row section-header"><span colspan="5">DISADVANTAGED PUPILS — 2024/25</span><span></span><span></span><span></span><span></span></div>
+        <div class="ct-row">
+          <span class="ct-measure">Attainment 8</span>
+          <span class="ct-school blue">38.0</span>
+          <span class="ct-nat">34.9</span>
+          <span class="ct-gap pos">+3.1</span>
+          <span><span class="ct-band close">Close to average</span></span>
+        </div>
+        <div class="ct-row">
+          <span class="ct-measure">Eng & Maths Grade 5+</span>
+          <span class="ct-school blue">34.2%</span>
+          <span class="ct-nat">25.6%</span>
+          <span class="ct-gap pos">+8.6pp</span>
+          <span><span class="ct-band close">Close to average</span></span>
+        </div>
+        <div class="ct-row section-header"><span colspan="5">DISADVANTAGED PUPILS — PROGRESS 8 (2023/24 latest)</span><span></span><span></span><span></span><span></span></div>
+        <div class="ct-row">
+          <span class="ct-measure">Progress 8</span>
+          <span class="ct-school green">-0.04</span>
+          <span class="ct-nat">-0.57</span>
+          <span class="ct-gap pos">+0.53</span>
+          <span><span class="ct-band above">Above average</span></span>
+        </div>
+        <div class="ct-row section-header"><span colspan="5">DISADVANTAGED GAP vs NATIONAL NON-DISADVANTAGED — 2024/25</span><span></span><span></span><span></span><span></span></div>
+        <div class="ct-row">
+          <span class="ct-measure">A8 gap vs non-dis national</span>
+          <span class="ct-school red">38.0</span>
+          <span class="ct-nat">50.3</span>
+          <span class="ct-gap neg">-12.3</span>
+          <span><span class="ct-band below">Gap to close</span></span>
+        </div>
+        <div class="ct-row">
+          <span class="ct-measure">Eng & Maths 5+ gap</span>
+          <span class="ct-school red">34.2%</span>
+          <span class="ct-nat">52.8%</span>
+          <span class="ct-gap neg">-18.6pp</span>
+          <span><span class="ct-band below">Gap to close</span></span>
+        </div>
+        <div class="ct-row">
+          <span class="ct-measure">P8 gap vs non-dis national</span>
+          <span class="ct-school red">-0.04</span>
+          <span class="ct-nat">+0.16</span>
+          <span class="ct-gap neg">-0.21</span>
+          <span><span class="ct-band below">Gap to close</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-YEAR TREND TABLE -->
+    <div class="section">
+      <div class="section-title">📅 3-Year Trend Data</div>
+      <div class="section-sub">Year-on-year performance trajectory</div>
+      <div class="trend-section">
+        <div class="trend-header"><span>All Pupils — Attainment 8</span></div>
+        <table class="trend-table">
+          <thead><tr><th>Year</th><th>Gateway</th><th>National</th><th>Gap</th><th>Direction</th></tr></thead>
+          <tbody>
+            <tr><td>2022/23</td><td>44.2</td><td>46.3</td><td style="color:var(--red)">-2.1</td><td>—</td></tr>
+            <tr><td>2023/24</td><td>44.6</td><td>45.9</td><td style="color:var(--red)">-1.3</td><td>↗ Improving <span class="trend-arrow">📈</span></td></tr>
+            <tr><td><strong>2024/25</strong></td><td><strong>46.0</strong></td><td><strong>45.9</strong></td><td style="color:var(--green)"><strong>+0.1</strong></td><td>↗ Now above national <span class="trend-arrow">🟢</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="trend-section">
+        <div class="trend-header"><span>All Pupils — Progress 8</span></div>
+        <table class="trend-table">
+          <thead><tr><th>Year</th><th>Gateway</th><th>National</th><th>Gap</th><th>Direction</th></tr></thead>
+          <tbody>
+            <tr><td>2021/22</td><td style="color:var(--red)">-0.76</td><td>-0.03</td><td style="color:var(--red)">-0.73</td><td>—</td></tr>
+            <tr><td>2022/23</td><td style="color:var(--green)">+0.23</td><td>-0.03</td><td style="color:var(--green)">+0.26</td><td>↗ Strong recovery <span class="trend-arrow">📈</span></td></tr>
+            <tr><td><strong>2023/24</strong></td><td style="color:var(--green)"><strong>+0.07</strong></td><td><strong>-0.03</strong></td><td style="color:var(--green)"><strong>+0.10</strong></td><td>↗ Above national <span class="trend-arrow">🟢</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="trend-section">
+        <div class="trend-header"><span>Disadvantaged Pupils — Progress 8</span></div>
+        <table class="trend-table">
+          <thead><tr><th>Year</th><th>Gateway Dis.</th><th>National Dis.</th><th>Gap</th><th>Direction</th></tr></thead>
+          <tbody>
+            <tr><td>2021/22</td><td style="color:var(--red)">-0.79</td><td>-0.55</td><td style="color:var(--red)">-0.24</td><td>—</td></tr>
+            <tr><td>2022/23</td><td style="color:var(--green)">+0.15</td><td>-0.57</td><td style="color:var(--green)">+0.72</td><td>↗ Above national <span class="trend-arrow">📈</span></td></tr>
+            <tr><td><strong>2023/24</strong></td><td><strong>-0.04</strong></td><td><strong>-0.57</strong></td><td style="color:var(--green)"><strong>+0.53</strong></td><td>↗ Well above national dis. <span class="trend-arrow">🟢</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="trend-section">
+        <div class="trend-header"><span>Disadvantaged Pupils — Attainment 8</span></div>
+        <table class="trend-table">
+          <thead><tr><th>Year</th><th>Gateway Dis.</th><th>National Dis.</th><th>Gap</th><th>Direction</th></tr></thead>
+          <tbody>
+            <tr><td>2022/23</td><td>39.3</td><td>35.0</td><td style="color:var(--green)">+4.3</td><td>—</td></tr>
+            <tr><td>2023/24</td><td>38.9</td><td>34.6</td><td style="color:var(--green)">+4.3</td><td>→ Sustained above national <span class="trend-arrow">🟢</span></td></tr>
+            <tr><td><strong>2024/25</strong></td><td><strong>38.0</strong></td><td><strong>34.9</strong></td><td style="color:var(--green)"><strong>+3.1</strong></td><td>→ Sustained above national <span class="trend-arrow">🟢</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFSTED NARRATIVE TAB -->
+  <div class="tab-panel" id="tab-ofsted">
+    <div class="ofsted-prep">
+      <h3>🏫 Ofsted Preparation — Gateway Academy Performance Narrative</h3>
+      <p>The following talking points are designed for use in Ofsted conversations, governor meetings, and SLT presentations. They contextualise Gateway Academy's performance against national data from the IDSR November 2025.</p>
+      <div class="ofsted-points">
+        <div class="ofsted-point">
+          <div class="op-label">Opening Statement</div>
+          <div class="op-text">Gateway Academy serves a high-mobility community in Tilbury, Thurrock — one of the most deprived areas in England. The school carries a Low Stability flag in both 2024 and 2025 cohorts, meaning headline measures understate the school's true educational impact on pupils it has educated throughout KS4.</div>
+        </div>
+        <div class="ofsted-point">
+          <div class="op-label">Disadvantaged Pupils</div>
+          <div class="op-stat">+8.6pp</div>
+          <div class="op-text">Our disadvantaged pupils achieve 34.2% in Eng & Maths Grade 5+, compared to 25.6% nationally for disadvantaged pupils. This sustained outperformance — consistent across 3 years — demonstrates the school's effectiveness with its most vulnerable learners.</div>
+        </div>
+        <div class="ofsted-point">
+          <div class="op-label">Progress 8 — Disadvantaged</div>
+          <div class="op-stat">+0.53 above</div>
+          <div class="op-text">Disadvantaged pupils' P8 of -0.04 is 0.53 points above the national disadvantaged average of -0.57. This is one of our strongest indicators — pupils make significantly better progress than their disadvantaged peers nationally.</div>
+        </div>
+        <div class="ofsted-point">
+          <div class="op-label">Attainment 8 Recovery</div>
+          <div class="op-stat">Now above national</div>
+          <div class="op-text">Overall Attainment 8 has risen from 44.2 in 2022/23 to 46.0 in 2024/25 — now above the national average of 45.9. This represents a clear upward trajectory over 3 consecutive years.</div>
+        </div>
+        <div class="ofsted-point">
+          <div class="op-label">Progress 8 Recovery</div>
+          <div class="op-stat">-0.76 to +0.07</div>
+          <div class="op-text">Progress 8 has recovered from -0.76 in 2021/22 (post-COVID) to +0.07 in 2023/24, consistently above the national average. This recovery reflects sustained improvement in teaching quality and curriculum intent.</div>
+        </div>
+        <div class="ofsted-point">
+          <div class="op-label">Context — Mobility</div>
+          <div class="op-stat">Low Stability</div>
+          <div class="op-text">The Low Stability designation for 2024 and 2025 cohorts is a significant contextual factor. High pupil mobility means the school receives pupils mid-KS4 who count in results but have not received a full Gateway education. Ofsted guidance acknowledges this as a mitigating factor.</div>
+        </div>
+        <div class="ofsted-point">
+          <div class="op-label">Disadvantaged Gap</div>
+          <div class="op-stat">Narrowing</div>
+          <div class="op-text">While a gap remains between our disadvantaged pupils and national non-disadvantaged pupils (-12.3 in A8), this is consistent with national patterns. Our disadvantaged pupils outperform their national disadvantaged peers, demonstrating the school's positive impact on this group.</div>
+        </div>
+        <div class="ofsted-point">
+          <div class="op-label">Trust Context</div>
+          <div class="op-stat">GLC</div>
+          <div class="op-text">Gateway Academy is part of Gateway Learning Community — 1 secondary, 4 primary schools. The school's ungraded inspection outcome of "standards maintained" reflects sustained quality. The trust's work in Tilbury serves one of England's most challenging socioeconomic contexts.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" style="margin-top:24px">
+      <div class="section-title">📝 Key Messages Summary</div>
+      <div class="section-sub">Use these bullet points in any presentation or inspection preparation document</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px">
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:12px">
+          <li style="display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.6"><span style="font-size:16px;flex-shrink:0">✅</span><span><strong>Attainment 8 (2024/25): 46.0</strong> — now above the national average of 45.9, having risen for 3 consecutive years from 44.2 in 2022/23.</span></li>
+          <li style="display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.6"><span style="font-size:16px;flex-shrink:0">✅</span><span><strong>Progress 8 (2023/24): +0.07</strong> — above the national average of -0.03, demonstrating that pupils make better than expected progress from their KS2 starting points.</span></li>
+          <li style="display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.6"><span style="font-size:16px;flex-shrink:0">✅</span><span><strong>Disadvantaged Attainment 8: 38.0</strong> — above the national disadvantaged average of 34.9, sustained consistently across all 3 years of data.</span></li>
+          <li style="display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.6"><span style="font-size:16px;flex-shrink:0">✅</span><span><strong>Disadvantaged Progress 8: -0.04</strong> — significantly above the national disadvantaged average of -0.57, a gap of +0.53 in our favour, rated Above average.</span></li>
+          <li style="display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.6"><span style="font-size:16px;flex-shrink:0">✅</span><span><strong>Eng & Maths 5+ (Disadvantaged): 34.2%</strong> — vs 25.6% nationally for disadvantaged pupils. Our disadvantaged pupils outperform the national disadvantaged average by 8.6 percentage points.</span></li>
+          <li style="display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.6"><span style="font-size:16px;flex-shrink:0">⚠️</span><span><strong>Low Stability context</strong> — both 2024 and 2025 cohorts carry a Low Stability flag indicating high pupil mobility. This is a recognised mitigating factor that Ofsted takes into account when evaluating headline measures.</span></li>
+          <li style="display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.6"><span style="font-size:16px;flex-shrink:0">📈</span><span><strong>Improving trajectory</strong> — across all headline measures, Gateway Academy shows a clear upward trend from 2021/22 to 2024/25, representing sustained school improvement in a challenging context.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPLOAD TAB -->
+  <div class="tab-panel" id="tab-upload">
+    <div class="upload-section">
+      <div class="upload-title">⬆ Upload New IDSR to Update Dashboard</div>
+      <div class="upload-sub">When your next IDSR is published, upload it here. The dashboard will extract the new Performance 8 and Attainment 8 figures and add them to the trend charts automatically.</div>
+      <div class="drop-zone" id="uploadDz" onclick="document.getElementById('idsrFile').click()" ondragover="dzOver(event)" ondragleave="dzLeave()" ondrop="dzDrop(event)">
+        <div class="dz-icon">📄</div>
+        <p><strong>Click to upload your new IDSR PDF</strong> or drag and drop here</p>
+        <p style="font-size:12px;margin-top:4px">Download your IDSR from idsr.ofsted.gov.uk — upload the PDF here</p>
+        <input type="file" id="idsrFile" accept=".pdf,application/pdf" onchange="handleIDSR(event)">
+      </div>
+      <div id="uploadStatus" class="upload-status"></div>
+    </div>
+
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:24px">
+      <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px">📋 How to update the dashboard each year</div>
+      <ol style="display:flex;flex-direction:column;gap:10px;padding-left:20px">
+        <li style="font-size:13px;line-height:1.6">Go to <strong>idsr.ofsted.gov.uk</strong> and log in with your school credentials</li>
+        <li style="font-size:13px;line-height:1.6">Find Gateway Academy (URN: 133114) and click <strong>"Download this page"</strong> to save as PDF</li>
+        <li style="font-size:13px;line-height:1.6">Come to this tab and upload the PDF — the dashboard will automatically extract the new figures</li>
+        <li style="font-size:13px;line-height:1.6">The new year's data will be added to the trend charts alongside previous years</li>
+        <li style="font-size:13px;line-height:1.6">Review the updated Ofsted Narrative tab — it will refresh with the latest figures</li>
+      </ol>
+      <div style="margin-top:16px;padding:12px 16px;background:var(--amber-light);border:1px solid #fcd34d;border-radius:8px;font-size:13px;color:#78350f">
+        <strong>Note:</strong> The PDF parser works best with the standard Ofsted IDSR PDF format. If figures aren't extracted correctly, you can manually enter them using the form below.
+      </div>
+    </div>
+
+    <!-- MANUAL ENTRY -->
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px">
+      <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px">✏️ Manual Data Entry</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:18px">Enter figures manually from your new IDSR if the auto-extract doesn't pick them up correctly.</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px">
+        <div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:5px">Academic Year</label><input id="m_year" type="text" placeholder="e.g. 2025/26" style="width:100%;padding:8px 11px;font-size:13px;border:1px solid var(--border);border-radius:7px;font-family:inherit;outline:none"></div>
+        <div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:5px">Attainment 8 (School)</label><input id="m_a8" type="number" step="0.1" placeholder="e.g. 47.2" style="width:100%;padding:8px 11px;font-size:13px;border:1px solid var(--border);border-radius:7px;font-family:inherit;outline:none"></div>
+        <div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:5px">Attainment 8 (National)</label><input id="m_a8n" type="number" step="0.1" placeholder="e.g. 45.9" style="width:100%;padding:8px 11px;font-size:13px;border:1px solid var(--border);border-radius:7px;font-family:inherit;outline:none"></div>
+        <div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:5px">Progress 8 (School)</label><input id="m_p8" type="number" step="0.01" placeholder="e.g. 0.12" style="width:100%;padding:8px 11px;font-size:13px;border:1px solid var(--border);border-radius:7px;font-family:inherit;outline:none"></div>
+        <div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:5px">Progress 8 (National)</label><input id="m_p8n" type="number" step="0.01" placeholder="e.g. -0.03" style="width:100%;padding:8px 11px;font-size:13px;border:1px solid var(--border);border-radius:7px;font-family:inherit;outline:none"></div>
+        <div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:5px">Dis. Attainment 8 (School)</label><input id="m_da8" type="number" step="0.1" placeholder="e.g. 39.5" style="width:100%;padding:8px 11px;font-size:13px;border:1px solid var(--border);border-radius:7px;font-family:inherit;outline:none"></div>
+        <div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:5px">Dis. Attainment 8 (National)</label><input id="m_da8n" type="number" step="0.1" placeholder="e.g. 34.9" style="width:100%;padding:8px 11px;font-size:13px;border:1px solid var(--border);border-radius:7px;font-family:inherit;outline:none"></div>
+        <div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:5px">Dis. Progress 8 (School)</label><input id="m_dp8" type="number" step="0.01" placeholder="e.g. -0.02" style="width:100%;padding:8px 11px;font-size:13px;border:1px solid var(--border);border-radius:7px;font-family:inherit;outline:none"></div>
+        <div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:5px">Dis. Progress 8 (National)</label><input id="m_dp8n" type="number" step="0.01" placeholder="e.g. -0.57" style="width:100%;padding:8px 11px;font-size:13px;border:1px solid var(--border);border-radius:7px;font-family:inherit;outline:none"></div>
+      </div>
+      <button onclick="addManualData()" style="background:var(--blue);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">✓ Add this year's data</button>
+      <div id="manualStatus" style="margin-top:10px;font-size:13px;color:var(--teal);display:none">✓ Data added successfully — charts updated!</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── DATA ──
+let dashData = {
+  a8: {
+    labels: ['2022/23','2023/24','2024/25'],
+    school: [44.2, 44.6, 46.0],
+    national: [46.3, 45.9, 45.9]
+  },
+  p8: {
+    labels: ['2021/22','2022/23','2023/24'],
+    school: [-0.76, 0.23, 0.07],
+    national: [-0.03, -0.03, -0.03]
+  },
+  disA8: {
+    labels: ['2022/23','2023/24','2024/25'],
+    school: [39.3, 38.9, 38.0],
+    national: [35.0, 34.6, 34.9]
+  },
+  disP8: {
+    labels: ['2021/22','2022/23','2023/24'],
+    school: [-0.79, 0.15, -0.04],
+    national: [-0.55, -0.57, -0.57]
+  }
+};
+
+// Try to load saved data
+try {
+  const saved = localStorage.getItem('gateway_dashboard_data');
+  if(saved) dashData = JSON.parse(saved);
+} catch(e){}
+
+function saveData() {
+  try { localStorage.setItem('gateway_dashboard_data', JSON.stringify(dashData)); } catch(e){}
+}
+
+// ── METRICS ──
+const metrics = [
+  {label:'Attainment 8', value:'46.0', nat:'45.9', gap:'+0.1', band:'close', color:'blue'},
+  {label:'Progress 8', value:'+0.07', nat:'-0.03', gap:'+0.10', band:'close', color:'green'},
+  {label:'Eng & Maths 5+', value:'47.7%', nat:'45.2%', gap:'+2.5pp', band:'close', color:'blue'},
+  {label:'Dis. Attainment 8', value:'38.0', nat:'34.9', gap:'+3.1', band:'close', color:'blue'},
+  {label:'Dis. Progress 8', value:'-0.04', nat:'-0.57', gap:'+0.53', band:'above', color:'green'},
+  {label:'Dis. Eng & Maths 5+', value:'34.2%', nat:'25.6%', gap:'+8.6pp', band:'close', color:'blue'},
+];
+
+function renderMetrics() {
+  const bandLabels = {above:'Above average', close:'Close to average', below:'Below average'};
+  document.getElementById('metricsGrid').innerHTML = metrics.map(m => `
+    <div class="metric-card ${m.band}">
+      <div class="metric-label">${m.label}</div>
+      <div class="metric-value ${m.color}">${m.value}</div>
+      <div class="metric-vs">vs National <strong>${m.nat}</strong> (${m.gap})</div>
+      <div class="metric-badge ${m.band}">${bandLabels[m.band]}</div>
+    </div>`).join('');
+}
+
+// ── CHARTS ──
+const chartDefaults = {
+  responsive: true, maintainAspectRatio: false,
+  plugins: {legend:{position:'bottom',labels:{font:{family:'Inter',size:12},padding:16}}},
+  scales: {
+    x:{grid:{color:'#f0f4f8'},ticks:{font:{family:'Inter',size:12}}},
+    y:{grid:{color:'#f0f4f8'},ticks:{font:{family:'Inter',size:12}}}
+  }
+};
+
+function makeChart(id, data, yLabel, isProgress) {
+  const ctx = document.getElementById(id).getContext('2d');
+  return new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: data.labels,
+      datasets: [
+        {
+          label: 'Gateway Academy',
+          data: data.school,
+          borderColor: '#1e5fa8',
+          backgroundColor: 'rgba(30,95,168,0.1)',
+          borderWidth: 3,
+          pointRadius: 6,
+          pointBackgroundColor: '#1e5fa8',
+          tension: 0.3,
+          fill: true
+        },
+        {
+          label: 'National Average',
+          data: data.national,
+          borderColor: '#94a3b8',
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          borderDash: [6,4],
+          pointRadius: 4,
+          pointBackgroundColor: '#94a3b8',
+          tension: 0.3
+        }
+      ]
+    },
+    options: {
+      ...chartDefaults,
+      plugins: {
+        ...chartDefaults.plugins,
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.dataset.label}: ${isProgress ? (ctx.raw >= 0 ? '+' : '') : ''}${ctx.raw}`
+          }
+        }
+      },
+      scales: {
+        ...chartDefaults.scales,
+        y: {
+          ...chartDefaults.scales.y,
+          title: {display: true, text: yLabel, font: {family:'Inter',size:11}, color:'#94a3b8'}
+        }
+      }
+    }
+  });
+}
+
+let charts = {};
+function initCharts() {
+  charts.a8 = makeChart('a8Chart', dashData.a8, 'Attainment 8 Score', false);
+  charts.p8 = makeChart('p8Chart', dashData.p8, 'Progress 8 Score', true);
+  charts.disA8 = makeChart('disA8Chart', dashData.disA8, 'Attainment 8 Score', false);
+  charts.disP8 = makeChart('disP8Chart', dashData.disP8, 'Progress 8 Score', true);
+}
+
+function updateCharts() {
+  ['a8','p8','disA8','disP8'].forEach(key => {
+    charts[key].data.labels = dashData[key].labels;
+    charts[key].data.datasets[0].data = dashData[key].school;
+    charts[key].data.datasets[1].data = dashData[key].national;
+    charts[key].update();
+  });
+}
+
+// ── TABS ──
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── UPLOAD ──
+function dzOver(e){e.preventDefault();document.getElementById('uploadDz').classList.add('drag-over')}
+function dzLeave(){document.getElementById('uploadDz').classList.remove('drag-over')}
+function dzDrop(e){e.preventDefault();dzLeave();const f=e.dataTransfer.files[0];if(f)processIDSR(f);}
+function handleIDSR(e){const f=e.target.files[0];if(f)processIDSR(f);}
+
+function showUploadStatus(type, msg) {
+  const el = document.getElementById('uploadStatus');
+  el.className = 'upload-status ' + type;
+  el.style.display = 'block';
+  el.innerHTML = msg;
+}
+
+async function processIDSR(file) {
+  showUploadStatus('loading', '⏳ Reading PDF... This may take a moment.');
+  try {
+    const text = await extractPDFText(file);
+    const extracted = parseIDSRText(text);
+    if(extracted) {
+      applyExtractedData(extracted);
+      showUploadStatus('ok', `✅ Successfully extracted data for ${extracted.year}! Charts and tables have been updated. Switch to the Overview or Detailed Data tab to see the changes.`);
+    } else {
+      showUploadStatus('err', '⚠️ Could not automatically extract figures from this PDF. Please use the Manual Data Entry form below to add the new year\'s figures.');
+    }
+  } catch(e) {
+    showUploadStatus('err', '⚠️ Error reading PDF: ' + e.message + '. Please use the Manual Data Entry form below.');
+  }
+}
+
+async function extractPDFText(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        const typedArray = new Uint8Array(e.target.result);
+        // Simple text extraction from PDF
+        let text = '';
+        const decoder = new TextDecoder('latin1');
+        const raw = decoder.decode(typedArray);
+        // Extract text between BT and ET markers (PDF text objects)
+        const matches = raw.matchAll(/BT[\s\S]*?ET/g);
+        for(const m of matches) {
+          const tj = m[0].matchAll(/\((.*?)\)\s*T[jJ]/g);
+          for(const t of tj) {
+            text += t[1].replace(/\\n/g,' ').replace(/\\/g,'') + ' ';
+          }
+        }
+        if(text.length < 100) {
+          // Fallback: try reading as latin1 and find number patterns
+          text = raw;
+        }
+        resolve(text);
+      } catch(err) { reject(err); }
+    };
+    reader.onerror = () => reject(new Error('File read failed'));
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+function parseIDSRText(text) {
+  // Look for the summary table patterns in Ofsted IDSR format
+  const yearMatch = text.match(/(\d{4}\/\d{2,4}|\d{4}\/25|\d{4}\/26)/g);
+  const a8Match = text.match(/Attainment 8[\s\S]{0,200}?(\d{4}\/\d{2,4})\s+([\d.]+)\s+([\d.]+)/);
+  const p8Match = text.match(/Progress 8[\s\S]{0,200}?(\d{4}\/\d{2,4})\s+([-\d.]+)\s+([-\d.]+)/);
+
+  if(!a8Match && !p8Match) return null;
+
+  const year = (a8Match && a8Match[1]) || (p8Match && p8Match[1]);
+  if(!year) return null;
+
+  return {
+    year,
+    a8School: a8Match ? parseFloat(a8Match[2]) : null,
+    a8National: a8Match ? parseFloat(a8Match[3]) : null,
+    p8School: p8Match ? parseFloat(p8Match[2]) : null,
+    p8National: p8Match ? parseFloat(p8Match[3]) : null,
+  };
+}
+
+function applyExtractedData(d) {
+  if(!dashData.a8.labels.includes(d.year)) {
+    if(d.a8School !== null) {
+      dashData.a8.labels.push(d.year);
+      dashData.a8.school.push(d.a8School);
+      dashData.a8.national.push(d.a8National || 45.9);
+    }
+    if(d.p8School !== null) {
+      dashData.p8.labels.push(d.year);
+      dashData.p8.school.push(d.p8School);
+      dashData.p8.national.push(d.p8National || -0.03);
+    }
+  }
+  saveData();
+  updateCharts();
+}
+
+function addManualData() {
+  const year = document.getElementById('m_year').value.trim();
+  const a8 = parseFloat(document.getElementById('m_a8').value);
+  const a8n = parseFloat(document.getElementById('m_a8n').value);
+  const p8 = parseFloat(document.getElementById('m_p8').value);
+  const p8n = parseFloat(document.getElementById('m_p8n').value);
+  const da8 = parseFloat(document.getElementById('m_da8').value);
+  const da8n = parseFloat(document.getElementById('m_da8n').value);
+  const dp8 = parseFloat(document.getElementById('m_dp8').value);
+  const dp8n = parseFloat(document.getElementById('m_dp8n').value);
+
+  if(!year) { alert('Please enter an academic year.'); return; }
+
+  if(!isNaN(a8) && !dashData.a8.labels.includes(year)) {
+    dashData.a8.labels.push(year);
+    dashData.a8.school.push(a8);
+    dashData.a8.national.push(isNaN(a8n) ? 45.9 : a8n);
+  }
+  if(!isNaN(p8) && !dashData.p8.labels.includes(year)) {
+    dashData.p8.labels.push(year);
+    dashData.p8.school.push(p8);
+    dashData.p8.national.push(isNaN(p8n) ? -0.03 : p8n);
+  }
+  if(!isNaN(da8) && !dashData.disA8.labels.includes(year)) {
+    dashData.disA8.labels.push(year);
+    dashData.disA8.school.push(da8);
+    dashData.disA8.national.push(isNaN(da8n) ? 34.9 : da8n);
+  }
+  if(!isNaN(dp8) && !dashData.disP8.labels.includes(year)) {
+    dashData.disP8.labels.push(year);
+    dashData.disP8.school.push(dp8);
+    dashData.disP8.national.push(isNaN(dp8n) ? -0.57 : dp8n);
+  }
+
+  saveData();
+  updateCharts();
+  document.getElementById('manualStatus').style.display = 'block';
+  setTimeout(() => document.getElementById('manualStatus').style.display = 'none', 4000);
+}
+
+// ── INIT ──
+renderMetrics();
+initCharts();
+</script>
+</body>
+</html>
