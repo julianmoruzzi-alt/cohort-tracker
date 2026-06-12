@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vulnerable Cohort Tracker — Gateway Academy</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f2744;--blue:#1e5fa8;--blue-light:#e8f0fb;
+  --teal:#0e7c6e;--teal-light:#e0f4f1;
+  --amber:#b45309;--amber-light:#fef3c7;
+  --red:#b91c1c;--red-light:#fee2e2;
+  --slate:#64748b;--slate-light:#f1f5f9;
+  --border:#dde3ed;--white:#fff;--surface:#f7f9fc;--text:#0f172a;--muted:#64748b;
+}
+body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);min-height:100vh;font-size:14px}
+
+/* HEADER */
+.header{background:var(--navy);padding:0 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:20;border-bottom:3px solid var(--blue);min-height:60px}
+.hbrand{display:flex;align-items:center;gap:14px}
+.hlogo{width:36px;height:36px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.htitle{color:#fff;font-size:16px;font-weight:700;letter-spacing:-.3px}
+.hsub{color:#94a8c8;font-size:12px;margin-top:1px;font-family:'JetBrains Mono',monospace}
+.hactions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.school-input{padding:6px 12px;font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:7px;background:rgba(255,255,255,.1);color:#fff;font-family:'Inter',sans-serif;outline:none;width:190px}
+.school-input::placeholder{color:rgba(255,255,255,.4)}
+.school-input:focus{border-color:rgba(255,255,255,.5)}
+
+/* BUTTONS */
+.btn{padding:7px 14px;font-size:13px;border-radius:7px;border:1px solid var(--border);background:var(--white);color:var(--text);cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;font-weight:500;transition:background .12s;white-space:nowrap}
+.btn:hover{background:var(--slate-light)}
+.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn.primary:hover{background:#1a5294}
+.btn.success{background:var(--teal);color:#fff;border-color:var(--teal)}
+.btn.success:hover{background:#0b6a5e}
+.btn.ghost{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)}
+.btn.ghost:hover{background:rgba(255,255,255,.2)}
+.btn.danger{color:var(--red);border-color:#fca5a5}
+.btn.danger:hover{background:var(--red-light)}
+.btn.warn{background:#d97706;color:#fff;border-color:#d97706}
+.btn.warn:hover{background:#b45309}
+.btn.sm{padding:4px 9px;font-size:11px;gap:4px}
+
+/* MAIN */
+.main{max-width:1280px;margin:0 auto;padding:24px}
+
+/* SETUP BANNER */
+.setup-banner{background:var(--amber-light);border:1px solid #fcd34d;border-radius:12px;padding:18px 22px;margin-bottom:22px;display:flex;gap:16px;align-items:flex-start}
+.setup-banner-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+.setup-banner h3{font-size:15px;font-weight:700;color:#92400e;margin-bottom:4px}
+.setup-banner p{font-size:13px;color:#78350f;line-height:1.55}
+.setup-banner .btn{margin-top:10px}
+
+/* SYNC STATUS */
+.sync-bar{display:flex;align-items:center;gap:10px;margin-bottom:14px;font-size:12px;color:var(--muted)}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:#94a3b8;flex-shrink:0}
+.sync-dot.ok{background:#10b981}
+.sync-dot.err{background:var(--red)}
+.sync-dot.loading{background:#f59e0b;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.metric{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;cursor:pointer;transition:border-color .15s,box-shadow .15s;position:relative;overflow:hidden}
+.metric::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:10px 0 0 10px}
+.metric.red::before{background:var(--red)}
+.metric.blue::before{background:var(--blue)}
+.metric.teal::before{background:var(--teal)}
+.metric.amber::before{background:var(--amber)}
+.metric:hover{border-color:var(--blue);box-shadow:0 2px 8px rgba(30,95,168,.12)}
+.metric-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.metric-value{font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;line-height:1}
+.metric-value.red{color:var(--red)}.metric-value.blue{color:var(--blue)}.metric-value.teal{color:var(--teal)}.metric-value.amber{color:var(--amber)}
+
+/* TOOLBAR */
+.toolbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.toolbar input[type=text]{flex:1;min-width:200px;padding:8px 12px;font-size:13px;border:1px solid var(--border);border-radius:7px;background:var(--white);color:var(--text);outline:none;font-family:'Inter',sans-serif}
+.toolbar input[type=text]:focus{border-color:var(--blue)}
+.toolbar select{padding:8px 10px;font-size:13px;border:1px solid var(--border);border-radius:7px;background:var(--white);color:var(--text);outline:none;cursor:pointer;font-family:'Inter',sans-serif}
+
+/* TABLE */
+.table-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.table-top{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--slate-light)}
+.table-top span{font-size:12px;color:var(--muted);font-weight:500}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--slate-light);padding:10px 14px;text-align:left;font-weight:600;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid #f0f4f8;transition:background .1s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:#f7faff}
+tbody td{padding:12px 14px;vertical-align:middle}
+.name-cell{font-weight:600;font-size:14px}
+.yr{font-size:12px;color:var(--muted)}
+.tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;margin:2px 2px 2px 0;font-weight:600}
+.tag.send{background:#dbeafe;color:#1e40af}.tag.fsm{background:#d1fae5;color:#065f46}
+.tag.lac{background:#ede9fe;color:#4c1d95}.tag.sc{background:var(--red-light);color:var(--red)}
+.tag.plac{background:#fce7f3;color:#831843}.tag.pp{background:#ecfdf5;color:#064e3b}
+.att{font-weight:700;font-size:13px;font-family:'JetBrains Mono',monospace}
+.att.low{color:var(--red)}.att.mid{color:var(--amber)}.att.ok{color:var(--teal)}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px}
+.badge.open{background:var(--red-light);color:var(--red)}.badge.closed{background:var(--teal-light);color:var(--teal)}
+.last-note{font-size:12px;color:var(--muted);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.empty{text-align:center;padding:4rem;color:#94a3b8}
+.empty-icon{font-size:40px;margin-bottom:12px}
+
+/* MODALS */
+.overlay{display:none;position:fixed;inset:0;background:rgba(15,39,68,.5);z-index:100;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.overlay.open{display:flex}
+.modal{background:var(--white);border-radius:14px;border:1px solid var(--border);padding:26px;width:520px;max-width:95vw;max-height:92vh;overflow-y:auto;box-shadow:0 20px 60px rgba(15,39,68,.18)}
+.modal.wide{width:740px}.modal.narrow{width:400px}
+.modal h2{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.modal-sub{font-size:13px;color:var(--muted);margin-bottom:18px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;padding:8px 11px;font-size:13px;border:1px solid var(--border);border-radius:7px;background:var(--white);color:var(--text);font-family:'Inter',sans-serif;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,95,168,.08)}
+.field textarea{resize:vertical;min-height:64px}
+.checkbox-group{display:flex;flex-wrap:wrap;gap:10px;margin-top:5px}
+.checkbox-group label{display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;color:#334155}
+.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid #f0f4f8}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.status-toggle{display:flex;gap:8px;margin-top:5px}
+.status-opt{flex:1;padding:9px;text-align:center;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;transition:all .15s;color:var(--muted)}
+.sel-open{background:var(--red-light);border-color:#fca5a5;color:var(--red)!important;font-weight:600}
+.sel-closed{background:var(--teal-light);border-color:#6ee7b7;color:var(--teal)!important;font-weight:600}
+
+/* LOG */
+.log-panel{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.log-ph{background:var(--slate-light);padding:10px 14px;font-size:12px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.log-entries{max-height:280px;overflow-y:auto}
+.log-entry{padding:13px 15px;border-bottom:1px solid #f0f4f8}
+.log-entry:last-child{border-bottom:none}
+.log-meta{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.log-date{font-size:11px;font-weight:600;color:var(--blue);background:var(--blue-light);padding:2px 7px;border-radius:4px;font-family:'JetBrains Mono',monospace}
+.log-author{font-size:11px;color:var(--muted)}
+.log-text{color:#334155;line-height:1.55;font-size:13px}
+.log-empty{padding:24px;text-align:center;color:#94a3b8;font-size:13px}
+.add-note{border-top:1px solid var(--border);padding:13px 15px;background:var(--slate-light)}
+.add-note textarea{width:100%;padding:8px 11px;font-size:13px;border:1px solid var(--border);border-radius:7px;font-family:'Inter',sans-serif;outline:none;resize:none;min-height:62px;background:var(--white);color:var(--text)}
+.add-note textarea:focus{border-color:var(--blue)}
+.add-note-row{display:flex;gap:8px;margin-top:8px;align-items:center}
+.add-note-row input{flex:1;padding:7px 11px;font-size:13px;border:1px solid var(--border);border-radius:7px;font-family:'Inter',sans-serif;outline:none;background:var(--white);color:var(--text)}
+.add-note-row input:focus{border-color:var(--blue)}
+
+/* IMPORT */
+.import-tabs{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:18px}
+.import-tab{flex:1;padding:9px;font-size:13px;text-align:center;cursor:pointer;background:var(--slate-light);border:none;font-family:'Inter',sans-serif;color:var(--muted);font-weight:500;transition:background .15s}
+.import-tab:first-child{border-right:1px solid var(--border)}
+.import-tab.active{background:var(--navy);color:#fff}
+.drop-zone{border:2px dashed var(--border);border-radius:10px;padding:2.5rem;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:var(--slate-light);margin-bottom:12px}
+.drop-zone:hover,.drop-zone.drag-over{border-color:var(--blue);background:var(--blue-light)}
+.drop-zone p{color:var(--muted);font-size:13px;margin-top:8px}
+.dz-icon{font-size:34px}
+.drop-zone input[type=file]{display:none}
+.paste-area{width:100%;min-height:140px;padding:10px;font-size:12px;border:1px solid var(--border);border-radius:8px;font-family:'JetBrains Mono',monospace;resize:vertical;outline:none;color:var(--text);background:var(--white)}
+.paste-area:focus{border-color:var(--blue)}
+.hint-box{background:var(--blue-light);border:1px solid #bfdbfe;border-radius:8px;padding:12px 15px;margin-bottom:16px;font-size:13px;color:#1e3a5f;line-height:1.6}
+.hint-box code{background:#dbeafe;padding:1px 5px;border-radius:4px;font-size:11px;font-family:'JetBrains Mono',monospace}
+.preview-wrap{max-height:200px;overflow-y:auto;border:1px solid var(--border);border-radius:8px;margin-bottom:12px}
+.preview-wrap table{font-size:12px}
+.preview-wrap thead th{font-size:11px;padding:7px 10px}
+.preview-wrap tbody td{padding:7px 10px}
+.import-status{font-size:13px;padding:10px 14px;border-radius:8px;margin-bottom:12px}
+.import-status.ok{background:var(--teal-light);color:var(--teal);border:1px solid #6ee7b7}
+.import-status.err{background:var(--red-light);color:var(--red);border:1px solid #fca5a5}
+.export-bar{display:flex;gap:8px;justify-content:flex-end;margin-bottom:12px;flex-wrap:wrap}
+
+/* SETUP MODAL */
+.setup-steps{counter-reset:step}
+.setup-step{display:flex;gap:14px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.setup-step:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-body h4{font-size:14px;font-weight:600;margin-bottom:5px;color:var(--navy)}
+.step-body p{font-size:13px;color:#334155;line-height:1.6;margin-bottom:6px}
+.step-body code{background:var(--blue-light);color:var(--blue);padding:2px 7px;border-radius:4px;font-size:12px;font-family:'JetBrains Mono',monospace;word-break:break-all}
+.step-body .copy-block{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:12px;font-family:'JetBrains Mono',monospace;color:#334155;margin:8px 0;word-break:break-all;line-height:1.6;position:relative}
+.copy-btn{position:absolute;top:6px;right:6px;padding:3px 8px;font-size:11px;border:1px solid var(--border);border-radius:5px;background:var(--white);cursor:pointer;font-family:'Inter',sans-serif;color:var(--muted)}
+.copy-btn:hover{background:var(--slate-light)}
+.warning-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:11px 14px;font-size:13px;color:#92400e;margin-top:8px;line-height:1.55}
+
+@media print{.header{position:relative}.toolbar,.overlay,.export-bar,.actions-col,.hactions{display:none!important}body{background:#fff}.main{padding:0}}
+@media(max-width:700px){.form-row{grid-template-columns:1fr}table{font-size:12px}thead th,tbody td{padding:8px 10px}.main{padding:14px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="hbrand">
+    <div class="hlogo">🛡️</div>
+    <div>
+      <div class="htitle">Vulnerable Cohort Tracker</div>
+      <div class="hsub" id="headerSub">Gateway Academy</div>
+    </div>
+  </div>
+  <div class="hactions">
+    <input type="text" class="school-input" id="schoolName" placeholder="School name…" oninput="saveSchoolName()">
+    <button class="btn ghost" onclick="openImport()">⬆ Import</button>
+    <button class="btn ghost" onclick="openModal()">+ Add pupil</button>
+    <button class="btn warn" onclick="openSetup()">⚙ Setup</button>
+  </div>
+</div>
+
+<div class="main">
+  <div id="setupBanner" class="setup-banner" style="display:none">
+    <div class="setup-banner-icon">⚠️</div>
+    <div>
+      <h3>Setup required — data is currently stored locally only</h3>
+      <p>To share live data with your colleagues, you need to connect this app to Google Sheets. This is a one-time setup that takes about 10 minutes. Until then, only you will see the data you enter.</p>
+      <button class="btn warn" onclick="openSetup()">▶ Start setup guide</button>
+    </div>
+  </div>
+
+  <div class="sync-bar">
+    <div class="sync-dot" id="syncDot"></div>
+    <span id="syncMsg">Checking connection…</span>
+    <button class="btn sm" onclick="syncNow()" id="syncBtn" style="display:none">↻ Refresh</button>
+  </div>
+
+  <div class="metrics" id="metrics"></div>
+
+  <div class="export-bar">
+    <button class="btn" onclick="downloadTemplate()">⬇ CSV template</button>
+    <button class="btn" onclick="exportCSV()">⬇ Export CSV</button>
+    <button class="btn" onclick="window.print()">🖨 Print</button>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" id="search" placeholder="Search name or key worker…">
+    <select id="filterYear" onchange="render()">
+      <option value="">All year groups</option>
+      <option>Year 7</option><option>Year 8</option><option>Year 9</option>
+      <option>Year 10</option><option>Year 11</option><option>Year 12</option><option>Year 13</option>
+    </select>
+    <select id="filterFlag" onchange="render()">
+      <option value="">All flags</option>
+      <option value="send">SEND</option><option value="fsm">FSM</option>
+      <option value="lac">LAC</option><option value="sc">Social care</option>
+      <option value="plac">Previously LAC</option><option value="pp">Pupil premium</option>
+    </select>
+    <select id="filterAtt" onchange="render()">
+      <option value="">All attendance</option>
+      <option value="pa">Persistent absence (&lt;90%)</option>
+      <option value="concern">Concern (90–95%)</option>
+    </select>
+    <select id="filterStatus" onchange="render()">
+      <option value="">Open &amp; closed</option>
+      <option value="open">Open only</option>
+      <option value="closed">Closed only</option>
+    </select>
+    <button class="btn" onclick="clearFilters()">✕ Clear</button>
+  </div>
+
+  <div class="table-card">
+    <div class="table-top">
+      <span id="tableCount">Loading…</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th><th>Year</th><th>Status</th><th>Flags</th>
+          <th>Attendance</th><th>Key worker</th><th>Latest note</th>
+          <th>Last updated</th><th class="actions-col"></th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div id="emptyMsg" class="empty" style="display:none">
+      <div class="empty-icon">👥</div>
+      No pupils match the current filters.
+    </div>
+  </div>
+</div>
+
+<!-- ADD/EDIT MODAL -->
+<div class="overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h2 id="modalTitle">Add pupil</h2>
+    <p class="modal-sub">Basic details. Add dated case notes via the chronology log after saving.</p>
+    <div class="form-row">
+      <div class="field"><label>Full name *</label><input id="fName" type="text" placeholder="e.g. Jordan Smith"></div>
+      <div class="field"><label>Year group</label>
+        <select id="fYear"><option>Year 7</option><option>Year 8</option><option>Year 9</option><option>Year 10</option><option>Year 11</option><option>Year 12</option><option>Year 13</option></select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field"><label>Attendance (%)</label><input id="fAtt" type="number" min="0" max="100" placeholder="e.g. 87"></div>
+      <div class="field"><label>Key worker / form tutor</label><input id="fWorker" type="text" placeholder="e.g. Ms Patel"></div>
+    </div>
+    <div class="field"><label>Case status</label>
+      <div class="status-toggle">
+        <div class="status-opt" id="sOpen" onclick="selectStatus('open')">🔴 Open</div>
+        <div class="status-opt" id="sClosed" onclick="selectStatus('closed')">🟢 Closed</div>
+      </div>
+    </div>
+    <div class="field"><label>Vulnerability flags</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" value="send"> SEND</label>
+        <label><input type="checkbox" value="fsm"> FSM</label>
+        <label><input type="checkbox" value="lac"> LAC</label>
+        <label><input type="checkbox" value="sc"> Social care</label>
+        <label><input type="checkbox" value="plac"> Previously LAC</label>
+        <label><input type="checkbox" value="pp"> Pupil premium</label>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn primary" onclick="savePupil()">✓ Save pupil</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHRONOLOGY LOG MODAL -->
+<div class="overlay" id="logOverlay" onclick="if(event.target===this)closeLog()">
+  <div class="modal wide">
+    <h2 id="logTitle">Chronology log</h2>
+    <p class="modal-sub" id="logSub"></p>
+    <div class="log-panel">
+      <div class="log-ph">
+        <span>Case notes — newest first</span>
+        <span id="logCount" style="font-size:11px;color:#94a3b8"></span>
+      </div>
+      <div class="log-entries" id="logEntries"></div>
+      <div class="add-note">
+        <textarea id="newNoteText" placeholder="Add a note — e.g. Meeting with social worker, EHCP review completed, parent contacted…"></textarea>
+        <div class="add-note-row">
+          <input type="text" id="newNoteAuthor" placeholder="Your name (optional)">
+          <button class="btn primary" onclick="addNote()">+ Add note</button>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:4px">
+      <span style="font-size:13px;font-weight:600;color:#334155">Case status:</span>
+      <div class="status-opt" id="logSOpen" onclick="setLogStatus('open')" style="padding:6px 16px;font-size:12px">🔴 Open</div>
+      <div class="status-opt" id="logSClosed" onclick="setLogStatus('closed')" style="padding:6px 16px;font-size:12px">🟢 Closed</div>
+    </div>
+    <div class="modal-actions"><button class="btn" onclick="closeLog()">Close</button></div>
+  </div>
+</div>
+
+<!-- ADMIN PIN MODAL -->
+<div class="overlay" id="pinOverlay" onclick="if(event.target===this)closePinModal()">
+  <div class="modal narrow">
+    <h2>🔒 Admin required</h2>
+    <p class="modal-sub">Enter the admin PIN to delete this pupil.</p>
+    <div class="field"><label>Admin PIN</label><input id="pinInput" type="password" placeholder="Enter PIN…" onkeydown="if(event.key==='Enter')confirmPin()"></div>
+    <div id="pinError" style="font-size:12px;color:var(--red);margin-top:-8px;margin-bottom:8px;display:none">Incorrect PIN. Please try again.</div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closePinModal()">Cancel</button>
+      <button class="btn primary" onclick="confirmPin()">Confirm delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMPORT MODAL -->
+<div class="overlay" id="importOverlay" onclick="if(event.target===this)closeImport()">
+  <div class="modal wide">
+    <h2>Import pupils in bulk</h2>
+    <p class="modal-sub">Upload a CSV or paste data from Excel / SIMS.</p>
+    <div class="import-tabs">
+      <button class="import-tab active" id="tabFile" onclick="switchTab('file')">📂 Upload CSV file</button>
+      <button class="import-tab" id="tabPaste" onclick="switchTab('paste')">📋 Paste from spreadsheet</button>
+    </div>
+    <div id="panelFile">
+      <div class="hint-box">
+        <strong>Expected columns:</strong><br>
+        <code>Name</code>, <code>Year</code>, <code>Attendance</code>, <code>Key Worker</code>, <code>Status</code>, <code>SEND</code>, <code>FSM</code>, <code>LAC</code>, <code>Social Care</code>, <code>Previously LAC</code>, <code>Pupil Premium</code>, <code>Notes</code><br><br>
+        Flags: use <code>yes</code> or <code>1</code>. Status: <code>open</code> or <code>closed</code>. Only Name is required.
+        <button class="btn" style="margin-top:8px;font-size:12px" onclick="downloadTemplate()">⬇ Download blank template</button>
+      </div>
+      <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="dzOver(event)" ondragleave="dzLeave()" ondrop="dzDrop(event)">
+        <div class="dz-icon">📄</div>
+        <p><strong>Click to choose a CSV file</strong> or drag and drop here</p>
+        <p style="font-size:12px;margin-top:4px">Supports .csv exported from Excel or SIMS</p>
+        <input type="file" id="fileInput" accept=".csv,text/csv" onchange="handleFile(event)">
+      </div>
+    </div>
+    <div id="panelPaste" style="display:none">
+      <div class="hint-box">Copy cells from Excel or SIMS (include the header row) and paste below.</div>
+      <textarea class="paste-area" id="pasteArea" placeholder="Paste your spreadsheet data here…"></textarea>
+      <div style="text-align:right;margin-top:8px">
+        <button class="btn primary" onclick="parsePaste()">Parse pasted data →</button>
+      </div>
+    </div>
+    <div id="importPreview" style="display:none">
+      <div id="importStatus" class="import-status"></div>
+      <div class="preview-wrap">
+        <table><thead><tr id="previewHead"></tr></thead><tbody id="previewBody"></tbody></table>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" onclick="resetImport()">← Back</button>
+        <button class="btn primary" onclick="confirmImport()">✓ Import these pupils</button>
+      </div>
+    </div>
+    <div id="importActions" class="modal-actions">
+      <button class="btn" onclick="closeImport()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- SETUP MODAL -->
+<div class="overlay" id="setupOverlay" onclick="if(event.target===this)closeSetup()">
+  <div class="modal wide" style="max-height:90vh;overflow-y:auto">
+    <h2>⚙ Setup — Connect to Google Sheets</h2>
+    <p class="modal-sub">Follow these steps once. After setup, all staff will share live data stored securely in your school's Google Drive.</p>
+
+    <div class="setup-steps">
+
+      <div class="setup-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Create a new Google Sheet</h4>
+          <p>Go to <a href="https://sheets.google.com" target="_blank" style="color:var(--blue)">sheets.google.com</a> and create a new blank spreadsheet. Name it something like <strong>Vulnerable Cohort Data</strong>. Keep the tab named <strong>Sheet1</strong>.</p>
+          <div class="warning-box">⚠️ Make sure you are signed in with your <strong>school Google account</strong> (not a personal Gmail), so the data stays within Gateway Academy's domain.</div>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Open the Apps Script editor</h4>
+          <p>In your new Google Sheet, click the menu: <strong>Extensions → Apps Script</strong>. A new tab will open with a code editor.</p>
+          <p>Delete everything in the editor, then copy and paste the entire script below:</p>
+          <div class="copy-block" id="scriptBlock">const SHEET_NAME = 'Sheet1';
+const ADMIN_PIN = '1234';
+
+function doGet(e) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+  const data = sheet.getDataRange().getValues();
+  if (data.length <= 1) return jsonResp([]);
+  const headers = data[0];
+  const rows = data.slice(1).map(row => {
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = row[i]);
+    try { obj.flags = JSON.parse(obj.flags || '[]'); } catch(e) { obj.flags = []; }
+    try { obj.log = JSON.parse(obj.log || '[]'); } catch(e) { obj.log = []; }
+    obj.att = Number(obj.att) || 0;
+    obj.id = Number(obj.id) || 0;
+    return obj;
+  });
+  return jsonResp(rows);
+}
+
+function doPost(e) {
+  try {
+    const payload = JSON.parse(e.postData.contents);
+    const action = payload.action;
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+
+    if (action === 'save') {
+      const pupils = payload.pupils;
+      sheet.clearContents();
+      sheet.appendRow(['id','name','year','att','worker','flags','status','log']);
+      pupils.forEach(p => {
+        sheet.appendRow([
+          p.id, p.name, p.year, p.att, p.worker || '',
+          JSON.stringify(p.flags || []),
+          p.status || 'open',
+          JSON.stringify(p.log || [])
+        ]);
+      });
+      return jsonResp({ok: true});
+    }
+
+    if (action === 'delete') {
+      if (payload.pin !== ADMIN_PIN) return jsonResp({ok: false, error: 'Wrong PIN'});
+      const id = Number(payload.id);
+      const data = sheet.getDataRange().getValues();
+      for (let i = data.length - 1; i >= 1; i--) {
+        if (Number(data[i][0]) === id) { sheet.deleteRow(i + 1); break; }
+      }
+      return jsonResp({ok: true});
+    }
+
+    return jsonResp({ok: false, error: 'Unknown action'});
+  } catch(err) {
+    return jsonResp({ok: false, error: err.toString()});
+  }
+}
+
+function jsonResp(data) {
+  return ContentService.createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+</div>
+          <button class="copy-btn" onclick="copyScript()" style="position:static;margin-bottom:8px;display:inline-block">📋 Copy script</button>
+          <p style="margin-top:4px">After pasting, change <code>ADMIN_PIN = '1234'</code> on line 2 to a PIN only you know.</p>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Deploy the script as a web app</h4>
+          <p>In the Apps Script editor, click <strong>Deploy → New deployment</strong>.</p>
+          <p>In the dialog that opens:</p>
+          <p>• Click the gear icon next to "Type" and select <strong>Web app</strong><br>
+          • Set <strong>Execute as:</strong> Me<br>
+          • Set <strong>Who has access:</strong> Anyone within [your school domain]<br>
+          • Click <strong>Deploy</strong></p>
+          <p>Google will ask you to authorise the script — click through and allow it (this is your own school account authorising your own script).</p>
+          <p>After deploying, you'll see a <strong>Web app URL</strong>. Copy it — it looks like:<br>
+          <code>https://script.google.com/macros/s/XXXXXX.../exec</code></p>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Paste the URL and your PIN into this app</h4>
+          <div class="field" style="margin-top:8px"><label>Google Apps Script URL</label><input id="setupUrl" type="text" placeholder="https://script.google.com/macros/s/…/exec"></div>
+          <div class="field"><label>Admin PIN (same as in the script)</label><input id="setupPin" type="password" placeholder="Enter your chosen PIN"></div>
+          <button class="btn primary" onclick="saveSetup()">✓ Save and connect</button>
+          <div id="setupResult" style="margin-top:10px;font-size:13px"></div>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Share the HTML file and the Google Sheet with your staff</h4>
+          <p>• Upload this HTML file to your school Google Drive and share it with your 2–5 staff (view or edit access on the file itself doesn't matter — they just need to be able to open it in Chrome).<br>
+          • Share the Google Sheet with the same staff so they can see the underlying data if needed.<br>
+          • All staff must be signed into their school Google account when using the app.</p>
+          <div class="warning-box">🔒 <strong>Data security reminder:</strong> This data is stored in your school's own Google Workspace for Education account and is subject to your school's data protection policies. Do not share the sheet or the app URL outside of authorised staff.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn" onclick="closeSetup()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const FLAG_LABELS={send:'SEND',fsm:'FSM',lac:'LAC',sc:'Social care',plac:'Previously LAC',pp:'Pupil premium'};
+const LS_KEY='vct_pupils_v4';
+const LS_SCHOOL='vct_school_v2';
+const LS_URL='vct_script_url';
+const LS_PIN='vct_admin_pin';
+
+let pupils=[];
+let nextId=1;
+let editId=null;
+let logId=null;
+let pendingImport=[];
+let selectedStatus='open';
+let pendingDeleteId=null;
+let scriptUrl='';
+let adminPin='';
+let connected=false;
+
+function ts(){return new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})+' '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function attClass(a){return a<90?'low':a<95?'mid':'ok'}
+
+/* ── INIT ── */
+function init(){
+  scriptUrl=localStorage.getItem(LS_URL)||'';
+  adminPin=localStorage.getItem(LS_PIN)||'';
+  const school=localStorage.getItem(LS_SCHOOL)||'Gateway Academy';
+  document.getElementById('schoolName').value=school;
+
+  if(scriptUrl){
+    setSyncStatus('loading','Connecting to Google Sheets…');
+    fetchFromSheet();
+  } else {
+    document.getElementById('setupBanner').style.display='flex';
+    setSyncStatus('err','Not connected — data stored locally only');
+    loadLocal();
+  }
+}
+
+function loadLocal(){
+  try{
+    const raw=localStorage.getItem(LS_KEY);
+    if(raw){const d=JSON.parse(raw);pupils=d.pupils||[];nextId=d.nextId||pupils.length+1;}
+    else seedData();
+  }catch(e){seedData();}
+  render();
+}
+
+function seedData(){
+  pupils=[
+    {id:1,name:'Amara Osei',year:'Year 9',att:82,worker:'Mr Hughes',flags:['send','fsm','sc'],status:'open',log:[
+      {date:'12 Sep 2024 09:00',author:'Mr Hughes',text:'Initial referral to social care. CIN meeting arranged.'},
+      {date:'15 Nov 2024 14:30',author:'Ms Wright',text:'CIN plan in place. Weekly check-ins started.'},
+      {date:'10 Jan 2025 10:00',author:'Mr Hughes',text:'EHCP review completed. TA support extended.'}]},
+    {id:2,name:'Tyler Marsh',year:'Year 10',att:91,worker:'Ms Patel',flags:['lac','pp'],status:'open',log:[
+      {date:'03 Feb 2025 09:15',author:'Ms Patel',text:'Placed with foster carer. IRO: J. Davies. Settling in well.'},
+      {date:'18 Mar 2025 11:00',author:'Ms Patel',text:'PEP meeting held. Targets updated.'}]},
+    {id:3,name:'Priya Sharma',year:'Year 8',att:96,worker:'Mr Khan',flags:['send'],status:'open',log:[
+      {date:'05 Sep 2024 08:45',author:'Mr Khan',text:'SEN support plan reviewed for new academic year.'}]},
+    {id:4,name:'Lucas Bennett',year:'Year 11',att:78,worker:'Ms Wright',flags:['fsm','sc','plac'],status:'closed',log:[
+      {date:'01 Jun 2024 13:00',author:'Ms Wright',text:'CP plan closed following review. Monitoring continues.'},
+      {date:'14 Oct 2024 10:30',author:'Ms Wright',text:'Attendance dip noted. Parent meeting held. Referral to mentoring.'}]},
+    {id:5,name:'Chloe Adams',year:'Year 7',att:89,worker:'Mrs Jones',flags:['pp','fsm'],status:'open',log:[
+      {date:'09 Sep 2024 09:00',author:'Mrs Jones',text:'Breakfast club referral made. FSM set up on system.'}]},
+    {id:6,name:'Reuben Okafor',year:'Year 9',att:94,worker:'Mr Singh',flags:['send','pp'],status:'open',log:[
+      {date:'22 Jan 2025 14:00',author:'Mr Singh',text:'TA support in core lessons reviewed. Good progress noted.'}]},
+    {id:7,name:'Isla Thornton',year:'Year 10',att:67,worker:'Ms Ahmed',flags:['lac','sc'],status:'open',log:[
+      {date:'04 Nov 2024 09:30',author:'Ms Ahmed',text:'CiC. Attendance very concerning. Strategy meeting with SW arranged.'},
+      {date:'20 Jan 2025 11:15',author:'Ms Ahmed',text:'Attendance intervention started. Daily check-in with form tutor.'},
+      {date:'10 Mar 2025 10:00',author:'Ms Ahmed',text:'Slight improvement. 74% this half term. Continue monitoring.'}]},
+  ];
+  nextId=8;
+  saveLocal();
+}
+
+function saveLocal(){try{localStorage.setItem(LS_KEY,JSON.stringify({pupils,nextId}));}catch(e){}}
+function saveSchoolName(){
+  try{localStorage.setItem(LS_SCHOOL,document.getElementById('schoolName').value);}catch(e){}
+  render();
+}
+
+/* ── SYNC ── */
+function setSyncStatus(state,msg){
+  const dot=document.getElementById('syncDot');
+  const txt=document.getElementById('syncMsg');
+  const btn=document.getElementById('syncBtn');
+  dot.className='sync-dot '+state;
+  txt.textContent=msg;
+  btn.style.display=state==='ok'||state==='err'?'inline-flex':'none';
+}
+
+async function fetchFromSheet(){
+  try{
+    const resp=await fetch(scriptUrl+'?t='+Date.now());
+    const data=await resp.json();
+    if(Array.isArray(data)){
+      pupils=data;
+      nextId=pupils.length?Math.max(...pupils.map(p=>p.id))+1:1;
+      connected=true;
+      document.getElementById('setupBanner').style.display='none';
+      setSyncStatus('ok','Connected to Google Sheets · Last synced '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}));
+      render();
+    } else {
+      throw new Error('Unexpected response');
+    }
+  }catch(e){
+    setSyncStatus('err','Could not reach Google Sheets — showing locally cached data');
+    loadLocal();
+  }
+}
+
+async function saveToSheet(){
+  if(!scriptUrl){saveLocal();return;}
+  try{
+    await fetch(scriptUrl,{method:'POST',body:JSON.stringify({action:'save',pupils}),headers:{'Content-Type':'application/json'}});
+    saveLocal();
+    setSyncStatus('ok','Saved to Google Sheets · '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}));
+  }catch(e){
+    saveLocal();
+    setSyncStatus('err','Save failed — data saved locally. Check your connection.');
+  }
+}
+
+async function deleteFromSheet(id,pin){
+  if(!scriptUrl){
+    pupils=pupils.filter(x=>x.id!==id);saveLocal();render();return true;
+  }
+  try{
+    const resp=await fetch(scriptUrl,{method:'POST',body:JSON.stringify({action:'delete',id,pin}),headers:{'Content-Type':'application/json'}});
+    const data=await resp.json();
+    if(data.ok){
+      pupils=pupils.filter(x=>x.id!==id);saveLocal();render();
+      setSyncStatus('ok','Pupil deleted · '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}));
+      return true;
+    } else {
+      return false;
+    }
+  }catch(e){return false;}
+}
+
+function syncNow(){setSyncStatus('loading','Syncing…');fetchFromSheet();}
+
+/* ── RENDER ── */
+function render(){
+  const search=document.getElementById('search').value.toLowerCase();
+  const fy=document.getElementById('filterYear').value;
+  const ff=document.getElementById('filterFlag').value;
+  const fa=document.getElementById('filterAtt').value;
+  const fs=document.getElementById('filterStatus').value;
+  const filtered=pupils.filter(p=>{
+    if(search&&!p.name.toLowerCase().includes(search)&&!(p.worker||'').toLowerCase().includes(search))return false;
+    if(fy&&p.year!==fy)return false;
+    if(ff&&!p.flags.includes(ff))return false;
+    if(fa==='pa'&&p.att>=90)return false;
+    if(fa==='concern'&&(p.att<90||p.att>=95))return false;
+    if(fs&&(p.status||'open')!==fs)return false;
+    return true;
+  });
+  const tbody=document.getElementById('tbody');
+  const empty=document.getElementById('emptyMsg');
+  if(filtered.length===0){tbody.innerHTML='';empty.style.display='block';}
+  else{
+    empty.style.display='none';
+    tbody.innerHTML=filtered.map(p=>{
+      const log=p.log||[];const latest=log.length?log[log.length-1]:null;
+      const status=p.status||'open';
+      return`<tr>
+        <td><span class="name-cell">${esc(p.name)}</span></td>
+        <td><span class="yr">${esc(p.year)}</span></td>
+        <td><span class="badge ${status}">${status==='open'?'🔴 Open':'🟢 Closed'}</span></td>
+        <td>${p.flags.map(f=>`<span class="tag ${f}">${FLAG_LABELS[f]}</span>`).join('')||'<span style="color:#cbd5e1;font-size:12px">—</span>'}</td>
+        <td><span class="att ${attClass(p.att)}">${p.att}%</span></td>
+        <td style="color:#334155">${esc(p.worker||'')}</td>
+        <td class="last-note" title="${latest?esc(latest.text):''}">${latest?esc(latest.text):'<span style="color:#cbd5e1">No notes yet</span>'}</td>
+        <td style="color:#94a3b8;font-size:12px;font-family:\'JetBrains Mono\',monospace">${latest?latest.date.split(' ').slice(0,3).join(' '):'—'}</td>
+        <td class="actions-col" style="white-space:nowrap">
+          <button class="btn sm" onclick="openLog(${p.id})" style="color:var(--blue)">📋 Log</button>
+          <button class="btn sm" onclick="editPupil(${p.id})">✏️</button>
+          <button class="btn sm danger" onclick="promptDelete(${p.id})">🗑</button>
+        </td>
+      </tr>`;
+    }).join('');
+  }
+  const total=pupils.length;
+  const openC=pupils.filter(p=>(p.status||'open')==='open').length;
+  const pa=pupils.filter(p=>p.att<90).length;
+  const sendC=pupils.filter(p=>p.flags.includes('send')).length;
+  const lacC=pupils.filter(p=>p.flags.includes('lac')||p.flags.includes('plac')).length;
+  const scC=pupils.filter(p=>p.flags.includes('sc')).length;
+  document.getElementById('metrics').innerHTML=`
+    <div class="metric red" onclick="quickFilter('status','open')"><div class="metric-label">Open cases</div><div class="metric-value red">${openC}</div></div>
+    <div class="metric blue" onclick="quickFilter('status','closed')"><div class="metric-label">Closed cases</div><div class="metric-value blue">${total-openC}</div></div>
+    <div class="metric blue" onclick="quickFilter('flag','send')"><div class="metric-label">SEND</div><div class="metric-value blue">${sendC}</div></div>
+    <div class="metric teal" onclick="quickFilter('flag','lac')"><div class="metric-label">LAC / Prev LAC</div><div class="metric-value teal">${lacC}</div></div>
+    <div class="metric amber" onclick="quickFilter('flag','sc')"><div class="metric-label">Social care</div><div class="metric-value amber">${scC}</div></div>
+    <div class="metric red" onclick="quickFilter('att','pa')"><div class="metric-label">Persistent absence</div><div class="metric-value red">${pa}</div></div>`;
+  const school=document.getElementById('schoolName').value||'Gateway Academy';
+  document.getElementById('headerSub').textContent=school+' · '+filtered.length+' of '+total+' pupils';
+  document.getElementById('tableCount').textContent=filtered.length+' of '+total+' pupils shown';
+}
+
+function quickFilter(type,val){
+  if(type==='status'){const el=document.getElementById('filterStatus');el.value=el.value===val?'':val;}
+  else if(type==='flag'){const el=document.getElementById('filterFlag');el.value=el.value===val?'':val;}
+  else if(type==='att'){const el=document.getElementById('filterAtt');el.value=el.value===val?'':val;}
+  render();
+}
+document.getElementById('search').addEventListener('input',render);
+
+/* ── PUPIL MODAL ── */
+function selectStatus(s){
+  selectedStatus=s;
+  document.getElementById('sOpen').className='status-opt'+(s==='open'?' sel-open':'');
+  document.getElementById('sClosed').className='status-opt'+(s==='closed'?' sel-closed':'');
+}
+function openModal(id=null){
+  editId=id;
+  const p=id?pupils.find(x=>x.id===id):null;
+  document.getElementById('modalTitle').textContent=id?'Edit pupil':'Add pupil';
+  document.getElementById('fName').value=p?p.name:'';
+  document.getElementById('fYear').value=p?p.year:'Year 7';
+  document.getElementById('fAtt').value=p?p.att:'';
+  document.getElementById('fWorker').value=p?p.worker||'':'';
+  selectStatus(p?(p.status||'open'):'open');
+  document.querySelectorAll('.checkbox-group input').forEach(cb=>{cb.checked=p?p.flags.includes(cb.value):false;});
+  document.getElementById('modalOverlay').classList.add('open');
+  setTimeout(()=>document.getElementById('fName').focus(),100);
+}
+function editPupil(id){openModal(id)}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open')}
+async function savePupil(){
+  const name=document.getElementById('fName').value.trim();
+  if(!name){alert('Please enter a pupil name.');return;}
+  const flags=[...document.querySelectorAll('.checkbox-group input:checked')].map(c=>c.value);
+  const att=parseInt(document.getElementById('fAtt').value)||0;
+  const year=document.getElementById('fYear').value;
+  const worker=document.getElementById('fWorker').value.trim();
+  if(editId){
+    Object.assign(pupils.find(x=>x.id===editId),{name,year,att,worker,flags,status:selectedStatus});
+  }else{
+    pupils.push({id:nextId++,name,year,att,worker,flags,status:selectedStatus,log:[]});
+  }
+  closeModal();
+  setSyncStatus('loading','Saving…');
+  await saveToSheet();
+  render();
+}
+
+/* ── DELETE WITH PIN ── */
+function promptDelete(id){
+  pendingDeleteId=id;
+  document.getElementById('pinInput').value='';
+  document.getElementById('pinError').style.display='none';
+  document.getElementById('pinOverlay').classList.add('open');
+  setTimeout(()=>document.getElementById('pinInput').focus(),100);
+}
+function closePinModal(){document.getElementById('pinOverlay').classList.remove('open');pendingDeleteId=null;}
+async function confirmPin(){
+  const pin=document.getElementById('pinInput').value;
+  if(pin!==adminPin&&adminPin!==''){
+    document.getElementById('pinError').style.display='block';return;
+  }
+  const p=pupils.find(x=>x.id===pendingDeleteId);
+  closePinModal();
+  setSyncStatus('loading','Deleting…');
+  const ok=await deleteFromSheet(pendingDeleteId,pin);
+  if(!ok){alert('Delete failed — wrong PIN or connection error.');}
+}
+
+function clearFilters(){
+  document.getElementById('search').value='';
+  ['filterYear','filterFlag','filterAtt','filterStatus'].forEach(id=>document.getElementById(id).value='');
+  render();
+}
+
+/* ── CHRONOLOGY LOG ── */
+function openLog(id){
+  logId=id;
+  const p=pupils.find(x=>x.id===id);
+  document.getElementById('logTitle').textContent=p.name+' — Chronology log';
+  document.getElementById('logSub').textContent=p.year+' · Key worker: '+(p.worker||'Not assigned');
+  document.getElementById('newNoteText').value='';
+  document.getElementById('newNoteAuthor').value='';
+  setLogStatus(p.status||'open',false);
+  renderLog();
+  document.getElementById('logOverlay').classList.add('open');
+}
+function closeLog(){document.getElementById('logOverlay').classList.remove('open');logId=null;}
+function setLogStatus(s,doSave=true){
+  const p=logId?pupils.find(x=>x.id===logId):null;
+  if(p&&doSave){
+    const prev=p.status||'open';
+    p.status=s;
+    if(prev!==s){p.log=p.log||[];p.log.push({date:ts(),author:'System',text:`Case status changed to ${s.toUpperCase()}.`});}
+    setSyncStatus('loading','Saving…');
+    saveToSheet().then(()=>render());
+    renderLog();
+  }
+  document.getElementById('logSOpen').className='status-opt'+(s==='open'?' sel-open':'');
+  document.getElementById('logSClosed').className='status-opt'+(s==='closed'?' sel-closed':'');
+}
+function renderLog(){
+  const p=pupils.find(x=>x.id===logId);if(!p)return;
+  const log=[...(p.log||[])].reverse();
+  document.getElementById('logCount').textContent=log.length+' '+(log.length===1?'entry':'entries');
+  if(log.length===0){document.getElementById('logEntries').innerHTML='<div class="log-empty">No notes yet. Add the first entry below.</div>';return;}
+  document.getElementById('logEntries').innerHTML=log.map((e,i)=>`
+    <div class="log-entry">
+      <div class="log-meta">
+        <span class="log-date">${esc(e.date)}</span>
+        ${e.author?`<span class="log-author">${esc(e.author)}</span>`:''}
+        ${i===0?'<span style="font-size:10px;background:var(--red-light);color:var(--red);padding:1px 6px;border-radius:4px;font-weight:600">Latest</span>':''}
+      </div>
+      <div class="log-text">${esc(e.text)}</div>
+    </div>`).join('');
+}
+async function addNote(){
+  const text=document.getElementById('newNoteText').value.trim();
+  if(!text){alert('Please enter a note before adding.');return;}
+  const author=document.getElementById('newNoteAuthor').value.trim();
+  const p=pupils.find(x=>x.id===logId);
+  p.log=p.log||[];
+  p.log.push({date:ts(),author:author||'',text});
+  document.getElementById('newNoteText').value='';
+  renderLog();
+  setSyncStatus('loading','Saving…');
+  await saveToSheet();
+  render();
+}
+
+/* ── SETUP MODAL ── */
+function openSetup(){
+  document.getElementById('setupUrl').value=scriptUrl||'';
+  document.getElementById('setupPin').value=adminPin||'';
+  document.getElementById('setupResult').textContent='';
+  document.getElementById('setupOverlay').classList.add('open');
+}
+function closeSetup(){document.getElementById('setupOverlay').classList.remove('open')}
+async function saveSetup(){
+  const url=document.getElementById('setupUrl').value.trim();
+  const pin=document.getElementById('setupPin').value.trim();
+  const res=document.getElementById('setupResult');
+  if(!url){res.style.color='var(--red)';res.textContent='Please enter the Apps Script URL.';return;}
+  if(!pin){res.style.color='var(--red)';res.textContent='Please enter your admin PIN.';return;}
+  res.style.color='var(--amber)';res.textContent='Testing connection…';
+  try{
+    const resp=await fetch(url+'?t='+Date.now());
+    const data=await resp.json();
+    if(Array.isArray(data)){
+      scriptUrl=url;adminPin=pin;
+      localStorage.setItem(LS_URL,url);localStorage.setItem(LS_PIN,pin);
+      res.style.color='var(--teal)';res.textContent='✓ Connected successfully! Closing in 2 seconds…';
+      connected=true;
+      document.getElementById('setupBanner').style.display='none';
+      pupils=data;nextId=pupils.length?Math.max(...pupils.map(p=>p.id))+1:1;
+      render();
+      setTimeout(()=>{closeSetup();setSyncStatus('ok','Connected to Google Sheets');},2000);
+    } else {
+      res.style.color='var(--red)';res.textContent='Could not read data. Check the URL is correct and the script is deployed.';
+    }
+  }catch(e){
+    res.style.color='var(--red)';res.textContent='Connection failed: '+e.message+'. Make sure the script is deployed and the URL is correct.';
+  }
+}
+function copyScript(){
+  const text=document.getElementById('scriptBlock').innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=event.target;btn.textContent='✓ Copied!';
+    setTimeout(()=>btn.textContent='📋 Copy script',2000);
+  });
+}
+
+/* ── IMPORT ── */
+function openImport(){resetImport();document.getElementById('importOverlay').classList.add('open');}
+function closeImport(){document.getElementById('importOverlay').classList.remove('open')}
+function switchTab(t){
+  document.getElementById('panelFile').style.display=t==='file'?'block':'none';
+  document.getElementById('panelPaste').style.display=t==='paste'?'block':'none';
+  document.getElementById('tabFile').className='import-tab'+(t==='file'?' active':'');
+  document.getElementById('tabPaste').className='import-tab'+(t==='paste'?' active':'');
+}
+function resetImport(){
+  switchTab('file');
+  document.getElementById('importPreview').style.display='none';
+  document.getElementById('importActions').style.display='flex';
+  document.getElementById('pasteArea').value='';
+  document.getElementById('fileInput').value='';
+  pendingImport=[];
+}
+function dzOver(e){e.preventDefault();document.getElementById('dropZone').classList.add('drag-over')}
+function dzLeave(){document.getElementById('dropZone').classList.remove('drag-over')}
+function dzDrop(e){e.preventDefault();dzLeave();const f=e.dataTransfer.files[0];if(f)readCSVFile(f);}
+function handleFile(e){const f=e.target.files[0];if(f)readCSVFile(f);}
+function readCSVFile(f){const r=new FileReader();r.onload=ev=>parseCSV(ev.target.result);r.readAsText(f);}
+function parsePaste(){const raw=document.getElementById('pasteArea').value.trim();if(!raw){alert('Please paste some data first.');return;}parseCSV(raw,true);}
+function parseCSV(text,isTSV){
+  const lines=text.trim().split(/\r?\n/);
+  if(lines.length<2){showImportError('File must have a header row and at least one data row.');return;}
+  const delim=isTSV||lines[0].includes('\t')?'\t':',';
+  const headers=splitLine(lines[0],delim).map(h=>h.trim().toLowerCase());
+  const colMap={
+    name:findCol(headers,['name','full name','pupil name','student name']),
+    year:findCol(headers,['year','year group','form','class']),
+    att:findCol(headers,['attendance','att','attendance %','attendance(%)']),
+    worker:findCol(headers,['key worker','keyworker','tutor','form tutor','worker']),
+    status:findCol(headers,['status','case status']),
+    send:findCol(headers,['send','sen']),fsm:findCol(headers,['fsm','free school meals']),
+    lac:findCol(headers,['lac','looked after']),sc:findCol(headers,['social care','sc']),
+    plac:findCol(headers,['previously lac','plac']),pp:findCol(headers,['pupil premium','pp']),
+    notes:findCol(headers,['notes','interventions','comments','note']),
+  };
+  if(colMap.name===-1){showImportError('Could not find a "Name" column. Please check your file headers.');return;}
+  const now=ts();const parsed=[];const errors=[];
+  for(let i=1;i<lines.length;i++){
+    const row=splitLine(lines[i],delim);
+    if(row.every(c=>!c.trim()))continue;
+    const name=get(row,colMap.name).trim();
+    if(!name){errors.push(`Row ${i+1}: skipped (no name)`);continue;}
+    const attRaw=get(row,colMap.att);
+    const att=attRaw?Math.min(100,Math.max(0,parseFloat(attRaw.replace('%',''))||0)):0;
+    const flags=[];
+    if(isTruthy(get(row,colMap.send)))flags.push('send');
+    if(isTruthy(get(row,colMap.fsm)))flags.push('fsm');
+    if(isTruthy(get(row,colMap.lac)))flags.push('lac');
+    if(isTruthy(get(row,colMap.sc)))flags.push('sc');
+    if(isTruthy(get(row,colMap.plac)))flags.push('plac');
+    if(isTruthy(get(row,colMap.pp)))flags.push('pp');
+    const statusRaw=get(row,colMap.status).toLowerCase();
+    const status=statusRaw==='closed'?'closed':'open';
+    const noteText=get(row,colMap.notes).trim();
+    const log=noteText?[{date:now,author:'Import',text:noteText}]:[];
+    parsed.push({name,year:normaliseYear(get(row,colMap.year)),att,worker:get(row,colMap.worker).trim(),flags,status,log});
+  }
+  if(parsed.length===0){showImportError('No valid pupil rows found. '+errors.join('; '));return;}
+  pendingImport=parsed;showPreview(parsed,errors);
+}
+function findCol(headers,aliases){for(const a of aliases){const i=headers.indexOf(a);if(i!==-1)return i;}return -1;}
+function get(row,idx){return idx!==-1&&idx<row.length?row[idx]||'':'';}
+function isTruthy(v){return['yes','1','true','y','x'].includes((v||'').trim().toLowerCase())}
+function normaliseYear(v){if(!v)return'Year 7';const s=v.trim();if(/^year\s+\d+$/i.test(s))return s.replace(/year\s+/i,'Year ');if(/^\d+$/.test(s))return'Year '+s;return s||'Year 7';}
+function splitLine(line,delim){
+  if(delim==='\t')return line.split('\t');
+  const r=[];let cur='';let inQ=false;
+  for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'){inQ=!inQ;}else if(c===','&&!inQ){r.push(cur);cur='';}else cur+=c;}
+  r.push(cur);return r.map(c=>c.replace(/^"|"$/g,''));
+}
+function showImportError(msg){
+  document.getElementById('importPreview').style.display='block';
+  document.getElementById('importActions').style.display='none';
+  document.getElementById('importStatus').className='import-status err';
+  document.getElementById('importStatus').textContent='⚠ '+msg;
+  document.getElementById('previewHead').innerHTML='';document.getElementById('previewBody').innerHTML='';
+}
+function showPreview(parsed,errors){
+  document.getElementById('importPreview').style.display='block';
+  document.getElementById('importActions').style.display='none';
+  const s=document.getElementById('importStatus');
+  s.className='import-status ok';
+  s.innerHTML=`✓ Found <strong>${parsed.length}</strong> pupils ready to import.`+(errors.length?` <span style="color:var(--amber)">${errors.length} row(s) skipped.</span>`:'');
+  document.getElementById('previewHead').innerHTML='<th>Name</th><th>Year</th><th>Status</th><th>Flags</th><th>Attendance</th>';
+  document.getElementById('previewBody').innerHTML=parsed.map(p=>`
+    <tr>
+      <td>${esc(p.name)}</td><td>${esc(p.year)}</td>
+      <td><span class="badge ${p.status}">${p.status==='open'?'🔴 Open':'🟢 Closed'}</span></td>
+      <td>${p.flags.map(f=>`<span class="tag ${f}">${FLAG_LABELS[f]}</span>`).join('')||'—'}</td>
+      <td><span class="att ${attClass(p.att)}">${p.att}%</span></td>
+    </tr>`).join('');
+}
+async function confirmImport(){
+  if(!pendingImport.length)return;
+  const choice=confirm(`Import ${pendingImport.length} pupils.\n\nOK = ADD to existing pupils.\nCancel = REPLACE all existing pupils.`);
+  if(choice===true){pendingImport.forEach(p=>pupils.push({id:nextId++,...p}));}
+  else{pupils=pendingImport.map(p=>({id:nextId++,...p}));}
+  closeImport();
+  setSyncStatus('loading','Saving…');
+  await saveToSheet();
+  render();
+}
+
+/* ── EXPORT ── */
+function exportCSV(){
+  const headers=['Name','Year group','Status','SEND','FSM','LAC','Social Care','Previously LAC','Pupil Premium','Attendance (%)','Key worker','Last note','Last updated'];
+  const rows=pupils.map(p=>{
+    const log=p.log||[];const latest=log.length?log[log.length-1]:null;
+    return[p.name,p.year,p.status||'open',
+      p.flags.includes('send')?'Yes':'',p.flags.includes('fsm')?'Yes':'',
+      p.flags.includes('lac')?'Yes':'',p.flags.includes('sc')?'Yes':'',
+      p.flags.includes('plac')?'Yes':'',p.flags.includes('pp')?'Yes':'',
+      p.att,p.worker||'',latest?latest.text:'',latest?latest.date:''];
+  });
+  dl([headers,...rows],'vulnerable_cohort_export');
+}
+function downloadTemplate(){
+  const headers=['Name','Year','Attendance','Key Worker','Status','SEND','FSM','LAC','Social Care','Previously LAC','Pupil Premium','Notes'];
+  const example=['Example Pupil','Year 9','87','Ms Smith','open','yes','yes','','','','yes','Weekly mentoring in place'];
+  dl([headers,example],'vulnerable_cohort_template');
+}
+function dl(rows,name){
+  const csv=rows.map(r=>r.map(c=>`"${String(c||'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download=name+'_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+}
+
+init();
+</script>
+</body>
+</html>
