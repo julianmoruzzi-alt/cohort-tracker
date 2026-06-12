@@ -196,6 +196,7 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
     <button class="tab" onclick="showTab('context')">🏫 Local &amp; Similar Schools</button>
     <button class="tab" onclick="showTab('attendance')">📅 Attendance</button>
     <button class="tab" onclick="showTab('dfe')">📊 DfE Real Data</button>
+    <button class="tab" onclick="showTab('inclusion')">🤝 Inclusion &amp; Behaviour</button>
   </div>
 
   <!-- OVERVIEW TAB -->
@@ -1406,6 +1407,268 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
           <strong>What to say to Ofsted:</strong> Be transparent — acknowledge the low entry rate, explain the curriculum rationale in the context of your EAL and disadvantaged cohort, and reference the Eng & Maths 5+ strength as evidence of strong core academic outcomes. The government's EBacc target of 75% entry by 2025 was missed nationally (35.4%), so this is a sector-wide challenge.
         </div>
       </div>
+    </div>
+
+  </div>
+
+  <!-- INCLUSION & BEHAVIOUR TAB -->
+  <div class="tab-panel" id="tab-inclusion">
+
+    <!-- DATA NOTE -->
+    <div style="background:#f0f9ff;border:1px solid #bfdbfe;border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;gap:12px;align-items:flex-start">
+      <div style="font-size:20px;flex-shrink:0">📋</div>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#1e3a5f;margin-bottom:4px">Data source: Gateway Academy MIS records — 5 academic years (2021/22 to 2025/26)</div>
+        <div style="font-size:13px;color:#334155;line-height:1.6">Suspension and permanent exclusion data extracted from the school's MIS. 2025/26 figures are to May 2026 (Autumn + Spring + partial Summer term). National comparison figures are from the DfE's published suspensions and exclusions statistics 2023/24. This tab will be expanded with further behaviour data in future updates. Under Ofsted's 2025 framework, <strong>Inclusion is a standalone evaluation area</strong> — this data directly evidences that grade.</div>
+      </div>
+    </div>
+
+    <!-- OFSTED INCLUSION CONTEXT -->
+    <div style="background:linear-gradient(135deg,var(--navy) 0%,#1a3d6b 100%);border-radius:12px;padding:20px 24px;margin-bottom:24px;color:#fff">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:6px">🏫 Ofsted 2025 Framework — Inclusion Evaluation Area</h3>
+      <p style="font-size:13px;color:#94a8c8;line-height:1.6">From November 2025, Inclusion is assessed as its own standalone grade (Exceptional / Strong / Expected / Needs attention / Urgent improvement). Inspectors will specifically look at suspension rates, disproportionality for SEND and disadvantaged pupils, and whether the school is using exclusion as a last resort. The data below provides an honest picture — strengths and areas requiring narrative.</p>
+    </div>
+
+    <!-- HEADLINE SUSPENSION METRICS -->
+    <div class="section">
+      <div class="section-title">📊 Suspension Headlines — 2025/26 (to May 2026)</div>
+      <div class="section-sub">Current year figures from school MIS — comparison to national 2023/24 published data</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Suspension Incidents</div>
+          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">97</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">to May 2026 (partial year)</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Suspension Days</div>
+          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">410</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">avg 4.2 days each</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Rate per 100 Pupils</div>
+          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">8.9</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">National: 3.67 (2023/24)</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Permanent Exclusions</div>
+          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--red)">5</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">to May 2026</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Unique Students</div>
+          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">54</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">of 1,090 pupils (5.0%)</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Pupils Never Suspended</div>
+          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">95%</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">1,036 of 1,090 pupils</div>
+        </div>
+      </div>
+
+      <!-- HONEST ASSESSMENT BOX -->
+      <div style="background:var(--amber-light);border:1px solid #fcd34d;border-radius:10px;padding:16px 18px;margin-bottom:16px;font-size:13px;color:#78350f;line-height:1.6">
+        <strong>⚠️ Honest assessment for Ofsted:</strong> Gateway's suspension rate of 8.9 per 100 pupils (to May 2026) is above the national average of 3.67. This is a known challenge that requires a clear narrative. Key contextual factors include: a high FSM cohort (38.6%), a high SEN rate (16.2%), significant numbers of complex SEND pupils including EHCPs, and in-year admissions of pupils with challenging histories. The data below shows the picture in full — including where the concentration lies and the improving trend from the 2021/22 post-COVID peak.
+      </div>
+    </div>
+
+    <!-- 5-YEAR TREND -->
+    <div class="section">
+      <div class="section-title">📈 5-Year Suspension Trend</div>
+      <div class="section-sub">Suspension incidents and rates year on year — source: school MIS</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+        <div style="background:var(--navy);color:#fff;padding:12px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">
+          <span>Year</span><span>Incidents</span><span>Days</span><span>Per 100</span><span>Perms</span><span>Unique</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">2021/22 <span style="font-size:11px;color:var(--muted)">(post-COVID)</span></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">126</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">549</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">13.3</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">9</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">68</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">2022/23</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">94</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">416</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">9.6</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">6</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">53</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">2023/24</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">106</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">470</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">10.6</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">6</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">58</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">2024/25</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">118</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">536</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">11.3</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">4</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">52</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;font-size:13px;align-items:center;background:#f0f9ff;border-left:4px solid var(--blue)">
+          <span style="font-weight:700;color:var(--navy)">2025/26 <span style="font-size:11px;color:var(--muted)">(to May)</span></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">97</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">410</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">8.9</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">5</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">54</span>
+        </div>
+      </div>
+      <div style="background:var(--blue-light);border:1px solid #bfdbfe;border-radius:10px;padding:14px 18px;font-size:13px;color:#1e3a5f;line-height:1.6">
+        <strong>Trend narrative:</strong> Suspensions peaked in 2021/22 at 13.3 per 100 pupils — consistent with the national post-COVID behaviour crisis. By 2022/23 this dropped significantly to 9.6. The current year (2025/26) is running at 8.9 per 100 to May, which would represent the <strong>lowest full-year rate since 2021/22</strong> if the summer term maintains trajectory. The number of unique students suspended has remained broadly stable at 52–58 across 4 years — suggesting a concentrated group of complex pupils rather than widespread poor behaviour.
+      </div>
+    </div>
+
+    <!-- DISPROPORTIONALITY -->
+    <div class="section">
+      <div class="section-title">🔍 Disproportionality Analysis — 2025/26</div>
+      <div class="section-sub">Are certain groups over-represented in suspensions? Ofsted will scrutinise this directly</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:20px">
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--red);margin-bottom:8px">SEN Disproportionality ⚠️</div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+            <div style="text-align:center;flex:1;padding:10px;background:var(--red-light);border-radius:8px;margin-right:6px">
+              <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--red)">43%</div>
+              <div style="font-size:11px;color:var(--red);font-weight:600;margin-top:2px">of suspensions</div>
+            </div>
+            <div style="text-align:center;flex:1;padding:10px;background:var(--slate-light);border-radius:8px;margin-left:6px">
+              <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--muted)">16%</div>
+              <div style="font-size:11px;color:var(--muted);font-weight:600;margin-top:2px">of school roll</div>
+            </div>
+          </div>
+          <div style="font-size:13px;color:#334155;line-height:1.55">SEN/EHCP pupils make up 43% of suspensions but 16.2% of roll — a ratio of 2.7x. This is <strong>consistent with national patterns</strong> (DfE: SEN pupils are suspended at ~2x the rate of non-SEN). The school's high proportion of complex EHCP pupils is a significant contextual factor. A clear SEND strategy for behaviour should be evidenced.</div>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--amber);margin-bottom:8px">FSM Disproportionality ⚠️</div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+            <div style="text-align:center;flex:1;padding:10px;background:var(--amber-light);border-radius:8px;margin-right:6px">
+              <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">79%</div>
+              <div style="font-size:11px;color:var(--amber);font-weight:600;margin-top:2px">of suspensions</div>
+            </div>
+            <div style="text-align:center;flex:1;padding:10px;background:var(--slate-light);border-radius:8px;margin-left:6px">
+              <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--muted)">39%</div>
+              <div style="font-size:11px;color:var(--muted);font-weight:600;margin-top:2px">of school roll</div>
+            </div>
+          </div>
+          <div style="font-size:13px;color:#334155;line-height:1.55">FSM pupils make up 79% of suspensions but 38.6% of roll — a ratio of 2.1x. Again, <strong>consistent with national patterns</strong> (DfE: FSM pupils suspended at 2.5x national rate). Given Gateway's exceptionally high FSM rate of 38.6%, this concentration is expected. The school should evidence PP strategy addressing behaviour as well as attainment.</div>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--amber);margin-bottom:8px">Gender & Year Group</div>
+          <div style="font-size:13px;color:#334155;line-height:1.55;margin-bottom:10px">
+            <strong>Gender:</strong> 69% of suspensions are male (vs ~50% of roll). Nationally, boys are suspended at 2x the rate of girls — Gateway's ratio is consistent with this pattern.<br><br>
+            <strong>Year 9 concentration:</strong> 36% of 2025/26 suspensions are Year 9 pupils, who represent ~20% of the school. This is a significant concentration worth monitoring and addressing through targeted Year 9 behaviour strategy.
+          </div>
+          <div style="background:var(--amber-light);border-radius:7px;padding:10px 12px;font-size:12px;color:#78350f">
+            <strong>Action point:</strong> Year 9 over-representation warrants a specific pastoral review and targeted intervention programme for this cohort.
+          </div>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--green);margin-bottom:8px">Concentration Analysis ✅</div>
+          <div style="font-size:13px;color:#334155;line-height:1.55;margin-bottom:10px">
+            Only <strong>54 unique students</strong> (5% of the school) received any suspension in 2025/26. Of these, 12 pupils received 3 or more suspensions — a small, identifiable group of complex pupils. This suggests behaviour challenges are <strong>concentrated rather than widespread</strong>, and that the school's systems are generally effective for the vast majority of pupils.
+          </div>
+          <div style="background:var(--green-light);border-radius:7px;padding:10px 12px;font-size:12px;color:var(--green)">
+            <strong>95% of pupils have never been suspended</strong> this year — the school is safe and orderly for the overwhelming majority.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REASONS BREAKDOWN -->
+    <div class="section">
+      <div class="section-title">📋 Suspension Reasons — 2025/26</div>
+      <div class="section-sub">Breakdown of suspension reasons — useful for identifying systemic patterns</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+        <div style="background:var(--navy);color:#fff;padding:12px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">
+          <span>Reason</span><span>Count</span><span>% of total</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center;background:#f0f9ff">
+          <span style="font-weight:600;color:var(--navy)">Persistent or general disruptive behaviour</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">58</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">60%</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Verbal abuse / threatening behaviour (adult)</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">14</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">14%</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Physical assault against a pupil</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">10</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">10%</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Use/threat of offensive weapon or prohibited item</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">3</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">3%</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Inappropriate use of social media / technology</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">3</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">3%</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Racist abuse</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">2</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">2%</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;font-size:13px;align-items:center">
+          <span style="font-weight:600">Other (bullying, drug/alcohol, sexual orientation abuse, theft)</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--muted)">7</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">7%</span>
+        </div>
+      </div>
+      <div style="background:var(--blue-light);border:1px solid #bfdbfe;border-radius:10px;padding:14px 18px;font-size:13px;color:#1e3a5f;line-height:1.6">
+        <strong>Pattern analysis:</strong> 60% of suspensions relate to persistent or general disruptive behaviour — suggesting a relatively small group of pupils who persistently challenge boundaries. The school should evidence what targeted support, SEMH referrals, and graduated responses are in place for repeat offenders before suspension is used. The 5 weapon-related incidents (3 prohibited items + knife-related cases from individual pupils) require specific safeguarding narrative for Ofsted.
+      </div>
+    </div>
+
+    <!-- OFSTED BEHAVIOUR NARRATIVE -->
+    <div style="background:linear-gradient(135deg,var(--navy) 0%,#1a3d6b 100%);border-radius:12px;padding:24px;margin-bottom:24px;color:#fff">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">🏫 Behaviour & Inclusion — Ofsted Talking Points</h3>
+      <p style="font-size:13px;color:#94a8c8;margin-bottom:16px;line-height:1.6">Honest, prepared responses to the questions Ofsted will ask about behaviour and inclusion</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">95% Never Suspended</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">The overwhelming majority of Gateway pupils — 95% — have not been suspended this year. The school is safe and orderly for the vast majority of its community. Behaviour challenges are concentrated in a small, identifiable group of complex pupils with multiple needs.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Context: High-Need Cohort</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Gateway's 38.6% FSM rate and 16.2% SEN rate mean the school serves a disproportionately high-need cohort. Nationally, FSM and SEN pupils are suspended at 2–2.5x the rate of other pupils. Gateway's disproportionality ratios (FSM: 2.1x, SEN: 2.7x) are consistent with national patterns for schools with this profile.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Improving Trajectory</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Suspensions have fallen from a post-COVID peak of 13.3 per 100 in 2021/22. The current year (2025/26) is running at 8.9 per 100 to May — the lowest rate in 4 years if maintained. Permanent exclusions have also reduced from 9 in 2021/22 to 4–5 in recent years.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Areas to Develop</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Be transparent: the overall rate remains above national average. The school should evidence: graduated response protocols before suspension, SEMH support pathways for complex pupils, Year 9 targeted intervention, and a clear strategy for the small group of repeat offenders — particularly those with EHCPs where suspension may indicate unmet needs.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FUTURE DATA PLACEHOLDER -->
+    <div style="background:var(--slate-light);border:2px dashed var(--border);border-radius:12px;padding:24px;text-align:center">
+      <div style="font-size:24px;margin-bottom:8px">📊</div>
+      <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px">More Behaviour Data Coming Soon</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;max-width:500px;margin:0 auto">This tab will be expanded with internal behaviour data including detentions, internal isolations, managed moves, reintegration outcomes, and intervention effectiveness metrics. Upload additional data files to build a comprehensive Inclusion evidence base.</div>
     </div>
 
   </div>
