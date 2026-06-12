@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0066)file:///C:/Documents/Downloads/vulnerable_cohort_tracker_v2_1.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vulnerable Cohort Tracker — Gateway Academy</title>
 <style>
@@ -190,7 +191,7 @@ tbody td{padding:12px 14px;vertical-align:middle}
     <div class="hlogo">🛡️</div>
     <div>
       <div class="htitle">Vulnerable Cohort Tracker</div>
-      <div class="hsub" id="headerSub">Gateway Academy</div>
+      <div class="hsub" id="headerSub">Gateway Academy · 0 of 0 pupils</div>
     </div>
   </div>
   <div class="hactions">
@@ -212,12 +213,18 @@ tbody td{padding:12px 14px;vertical-align:middle}
   </div>
 
   <div class="sync-bar">
-    <div class="sync-dot" id="syncDot"></div>
-    <span id="syncMsg">Checking connection…</span>
-    <button class="btn sm" onclick="syncNow()" id="syncBtn" style="display:none">↻ Refresh</button>
+    <div class="sync-dot ok" id="syncDot"></div>
+    <span id="syncMsg">Connected to Google Sheets · Last synced 10:04</span>
+    <button class="btn sm" onclick="syncNow()" id="syncBtn" style="display: inline-flex;">↻ Refresh</button>
   </div>
 
-  <div class="metrics" id="metrics"></div>
+  <div class="metrics" id="metrics">
+    <div class="metric red" onclick="quickFilter(&#39;status&#39;,&#39;open&#39;)"><div class="metric-label">Open cases</div><div class="metric-value red">0</div></div>
+    <div class="metric blue" onclick="quickFilter(&#39;status&#39;,&#39;closed&#39;)"><div class="metric-label">Closed cases</div><div class="metric-value blue">0</div></div>
+    <div class="metric blue" onclick="quickFilter(&#39;flag&#39;,&#39;send&#39;)"><div class="metric-label">SEND</div><div class="metric-value blue">0</div></div>
+    <div class="metric teal" onclick="quickFilter(&#39;flag&#39;,&#39;lac&#39;)"><div class="metric-label">LAC / Prev LAC</div><div class="metric-value teal">0</div></div>
+    <div class="metric amber" onclick="quickFilter(&#39;flag&#39;,&#39;sc&#39;)"><div class="metric-label">Social care</div><div class="metric-value amber">0</div></div>
+    <div class="metric red" onclick="quickFilter(&#39;att&#39;,&#39;pa&#39;)"><div class="metric-label">Persistent absence</div><div class="metric-value red">0</div></div></div>
 
   <div class="export-bar">
     <button class="btn" onclick="downloadTemplate()">⬇ CSV template</button>
@@ -253,7 +260,7 @@ tbody td{padding:12px 14px;vertical-align:middle}
 
   <div class="table-card">
     <div class="table-top">
-      <span id="tableCount">Loading…</span>
+      <span id="tableCount">0 of 0 pupils shown</span>
     </div>
     <table>
       <thead>
@@ -265,7 +272,7 @@ tbody td{padding:12px 14px;vertical-align:middle}
       </thead>
       <tbody id="tbody"></tbody>
     </table>
-    <div id="emptyMsg" class="empty" style="display:none">
+    <div id="emptyMsg" class="empty" style="display: block;">
       <div class="empty-icon">👥</div>
       No pupils match the current filters.
     </div>
@@ -289,8 +296,8 @@ tbody td{padding:12px 14px;vertical-align:middle}
     </div>
     <div class="field"><label>Case status</label>
       <div class="status-toggle">
-        <div class="status-opt" id="sOpen" onclick="selectStatus('open')">🔴 Open</div>
-        <div class="status-opt" id="sClosed" onclick="selectStatus('closed')">🟢 Closed</div>
+        <div class="status-opt" id="sOpen" onclick="selectStatus(&#39;open&#39;)">🔴 Open</div>
+        <div class="status-opt" id="sClosed" onclick="selectStatus(&#39;closed&#39;)">🟢 Closed</div>
       </div>
     </div>
     <div class="field"><label>Vulnerability flags</label>
@@ -331,8 +338,8 @@ tbody td{padding:12px 14px;vertical-align:middle}
     </div>
     <div style="display:flex;gap:8px;align-items:center;margin-bottom:4px">
       <span style="font-size:13px;font-weight:600;color:#334155">Case status:</span>
-      <div class="status-opt" id="logSOpen" onclick="setLogStatus('open')" style="padding:6px 16px;font-size:12px">🔴 Open</div>
-      <div class="status-opt" id="logSClosed" onclick="setLogStatus('closed')" style="padding:6px 16px;font-size:12px">🟢 Closed</div>
+      <div class="status-opt" id="logSOpen" onclick="setLogStatus(&#39;open&#39;)" style="padding:6px 16px;font-size:12px">🔴 Open</div>
+      <div class="status-opt" id="logSClosed" onclick="setLogStatus(&#39;closed&#39;)" style="padding:6px 16px;font-size:12px">🟢 Closed</div>
     </div>
     <div class="modal-actions"><button class="btn" onclick="closeLog()">Close</button></div>
   </div>
@@ -343,7 +350,7 @@ tbody td{padding:12px 14px;vertical-align:middle}
   <div class="modal narrow">
     <h2>🔒 Admin required</h2>
     <p class="modal-sub">Enter the admin PIN to delete this pupil.</p>
-    <div class="field"><label>Admin PIN</label><input id="pinInput" type="password" placeholder="Enter PIN…" onkeydown="if(event.key==='Enter')confirmPin()"></div>
+    <div class="field"><label>Admin PIN</label><input id="pinInput" type="password" placeholder="Enter PIN…" onkeydown="if(event.key===&#39;Enter&#39;)confirmPin()"></div>
     <div id="pinError" style="font-size:12px;color:var(--red);margin-top:-8px;margin-bottom:8px;display:none">Incorrect PIN. Please try again.</div>
     <div class="modal-actions">
       <button class="btn" onclick="closePinModal()">Cancel</button>
@@ -358,8 +365,8 @@ tbody td{padding:12px 14px;vertical-align:middle}
     <h2>Import pupils in bulk</h2>
     <p class="modal-sub">Upload a CSV or paste data from Excel / SIMS.</p>
     <div class="import-tabs">
-      <button class="import-tab active" id="tabFile" onclick="switchTab('file')">📂 Upload CSV file</button>
-      <button class="import-tab" id="tabPaste" onclick="switchTab('paste')">📋 Paste from spreadsheet</button>
+      <button class="import-tab active" id="tabFile" onclick="switchTab(&#39;file&#39;)">📂 Upload CSV file</button>
+      <button class="import-tab" id="tabPaste" onclick="switchTab(&#39;paste&#39;)">📋 Paste from spreadsheet</button>
     </div>
     <div id="panelFile">
       <div class="hint-box">
@@ -368,7 +375,7 @@ tbody td{padding:12px 14px;vertical-align:middle}
         Flags: use <code>yes</code> or <code>1</code>. Status: <code>open</code> or <code>closed</code>. Only Name is required.
         <button class="btn" style="margin-top:8px;font-size:12px" onclick="downloadTemplate()">⬇ Download blank template</button>
       </div>
-      <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="dzOver(event)" ondragleave="dzLeave()" ondrop="dzDrop(event)">
+      <div class="drop-zone" id="dropZone" onclick="document.getElementById(&#39;fileInput&#39;).click()" ondragover="dzOver(event)" ondragleave="dzLeave()" ondrop="dzDrop(event)">
         <div class="dz-icon">📄</div>
         <p><strong>Click to choose a CSV file</strong> or drag and drop here</p>
         <p style="font-size:12px;margin-top:4px">Supports .csv exported from Excel or SIMS</p>
@@ -410,7 +417,7 @@ tbody td{padding:12px 14px;vertical-align:middle}
         <div class="step-num">1</div>
         <div class="step-body">
           <h4>Create a new Google Sheet</h4>
-          <p>Go to <a href="https://sheets.google.com" target="_blank" style="color:var(--blue)">sheets.google.com</a> and create a new blank spreadsheet. Name it something like <strong>Vulnerable Cohort Data</strong>. Keep the tab named <strong>Sheet1</strong>.</p>
+          <p>Go to <a href="https://sheets.google.com/" target="_blank" style="color:var(--blue)">sheets.google.com</a> and create a new blank spreadsheet. Name it something like <strong>Vulnerable Cohort Data</strong>. Keep the tab named <strong>Sheet1</strong>.</p>
           <div class="warning-box">⚠️ Make sure you are signed in with your <strong>school Google account</strong> (not a personal Gmail), so the data stays within Gateway Academy's domain.</div>
         </div>
       </div>
@@ -427,11 +434,11 @@ const ADMIN_PIN = '1234';
 function doGet(e) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
   const data = sheet.getDataRange().getValues();
-  if (data.length <= 1) return jsonResp([]);
+  if (data.length &lt;= 1) return jsonResp([]);
   const headers = data[0];
-  const rows = data.slice(1).map(row => {
+  const rows = data.slice(1).map(row =&gt; {
     const obj = {};
-    headers.forEach((h, i) => obj[h] = row[i]);
+    headers.forEach((h, i) =&gt; obj[h] = row[i]);
     try { obj.flags = JSON.parse(obj.flags || '[]'); } catch(e) { obj.flags = []; }
     try { obj.log = JSON.parse(obj.log || '[]'); } catch(e) { obj.log = []; }
     obj.att = Number(obj.att) || 0;
@@ -451,7 +458,7 @@ function doPost(e) {
       const pupils = payload.pupils;
       sheet.clearContents();
       sheet.appendRow(['id','name','year','att','worker','flags','status','log']);
-      pupils.forEach(p => {
+      pupils.forEach(p =&gt; {
         sheet.appendRow([
           p.id, p.name, p.year, p.att, p.worker || '',
           JSON.stringify(p.flags || []),
@@ -466,7 +473,7 @@ function doPost(e) {
       if (payload.pin !== ADMIN_PIN) return jsonResp({ok: false, error: 'Wrong PIN'});
       const id = Number(payload.id);
       const data = sheet.getDataRange().getValues();
-      for (let i = data.length - 1; i >= 1; i--) {
+      for (let i = data.length - 1; i &gt;= 1; i--) {
         if (Number(data[i][0]) === id) { sheet.deleteRow(i + 1); break; }
       }
       return jsonResp({ok: true});
@@ -648,7 +655,7 @@ async function fetchFromSheet(){
 async function saveToSheet(){
   if(!scriptUrl){saveLocal();return;}
   try{
-    await fetch(scriptUrl,{method:'POST',body:JSON.stringify({action:'save',pupils}),headers:{'Content-Type':'application/json'}});
+    fetch(scriptUrl,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'save',pupils}),headers:{'Content-Type':'text/plain'}});
     saveLocal();
     setSyncStatus('ok','Saved to Google Sheets · '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}));
   }catch(e){
@@ -661,16 +668,12 @@ async function deleteFromSheet(id,pin){
   if(!scriptUrl){
     pupils=pupils.filter(x=>x.id!==id);saveLocal();render();return true;
   }
+  if(pin!==adminPin){return false;}
   try{
-    const resp=await fetch(scriptUrl,{method:'POST',body:JSON.stringify({action:'delete',id,pin}),headers:{'Content-Type':'application/json'}});
-    const data=await resp.json();
-    if(data.ok){
-      pupils=pupils.filter(x=>x.id!==id);saveLocal();render();
-      setSyncStatus('ok','Pupil deleted · '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}));
-      return true;
-    } else {
-      return false;
-    }
+    fetch(scriptUrl,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'delete',id,pin}),headers:{'Content-Type':'text/plain'}});
+    pupils=pupils.filter(x=>x.id!==id);saveLocal();render();
+    setSyncStatus('ok','Pupil deleted · '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}));
+    return true;
   }catch(e){return false;}
 }
 
@@ -1040,5 +1043,6 @@ function dl(rows,name){
 
 init();
 </script>
-</body>
-</html>
+
+
+</body></html>
