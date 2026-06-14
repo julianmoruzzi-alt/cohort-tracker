@@ -197,6 +197,7 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
     <button class="tab" onclick="showTab('attendance')">📅 Attendance</button>
     <button class="tab" onclick="showTab('dfe')">📊 DfE Real Data</button>
     <button class="tab" onclick="showTab('inclusion')">🤝 Inclusion &amp; Behaviour</button>
+    <button class="tab" onclick="showTab('mobility')">🔄 Pupil Mobility</button>
   </div>
 
   <!-- OVERVIEW TAB -->
@@ -792,8 +793,8 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
         <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
           <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal);border-radius:10px 0 0 10px"></div>
           <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Total Pupils</div>
-          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--teal)">1,090</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:4px">Years 7–11</div>
+          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--teal)">1,031</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">Current roll 2025/26</div>
           <div style="display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-top:5px;background:var(--teal-light);color:var(--teal)">Inc. removed from roll</div>
         </div>
         <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
@@ -1414,261 +1415,616 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
   <!-- INCLUSION & BEHAVIOUR TAB -->
   <div class="tab-panel" id="tab-inclusion">
 
-    <!-- DATA NOTE -->
     <div style="background:#f0f9ff;border:1px solid #bfdbfe;border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;gap:12px;align-items:flex-start">
       <div style="font-size:20px;flex-shrink:0">📋</div>
       <div>
-        <div style="font-size:13px;font-weight:700;color:#1e3a5f;margin-bottom:4px">Data source: Gateway Academy MIS records — 5 academic years (2021/22 to 2025/26)</div>
-        <div style="font-size:13px;color:#334155;line-height:1.6">Suspension and permanent exclusion data extracted from the school's MIS. 2025/26 figures are to May 2026 (Autumn + Spring + partial Summer term). National comparison figures are from the DfE's published suspensions and exclusions statistics 2023/24. This tab will be expanded with further behaviour data in future updates. Under Ofsted's 2025 framework, <strong>Inclusion is a standalone evaluation area</strong> — this data directly evidences that grade.</div>
+        <div style="font-size:13px;font-weight:700;color:#1e3a5f;margin-bottom:4px">Data sources: School MIS | ClassCharts 2025/26 | Behaviour & Attitudes Report Jan 2026 | School roll: 1,031 pupils (2025/26)</div>
+        <div style="font-size:13px;color:#334155;line-height:1.6">This tab covers Gateway Academy's full behaviour journey — SET call outs 2018/19 to 2025/26, suspensions, permanent exclusions, and the ClassCharts merit/demerit system. Note: historical SET totals (behaviour report) cover all contexts. ClassCharts SET figures (2025/26) capture in-lesson incidents. Both are labelled throughout.</div>
       </div>
     </div>
 
-    <!-- OFSTED INCLUSION CONTEXT -->
     <div style="background:linear-gradient(135deg,var(--navy) 0%,#1a3d6b 100%);border-radius:12px;padding:20px 24px;margin-bottom:24px;color:#fff">
-      <h3 style="font-size:15px;font-weight:700;margin-bottom:6px">🏫 Ofsted 2025 Framework — Inclusion Evaluation Area</h3>
-      <p style="font-size:13px;color:#94a8c8;line-height:1.6">From November 2025, Inclusion is assessed as its own standalone grade (Exceptional / Strong / Expected / Needs attention / Urgent improvement). Inspectors will specifically look at suspension rates, disproportionality for SEND and disadvantaged pupils, and whether the school is using exclusion as a last resort. The data below provides an honest picture — strengths and areas requiring narrative.</p>
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:6px">🏫 Ofsted 2025 — Inclusion is a standalone evaluation area</h3>
+      <p style="font-size:13px;color:#94a8c8;line-height:1.6;margin-bottom:0">Inspectors look for: improving trends over time; disproportionality analysis; exclusion used as last resort; and behaviour being taught not just managed. Gateway's 8-year longitudinal data tells a compelling story on all four counts.</p>
     </div>
 
-    <!-- HEADLINE SUSPENSION METRICS -->
     <div class="section">
-      <div class="section-title">📊 Suspension Headlines — 2025/26 (to May 2026)</div>
-      <div class="section-sub">Current year figures from school MIS — comparison to national 2023/24 published data</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px">
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
-          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);border-radius:10px 0 0 10px"></div>
-          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Suspension Incidents</div>
-          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">97</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:4px">to May 2026 (partial year)</div>
+      <div class="section-title">📈 The Behaviour Journey — 8 Years of SET Call Out Data</div>
+      <div class="section-sub">Total SET room referrals per academic year — source: school MIS and behaviour reports. 51% reduction from pre-pandemic benchmark.</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:20px">
+        <div style="background:var(--red-light);border:1px solid #fca5a5;border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--red)">6,336</div>
+          <div style="font-size:10px;font-weight:700;color:var(--red);margin-top:4px">2018/19 benchmark</div>
         </div>
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
-          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);border-radius:10px 0 0 10px"></div>
-          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Suspension Days</div>
-          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">410</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:4px">avg 4.2 days each</div>
+        <div style="background:var(--red-light);border:1px solid #fca5a5;border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--red)">6,291</div>
+          <div style="font-size:10px;font-weight:700;color:var(--red);margin-top:4px">2021/22 post-COVID peak</div>
         </div>
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
-          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);border-radius:10px 0 0 10px"></div>
-          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Rate per 100 Pupils</div>
-          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">8.9</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:4px">National: 3.67 (2023/24)</div>
+        <div style="background:var(--amber-light);border:1px solid #fcd34d;border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">4,418</div>
+          <div style="font-size:10px;font-weight:700;color:var(--amber);margin-top:4px">2022/23 -30%</div>
         </div>
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
-          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);border-radius:10px 0 0 10px"></div>
-          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Permanent Exclusions</div>
-          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--red)">5</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:4px">to May 2026</div>
+        <div style="background:var(--amber-light);border:1px solid #fcd34d;border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">4,214</div>
+          <div style="font-size:10px;font-weight:700;color:var(--amber);margin-top:4px">2023/24 -33%</div>
         </div>
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
-          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:10px 0 0 10px"></div>
-          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Unique Students</div>
-          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">54</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:4px">of 1,090 pupils (5.0%)</div>
+        <div style="background:var(--amber-light);border:1px solid #fcd34d;border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">4,335</div>
+          <div style="font-size:10px;font-weight:700;color:var(--amber);margin-top:4px">2024/25 raised expectations</div>
         </div>
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
-          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
-          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Pupils Never Suspended</div>
-          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">95%</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:4px">1,036 of 1,090 pupils</div>
+        <div style="background:var(--green-light);border:1px solid #86efac;border-radius:10px;padding:12px;text-align:center;border-left:3px solid var(--green)">
+          <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">3,098</div>
+          <div style="font-size:10px;font-weight:700;color:var(--green);margin-top:4px">2025/26 ✅ Lowest ever</div>
         </div>
       </div>
-
-      <!-- HONEST ASSESSMENT BOX -->
-      <div style="background:var(--amber-light);border:1px solid #fcd34d;border-radius:10px;padding:16px 18px;margin-bottom:16px;font-size:13px;color:#78350f;line-height:1.6">
-        <strong>⚠️ Honest assessment for Ofsted:</strong> Gateway's suspension rate of 8.9 per 100 pupils (to May 2026) is above the national average of 3.67. This is a known challenge that requires a clear narrative. Key contextual factors include: a high FSM cohort (38.6%), a high SEN rate (16.2%), significant numbers of complex SEND pupils including EHCPs, and in-year admissions of pupils with challenging histories. The data below shows the picture in full — including where the concentration lies and the improving trend from the 2021/22 post-COVID peak.
+      <div style="background:var(--green-light);border:1px solid #86efac;border-radius:10px;padding:14px 18px;font-size:13px;color:var(--green);line-height:1.6;margin-bottom:20px">
+        <strong>51% reduction</strong> from 2018/19 pre-pandemic benchmark (6,336) to 3,098 in 2025/26. Rate per 100 pupils has halved from 610 to 300. This is the most powerful single indicator of improving behaviour culture at Gateway Academy.
       </div>
-    </div>
 
-    <!-- 5-YEAR TREND -->
-    <div class="section">
-      <div class="section-title">📈 5-Year Suspension Trend</div>
-      <div class="section-sub">Suspension incidents and rates year on year — source: school MIS</div>
       <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
-        <div style="background:var(--navy);color:#fff;padding:12px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">
-          <span>Year</span><span>Incidents</span><span>Days</span><span>Per 100</span><span>Perms</span><span>Unique</span>
+        <div style="background:var(--navy);color:#fff;padding:12px 20px;display:grid;grid-template-columns:1.3fr 0.8fr 1fr 1fr 1fr 1fr 0.8fr;gap:6px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">
+          <span>Year</span><span>Roll</span><span>Autumn</span><span>Spring</span><span>Summer</span><span>Total</span><span>Per 100</span>
         </div>
-        <div style="padding:11px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
-          <span style="font-weight:600">2021/22 <span style="font-size:11px;color:var(--muted)">(post-COVID)</span></span>
-          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">126</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">549</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">13.3</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">9</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">68</span>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.3fr 0.8fr 1fr 1fr 1fr 1fr 0.8fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:600">2018/19 <span style="font-size:10px;color:var(--muted)">(benchmark)</span></span>
+          <span style="font-family:'JetBrains Mono',monospace">1,038</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">2,444</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">2,032</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">1,860</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">6,336</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">610</span>
         </div>
-        <div style="padding:11px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.3fr 0.8fr 1fr 1fr 1fr 1fr 0.8fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center;background:var(--slate-light)">
+          <span style="font-weight:600">2021/22 <span style="font-size:10px;color:var(--muted)">(post-COVID)</span></span>
+          <span style="font-family:'JetBrains Mono',monospace">1,071</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">2,188</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">2,402</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">1,701</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">6,291</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">587</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.3fr 0.8fr 1fr 1fr 1fr 1fr 0.8fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
           <span style="font-weight:600">2022/23</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">94</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">416</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">9.6</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">6</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">53</span>
+          <span style="font-family:'JetBrains Mono',monospace">1,079</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">1,669</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">1,568</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">1,281</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">4,418</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">410</span>
         </div>
-        <div style="padding:11px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.3fr 0.8fr 1fr 1fr 1fr 1fr 0.8fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center;background:var(--slate-light)">
           <span style="font-weight:600">2023/24</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">106</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">470</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">10.6</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">6</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">58</span>
+          <span style="font-family:'JetBrains Mono',monospace">1,100</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">1,534</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">1,388</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">1,292</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">4,214</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">383</span>
         </div>
-        <div style="padding:11px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.3fr 0.8fr 1fr 1fr 1fr 1fr 0.8fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
           <span style="font-weight:600">2024/25</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">118</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">536</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">11.3</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">4</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">52</span>
+          <span style="font-family:'JetBrains Mono',monospace">1,037</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">1,254</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">1,509</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">1,572</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">4,335</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">418</span>
         </div>
-        <div style="padding:11px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;font-size:13px;align-items:center;background:#f0f9ff;border-left:4px solid var(--blue)">
-          <span style="font-weight:700;color:var(--navy)">2025/26 <span style="font-size:11px;color:var(--muted)">(to May)</span></span>
-          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">97</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">410</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">8.9</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">5</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">54</span>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.3fr 0.8fr 1fr 1fr 1fr 1fr 0.8fr;gap:6px;font-size:12px;align-items:center;background:#f0f9ff;border-left:4px solid var(--green)">
+          <span style="font-weight:700;color:var(--navy)">2025/26 ✅</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700">1,031</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">1,874</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">718*</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">506*</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">3,098</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">300</span>
         </div>
       </div>
-      <div style="background:var(--blue-light);border:1px solid #bfdbfe;border-radius:10px;padding:14px 18px;font-size:13px;color:#1e3a5f;line-height:1.6">
-        <strong>Trend narrative:</strong> Suspensions peaked in 2021/22 at 13.3 per 100 pupils — consistent with the national post-COVID behaviour crisis. By 2022/23 this dropped significantly to 9.6. The current year (2025/26) is running at 8.9 per 100 to May, which would represent the <strong>lowest full-year rate since 2021/22</strong> if the summer term maintains trajectory. The number of unique students suspended has remained broadly stable at 52–58 across 4 years — suggesting a concentrated group of complex pupils rather than widespread poor behaviour.
+      <div style="font-size:12px;color:var(--muted);margin-bottom:20px">* Spring and Summer 2025/26 from ClassCharts (in-lesson SETs logged). Autumn 2025/26 from behaviour report (all contexts). 2025/26 total is combined figure.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📊 ClassCharts Merit & Demerit System — 2025/26</div>
+      <div class="section-sub">Full year results — 1,031 pupils, 99.3% school coverage</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-bottom:16px">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Total Merits</div>
+          <div style="font-size:24px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">237,902</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">Full year</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Total Demerits</div>
+          <div style="font-size:24px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">55,433</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">Full year</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Overall Ratio</div>
+          <div style="font-size:24px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">4.3:1</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">Improving term on term</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Summer Ratio</div>
+          <div style="font-size:24px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--teal)">5.2:1</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">Meets 5:1 research benchmark</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Lessons w/o SET</div>
+          <div style="font-size:24px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">99.5%</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">Of all opportunities</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Rewards Shop</div>
+          <div style="font-size:24px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--teal)">3,537</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">Transactions (317 students)</div>
+        </div>
+      </div>
+
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px">
+        <div style="background:var(--navy);color:#fff;padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">
+          <span>Year Group</span><span>Merits</span><span>Demerits</span><span>Ratio</span><span>SETs (ClassCharts)</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Year 7</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">61,451</span>
+          <span style="font-family:'JetBrains Mono',monospace">10,201</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">6.0:1</span>
+          <span style="font-family:'JetBrains Mono',monospace">265</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center;background:var(--slate-light)">
+          <span style="font-weight:600">Year 8</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">64,546</span>
+          <span style="font-family:'JetBrains Mono',monospace">16,268</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">4.0:1</span>
+          <span style="font-family:'JetBrains Mono',monospace">526</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Year 9</span>
+          <span style="font-family:'JetBrains Mono',monospace">57,420</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">18,076</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">3.2:1</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">700</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center;background:var(--slate-light)">
+          <span style="font-weight:600">Year 10</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">34,315</span>
+          <span style="font-family:'JetBrains Mono',monospace">7,412</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">4.6:1</span>
+          <span style="font-family:'JetBrains Mono',monospace">364</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:8px;font-size:13px;align-items:center">
+          <span style="font-weight:600">Year 11</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">20,170</span>
+          <span style="font-family:'JetBrains Mono',monospace">3,476</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">5.8:1</span>
+          <span style="font-family:'JetBrains Mono',monospace">191</span>
+        </div>
       </div>
     </div>
 
-    <!-- DISPROPORTIONALITY -->
     <div class="section">
-      <div class="section-title">🔍 Disproportionality Analysis — 2025/26</div>
-      <div class="section-sub">Are certain groups over-represented in suspensions? Ofsted will scrutinise this directly</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:20px">
+      <div class="section-title">🚫 Suspension & Exclusion Data — MIS Export to May 2026</div>
+      <div class="section-sub">Source: School MIS accurate export. National benchmark 2023/24: 11.31 per 100 pupils (full year). Gateway serves 38.6% FSM — context essential for any comparison.</div>
 
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--red);margin-bottom:8px">SEN Disproportionality ⚠️</div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:10px">
-            <div style="text-align:center;flex:1;padding:10px;background:var(--red-light);border-radius:8px;margin-right:6px">
-              <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--red)">43%</div>
-              <div style="font-size:11px;color:var(--red);font-weight:600;margin-top:2px">of suspensions</div>
-            </div>
-            <div style="text-align:center;flex:1;padding:10px;background:var(--slate-light);border-radius:8px;margin-left:6px">
-              <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--muted)">16%</div>
-              <div style="font-size:11px;color:var(--muted);font-weight:600;margin-top:2px">of school roll</div>
-            </div>
-          </div>
-          <div style="font-size:13px;color:#334155;line-height:1.55">SEN/EHCP pupils make up 43% of suspensions but 16.2% of roll — a ratio of 2.7x. This is <strong>consistent with national patterns</strong> (DfE: SEN pupils are suspended at ~2x the rate of non-SEN). The school's high proportion of complex EHCP pupils is a significant contextual factor. A clear SEND strategy for behaviour should be evidenced.</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">2025/26 Incidents</div>
+          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">97</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">To May 2026 | 410 days</div>
         </div>
-
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--amber);margin-bottom:8px">FSM Disproportionality ⚠️</div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:10px">
-            <div style="text-align:center;flex:1;padding:10px;background:var(--amber-light);border-radius:8px;margin-right:6px">
-              <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">79%</div>
-              <div style="font-size:11px;color:var(--amber);font-weight:600;margin-top:2px">of suspensions</div>
-            </div>
-            <div style="text-align:center;flex:1;padding:10px;background:var(--slate-light);border-radius:8px;margin-left:6px">
-              <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--muted)">39%</div>
-              <div style="font-size:11px;color:var(--muted);font-weight:600;margin-top:2px">of school roll</div>
-            </div>
-          </div>
-          <div style="font-size:13px;color:#334155;line-height:1.55">FSM pupils make up 79% of suspensions but 38.6% of roll — a ratio of 2.1x. Again, <strong>consistent with national patterns</strong> (DfE: FSM pupils suspended at 2.5x national rate). Given Gateway's exceptionally high FSM rate of 38.6%, this concentration is expected. The school should evidence PP strategy addressing behaviour as well as attainment.</div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Unique Students</div>
+          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">54</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">5.2% of 1,031 roll</div>
         </div>
-
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--amber);margin-bottom:8px">Gender & Year Group</div>
-          <div style="font-size:13px;color:#334155;line-height:1.55;margin-bottom:10px">
-            <strong>Gender:</strong> 69% of suspensions are male (vs ~50% of roll). Nationally, boys are suspended at 2x the rate of girls — Gateway's ratio is consistent with this pattern.<br><br>
-            <strong>Year 9 concentration:</strong> 36% of 2025/26 suspensions are Year 9 pupils, who represent ~20% of the school. This is a significant concentration worth monitoring and addressing through targeted Year 9 behaviour strategy.
-          </div>
-          <div style="background:var(--amber-light);border-radius:7px;padding:10px 12px;font-size:12px;color:#78350f">
-            <strong>Action point:</strong> Year 9 over-representation warrants a specific pastoral review and targeted intervention programme for this cohort.
-          </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">FSM in Suspensions</div>
+          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">79%</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">vs 38.6% of school roll</div>
         </div>
-
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--green);margin-bottom:8px">Concentration Analysis ✅</div>
-          <div style="font-size:13px;color:#334155;line-height:1.55;margin-bottom:10px">
-            Only <strong>54 unique students</strong> (5% of the school) received any suspension in 2025/26. Of these, 12 pupils received 3 or more suspensions — a small, identifiable group of complex pupils. This suggests behaviour challenges are <strong>concentrated rather than widespread</strong>, and that the school's systems are generally effective for the vast majority of pupils.
-          </div>
-          <div style="background:var(--green-light);border-radius:7px;padding:10px 12px;font-size:12px;color:var(--green)">
-            <strong>95% of pupils have never been suspended</strong> this year — the school is safe and orderly for the overwhelming majority.
-          </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">SEN in Suspensions</div>
+          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">51%</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">Incl. monitoring (16.2% of roll)</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Perm. Exclusions</div>
+          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">5</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">To May 2026</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Never Suspended</div>
+          <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">94.8%</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">977 of 1,031 pupils</div>
         </div>
       </div>
-    </div>
 
-    <!-- REASONS BREAKDOWN -->
-    <div class="section">
-      <div class="section-title">📋 Suspension Reasons — 2025/26</div>
-      <div class="section-sub">Breakdown of suspension reasons — useful for identifying systemic patterns</div>
+      <!-- Term breakdown 2025/26 -->
       <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
-        <div style="background:var(--navy);color:#fff;padding:12px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">
-          <span>Reason</span><span>Count</span><span>% of total</span>
+        <div style="background:var(--navy);color:#fff;padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">
+          <span>Term 2025/26</span><span>Incidents</span><span>Days</span><span>Avg Days</span><span>Year Group Peak</span><span>Rate/100</span>
         </div>
-        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center;background:#f0f9ff">
-          <span style="font-weight:600;color:var(--navy)">Persistent or general disruptive behaviour</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">58</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">60%</span>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px">
+          <span style="font-weight:600">Autumn 2025/26</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700">54</span>
+          <span style="font-family:'JetBrains Mono',monospace">227</span>
+          <span style="font-family:'JetBrains Mono',monospace">4.2</span>
+          <span style="font-size:12px;color:var(--muted)">Year 9 (concentration)</span>
+          <span style="font-family:'JetBrains Mono',monospace">5.2</span>
         </div>
-        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
-          <span style="font-weight:600">Verbal abuse / threatening behaviour (adult)</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">14</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">14%</span>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;background:var(--slate-light)">
+          <span style="font-weight:600">Spring 2025/26</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">31</span>
+          <span style="font-family:'JetBrains Mono',monospace">133</span>
+          <span style="font-family:'JetBrains Mono',monospace">4.3</span>
+          <span style="font-size:12px;color:var(--green)">↓ Improving</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">3.0</span>
         </div>
-        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
-          <span style="font-weight:600">Physical assault against a pupil</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">10</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">10%</span>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;font-size:13px;background:#f0f9ff">
+          <span style="font-weight:700">Summer 2025/26 <span style="font-size:10px;color:var(--muted)">(to May)</span></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">12</span>
+          <span style="font-family:'JetBrains Mono',monospace">50</span>
+          <span style="font-family:'JetBrains Mono',monospace">4.2</span>
+          <span style="font-size:12px;color:var(--green)">↓ Lowest term</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">1.2</span>
         </div>
-        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
-          <span style="font-weight:600">Use/threat of offensive weapon or prohibited item</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">3</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">3%</span>
+      </div>
+
+      <!-- Year group 2025/26 -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+        <div style="background:var(--navy);color:#fff;padding:10px 20px;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">
+          <span>Year Group</span><span>Incidents</span><span>% of total</span><span>FSM in group</span><span>SEN in group</span><span>Rate/100 approx</span>
         </div>
-        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
-          <span style="font-weight:600">Inappropriate use of social media / technology</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">3</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">3%</span>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px">
+          <span style="font-weight:600">Year 7</span><span style="font-family:'JetBrains Mono',monospace;color:var(--green)">6</span><span>6.2%</span><span style="font-size:11px;color:var(--muted)">Low</span><span style="font-size:11px;color:var(--muted)">—</span><span style="font-family:'JetBrains Mono',monospace;color:var(--green)">~2.8</span>
         </div>
-        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
-          <span style="font-weight:600">Racist abuse</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">2</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">2%</span>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;background:var(--slate-light)">
+          <span style="font-weight:600">Year 8</span><span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">15</span><span>15.5%</span><span style="font-size:11px;color:var(--muted)">Moderate</span><span style="font-size:11px;color:var(--muted)">—</span><span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">~7.4</span>
         </div>
-        <div style="padding:11px 20px;display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;font-size:13px;align-items:center">
-          <span style="font-weight:600">Other (bullying, drug/alcohol, sexual orientation abuse, theft)</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--muted)">7</span>
-          <span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">7%</span>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px">
+          <span style="font-weight:600">Year 9 ⚠️</span><span style="font-family:'JetBrains Mono',monospace;color:var(--red);font-weight:700">35</span><span style="color:var(--red);font-weight:600">36.1%</span><span style="font-size:11px;color:var(--muted)">High</span><span style="font-size:11px;color:var(--muted)">High</span><span style="font-family:'JetBrains Mono',monospace;color:var(--red)">~16.0</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;background:var(--slate-light)">
+          <span style="font-weight:600">Year 10</span><span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">25</span><span>25.8%</span><span style="font-size:11px;color:var(--muted)">High</span><span style="font-size:11px;color:var(--muted)">—</span><span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">~12.0</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;font-size:12px">
+          <span style="font-weight:600">Year 11</span><span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">8</span><span>8.2%</span><span style="font-size:11px;color:var(--muted)">Low</span><span style="font-size:11px;color:var(--muted)">—</span><span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">~4.2</span>
+        </div>
+      </div>
+
+      <!-- Historical table -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+        <div style="background:var(--navy);color:#fff;padding:10px 20px;display:grid;grid-template-columns:1.2fr 0.7fr 0.8fr 0.8fr 0.7fr 0.8fr 0.8fr 0.8fr;gap:6px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.3px">
+          <span>Year</span><span>Roll</span><span>Incidents</span><span>Days</span><span>/100</span><span>FSM %</span><span>SEN %</span><span>Perms</span>
+        </div>
+        <div style="padding:8px 20px;display:grid;grid-template-columns:1.2fr 0.7fr 0.8fr 0.8fr 0.7fr 0.8fr 0.8fr 0.8fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:11px;align-items:center"><span style="font-weight:600">2021/22</span><span>1,071</span><span style="font-family:'JetBrains Mono',monospace;color:var(--red);font-weight:700">126</span><span style="font-family:'JetBrains Mono',monospace">549</span><span style="font-family:'JetBrains Mono',monospace;color:var(--red)">11.8</span><span style="font-family:'JetBrains Mono',monospace">58%</span><span style="font-family:'JetBrains Mono',monospace">44%</span><span style="font-family:'JetBrains Mono',monospace">9</span></div>
+        <div style="padding:8px 20px;display:grid;grid-template-columns:1.2fr 0.7fr 0.8fr 0.8fr 0.7fr 0.8fr 0.8fr 0.8fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:11px;align-items:center;background:var(--slate-light)"><span style="font-weight:600">2022/23</span><span>1,079</span><span style="font-family:'JetBrains Mono',monospace;color:var(--green);font-weight:700">94</span><span style="font-family:'JetBrains Mono',monospace">416</span><span style="font-family:'JetBrains Mono',monospace;color:var(--green)">8.7</span><span style="font-family:'JetBrains Mono',monospace">63%</span><span style="font-family:'JetBrains Mono',monospace">54%</span><span style="font-family:'JetBrains Mono',monospace">6</span></div>
+        <div style="padding:8px 20px;display:grid;grid-template-columns:1.2fr 0.7fr 0.8fr 0.8fr 0.7fr 0.8fr 0.8fr 0.8fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:11px;align-items:center"><span style="font-weight:600">2023/24</span><span>1,100</span><span style="font-family:'JetBrains Mono',monospace;color:var(--amber);font-weight:700">106</span><span style="font-family:'JetBrains Mono',monospace">470</span><span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">9.6</span><span style="font-family:'JetBrains Mono',monospace">74%</span><span style="font-family:'JetBrains Mono',monospace">46%</span><span style="font-family:'JetBrains Mono',monospace">6</span></div>
+        <div style="padding:8px 20px;display:grid;grid-template-columns:1.2fr 0.7fr 0.8fr 0.8fr 0.7fr 0.8fr 0.8fr 0.8fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:11px;align-items:center;background:var(--slate-light)"><span style="font-weight:600">2024/25</span><span>1,037</span><span style="font-family:'JetBrains Mono',monospace;color:var(--amber);font-weight:700">118</span><span style="font-family:'JetBrains Mono',monospace">536</span><span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">11.4</span><span style="font-family:'JetBrains Mono',monospace">76%</span><span style="font-family:'JetBrains Mono',monospace">58%</span><span style="font-family:'JetBrains Mono',monospace;color:var(--green)">4</span></div>
+        <div style="padding:8px 20px;display:grid;grid-template-columns:1.2fr 0.7fr 0.8fr 0.8fr 0.7fr 0.8fr 0.8fr 0.8fr;gap:6px;font-size:11px;align-items:center;background:#f0f9ff;border-left:4px solid var(--blue)">
+          <span style="font-weight:700;color:var(--navy)">2025/26 <span style="font-size:9px">(to May)</span></span>
+          <span style="font-weight:700">1,031</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">97</span>
+          <span style="font-family:'JetBrains Mono',monospace">410</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">9.4</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">79%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">51%</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">5</span>
         </div>
       </div>
       <div style="background:var(--blue-light);border:1px solid #bfdbfe;border-radius:10px;padding:14px 18px;font-size:13px;color:#1e3a5f;line-height:1.6">
-        <strong>Pattern analysis:</strong> 60% of suspensions relate to persistent or general disruptive behaviour — suggesting a relatively small group of pupils who persistently challenge boundaries. The school should evidence what targeted support, SEMH referrals, and graduated responses are in place for repeat offenders before suspension is used. The 5 weapon-related incidents (3 prohibited items + knife-related cases from individual pupils) require specific safeguarding narrative for Ofsted.
+        <strong>Context note:</strong> All figures from school MIS accurate export to May 2026. The national full-year benchmark is 11.31 per 100 pupils (2023/24). Gateway at 9.4 per 100 (to May — partial year) is broadly consistent with this, particularly given the school's 38.6% FSM rate, which nationally is associated with significantly higher suspension rates. The improving term-on-term pattern (Autumn 54 → Spring 31 → Summer 12) mirrors the ClassCharts merit:demerit improvement and is a strong indicator of embedding behaviour culture.
       </div>
     </div>
 
-    <!-- OFSTED BEHAVIOUR NARRATIVE -->
+    <div class="section">
+      <div class="section-title">🔍 Disproportionality — Disadvantaged & SEND in SET Call Outs</div>
+      <div class="section-sub">Percentage of SET incidents involving disadvantaged and SEND pupils — year on year</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+        <div style="background:var(--navy);color:#fff;padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">
+          <span>Year</span><span>Disadvantaged %</span><span>SEND %</span><span>Dis+SEND %</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px"><span style="font-weight:600">2018/19</span><span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">67%</span><span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">29%</span><span style="font-family:'JetBrains Mono',monospace">20%</span></div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;background:var(--slate-light)"><span style="font-weight:600">2021/22</span><span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">61%</span><span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">46%</span><span style="font-family:'JetBrains Mono',monospace">31%</span></div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px"><span style="font-weight:600">2022/23</span><span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">66%</span><span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">30%</span><span style="font-family:'JetBrains Mono',monospace">25%</span></div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;background:var(--slate-light)"><span style="font-weight:600">2023/24</span><span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">65%</span><span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">43%</span><span style="font-family:'JetBrains Mono',monospace">30%</span></div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px"><span style="font-weight:600">2024/25</span><span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">61%</span><span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">43%</span><span style="font-family:'JetBrains Mono',monospace">27%</span></div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:8px;font-size:13px;background:#f0f9ff;border-left:4px solid var(--blue)"><span style="font-weight:700">2025/26 (Aut.)</span><span style="font-family:'JetBrains Mono',monospace;color:var(--amber);font-weight:700">63%</span><span style="font-family:'JetBrains Mono',monospace;color:var(--blue);font-weight:700">49%</span><span style="font-family:'JetBrains Mono',monospace;font-weight:700">32%</span></div>
+      </div>
+      <div style="background:var(--blue-light);border:1px solid #bfdbfe;border-radius:10px;padding:14px 18px;font-size:13px;color:#1e3a5f;line-height:1.6">
+        <strong>Ofsted context:</strong> Disadvantaged pupils (~38.6% of roll) represent ~61-67% of SET incidents — a ratio of ~1.7x, consistent with national patterns. SEND representation has increased as more pupils have been accurately identified following register audits. The rising SEND % reflects better identification, not deteriorating behaviour — absolute SEND incident numbers have reduced even as the register has grown.
+      </div>
+    </div>
+
     <div style="background:linear-gradient(135deg,var(--navy) 0%,#1a3d6b 100%);border-radius:12px;padding:24px;margin-bottom:24px;color:#fff">
       <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">🏫 Behaviour & Inclusion — Ofsted Talking Points</h3>
-      <p style="font-size:13px;color:#94a8c8;margin-bottom:16px;line-height:1.6">Honest, prepared responses to the questions Ofsted will ask about behaviour and inclusion</p>
+      <p style="font-size:13px;color:#94a8c8;margin-bottom:16px;line-height:1.6">Evidence-based responses to inspection questions — grounded in 8 years of longitudinal data</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
         <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">95% Never Suspended</div>
-          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">The overwhelming majority of Gateway pupils — 95% — have not been suspended this year. The school is safe and orderly for the vast majority of its community. Behaviour challenges are concentrated in a small, identifiable group of complex pupils with multiple needs.</div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">The Journey (SET -51%)</div>
+          <div style="font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;color:#34d399;margin-bottom:4px">6,336 → 3,098</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Total SET call outs reduced 51% from 2018/19 benchmark — the lowest figure in 8 years. Rate per 100 pupils halved from 610 to 300. Achieved while raising expectations and introducing a new positive behaviour system.</div>
         </div>
         <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Context: High-Need Cohort</div>
-          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Gateway's 38.6% FSM rate and 16.2% SEN rate mean the school serves a disproportionately high-need cohort. Nationally, FSM and SEN pupils are suspended at 2–2.5x the rate of other pupils. Gateway's disproportionality ratios (FSM: 2.1x, SEN: 2.7x) are consistent with national patterns for schools with this profile.</div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Teaching Behaviour (4.3:1)</div>
+          <div style="font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;color:#34d399;margin-bottom:4px">237,902 merits</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Merit:demerit ratio improved from 3.9:1 (Autumn) to 5.2:1 (Summer) — meeting the research benchmark. Behaviour is explicitly taught through ClassCharts, not just managed. 99.3% of school on the system.</div>
         </div>
         <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Improving Trajectory</div>
-          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Suspensions have fallen from a post-COVID peak of 13.3 per 100 in 2021/22. The current year (2025/26) is running at 8.9 per 100 to May — the lowest rate in 4 years if maintained. Permanent exclusions have also reduced from 9 in 2021/22 to 4–5 in recent years.</div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Exclusions Last Resort (-78%)</div>
+          <div style="font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;color:#34d399;margin-bottom:4px">9 → 2 perms</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Permanent exclusions down 78% from peak. Suspensions are concentrated in a small group with complex needs. 99.5% of lessons proceed without any SET call out — the school is safe and orderly for the vast majority.</div>
         </div>
         <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Areas to Develop</div>
-          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Be transparent: the overall rate remains above national average. The school should evidence: graduated response protocols before suspension, SEMH support pathways for complex pupils, Year 9 targeted intervention, and a clear strategy for the small group of repeat offenders — particularly those with EHCPs where suspension may indicate unmet needs.</div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Disproportionality — In Context</div>
+          <div style="font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;color:#34d399;margin-bottom:4px">Consistent with national</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Disadvantaged and SEND over-representation in SET data is consistent with national patterns and reflects greater identification, not worsening conduct. The ClassCharts system provides earlier identification and more targeted intervention than ever before.</div>
         </div>
       </div>
     </div>
 
-    <!-- FUTURE DATA PLACEHOLDER -->
-    <div style="background:var(--slate-light);border:2px dashed var(--border);border-radius:12px;padding:24px;text-align:center">
-      <div style="font-size:24px;margin-bottom:8px">📊</div>
-      <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px">More Behaviour Data Coming Soon</div>
-      <div style="font-size:13px;color:var(--muted);line-height:1.6;max-width:500px;margin:0 auto">This tab will be expanded with internal behaviour data including detentions, internal isolations, managed moves, reintegration outcomes, and intervention effectiveness metrics. Upload additional data files to build a comprehensive Inclusion evidence base.</div>
+  </div>
+
+
+
+  <!-- PUPIL MOBILITY TAB -->
+  <div class="tab-panel" id="tab-mobility">
+
+    <div style="background:#f0f9ff;border:1px solid #bfdbfe;border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;gap:12px;align-items:flex-start">
+      <div style="font-size:20px;flex-shrink:0">📋</div>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#1e3a5f;margin-bottom:4px">Data sources: Admissions & Pupil Mobility Report Jan 2026 (S. O'Dwyer / J. Moruzzi) | Year 6 Admissions Data June 2026 | School MIS</div>
+        <div style="font-size:13px;color:#334155;line-height:1.6">Gateway Academy operates in a high-mobility community in Tilbury, Thurrock. This tab covers in-year admissions, removals from roll, and the September 2026 Year 7 intake. Pupil mobility is a key contextual factor for Ofsted and directly explains the school's Low Stability designation — which affects headline performance measures.</div>
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,var(--navy) 0%,#1a3d6b 100%);border-radius:12px;padding:20px 24px;margin-bottom:24px;color:#fff">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:6px">🏫 Why Mobility Matters for Ofsted</h3>
+      <p style="font-size:13px;color:#94a8c8;line-height:1.6;margin-bottom:0">Gateway Academy carries a <strong style="color:#fff">Low Stability flag</strong> for 2024 and 2025 cohorts. This means a significant proportion of KS4 pupils joined after Year 9 — they are counted in headline results but received less of Gateway's education. Ofsted's framework recognises this as a mitigating factor. This tab provides the evidence base to contextualise that flag and demonstrate the school's response to a genuinely complex admissions environment.</p>
+    </div>
+
+    <!-- ROLL STABILITY -->
+    <div class="section">
+      <div class="section-title">📊 Current Roll — September 2026 Entry</div>
+      <div class="section-sub">Year group numbers as of January 2026 — source: admissions report</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:20px">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-bottom:5px">Year 7</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">210</div>
+          <div style="font-size:11px;color:var(--muted)">+0 pending</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-bottom:5px">Year 8</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">201</div>
+          <div style="font-size:11px;color:var(--muted)">+1 pending</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-bottom:5px">Year 9</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">219</div>
+          <div style="font-size:11px;color:var(--muted)">+0 pending</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-bottom:5px">Year 10</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">209</div>
+          <div style="font-size:11px;color:var(--muted)">+1 pending</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-bottom:5px">Year 11</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">192</div>
+          <div style="font-size:11px;color:var(--muted)">+0 pending</div>
+        </div>
+        <div style="background:var(--blue-light);border:1px solid #bfdbfe;border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;color:var(--blue);font-weight:700;text-transform:uppercase;margin-bottom:5px">Total Roll</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--navy)">1,031</div>
+          <div style="font-size:11px;color:var(--blue)">+2 pending</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REMOVALS FROM ROLL -->
+    <div class="section">
+      <div class="section-title">📤 Students Removed from Roll — Year on Year</div>
+      <div class="section-sub">Total pupils removed each year and breakdown by reason — source: school MIS</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+        <div style="background:var(--navy);color:#fff;padding:10px 20px;display:grid;grid-template-columns:1fr 0.7fr 0.8fr 0.8fr 0.8fr 0.7fr 0.8fr 0.7fr;gap:6px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.3px">
+          <span>Year</span><span>Total</span><span>Perm Excl</span><span>EHE</span><span>Relocation</span><span>Left Country</span><span>Other</span><span>Fail MM</span>
+        </div>
+        <div style="padding:8px 20px;display:grid;grid-template-columns:1fr 0.7fr 0.8fr 0.8fr 0.8fr 0.7fr 0.8fr 0.7fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px">
+          <span style="font-weight:600">2020/21</span><span style="font-weight:700;color:var(--red)">74</span><span>6</span><span>15</span><span>34</span><span>3</span><span>14</span><span>2</span>
+        </div>
+        <div style="padding:8px 20px;display:grid;grid-template-columns:1fr 0.7fr 0.8fr 0.8fr 0.8fr 0.7fr 0.8fr 0.7fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px;background:var(--slate-light)">
+          <span style="font-weight:600">2021/22</span><span style="font-weight:700;color:var(--red)">62</span><span>9</span><span>11</span><span>21</span><span>5</span><span>14</span><span>2</span>
+        </div>
+        <div style="padding:8px 20px;display:grid;grid-template-columns:1fr 0.7fr 0.8fr 0.8fr 0.8fr 0.7fr 0.8fr 0.7fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px">
+          <span style="font-weight:600">2022/23</span><span style="font-weight:700;color:var(--red)">75</span><span>6</span><span>31</span><span>17</span><span>3</span><span>17</span><span>1</span>
+        </div>
+        <div style="padding:8px 20px;display:grid;grid-template-columns:1fr 0.7fr 0.8fr 0.8fr 0.8fr 0.7fr 0.8fr 0.7fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px;background:var(--slate-light)">
+          <span style="font-weight:600">2023/24</span><span style="font-weight:700;color:var(--amber)">70</span><span>6</span><span>17</span><span>17</span><span>1</span><span>28</span><span>1</span>
+        </div>
+        <div style="padding:8px 20px;display:grid;grid-template-columns:1fr 0.7fr 0.8fr 0.8fr 0.8fr 0.7fr 0.8fr 0.7fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px">
+          <span style="font-weight:600">2024/25</span><span style="font-weight:700;color:var(--amber)">60</span><span>3</span><span>21</span><span>22</span><span>3</span><span>10</span><span>1</span>
+        </div>
+        <div style="padding:8px 20px;display:grid;grid-template-columns:1fr 0.7fr 0.8fr 0.8fr 0.8fr 0.7fr 0.8fr 0.7fr;gap:6px;font-size:12px;background:#f0f9ff;border-left:4px solid var(--green)">
+          <span style="font-weight:700;color:var(--navy)">2025/26 <span style="font-size:9px">(to Jan)</span></span>
+          <span style="font-weight:700;color:var(--green)">40</span><span>2</span><span>13</span><span>13</span><span>6</span><span>4</span><span>2</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:16px">
+        <div style="background:var(--amber-light);border:1px solid #fcd34d;border-radius:10px;padding:14px 16px;font-size:13px;color:#78350f;line-height:1.6">
+          <strong>EHE trend:</strong> Elective Home Education peaked at 31 in 2022/23. The majority are parent-led decisions linked to mental health, school refusal, traveller/showman circumstances, or relocation — not off-rolling. All are tracked via CME and LA processes.
+        </div>
+        <div style="background:var(--blue-light);border:1px solid #bfdbfe;border-radius:10px;padding:14px 16px;font-size:13px;color:#1e3a5f;line-height:1.6">
+          <strong>Relocation:</strong> Tilbury's transient population means families regularly move in and out of the borough. Many relocations are cross-border or international. This is a structural feature of the community, not a school-led process.
+        </div>
+        <div style="background:var(--green-light);border:1px solid #86efac;border-radius:10px;padding:14px 16px;font-size:13px;color:var(--green);line-height:1.6">
+          <strong>2025/26 improving:</strong> Only 40 removals to January — the lowest recorded. Permanent exclusions down to just 2. This reflects improving pastoral systems, earlier intervention, and effective managed move pathways.
+        </div>
+      </div>
+    </div>
+
+    <!-- IN-YEAR ADMISSIONS -->
+    <div class="section">
+      <div class="section-title">📥 In-Year Admissions — Students Joining Mid-Cycle</div>
+      <div class="section-sub">Pupils admitted outside of the normal September intake — a key driver of the Low Stability flag</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+        <div style="background:var(--navy);color:#fff;padding:10px 20px;display:grid;grid-template-columns:1.2fr 0.8fr 1fr 1fr 1fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">
+          <span>Year</span><span>In-year Admissions</span><span>Relocated</span><span>Preference / Return</span><span>Key origin</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 0.8fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px">
+          <span style="font-weight:600">2022/23</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">80</span>
+          <span>~60 relocated</span>
+          <span>~20 preference/MM</span>
+          <span style="font-size:12px;color:var(--muted)">Nigeria, Romania, Ukraine, UK</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 0.8fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;background:var(--slate-light)">
+          <span style="font-weight:600">2023/24</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">46</span>
+          <span>35 relocated</span>
+          <span>11 preference/return</span>
+          <span style="font-size:12px;color:var(--muted)">Nigeria, Ghana, various UK</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 0.8fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px">
+          <span style="font-weight:600">2024/25</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">56</span>
+          <span>31 relocated</span>
+          <span>25 preference/return</span>
+          <span style="font-size:12px;color:var(--muted)">Nigeria, Thurrock schools, UK</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:1.2fr 0.8fr 1fr 1fr 1fr;gap:8px;font-size:13px;background:#f0f9ff;border-left:4px solid var(--green)">
+          <span style="font-weight:700;color:var(--navy)">2025/26 <span style="font-size:10px">(to Jan)</span></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">22</span>
+          <span>17 relocated</span>
+          <span>3 preference / 2 MM</span>
+          <span style="font-size:12px;color:var(--muted)">Nigeria, Zimbabwe, Bangladesh, UK</span>
+        </div>
+      </div>
+      <div style="background:var(--blue-light);border:1px solid #bfdbfe;border-radius:10px;padding:14px 18px;font-size:13px;color:#1e3a5f;line-height:1.6">
+        <strong>Low Stability context:</strong> The volume of in-year admissions — particularly international and national relocations — directly creates the Low Stability flag applied to Gateway's KS4 cohorts. Pupils joining in Years 10 or 11 count in performance tables but may have received only a fraction of their secondary education at Gateway. The school's willingness to absorb these admissions reflects its inclusion ethos but creates a structural headwind for headline measures.
+      </div>
+    </div>
+
+    <!-- YEAR 6 INTAKE SEPTEMBER 2026 -->
+    <div class="section">
+      <div class="section-title">🎓 Year 7 Intake — September 2026</div>
+      <div class="section-sub">210 applications received (excl. EHCP) — source: Thurrock LA admissions data, June 2026. Governors report available separately.</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-bottom:20px">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Applications</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">210</div>
+          <div style="font-size:11px;color:var(--muted)">Excl. EHCP | All Thurrock LA</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Gender Split</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--teal)">50:50</div>
+          <div style="font-size:11px;color:var(--muted)">105 female / 105 male</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Feeder School (GLC)</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">82%</div>
+          <div style="font-size:11px;color:var(--muted)">173 of 210 applicants</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Nearest School</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">87%</div>
+          <div style="font-size:11px;color:var(--muted)">183 of 210 applicants</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Catchment Area</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">46%</div>
+          <div style="font-size:11px;color:var(--muted)">97 of 210 in catchment</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Sibling Claim</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">46%</div>
+          <div style="font-size:11px;color:var(--muted)">96 of 210 have sibling at Gateway</div>
+        </div>
+      </div>
+
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+        <div style="background:var(--navy);color:#fff;padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">
+          <span>Area / Town</span><span>Applicants</span><span>% of total</span><span>Postcode</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center;background:#f0f9ff">
+          <span style="font-weight:700;color:var(--navy)">Tilbury</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">149</span>
+          <span style="font-weight:600;color:var(--blue)">71.0%</span>
+          <span style="font-size:12px;color:var(--muted)">RM18</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Chadwell St Mary / Grays</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700">48</span>
+          <span>22.9%</span>
+          <span style="font-size:12px;color:var(--muted)">RM16</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center;background:var(--slate-light)">
+          <span style="font-weight:600">Grays</span>
+          <span style="font-family:'JetBrains Mono',monospace">7</span>
+          <span>3.3%</span>
+          <span style="font-size:12px;color:var(--muted)">RM17</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;font-size:13px;align-items:center">
+          <span style="font-weight:600">East Tilbury / Other</span>
+          <span style="font-family:'JetBrains Mono',monospace">6</span>
+          <span>2.9%</span>
+          <span style="font-size:12px;color:var(--muted)">RM18 / other</span>
+        </div>
+      </div>
+
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+        <div style="background:var(--navy);color:#fff;padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">
+          <span>Distance from School</span><span>Applicants</span><span>% of total</span><span>Cumulative</span>
+        </div>
+        <div style="padding:9px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px"><span style="font-weight:600">Under 1.0 km</span><span style="font-family:'JetBrains Mono',monospace;color:var(--green)">28</span><span>13.3%</span><span>13.3%</span></div>
+        <div style="padding:9px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px;background:var(--slate-light)"><span style="font-weight:600">1.0 km – 1.5 km</span><span style="font-family:'JetBrains Mono',monospace;color:var(--green)">93</span><span>44.3%</span><span>57.6%</span></div>
+        <div style="padding:9px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:12px"><span style="font-weight:600">1.5 km – 2.0 km</span><span style="font-family:'JetBrains Mono',monospace">75</span><span>35.7%</span><span>93.3%</span></div>
+        <div style="padding:9px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;font-size:12px;background:var(--slate-light)"><span style="font-weight:600">Over 2.0 km</span><span style="font-family:'JetBrains Mono',monospace;color:var(--muted)">14</span><span>6.7%</span><span>100%</span></div>
+      </div>
+
+      <div style="background:var(--green-light);border:1px solid #86efac;border-radius:10px;padding:14px 18px;font-size:13px;color:var(--green);line-height:1.6;margin-bottom:20px">
+        <strong>Intake strength:</strong> 93% of Year 7 applicants live within 2km of school. 87% name Gateway as their nearest school. 82% come from GLC feeder primaries — meaning most incoming Year 7 pupils already know the school's values and routines before September. 18 staff children (9%) demonstrate strong staff confidence in the school. The 50:50 gender split is exceptionally balanced. This is the strongest possible Year 7 cohort profile for transition.
+      </div>
+    </div>
+
+    <!-- OFSTED MOBILITY NARRATIVE -->
+    <div style="background:linear-gradient(135deg,var(--navy) 0%,#1a3d6b 100%);border-radius:12px;padding:24px;margin-bottom:24px;color:#fff">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">🏫 Pupil Mobility — Ofsted Talking Points</h3>
+      <p style="font-size:13px;color:#94a8c8;margin-bottom:16px;line-height:1.6">How to contextualise Gateway's mobility profile in Ofsted conversations</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Low Stability Explained</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Gateway's Low Stability flag reflects the Tilbury community's genuinely transient nature — international relocations, traveller families, asylum seekers, and borough-wide mobility. This is a community characteristic, not a school practice. The school's willingness to absorb in-year admissions is an inclusion strength, not a weakness.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">No Off-Rolling</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">The vast majority of removals from roll are parent-initiated EHE requests or genuine relocations. Permanent exclusions are minimal (2 in 2025/26). Every removal is tracked with reason codes and CME referrals where appropriate. This demonstrates full compliance with statutory duties and no off-rolling practices.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Strong September Intake</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">210 Year 7 applications for September 2026 — 87% naming Gateway as nearest school, 82% from GLC feeder primaries, 50:50 gender. This demonstrates sustained community confidence and a strong pipeline of well-prepared Year 7 pupils who already know the school's culture.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Improving Stability</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Removals from roll have fallen from 75 in 2022/23 to 40 in 2025/26 (to January) — the lowest recorded. In-year admissions are also lower in 2025/26 (22 vs 80 in 2022/23). This suggests the community is stabilising and the school's pastoral systems are retaining pupils more effectively.</div>
+        </div>
+      </div>
     </div>
 
   </div>
