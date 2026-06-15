@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -198,6 +197,7 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
     <button class="tab" onclick="showTab('dfe')">📊 DfE Real Data</button>
     <button class="tab" onclick="showTab('inclusion')">🤝 Inclusion &amp; Behaviour</button>
     <button class="tab" onclick="showTab('mobility')">🔄 Pupil Mobility</button>
+    <button class="tab" onclick="showTab('send')">♿ SEND</button>
   </div>
 
   <!-- OVERVIEW TAB -->
@@ -2028,6 +2028,287 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
     </div>
 
   </div>
+
+  <!-- SEND TAB -->
+  <div class="tab-panel" id="tab-send">
+
+    <div style="background:#f0f9ff;border:1px solid #bfdbfe;border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;gap:12px;align-items:flex-start">
+      <div style="font-size:20px;flex-shrink:0">📋</div>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#1e3a5f;margin-bottom:4px">Data source: Gateway Academy SEND Register — April 2026 | National: DfE SEN Statistics January 2024 | Roll: 1,029 pupils</div>
+        <div style="font-size:13px;color:#334155;line-height:1.6">This tab presents the SEND profile of Gateway Academy compared to national averages. Under the 2025 Ofsted framework, Inclusion is a standalone graded evaluation area — SEND provision, identification, and outcomes are central to that judgement. The data below provides the quantitative evidence base to support the school's inclusion narrative.</div>
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,var(--navy) 0%,#1a3d6b 100%);border-radius:12px;padding:20px 24px;margin-bottom:24px;color:#fff">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:6px">♿ Ofsted 2025 — SEND within Inclusion</h3>
+      <p style="font-size:13px;color:#94a8c8;line-height:1.6;margin-bottom:0">Ofsted's case sampling methodology means inspectors will look closely at the experiences of individual SEND pupils — not just headline numbers. Key questions will be: Are needs identified early and accurately? Is provision effective? Are SEND pupils attending and achieving? Gateway's SEN attendance ranking of <strong style="color:#34d399">1st of 21 similar schools</strong> (DfE data) is the strongest single SEND evidence point — this tab provides the full quantitative picture around it.</p>
+    </div>
+
+    <!-- HEADLINE METRICS -->
+    <div class="section">
+      <div class="section-title">📊 SEND Headlines — April 2026</div>
+      <div class="section-sub">Gateway Academy vs National (DfE SEN Statistics Jan 2024)</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-bottom:20px">
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Total SEND</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">21.2%</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">218 pupils | National: 18.4%</div>
+          <div style="margin-top:6px;display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--amber-light);color:var(--amber)">Above national</div>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">EHCP</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">2.9%</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">30 pupils | National: 4.8%</div>
+          <div style="margin-top:6px;display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--green-light);color:var(--green)">Below national</div>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">SEN Support (K)</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">17.0%</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">175 pupils | National: 13.6%</div>
+          <div style="margin-top:6px;display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--amber-light);color:var(--amber)">Above national</div>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">SEND + PP Overlap</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--red)">58.7%</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">128 pupils | National: ~30%</div>
+          <div style="margin-top:6px;display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--red-light);color:var(--red)">2× national average</div>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Monitoring (M)</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">13</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">1.3% of roll — early watch</div>
+          <div style="margin-top:6px;display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--blue-light);color:var(--blue)">Early identification</div>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">SEN Attendance</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">1st</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">of 21 similar schools (DfE)</div>
+          <div style="margin-top:6px;display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--green-light);color:var(--green)">DfE Relative Strength</div>
+        </div>
+
+      </div>
+
+      <!-- Key narrative box -->
+      <div style="background:var(--red-light);border:1px solid #fca5a5;border-radius:10px;padding:14px 18px;font-size:13px;color:#7f1d1d;line-height:1.6;margin-bottom:12px">
+        <strong>Double deprivation — the critical context:</strong> 58.7% of Gateway's SEND pupils are also eligible for Pupil Premium — nearly double the national average of ~30%. This means a significant proportion of the school's most complex pupils face both learning needs and socioeconomic disadvantage simultaneously. This combination creates greater need and greater challenge than SEND or deprivation data alone would suggest, and must be central to any Ofsted conversation about inclusion.
+      </div>
+    </div>
+
+    <!-- GATEWAY vs NATIONAL COMPARISON TABLE -->
+    <div class="section">
+      <div class="section-title">📋 Gateway vs National — SEND Comparison</div>
+      <div class="section-sub">National figures: DfE Special Educational Needs in England, January 2024</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+        <div style="background:var(--navy);color:#fff;padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">
+          <span>Measure</span><span>Gateway</span><span>National (secondary)</span><span>Position</span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Total SEND register</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">21.2%</span>
+          <span style="font-family:'JetBrains Mono',monospace">18.4%</span>
+          <span><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--amber-light);color:var(--amber)">+2.8pp above</span></span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center;background:var(--slate-light)">
+          <span style="font-weight:600">EHCP</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">2.9%</span>
+          <span style="font-family:'JetBrains Mono',monospace">4.8%</span>
+          <span><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--green-light);color:var(--green)">-1.9pp below</span></span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">SEN Support (K)</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">17.0%</span>
+          <span style="font-family:'JetBrains Mono',monospace">13.6%</span>
+          <span><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--amber-light);color:var(--amber)">+3.4pp above</span></span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center;background:var(--slate-light)">
+          <span style="font-weight:600">SEND + PP overlap</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">58.7%</span>
+          <span style="font-family:'JetBrains Mono',monospace">~30%</span>
+          <span><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--red-light);color:var(--red)">2× national</span></span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">Male:female ratio in SEND</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">63:37</span>
+          <span style="font-family:'JetBrains Mono',monospace">~65:35</span>
+          <span><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--blue-light);color:var(--blue)">Consistent with national</span></span>
+        </div>
+        <div style="padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;font-size:13px;align-items:center;background:var(--slate-light)">
+          <span style="font-weight:600">SEN attendance vs similar schools</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">90.6%</span>
+          <span style="font-family:'JetBrains Mono',monospace">84.3% (similar schools median)</span>
+          <span><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--green-light);color:var(--green)">1st of 21 similar schools</span></span>
+        </div>
+      </div>
+      <div style="background:var(--blue-light);border:1px solid #bfdbfe;border-radius:10px;padding:14px 18px;font-size:13px;color:#1e3a5f;line-height:1.6">
+        <strong>EHCP note:</strong> Gateway's EHCP rate (2.9%) is below the national average (4.8%). This is partly explained by the high level of in-year admissions from international and mobile families who join without pre-existing plans, and the school's strong track record of meeting needs at SEN Support level without necessarily escalating to statutory assessment. The Thurrock LA context is also relevant — local EHCP commissioning rates vary significantly between LAs.
+      </div>
+    </div>
+
+    <!-- BY YEAR GROUP -->
+    <div class="section">
+      <div class="section-title">📈 SEND by Year Group — April 2026</div>
+      <div class="section-sub">SEND register breakdown per year group — total, EHCP, SEN Support, Monitoring, and PP overlap</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+        <div style="background:var(--navy);color:#fff;padding:10px 20px;display:grid;grid-template-columns:0.7fr 0.7fr 0.8fr 0.8fr 0.8fr 0.6fr 0.8fr 0.9fr;gap:6px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.3px">
+          <span>Year</span><span>Roll</span><span>SEND total</span><span>SEND %</span><span>EHCP</span><span>K</span><span>Mon.</span><span>SEND+PP</span>
+        </div>
+        <div style="padding:9px 20px;display:grid;grid-template-columns:0.7fr 0.7fr 0.8fr 0.8fr 0.8fr 0.6fr 0.8fr 0.9fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:700">Y7</span><span>211</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">55</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">26.1%</span>
+          <span style="font-family:'JetBrains Mono',monospace">5</span><span style="font-family:'JetBrains Mono',monospace">44</span><span style="font-family:'JetBrains Mono',monospace">6</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">35 (64%)</span>
+        </div>
+        <div style="padding:9px 20px;display:grid;grid-template-columns:0.7fr 0.7fr 0.8fr 0.8fr 0.8fr 0.6fr 0.8fr 0.9fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center;background:var(--slate-light)">
+          <span style="font-weight:700">Y8</span><span>205</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">43</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">21.0%</span>
+          <span style="font-family:'JetBrains Mono',monospace">6</span><span style="font-family:'JetBrains Mono',monospace">32</span><span style="font-family:'JetBrains Mono',monospace">5</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">22 (51%)</span>
+        </div>
+        <div style="padding:9px 20px;display:grid;grid-template-columns:0.7fr 0.7fr 0.8fr 0.8fr 0.8fr 0.6fr 0.8fr 0.9fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:700">Y9</span><span>216</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">48</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">22.2%</span>
+          <span style="font-family:'JetBrains Mono',monospace">8</span><span style="font-family:'JetBrains Mono',monospace">39</span><span style="font-family:'JetBrains Mono',monospace">1</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--red)">31 (65%)</span>
+        </div>
+        <div style="padding:9px 20px;display:grid;grid-template-columns:0.7fr 0.7fr 0.8fr 0.8fr 0.8fr 0.6fr 0.8fr 0.9fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center;background:var(--slate-light)">
+          <span style="font-weight:700">Y10</span><span>205</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">40</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--blue)">19.5%</span>
+          <span style="font-family:'JetBrains Mono',monospace">6</span><span style="font-family:'JetBrains Mono',monospace">34</span><span style="font-family:'JetBrains Mono',monospace">0</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">22 (55%)</span>
+        </div>
+        <div style="padding:9px 20px;display:grid;grid-template-columns:0.7fr 0.7fr 0.8fr 0.8fr 0.8fr 0.6fr 0.8fr 0.9fr;gap:6px;border-bottom:1px solid #f0f4f8;font-size:12px;align-items:center">
+          <span style="font-weight:700">Y11</span><span>192</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">32</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--green)">16.7%</span>
+          <span style="font-family:'JetBrains Mono',monospace">5</span><span style="font-family:'JetBrains Mono',monospace">26</span><span style="font-family:'JetBrains Mono',monospace">1</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--amber)">18 (56%)</span>
+        </div>
+        <div style="padding:9px 20px;display:grid;grid-template-columns:0.7fr 0.7fr 0.8fr 0.8fr 0.8fr 0.6fr 0.8fr 0.9fr;gap:6px;font-size:12px;align-items:center;background:#f0f9ff;border-left:4px solid var(--navy)">
+          <span style="font-weight:700;color:var(--navy)">Total</span><span style="font-weight:700">1,029</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--navy)">218</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">21.2%</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700">30</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700">175</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700">13</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red)">128 (59%)</span>
+        </div>
+      </div>
+      <div style="background:var(--amber-light);border:1px solid #fcd34d;border-radius:10px;padding:14px 18px;font-size:13px;color:#78350f;line-height:1.6">
+        <strong>Year 7 — highest SEND burden:</strong> Year 7 has the highest SEND rate at 26.1% — significantly above all other year groups and well above the national average. This reflects the high-need nature of incoming cohorts from Tilbury's community, and underlines the importance of early identification and strong transition planning. The monitoring category (6 pupils in Y7) acts as an early-watch mechanism for pupils not yet formally on the register.
+      </div>
+    </div>
+
+    <!-- GENDER ANALYSIS -->
+    <div class="section">
+      <div class="section-title">👥 Gender Profile within SEND</div>
+      <div class="section-sub">Male:female split across the SEND register — Gateway vs national pattern</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:16px">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--blue);margin-bottom:10px">Male pupils on SEND register</div>
+          <div style="font-size:36px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">137</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:4px">63% of SEND register</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">National: ~65% — consistent with pattern</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--teal);margin-bottom:10px">Female pupils on SEND register</div>
+          <div style="font-size:36px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--teal)">81</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:4px">37% of SEND register</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">Note: female SEND often under-identified nationally</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--amber);margin-bottom:10px">Female SEND + PP overlap</div>
+          <div style="font-size:36px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">81</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:4px">of 81 SEND females — many also PP</div>
+          <div style="font-size:12px;color:var(--amber);margin-top:4px;font-weight:600">Gender + deprivation intersection</div>
+        </div>
+        <div style="background:var(--blue-light);border:1px solid #bfdbfe;border-radius:12px;padding:18px 20px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--navy);margin-bottom:10px">Action point — Ofsted</div>
+          <div style="font-size:13px;color:#1e3a5f;line-height:1.6">Research suggests female SEND needs (particularly ASD, ADHD, anxiety-linked SEMH) are under-identified. The school should evidence how it monitors for late or missed identification of female SEND pupils, particularly in Years 7–9 where presentation may be masked.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEN ATTENDANCE STRENGTH -->
+    <div class="section">
+      <div class="section-title">✅ SEN Attendance — Gateway's Strongest SEND Indicator</div>
+      <div class="section-sub">DfE Similar Schools report data — most recent full period</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px">
+        <div style="background:var(--green-light);border:1px solid #86efac;border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:6px">Gateway SEN Attendance</div>
+          <div style="font-size:34px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">90.6%</div>
+          <div style="font-size:12px;color:var(--green);margin-top:4px">2025/26 full year</div>
+        </div>
+        <div style="background:var(--slate-light);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Similar Schools Median</div>
+          <div style="font-size:34px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--muted)">84.3%</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">21 similar schools</div>
+        </div>
+        <div style="background:var(--green-light);border:1px solid #86efac;border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:6px">Gap vs Median</div>
+          <div style="font-size:34px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">+6.3pp</div>
+          <div style="font-size:12px;color:var(--green);margin-top:4px">DfE "Relative Strength"</div>
+        </div>
+        <div style="background:var(--green-light);border:1px solid #86efac;border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:6px">National Ranking</div>
+          <div style="font-size:34px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">1st</div>
+          <div style="font-size:12px;color:var(--green);margin-top:4px">of 21 similar schools — two consecutive periods</div>
+        </div>
+      </div>
+      <div style="background:var(--green-light);border:1px solid #86efac;border-radius:10px;padding:14px 18px;font-size:13px;color:var(--green);line-height:1.6">
+        <strong>This is Gateway's most powerful SEND data point for Ofsted.</strong> SEN pupils attending at 90.6% — 6.3pp above the similar schools median, ranked 1st of 21 for two consecutive DfE reporting periods — demonstrates that SEND pupils feel safe, supported and valued at Gateway. For a school with 21.2% of pupils on the SEND register in a high-deprivation community, this is exceptional and directly evidences effective SEND provision.
+      </div>
+    </div>
+
+    <!-- OFSTED TALKING POINTS -->
+    <div style="background:linear-gradient(135deg,var(--navy) 0%,#1a3d6b 100%);border-radius:12px;padding:24px;margin-bottom:24px;color:#fff">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">🏫 SEND — Ofsted Talking Points</h3>
+      <p style="font-size:13px;color:#94a8c8;margin-bottom:16px;line-height:1.6">Evidence-based responses to Ofsted's SEND questions under the 2025 framework</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">High SEND — High Context</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">At 21.2%, Gateway's SEND rate is above the national average of 18.4%. This reflects the high-need nature of Tilbury's community, accurate identification, and a school culture where needs are not minimised. 59% of SEND pupils also attract Pupil Premium — a double-deprivation combination far above the national norm of ~30%.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">SEN Attendance #1</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">SEN pupil attendance of 90.6% ranks Gateway 1st of 21 similar schools — 6.3pp above the median. This is the clearest evidence that SEND pupils feel included, safe, and supported. It is designated a DfE "Relative Strength" for two consecutive reporting periods.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Early Identification</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Year 7 has the highest SEND rate (26.1%), reflecting strong early identification at transition. The Monitoring category (13 pupils across the school) provides an early-watch mechanism for pupils not yet formally on the register, supporting proactive rather than reactive identification.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a8c8;margin-bottom:6px">Areas to Develop</div>
+          <div style="font-size:13px;color:#e2e8f0;line-height:1.55">Be transparent: the school should evidence EHCP review timeliness, provision mapping effectiveness, and outcomes for SEND pupils vs non-SEND within the school. The below-national EHCP rate (2.9% vs 4.8%) should be explained — is this effective early support or under-referral? Having a clear answer ready is essential.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FUTURE PLACEHOLDER -->
+    <div style="background:var(--slate-light);border:2px dashed var(--border);border-radius:12px;padding:24px;text-align:center">
+      <div style="font-size:24px;margin-bottom:8px">📊</div>
+      <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px">SEND Outcomes Data — Coming Soon</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;max-width:500px;margin:0 auto">When available, this section will include: academic outcomes for SEND pupils vs non-SEND and national SEND averages; EHCP review timeliness compliance; provision map effectiveness; SEMH referral and outcomes data; and external agency involvement.</div>
+    </div>
+
+  </div>
+
 
 <script>
 // ── DATA ──
