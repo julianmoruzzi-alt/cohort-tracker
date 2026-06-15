@@ -324,6 +324,7 @@
     <button class="tab-btn" onclick="showTab('inclusion',this)">🤝 Inclusion</button>
     <button class="tab-btn" onclick="showTab('mobility',this)">🔄 Pupil Mobility</button>
     <button class="tab-btn" onclick="showTab('send',this)">♿ SEND</button>
+    <button class="tab-btn" onclick="showTab('destinations',this)">🎓 Destinations &amp; Careers</button>
   </nav>
 
   <!-- ═══════════════════════════════════════════════ -->
@@ -2720,6 +2721,272 @@
 
   </div><!-- /send -->
 
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- DESTINATIONS & CAREERS TAB                     -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-destinations">
+
+    <div class="idsr-note">
+      <span>📋</span>
+      <div>Sources: Year 11 Destinations tracking data (2023/24), Intended Destinations forms (2024/25 &amp; 2025/26), Easter 2026 applications snapshot, 2023 Leavers survey (university), Careers Activities &amp; Events programme (2025/26). <strong>Note on data completeness:</strong> Post-16 destination tracking relies on voluntary responses from leavers and is inherently partial. The 2023/24 data (229 tracked) is the most complete. Figures should be read as indicative rather than census-accurate. Where data is incomplete, this tab focuses on what can be evidenced.</div>
+    </div>
+
+    <!-- HEADLINE METRICS -->
+    <div class="section">
+      <div class="section-title">🎓 Post-16 Destinations — Key Metrics</div>
+
+      <div class="metrics-grid">
+        <div class="metric-card mc-green">
+          <div class="metric-label">In Education or Training (2023/24)</div>
+          <div class="metric-value mv-green">84%</div>
+          <div class="metric-plain-label mpl-green">179 education · 13 apprenticeships</div>
+          <div class="metric-vs">Of 229 tracked 2023/24 leavers (Year 1 data)</div>
+          <div class="metric-idsr">78% in education · 6% apprenticeships · 10% NEET / unable to track</div>
+        </div>
+
+        <div class="metric-card mc-green">
+          <div class="metric-label">Applied by Easter (Current Y11)</div>
+          <div class="metric-value mv-green">84%</div>
+          <div class="metric-plain-label mpl-green">162 of 192 pupils</div>
+          <div class="metric-vs">Easter 2026 snapshot · before GCSE results</div>
+          <div class="metric-idsr">Pupils applying early — strong careers guidance impact</div>
+        </div>
+
+        <div class="metric-card mc-green">
+          <div class="metric-label">Conditional Offers (Current Y11)</div>
+          <div class="metric-value mv-green">73%</div>
+          <div class="metric-plain-label mpl-green">141 of 192 pupils</div>
+          <div class="metric-vs">Easter 2026 · already holding offers</div>
+          <div class="metric-idsr">College, sixth form &amp; apprenticeship conditional offers confirmed</div>
+        </div>
+
+        <div class="metric-card mc-green">
+          <div class="metric-label">Planning Education / Training (2025/26)</div>
+          <div class="metric-value mv-green">88%</div>
+          <div class="metric-plain-label mpl-green">205 intended responses</div>
+          <div class="metric-vs">College 45% · Sixth Form 32% · Apprenticeship 11%</div>
+          <div class="metric-idsr">Only 1% indicated employment with no training</div>
+        </div>
+
+        <div class="metric-card mc-blue">
+          <div class="metric-label">Employer / Institution Contacts</div>
+          <div class="metric-value mv-blue">30+</div>
+          <div class="metric-plain-label mpl-blue">Per academic year</div>
+          <div class="metric-vs">Assemblies, trips, taster days, mock interviews</div>
+          <div class="metric-idsr">Gatsby Benchmark coverage across all 5 year groups</div>
+        </div>
+
+        <div class="metric-card mc-purple">
+          <div class="metric-label">University Aspirations</div>
+          <div class="metric-value mv-purple" style="font-size:18px;padding-top:4px;">Inc. Imperial</div>
+          <div class="metric-plain-label mpl-purple">From 2023 leavers survey</div>
+          <div class="metric-vs">8 confirmed university destinations in small sample</div>
+          <div class="metric-idsr">Imperial, Queen Mary's, Royal Holloway, City St George's, Kent</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DARK CALLOUT -->
+    <div class="dark-callout">
+      <h3>🎓 Destinations &amp; Careers — Ofsted Narrative</h3>
+      <p>Key messages about post-16 progression and careers education — contextualised for a high-deprivation, high-aspiration community.</p>
+      <div class="dark-points">
+        <div class="dark-point">
+          <div class="dark-point-label">Pre-GCSE engagement</div>
+          <div class="dark-point-stat">73% with offers</div>
+          <div class="dark-point-text">73% of the current Year 11 cohort already hold conditional offers before sitting their GCSEs — evidence that careers guidance is having a practical, measurable impact on pupil preparedness.</div>
+        </div>
+        <div class="dark-point">
+          <div class="dark-point-label">2023/24 destinations</div>
+          <div class="dark-point-stat">84% in Ed/Training</div>
+          <div class="dark-point-text">Of 229 tracked 2023/24 leavers, 84% progressed to education or apprenticeship training in Year 1. In a community where post-16 participation has historically been a challenge, this represents strong outcomes.</div>
+        </div>
+        <div class="dark-point">
+          <div class="dark-point-label">University aspirations</div>
+          <div class="dark-point-stat">Inc. Imperial College</div>
+          <div class="dark-point-text">From a voluntary survey of 2023 leavers, confirmed university destinations include Imperial College London (Chemical Engineering), Queen Mary's (Neuroscience), Royal Holloway, City St George's, and the University of Kent — demonstrating high aspiration from a deprived coastal community.</div>
+        </div>
+        <div class="dark-point">
+          <div class="dark-point-label">Careers programme</div>
+          <div class="dark-point-stat">All 8 Gatsby Benchmarks</div>
+          <div class="dark-point-text">A structured programme of careers education runs across all five year groups — including Unifrog, work experience, mock interviews, careers fair, 30+ employer and institution contacts, and weekly PAD sessions. The programme explicitly addresses aspiration-raising in a low-HE-participation community.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTENDED DESTINATIONS CHARTS -->
+    <div class="section">
+      <div class="section-title">📊 Intended Destinations — Two-Year Comparison</div>
+      <div class="section-sub">Student-reported intended post-16 destination · Nov 2024 (n=219) and Nov 2025 (n=205) · Voluntary form responses</div>
+
+      <div class="charts-grid">
+        <div class="chart-card">
+          <div class="chart-card-title">Intended Destination — 2025/26 Y11 (Nov 2025)</div>
+          <div class="chart-card-sub">205 responses · 88% planning education or training</div>
+          <div class="chart-wrap" style="height:260px;"><canvas id="chartDest2526"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-title">Intended Destination — 2024/25 Y11 (Nov 2024)</div>
+          <div class="chart-card-sub">219 responses · 89% planning education or training</div>
+          <div class="chart-wrap" style="height:260px;"><canvas id="chartDest2425"></canvas></div>
+        </div>
+      </div>
+
+      <div class="info-box ib-green">
+        <strong>Consistency across cohorts:</strong> Both the 2024/25 and 2025/26 Year 11 cohorts show near-identical destination intentions — approximately 89% planning to enter education or training. College (around 45%) is the dominant route, followed by sixth form (32–34%) and apprenticeships (10–12%). Employment with no training is minimal (1–2%), demonstrating that Gateway pupils leave with both aspiration and a plan.
+      </div>
+    </div>
+
+    <!-- EASTER 2026 SNAPSHOT -->
+    <div class="section">
+      <div class="section-title">📅 Easter 2026 Snapshot — Current Y11 Applications</div>
+      <div class="section-sub">Data collected Easter 2026 · 192 Year 11 pupils surveyed · Before GCSE examinations begin</div>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Measure</th><th>Number</th><th>% of Y11</th><th>Context</th></tr>
+          </thead>
+          <tbody>
+            <tr class="row-highlight">
+              <td class="fw-bold text-navy">Already applied to college/sixth form/apprenticeship</td>
+              <td class="mono fw-bold text-green">162</td>
+              <td class="mono fw-bold text-green">84%</td>
+              <td style="font-size:12px;">Applied well before GCSE results — strong early planning</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-navy">Not yet applied</td>
+              <td class="mono text-amber fw-bold">21</td>
+              <td class="mono text-amber">11%</td>
+              <td style="font-size:12px;">Still considering options — many attending open evenings</td>
+            </tr>
+            <tr class="row-highlight">
+              <td class="fw-bold text-navy">Already hold conditional offers</td>
+              <td class="mono fw-bold text-green">141</td>
+              <td class="mono fw-bold text-green">73%</td>
+              <td style="font-size:12px;">Conditional on GCSE results — majority of cohort secured before exams</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-navy">Applying for A Levels</td>
+              <td class="mono fw-bold text-blue">~93</td>
+              <td class="mono text-blue">~48%</td>
+              <td style="font-size:12px;">Academic route — includes Harris Chafford, St Clere's, LAE, Barking Abbey, Havering</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-navy">Applying for BTEC / Vocational</td>
+              <td class="mono fw-bold text-blue">~50</td>
+              <td class="mono text-blue">~26%</td>
+              <td style="font-size:12px;">Including South Essex College, Palmers, USP, New City</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-navy">T-Levels</td>
+              <td class="mono fw-bold text-blue">~17</td>
+              <td class="mono text-blue">~9%</td>
+              <td style="font-size:12px;">Growth in T-Level take-up — technical and professional route</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-navy">Apprenticeships</td>
+              <td class="mono fw-bold text-blue">~12</td>
+              <td class="mono text-blue">~6%</td>
+              <td style="font-size:12px;">Including Army, engineering, electrical — employment with training</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- UNIVERSITY DESTINATIONS -->
+    <div class="section">
+      <div class="section-title">🎓 University Destinations — 2023 Leavers (Survey Sample)</div>
+      <div class="section-sub">Voluntary survey of 2023 Year 11 leavers · Small sample (n=17) · Illustrative of aspiration, not census data</div>
+
+      <div class="narrative-grid">
+        <div class="narrative-card nc-purple">
+          <div class="nc-eyebrow">🏛️ Russell Group / High Tariff</div>
+          <div class="nc-stat">Imperial</div>
+          <div class="nc-title">Imperial College London — Chemical Engineering</div>
+          <div class="nc-text">A Gateway pupil progressed to Imperial College London to study Chemical Engineering — one of the most competitive undergraduate courses in the UK. From Tilbury to one of the world's top universities is a remarkable journey and a powerful signal of what Gateway pupils can achieve.</div>
+        </div>
+        <div class="narrative-card nc-blue">
+          <div class="nc-eyebrow">🔬 Sciences &amp; STEM</div>
+          <div class="nc-stat">Neuroscience</div>
+          <div class="nc-title">Queen Mary's University — Neuroscience</div>
+          <div class="nc-text">Additional university destinations from the same survey cohort include Queen Mary's University of London (Neuroscience), Royal Holloway (Drama), University of Kent (Law), and City St George's, University of London — demonstrating genuine breadth of aspiration across disciplines.</div>
+        </div>
+        <div class="narrative-card nc-green">
+          <div class="nc-eyebrow">⚖️ Law &amp; Professional</div>
+          <div class="nc-stat">Law · Civil Eng.</div>
+          <div class="nc-title">University of Law, ARU, City St George's</div>
+          <div class="nc-text">Multiple leavers progressed to professional degree pathways — Law (University of Law, LLB Hons), Civil Engineering (Anglia Ruskin), and Architecture (London South Bank). In a community where higher education participation is historically low, these outcomes are significant.</div>
+        </div>
+        <div class="narrative-card nc-amber">
+          <div class="nc-eyebrow">⚠️ Data note</div>
+          <div class="nc-stat">n = 17</div>
+          <div class="nc-title">Small voluntary sample — aspirational, not representative</div>
+          <div class="nc-text">This data comes from a voluntary survey with 17 respondents from the 2023 leaving cohort. It is not a complete picture but illustrates the range of destinations achieved. Full destination tracking remains an area of development — with systematic collection improving year on year.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAREERS PROGRAMME -->
+    <div class="section">
+      <div class="section-title">🗓️ Careers Programme 2025/26 — Gatsby Benchmark Coverage</div>
+      <div class="section-sub">Source: Careers Activities &amp; Events document 2025/26 · Structured programme across all five year groups</div>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Year Group</th><th>Key Activities 2025/26</th><th>Employer / Provider Contacts</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fw-bold text-navy">Year 7</td>
+              <td style="font-size:12px;">Aspirations Survey, Unifrog launch, Future Skills Questionnaire, PAD careers weekly, Careers Fair (March), Youth Parliament, Lower Thames Crossing assembly &amp; trip, DWP assembly, ARU assembly</td>
+              <td style="font-size:12px;">DWP, Anglia Ruskin University, Lower Thames Crossing</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-navy">Year 8</td>
+              <td style="font-size:12px;">Unifrog quizzes, Future Skills Questionnaire, Careers Fair, National Apprenticeship Week, National Careers Week, Cadets taster (Barking Abbey), Lower Thames Crossing trip, ARU assembly</td>
+              <td style="font-size:12px;">Barking Abbey (Cadets), Lower Thames Crossing, Anglia Ruskin</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-navy">Year 9</td>
+              <td style="font-size:12px;">KS4 Options Evening, Careers Fair, Intl Women's Day event, Lower Thames Crossing trip, Break the Ceiling project, DWP LMI assembly, ARU assembly, Options Evening for parents (April)</td>
+              <td style="font-size:12px;">Lower Thames Crossing, DWP, Anglia Ruskin, 'Break the Ceiling'</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-navy">Year 10</td>
+              <td style="font-size:12px;">Work experience (June, 1 week), Mock Interview Day (July), Next Steps Evening, NHS Careers trip (ARU), Apprenticeship &amp; Job Fair (Thameside), Make Happen, South Essex College taster, Gear Up Easter School, CV writing, interview technique</td>
+              <td style="font-size:12px;">Harris Riverside, Make Happen, USP, NHS, South Essex College, Thameside Theatre</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-navy">Year 11</td>
+              <td style="font-size:12px;">Individual careers interviews, Next Steps Evenings (Nov + Jan), Careers Fair, Mossbourne assembly, Harris Chafford assembly, Harris Riverside assembly, South Essex College assembly, St Clere's assembly, USP College assembly, Careers Fair (March)</td>
+              <td style="font-size:12px;">Mossbourne, Harris Chafford, Harris Riverside, South Essex College, St Clere's, USP College, Thurrock Youth Parliament</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px;">
+        <div class="info-box ib-green" style="margin-bottom:0;">
+          <strong>📊 Unifrog — all year groups:</strong> Weekly careers activity via Unifrog platform for every tutor group. Job of the week, career exploration, skills profiling and university research — embedded into the school day from Year 7.
+        </div>
+        <div class="info-box ib-blue" style="margin-bottom:0;">
+          <strong>💼 Work experience — Year 10:</strong> All Year 10 pupils complete a one-week work placement (June 29–July 3, 2026). Supported by CV workshops, letter of application, interview technique, H&amp;S training, and rights &amp; responsibilities sessions.
+        </div>
+        <div class="info-box ib-blue" style="margin-bottom:0;">
+          <strong>🎙️ Individual careers interviews — Y11:</strong> Every Year 11 pupil receives an individual CIAG interview with the school's careers advisor between September and December, ensuring personalised guidance before applications open.
+        </div>
+        <div class="info-box ib-green" style="margin-bottom:0;">
+          <strong>🏭 Thurrock growth sectors:</strong> The careers programme explicitly aligns to Thurrock's economic growth sectors — Health &amp; Care, Engineering &amp; Manufacturing, Finance, Construction, IT &amp; Digital, Creative &amp; Logistics — with Lower Thames Crossing, NHS and DWP as key employer partners.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /destinations -->
+
 </div><!-- /main -->
 
 <!-- SCRIPTS -->
@@ -2887,6 +3154,46 @@
       ]
     },
     options:{ ...baseOpts, scales:{ ...baseOpts.scales, y:{ ...baseOpts.scales.y, min:80, max:97 } } }
+  });
+
+  // ── CHART: INTENDED DESTINATIONS 2025/26 ────────────────────
+  new Chart(document.getElementById('chartDest2526'), {
+    type: 'doughnut',
+    data: {
+      labels: ['College / Training Provider (92)', 'Sixth Form — other school (65)', 'Apprenticeship (22)', 'Undecided (21)', 'Other / Employment (5)'],
+      datasets: [{
+        data: [92, 65, 22, 21, 5],
+        backgroundColor: ['rgba(22,101,52,0.8)', 'rgba(30,95,168,0.8)', 'rgba(109,40,217,0.75)', 'rgba(100,116,139,0.55)', 'rgba(180,83,9,0.6)'],
+        borderWidth: 2, borderColor: '#fff'
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'right', labels: { font: { size: 11 }, boxWidth: 12 } },
+        tooltip: { callbacks: { label: ctx => { const t = ctx.dataset.data.reduce((a,b)=>a+b,0); return ' ' + ctx.parsed + ' pupils (' + (ctx.parsed/t*100).toFixed(0) + '%)'; } } }
+      }
+    }
+  });
+
+  // ── CHART: INTENDED DESTINATIONS 2024/25 ────────────────────
+  new Chart(document.getElementById('chartDest2425'), {
+    type: 'doughnut',
+    data: {
+      labels: ['College / Training Provider (94)', 'Sixth Form — other school (75)', 'Apprenticeship (26)', 'Undecided (16)', 'Other / Employment (8)'],
+      datasets: [{
+        data: [94, 75, 26, 16, 8],
+        backgroundColor: ['rgba(22,101,52,0.8)', 'rgba(30,95,168,0.8)', 'rgba(109,40,217,0.75)', 'rgba(100,116,139,0.55)', 'rgba(180,83,9,0.6)'],
+        borderWidth: 2, borderColor: '#fff'
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'right', labels: { font: { size: 11 }, boxWidth: 12 } },
+        tooltip: { callbacks: { label: ctx => { const t = ctx.dataset.data.reduce((a,b)=>a+b,0); return ' ' + ctx.parsed + ' pupils (' + (ctx.parsed/t*100).toFixed(0) + '%)'; } } }
+      }
+    }
   });
 
   // ── CHART: SEN PRIMARY NEEDS ─────────────────────────────────
