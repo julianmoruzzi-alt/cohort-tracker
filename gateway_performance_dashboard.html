@@ -189,12 +189,85 @@
       .narrative-grid { grid-template-columns:1fr; }
       .pct-grid { grid-template-columns:1fr 1fr; }
     }
+    /* ── GOVERNOR PRINT ─────────────────────────── */
     @media print {
-      .tab-nav   { display:none !important; }
+      /* Hide UI chrome */
+      .tab-nav, .header-btn, #govPrintBtn { display:none !important; }
+
+      /* Show every tab as a section */
       .tab-panel { display:block !important; }
-      body { background:#fff; }
-      .main { padding:0; }
-      .site-header { background:var(--navy)!important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+      /* Each tab section starts on a new page */
+      .tab-panel { page-break-before:always; break-before:page; }
+      .tab-panel:first-of-type { page-break-before:avoid; break-before:avoid; }
+
+      /* Layout */
+      body { background:#fff !important; font-size:11px; }
+      .main { padding:12px 16px !important; max-width:100% !important; }
+      .site-header {
+        background:var(--navy) !important;
+        -webkit-print-color-adjust:exact;
+        print-color-adjust:exact;
+        padding:12px 16px !important;
+      }
+
+      /* Executive summary above tabs */
+      .main > div:first-child { margin-bottom:12px !important; }
+
+      /* Collapse spacing */
+      .section { margin-bottom:16px !important; }
+      .metrics-grid { gap:8px !important; }
+      .narrative-grid { gap:8px !important; }
+      .charts-grid { gap:12px !important; }
+      .pct-grid { gap:8px !important; }
+
+      /* Chart cards — constrain height so they fit on page */
+      .chart-wrap { height:180px !important; }
+
+      /* White backgrounds everywhere */
+      .dark-callout { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .context-banner { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .info-box { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .tag { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .metric-card { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .narrative-card { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .pct-card { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .rank-card { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .data-table thead th { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .data-table tbody tr.row-gw td { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .data-table tbody tr.row-highlight td { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .data-table tbody tr.row-subhead td { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+      /* Tab section label */
+      .tab-panel::before {
+        content: attr(data-print-title);
+        display:block;
+        font-size:16px;
+        font-weight:800;
+        color:#0f2744;
+        border-bottom:2px solid #0f2744;
+        padding-bottom:6px;
+        margin-bottom:16px;
+        font-family:'Inter',sans-serif;
+      }
+
+      /* Avoid breaking inside cards */
+      .metric-card, .narrative-card, .chart-card, .pct-card { break-inside:avoid; }
+
+      /* Footer on every page */
+      @page {
+        margin: 14mm 12mm 18mm 12mm;
+        @bottom-center {
+          content: "The Gateway Academy — Performance Dashboard | Confidential — Governor Use | URN 133114";
+          font-size:8px;
+          color:#64748b;
+        }
+        @bottom-right {
+          content: "Page " counter(page) " of " counter(pages);
+          font-size:8px;
+          color:#64748b;
+        }
+      }
     }
   </style>
 </head>
@@ -214,6 +287,7 @@
       <span class="header-badge">📍 Tilbury, Thurrock</span>
       <span class="header-badge">IDSR Nov 2025 · DfE 2024/25</span>
       <button class="header-btn" onclick="window.print()">🖨 Print</button>
+      <button class="header-btn" id="govPrintBtn" onclick="openGovernorSummary()" style="background:rgba(52,211,153,.18);border-color:rgba(52,211,153,.45);">📄 Governor Summary</button>
     </div>
   </div>
 </header>
@@ -330,7 +404,7 @@
   <!-- ═══════════════════════════════════════════════ -->
   <!-- OVERVIEW TAB                                   -->
   <!-- ═══════════════════════════════════════════════ -->
-  <div class="tab-panel active" id="tab-overview">
+  <div class="tab-panel active" id="tab-overview" data-print-title="📈 Overview — Headline Measures">
 
     <div class="section">
       <div class="section-title">📊 Headline Measures 2024/25</div>
@@ -470,7 +544,7 @@
   <!-- ═══════════════════════════════════════════════ -->
   <!-- DETAILED DATA TAB                              -->
   <!-- ═══════════════════════════════════════════════ -->
-  <div class="tab-panel" id="tab-detailed">
+  <div class="tab-panel" id="tab-detailed" data-print-title="🔍 Detailed Data — 3-Year Tables">
     <div class="idsr-note">
       <span>📋</span>
       <div>Attainment data: DfE KS4 Performance Tables 2024/25 (final) &amp; Ofsted IDSR November 2025. Progress data: DfE final 2024/2023/2022. No P8 published for 2024/25 cohort — COVID KS2 gap. IDSR banding descriptions are taken directly from the IDSR report.</div>
@@ -675,7 +749,7 @@
   <!-- ═══════════════════════════════════════════════ -->
   <!-- OFSTED NARRATIVE TAB                           -->
   <!-- ═══════════════════════════════════════════════ -->
-  <div class="tab-panel" id="tab-ofsted">
+  <div class="tab-panel" id="tab-ofsted" data-print-title="💬 Ofsted Narrative — Key Talking Points">
 
     <!-- DARK NARRATIVE CARDS — 8-card layout matching SLT presentation -->
     <div style="background:#0f2744;border-radius:14px;padding:28px 28px 24px;margin-bottom:28px;">
@@ -800,7 +874,7 @@
   <!-- ═══════════════════════════════════════════════ -->
   <!-- ATTENDANCE TAB                                 -->
   <!-- ═══════════════════════════════════════════════ -->
-  <div class="tab-panel" id="tab-attendance">
+  <div class="tab-panel" id="tab-attendance" data-print-title="📅 Attendance — DfE Data & Similar Schools">
 
     <div class="idsr-note">
       <span>📋</span>
@@ -1181,7 +1255,7 @@
   <!-- ═══════════════════════════════════════════════ -->
   <!-- SIMILAR SCHOOLS TAB                            -->
   <!-- ═══════════════════════════════════════════════ -->
-  <div class="tab-panel" id="tab-similar">
+  <div class="tab-panel" id="tab-similar" data-print-title="🏫 Similar Schools — National & Local Comparisons">
 
     <div class="idsr-note">
       <span>📊</span>
@@ -1525,7 +1599,7 @@
   <!-- ═══════════════════════════════════════════════ -->
   <!-- INCLUSION TAB                                  -->
   <!-- ═══════════════════════════════════════════════ -->
-  <div class="tab-panel" id="tab-inclusion">
+  <div class="tab-panel" id="tab-inclusion" data-print-title="🤝 Inclusion — Behaviour, ClassCharts & Rewards Shop">
 
     <div class="idsr-note">
       <span>📋</span>
@@ -2043,7 +2117,7 @@
   <!-- ═══════════════════════════════════════════════ -->
   <!-- PUPIL MOBILITY TAB                             -->
   <!-- ═══════════════════════════════════════════════ -->
-  <div class="tab-panel" id="tab-mobility">
+  <div class="tab-panel" id="tab-mobility" data-print-title="🔄 Pupil Mobility — Admissions & Roll Data">
 
     <div class="idsr-note">
       <span>📋</span>
@@ -2374,7 +2448,7 @@
   <!-- ═══════════════════════════════════════════════ -->
   <!-- SEND TAB                                       -->
   <!-- ═══════════════════════════════════════════════ -->
-  <div class="tab-panel" id="tab-send">
+  <div class="tab-panel" id="tab-send" data-print-title="♿ SEND — Register, Needs & Provision">
 
     <div class="idsr-note">
       <span>📋</span>
@@ -2725,7 +2799,7 @@
   <!-- ═══════════════════════════════════════════════ -->
   <!-- DESTINATIONS & CAREERS TAB                     -->
   <!-- ═══════════════════════════════════════════════ -->
-  <div class="tab-panel" id="tab-destinations">
+  <div class="tab-panel" id="tab-destinations" data-print-title="🎓 Destinations & Careers Programme">
 
     <div class="idsr-note">
       <span>📋</span>
@@ -2991,6 +3065,528 @@
 
 <!-- SCRIPTS -->
 <script>
+
+  // ── GOVERNOR PRINT ───────────────────────────────────────────
+
+
+  // ── GOVERNOR SUMMARY (2-3 page print-ready document) ─────────
+  function openGovernorSummary() {
+    var w = window.open('', '_blank', 'width=900,height=700');
+    var today = new Date().toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'});
+    w.document.write(getGovernorHTML(today));
+    w.document.close();
+    w.focus();
+  }
+
+  function getGovernorHTML(date) {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gateway Academy — Governor Summary ${new Date().getFullYear()}</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  :root {
+    --navy:#0f2744; --blue:#1e5fa8; --green:#166534;
+    --amber:#b45309; --red:#b91c1c; --purple:#6d28d9;
+    --green-light:#dcfce7; --blue-light:#e8f0fb;
+    --amber-light:#fef3c7; --red-light:#fee2e2;
+    --border:#dde3ed; --muted:#64748b; --surface:#f7f9fc;
+  }
+  body {
+    font-family:'Inter',sans-serif;
+    font-size:10.5pt;
+    color:#0f172a;
+    line-height:1.5;
+    background:#fff;
+    padding:0;
+  }
+
+  /* PAGE STRUCTURE */
+  .page {
+    width:210mm;
+    min-height:277mm;
+    margin:0 auto;
+    padding:14mm 16mm 12mm;
+    position:relative;
+  }
+  .page + .page {
+    border-top:3px dashed #e2e8f0;
+    margin-top:8mm;
+  }
+  @media print {
+    .page + .page { border-top:none; page-break-before:always; break-before:page; }
+    .print-btn { display:none !important; }
+    body { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    @page { margin:12mm 14mm 16mm; size:A4; }
+  }
+
+  /* PRINT BUTTON (screen only) */
+  .print-btn {
+    position:fixed; top:16px; right:16px;
+    background:var(--navy); color:#fff;
+    border:none; padding:10px 20px; border-radius:8px;
+    font-size:13px; font-weight:700; cursor:pointer;
+    font-family:inherit; z-index:999; box-shadow:0 2px 8px rgba(0,0,0,.3);
+  }
+  .print-btn:hover { background:#1a3d6b; }
+
+  /* HEADER */
+  .doc-header {
+    background:var(--navy);
+    color:#fff;
+    padding:14px 18px;
+    border-radius:10px;
+    margin-bottom:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .doc-header-title { font-size:16pt; font-weight:800; letter-spacing:-.3px; }
+  .doc-header-sub { font-size:8.5pt; color:#94a8c8; margin-top:3px; }
+  .doc-header-meta { text-align:right; font-size:8pt; color:#94a8c8; line-height:1.7; }
+
+  /* SECTION HEADING */
+  .section-head {
+    font-size:11pt;
+    font-weight:800;
+    color:var(--navy);
+    border-bottom:1.5px solid var(--navy);
+    padding-bottom:4px;
+    margin:14px 0 10px;
+    text-transform:uppercase;
+    letter-spacing:.4px;
+  }
+
+  /* KEY STATS GRID */
+  .stats-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:7px;
+    margin-bottom:12px;
+  }
+  .stat-box {
+    border:1px solid var(--border);
+    border-radius:7px;
+    padding:9px 10px;
+    position:relative;
+    overflow:hidden;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .stat-box::before {
+    content:'';
+    position:absolute; left:0; top:0; bottom:0; width:3px;
+    border-radius:7px 0 0 7px;
+  }
+  .stat-box.sb-green::before  { background:var(--green); }
+  .stat-box.sb-blue::before   { background:var(--blue); }
+  .stat-box.sb-amber::before  { background:var(--amber); }
+  .stat-box.sb-purple::before { background:var(--purple); }
+  .stat-label { font-size:7.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.4px; color:var(--muted); margin-bottom:3px; }
+  .stat-value { font-size:18pt; font-weight:800; line-height:1; margin-bottom:2px; }
+  .stat-value.sv-green  { color:var(--green); }
+  .stat-value.sv-blue   { color:var(--blue); }
+  .stat-value.sv-amber  { color:var(--amber); }
+  .stat-value.sv-purple { color:var(--purple); }
+  .stat-nat  { font-size:7.5pt; color:var(--muted); }
+  .stat-tag  {
+    display:inline-block; font-size:7pt; font-weight:700;
+    padding:1px 6px; border-radius:10px; margin-top:3px;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .tag-g { background:#dcfce7; color:var(--green); }
+  .tag-b { background:#e8f0fb; color:var(--blue); }
+  .tag-a { background:#fef3c7; color:var(--amber); }
+
+  /* NARRATIVE BOXES */
+  .narrative-row {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .narr-box {
+    border:1px solid var(--border);
+    border-radius:7px;
+    padding:10px 12px;
+    position:relative;
+    overflow:hidden;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .narr-box::before {
+    content:''; position:absolute; left:0; top:0; bottom:0; width:3px; border-radius:7px 0 0 7px;
+  }
+  .narr-box.nb-green::before  { background:var(--green); }
+  .narr-box.nb-blue::before   { background:var(--blue); }
+  .narr-box.nb-purple::before { background:var(--purple); }
+  .narr-box.nb-amber::before  { background:var(--amber); }
+  .narr-eyebrow { font-size:7.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.4px; color:var(--muted); margin-bottom:3px; }
+  .narr-stat { font-size:14pt; font-weight:800; margin-bottom:2px; }
+  .narr-box.nb-green  .narr-stat { color:var(--green); }
+  .narr-box.nb-blue   .narr-stat { color:var(--blue); }
+  .narr-box.nb-purple .narr-stat { color:var(--purple); }
+  .narr-box.nb-amber  .narr-stat { color:var(--amber); }
+  .narr-title { font-size:9pt; font-weight:700; color:var(--navy); margin-bottom:3px; line-height:1.3; }
+  .narr-text  { font-size:8pt; color:#334155; line-height:1.55; }
+
+  /* CONTEXT BOX */
+  .ctx-box {
+    border-radius:7px;
+    padding:9px 12px;
+    font-size:8pt;
+    line-height:1.6;
+    margin-bottom:10px;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .ctx-box.ctx-amber { background:var(--amber-light); border:1px solid #fcd34d; color:#78350f; }
+  .ctx-box.ctx-blue  { background:var(--blue-light);  border:1px solid #bfdbfe; color:#1e3a5f; }
+  .ctx-box.ctx-green { background:var(--green-light); border:1px solid #86efac; color:var(--green); }
+
+  /* DATA TABLE */
+  .data-table { width:100%; border-collapse:collapse; font-size:8.5pt; margin-bottom:10px; }
+  .data-table th {
+    background:var(--navy); color:#fff;
+    padding:6px 10px; text-align:left;
+    font-size:7.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.4px;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .data-table td { padding:6px 10px; border-bottom:1px solid #f0f4f8; vertical-align:middle; }
+  .data-table tr:last-child td { border-bottom:none; }
+  .data-table tr.tr-gw td { background:#f0f9ff; font-weight:700; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .data-table tr.tr-sub td { background:var(--surface); font-size:7.5pt; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.3px; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .mono { font-family:monospace; font-weight:700; }
+  .c-green  { color:var(--green); }
+  .c-blue   { color:var(--blue); }
+  .c-amber  { color:var(--amber); }
+  .c-red    { color:var(--red); }
+  .c-muted  { color:var(--muted); }
+
+  /* KEY MESSAGES */
+  .key-messages { list-style:none; }
+  .key-messages li {
+    display:flex; gap:8px; align-items:flex-start;
+    font-size:8.5pt; color:#334155; line-height:1.55;
+    padding:5px 0; border-bottom:1px solid #f0f4f8;
+  }
+  .key-messages li:last-child { border-bottom:none; }
+  .km-tick { color:var(--green); font-size:10pt; flex-shrink:0; }
+  .km-warn { color:var(--amber); font-size:10pt; flex-shrink:0; }
+
+  /* FOOTER */
+  .doc-footer {
+    margin-top:14px;
+    padding-top:8px;
+    border-top:1px solid var(--border);
+    font-size:7.5pt;
+    color:var(--muted);
+    display:flex;
+    justify-content:space-between;
+  }
+
+  /* THREE-COL */
+  .three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px; margin-bottom:10px; }
+  .two-col   { display:grid; grid-template-columns:1fr 1fr; gap:7px; margin-bottom:10px; }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+
+<!-- ═══════════════════════════════ PAGE 1 ═══════════════════════════════ -->
+<div class="page">
+
+  <div class="doc-header">
+    <div>
+      <div class="doc-header-title">The Gateway Academy — Performance Summary</div>
+      <div class="doc-header-sub">Academy Sponsor-Led · Gateway Learning Community · URN: 133114 · Tilbury, Thurrock</div>
+      <div class="doc-header-sub" style="margin-top:4px;">Latest Ofsted: <strong style="color:#fff;">Ungraded — Standards Maintained</strong> &nbsp;|&nbsp; IDSR: November 2025 &nbsp;|&nbsp; DfE KS4: 2024/25</div>
+    </div>
+    <div class="doc-header-meta">
+      For governors &amp; SLT use<br>
+      Confidential<br>
+      ${date}
+    </div>
+  </div>
+
+  <!-- CONTEXT BANNER -->
+  <div class="ctx-box ctx-amber">
+    <strong>Key context:</strong> Gateway Academy has the <strong>highest FSM6 rate of any mainstream secondary in Thurrock</strong> (38.6%) and carries a <strong>Low Stability flag</strong> for both the 2024 and 2025 Year 11 cohorts — meaning a significant proportion of each exam cohort joined mid-KS4 and count in results without having received a full Gateway education. All headline measures should be read with this context. Outcomes at or near national average are a significant achievement; outcomes above national are exceptional.
+  </div>
+
+  <!-- HEADLINE MEASURES -->
+  <div class="section-head">📊 Headline KS4 Measures</div>
+
+  <div class="stats-grid">
+    <div class="stat-box sb-blue">
+      <div class="stat-label">Attainment 8</div>
+      <div class="stat-value sv-blue">46.0</div>
+      <div class="stat-nat">National: 45.9</div>
+      <span class="stat-tag tag-b">In line with national</span>
+    </div>
+    <div class="stat-box sb-green">
+      <div class="stat-label">Progress 8 (2023/24)</div>
+      <div class="stat-value sv-green">+0.07</div>
+      <div class="stat-nat">National: −0.03</div>
+      <span class="stat-tag tag-g">Above national</span>
+    </div>
+    <div class="stat-box sb-green">
+      <div class="stat-label">Eng &amp; Maths 5+</div>
+      <div class="stat-value sv-green">48.2%</div>
+      <div class="stat-nat">National: 41.4%</div>
+      <span class="stat-tag tag-g">+6.8pp above</span>
+    </div>
+    <div class="stat-box sb-green">
+      <div class="stat-label">Eng &amp; Maths 4+</div>
+      <div class="stat-value sv-green">64.5%</div>
+      <div class="stat-nat">National: 58.8%</div>
+      <span class="stat-tag tag-g">+5.7pp above</span>
+    </div>
+    <div class="stat-box sb-green">
+      <div class="stat-label">Dis. Attainment 8</div>
+      <div class="stat-value sv-green">38.0</div>
+      <div class="stat-nat">National dis: 34.9</div>
+      <span class="stat-tag tag-g">+3.1 above</span>
+    </div>
+    <div class="stat-box sb-green">
+      <div class="stat-label">Dis. Progress 8 (23/24)</div>
+      <div class="stat-value sv-green">−0.04</div>
+      <div class="stat-nat">National dis: −0.57</div>
+      <span class="stat-tag tag-g">Above (sig+) ⭐</span>
+    </div>
+    <div class="stat-box sb-green">
+      <div class="stat-label">Dis. Eng &amp; Maths 5+</div>
+      <div class="stat-value sv-green">34.2%</div>
+      <div class="stat-nat">National dis: 25.6%</div>
+      <span class="stat-tag tag-g">+8.6pp above</span>
+    </div>
+    <div class="stat-box sb-purple">
+      <div class="stat-label">National Percentile</div>
+      <div class="stat-value sv-purple">79th</div>
+      <div class="stat-nat">vs FSM-matched peers</div>
+      <span class="stat-tag" style="background:#ede9fe;color:#6d28d9;">84th pct — EM5+</span>
+    </div>
+  </div>
+
+  <!-- P8 RECOVERY & DIS CONTEXT -->
+  <div class="narrative-row">
+    <div class="narr-box nb-blue">
+      <div class="narr-eyebrow">📈 Progress 8 Recovery</div>
+      <div class="narr-stat">−0.76 → +0.07</div>
+      <div class="narr-title">Sustained recovery from post-COVID low</div>
+      <div class="narr-text">P8 fell to −0.76 in 2021/22 due to COVID disruption and a high-SEN cohort. It recovered to +0.23 in 2022/23 and +0.07 in 2023/24 — above the national average of −0.03 for two consecutive years. <em>Note: P8 is not published nationally for 2024/25 or 2025/26 as those cohorts did not sit KS2 SATs.</em></div>
+    </div>
+    <div class="narr-box nb-green">
+      <div class="narr-eyebrow">⭐ Standout Strength</div>
+      <div class="narr-stat">+0.53 above</div>
+      <div class="narr-title">Disadvantaged P8 significantly above national — 2 years running</div>
+      <div class="narr-text">Disadvantaged P8 of −0.04 is 0.53 points above the national disadvantaged average of −0.57. Rated <strong>Above (sig+)</strong> in the IDSR for two consecutive years — a statistically significant, sustained strength. Among 366 similar academies nationally, Gateway ranks in the top 20% on A8.</div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>The Gateway Academy — Governor Performance Summary</span>
+    <span>Page 1 of 3 &nbsp;|&nbsp; IDSR Nov 2025 · DfE 2024/25</span>
+    <span>Confidential</span>
+  </div>
+
+</div><!-- /page 1 -->
+
+<!-- ═══════════════════════════════ PAGE 2 ═══════════════════════════════ -->
+<div class="page">
+
+  <div class="doc-header">
+    <div>
+      <div class="doc-header-title">The Gateway Academy — Attendance, Behaviour &amp; SEND</div>
+      <div class="doc-header-sub">URN: 133114 · Tilbury, Thurrock · Gateway Learning Community</div>
+    </div>
+    <div class="doc-header-meta">Governor Summary<br>Page 2 of 3<br>${date}</div>
+  </div>
+
+  <!-- ATTENDANCE -->
+  <div class="section-head">📅 Attendance (DfE Data · 2025/26 to June 2026)</div>
+
+  <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:8px;">
+    <div class="stat-box sb-green">
+      <div class="stat-label">Overall Attendance</div>
+      <div class="stat-value sv-green">93.2%</div>
+      <div class="stat-nat">National: 92.1%</div>
+      <span class="stat-tag tag-g">2nd of 21 similar</span>
+    </div>
+    <div class="stat-box sb-green">
+      <div class="stat-label">SEN Attendance</div>
+      <div class="stat-value sv-green">90.6%</div>
+      <div class="stat-nat">Similar median: 84.3%</div>
+      <span class="stat-tag tag-g">#1 of 21 schools ⭐</span>
+    </div>
+    <div class="stat-box sb-green">
+      <div class="stat-label">FSM Attendance</div>
+      <div class="stat-value sv-green">90.7%</div>
+      <div class="stat-nat">Similar median: 87.0%</div>
+      <span class="stat-tag tag-g">+3.7pp above</span>
+    </div>
+    <div class="stat-box sb-blue">
+      <div class="stat-label">Persistent Absence</div>
+      <div class="stat-value sv-blue">19.0%</div>
+      <div class="stat-nat">Similar median: 25.7%</div>
+      <span class="stat-tag tag-b">3rd of 21 schools</span>
+    </div>
+  </div>
+
+  <div class="ctx-box ctx-green" style="margin-bottom:8px;">
+    <strong>DfE Similar Schools Report (Autumn 2025/26):</strong> Gateway ranked <strong>2nd of 21</strong> similar schools for attendance. SEN attendance is higher than <em>all 20</em> similar schools — rated a DfE "Relative Strength" for two consecutive reporting periods. The DfE found <strong>zero areas to focus on</strong> — most schools receive 3. The school exceeds its Attendance Baseline Improvement Expectation (ABIE) of 92.8%.
+  </div>
+
+  <!-- BEHAVIOUR -->
+  <div class="section-head">🤝 Behaviour &amp; Inclusion</div>
+
+  <div class="three-col" style="margin-bottom:8px;">
+    <div class="stat-box sb-green">
+      <div class="stat-label">Suspension Rate / 100</div>
+      <div class="stat-value sv-green">9.4</div>
+      <div class="stat-nat">National: 11.31</div>
+      <span class="stat-tag tag-g">Below national</span>
+    </div>
+    <div class="stat-box sb-green">
+      <div class="stat-label">Merit:Demerit Ratio</div>
+      <div class="stat-value sv-green">4.3:1</div>
+      <div class="stat-nat">Summer term: 5.2:1</div>
+      <span class="stat-tag tag-g">Improving every term</span>
+    </div>
+    <div class="stat-box sb-green">
+      <div class="stat-label">SET-Free Lessons</div>
+      <div class="stat-value sv-green">99.5%</div>
+      <div class="stat-nat">2,046 SET call-outs</div>
+      <span class="stat-tag tag-g">Disruption is rare</span>
+    </div>
+  </div>
+
+  <div class="narrative-row">
+    <div class="narr-box nb-green">
+      <div class="narr-eyebrow">📉 Behaviour Trend</div>
+      <div class="narr-stat">−68% SET</div>
+      <div class="narr-title">Long-term reduction from pre-pandemic levels</div>
+      <div class="narr-text">SET call-outs have fallen 68% from 6,336 (2018/19) to 2,046 (2025/26). The summer term merit:demerit ratio of 5.2:1 meets the research benchmark for effective behaviour coaching. Under 1% of pupils generate 23% of SET demand — disruption is isolated, not systemic.</div>
+    </div>
+    <div class="narr-box nb-blue">
+      <div class="narr-eyebrow">🏪 ClassCharts Rewards Shop</div>
+      <div class="narr-stat">3,483 transactions</div>
+      <div class="narr-title">Jan–Jun 2026 · 313 students · 30% of roll</div>
+      <div class="narr-text">The rewards shop launched January 2026. Year 7 leads with 50% of the cohort engaging. 472 stationery purchases show pupils using merit points for academic readiness. Premium items (footballs, Amazon vouchers) require months of sustained merit accumulation — building genuine self-regulation.</div>
+    </div>
+  </div>
+
+  <!-- SEND -->
+  <div class="section-head">♿ SEND</div>
+
+  <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:8px;">
+    <div class="stat-box sb-blue">
+      <div class="stat-label">Total on SEND Register</div>
+      <div class="stat-value sv-blue">218</div>
+      <div class="stat-nat">21.2% of roll (Apr 2026)</div>
+      <span class="stat-tag tag-b">Above national avg</span>
+    </div>
+    <div class="stat-box sb-purple">
+      <div class="stat-label">EHCPs</div>
+      <div class="stat-value sv-purple">30</div>
+      <div class="stat-nat">2.9% — legal plans</div>
+      <span class="stat-tag" style="background:#ede9fe;color:#6d28d9;">17 also PP</span>
+    </div>
+    <div class="stat-box sb-blue">
+      <div class="stat-label">SEN Support (K)</div>
+      <div class="stat-value sv-blue">175</div>
+      <div class="stat-nat">17.0% of roll</div>
+      <span class="stat-tag tag-b">104 also PP</span>
+    </div>
+    <div class="stat-box sb-amber">
+      <div class="stat-label">SEND + PP overlap</div>
+      <div class="stat-value sv-amber">59%</div>
+      <div class="stat-nat">128 dual-need pupils</div>
+      <span class="stat-tag tag-a">Most complex group</span>
+    </div>
+  </div>
+
+  <div class="ctx-box ctx-blue" style="margin-bottom:0;">
+    <strong>Top SEN needs:</strong> SEMH 36% · Moderate Learning Difficulty 29% · Speech &amp; Language 15% · ASD 14%. Despite this complex profile, low prior attaining pupils (many SEND+PP) achieve A8 of 29.0 vs national 25.2 — <strong>Above (sig+)</strong> in the IDSR. 44 MCB/clinical referrals this year demonstrate proactive early mental health intervention. Clinical referral pathways include MCB, NHS Right to Choose, MHST and CAMHS.
+  </div>
+
+  <div class="doc-footer">
+    <span>The Gateway Academy — Governor Performance Summary</span>
+    <span>Page 2 of 3 &nbsp;|&nbsp; IDSR Nov 2025 · DfE 2024/25</span>
+    <span>Confidential</span>
+  </div>
+
+</div><!-- /page 2 -->
+
+<!-- ═══════════════════════════════ PAGE 3 ═══════════════════════════════ -->
+<div class="page">
+
+  <div class="doc-header">
+    <div>
+      <div class="doc-header-title">The Gateway Academy — Key Messages &amp; Contextual Summary</div>
+      <div class="doc-header-sub">URN: 133114 · Tilbury, Thurrock · Gateway Learning Community</div>
+    </div>
+    <div class="doc-header-meta">Governor Summary<br>Page 3 of 3<br>${date}</div>
+  </div>
+
+  <!-- THURROCK COMPARISON -->
+  <div class="section-head">📍 Local &amp; National Context</div>
+
+  <table class="data-table" style="margin-bottom:10px;">
+    <thead>
+      <tr><th>Benchmark</th><th>A8 Score</th><th>P8 (2023/24)</th><th>FSM6 %</th><th>Context</th></tr>
+    </thead>
+    <tbody>
+      <tr class="tr-gw"><td>🏫 The Gateway Academy</td><td class="mono c-blue">46.0</td><td class="mono c-green">+0.07</td><td class="mono c-red">38.6%</td><td style="font-size:7.5pt;">Highest FSM in Thurrock</td></tr>
+      <tr class="tr-sub"><td colspan="5">Thurrock schools above Gateway (significantly lower FSM)</td></tr>
+      <tr><td>Grays Convent High School</td><td class="mono c-green">55.7</td><td class="mono c-green">+0.76</td><td class="mono c-green">16.1%</td><td style="font-size:7.5pt;">Girls only · Low FSM</td></tr>
+      <tr><td>Harris Chafford Hundred</td><td class="mono c-green">55.5</td><td class="mono c-green">+1.04</td><td class="mono c-green">10.1%</td><td style="font-size:7.5pt;">Very low FSM</td></tr>
+      <tr class="tr-sub"><td colspan="5">Thurrock schools below Gateway</td></tr>
+      <tr><td>Ortu Gable Hall</td><td class="mono c-blue">45.8</td><td class="mono c-amber">−0.51</td><td class="mono">19.4%</td><td style="font-size:7.5pt;">Lower FSM than Gateway</td></tr>
+      <tr><td>Ortu Hassenbrook Academy</td><td class="mono c-amber">43.8</td><td class="mono c-red">−0.76</td><td class="mono c-amber">35.2%</td><td style="font-size:7.5pt;">High FSM — similar profile</td></tr>
+      <tr><td>Ormiston Park Academy</td><td class="mono c-red">37.5</td><td class="mono c-red">−0.73</td><td class="mono c-red">39.4%</td><td style="font-size:7.5pt;">Highest FSM in Thurrock — below Gateway by 8.6pts A8</td></tr>
+      <tr class="tr-sub"><td colspan="5">National benchmarks</td></tr>
+      <tr><td>England National Average</td><td class="mono c-muted">45.9</td><td class="mono c-muted">−0.03</td><td class="mono c-muted">—</td><td style="font-size:7.5pt;">All state schools</td></tr>
+      <tr><td>Similar schools (AC, FSM≥30%) mean</td><td class="mono c-muted">41.3</td><td class="mono c-muted">—</td><td class="mono c-muted">~38%</td><td style="font-size:7.5pt;">366 schools nationally</td></tr>
+    </tbody>
+  </table>
+
+  <!-- KEY MESSAGES -->
+  <div class="section-head">✅ Key Messages for Governors</div>
+
+  <ul class="key-messages">
+    <li><span class="km-tick">✅</span><div><strong>A8 46.0</strong> — above the national mean of 44.4 (DfE), risen for 3 consecutive years. 79th percentile among FSM-matched academies nationally; 84th on Eng &amp; Maths 5+.</div></li>
+    <li><span class="km-tick">✅</span><div><strong>P8 +0.07</strong> (2023/24) — above national −0.03. Full recovery from COVID low of −0.76 in 2021/22. P8 not published nationally for 2024/25 or 2025/26 (COVID KS2 gap).</div></li>
+    <li><span class="km-tick">✅</span><div><strong>Disadvantaged P8 −0.04</strong> — 0.53 points above national disadvantaged average (−0.57). Rated Above (sig+) in the IDSR for two consecutive years — our single strongest statistical indicator.</div></li>
+    <li><span class="km-tick">✅</span><div><strong>Attendance 93.2%</strong> — 2nd of 21 DfE-matched similar schools. SEN attendance 90.6% is higher than all 20 similar schools. Zero DfE areas to focus on. ABIE exceeded.</div></li>
+    <li><span class="km-tick">✅</span><div><strong>Suspension rate 9.4 / 100</strong> — below national average of 11.31, despite highest FSM rate in Thurrock. 95% of departures from roll are parent-initiated, not exclusion-related.</div></li>
+    <li><span class="km-tick">✅</span><div><strong>SEND: 218 pupils (21.2%)</strong> — 59% also PP. Despite highly complex dual-need cohort, low prior attaining pupils achieve Above (sig+) on A8. SEN attendance #1 of 21 similar schools.</div></li>
+    <li><span class="km-tick">✅</span><div><strong>Post-16: 84%</strong> of 2023/24 tracked leavers in education or training. 84% of current Y11 applied by Easter 2026; 73% already hold conditional offers. University destinations include Imperial College London.</div></li>
+    <li><span class="km-warn">⚠️</span><div><strong>Low Stability (2024 &amp; 2025):</strong> Both KS4 cohorts carry a Low Stability flag — high pupil mobility means pupils join mid-KS4 and count in results without a full Gateway education. All headline measures understate the school's true impact. This is a recognised Ofsted mitigating factor.</div></li>
+    <li><span class="km-warn">⚠️</span><div><strong>Persistent absence:</strong> 19.0% PA rate — lower than similar schools (25.7% median) but an area of continued focus. Concentrated in FSM/SEMH pupils consistent with national deprivation patterns.</div></li>
+  </ul>
+
+  <div class="ctx-box ctx-blue" style="margin-top:12px;margin-bottom:0;">
+    <strong>Overall picture:</strong> Gateway Academy consistently achieves outcomes at or above national average for a school serving one of England's most deprived and mobile communities. The combination of improving attainment trends, strong disadvantaged progress (sig+), top-ranked attendance among similar schools, declining suspension rates, and a 68% reduction in behaviour incidents over six years represents a school in sustained, evidence-based improvement. The school absorbs complexity — high FSM, high SEND, high mobility — rather than deflecting it.
+  </div>
+
+  <div class="doc-footer">
+    <span>The Gateway Academy — Governor Performance Summary</span>
+    <span>Page 3 of 3 &nbsp;|&nbsp; Sources: IDSR Nov 2025 · DfE KS4 2024/25 · DfE Attendance 2025/26</span>
+    <span>Confidential — For Governor / SLT Use Only</span>
+  </div>
+
+</div><!-- /page 3 -->
+
+</body>
+</html>`;
+  }
+
   // TAB SWITCHING — dispatch resize after show so Chart.js recalculates hidden canvas dimensions
   function showTab(id, btn) {
     document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
