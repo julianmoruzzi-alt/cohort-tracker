@@ -125,6 +125,7 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
     <button class="tab" onclick="showTab('inclusion',event)">🤝 Inclusion &amp; Behaviour</button>
     <button class="tab" onclick="showTab('mobility',event)">🔄 Pupil Mobility</button>
     <button class="tab" onclick="showTab('send',event)">🔵 SEND &amp; Inclusion</button>
+    <button class="tab" onclick="showTab('post16',event)">🎓 Post-16 Destinations</button>
   </div>
 
   <!-- ═══ OVERVIEW TAB ═══ -->
@@ -979,6 +980,310 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
       </div>
     </div>
 
+  </div>
+
+
+  <!-- POST-16 DESTINATIONS TAB -->
+  <div class="tab-panel" id="tab-post16">
+    <div style="background:#f0f9ff;border:1px solid #bfdbfe;border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;gap:12px">
+      <div style="font-size:20px;flex-shrink:0">📋</div>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#1e3a5f;margin-bottom:4px">Data sources: Careers advisor tracking sheets | Easter 2026 Year 11 survey | Intended destinations forms 2024–2026 | Leavers follow-up data</div>
+        <div style="font-size:13px;color:#334155;line-height:1.6">Destinations data collected across multiple years by the careers advisor (AFR). Survey response rates vary by year — figures reflect responded cohort. University progression data from 2023 leavers follow-up (17 responded). Easter 2026 tracking covers all 192 Year 11 pupils.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📊 Year 11 2025/26 — Easter Tracking Snapshot</div>
+      <div class="section-sub">192 pupils tracked at Easter 2026 — source: careers advisor Year 11 destinations tracking sheet</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Applied</div>
+          <div style="font-size:30px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">162</div>
+          <div style="font-size:12px;color:var(--muted)">of 192 (84%)</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Conditional Offers</div>
+          <div style="font-size:30px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">141</div>
+          <div style="font-size:12px;color:var(--muted)">of 192 (73%)</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Not Yet Applied</div>
+          <div style="font-size:30px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--red)">21</div>
+          <div style="font-size:12px;color:var(--muted)">of 192 — being supported</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:10px 0 0 10px"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Year 11 Roll</div>
+          <div style="font-size:30px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--navy)">192</div>
+          <div style="font-size:12px;color:var(--muted)">All pupils tracked</div>
+        </div>
+      </div>
+
+      <div class="section-sub" style="margin-top:8px">Course types applied for (of those who applied)</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px">
+        <div style="background:var(--navy);color:#fff;padding:10px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">
+          <span>Course Type</span><span>Pupils</span><span>% of applicants</span><span>Context</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center;background:#f0f9ff">
+          <span style="font-weight:600">A Levels</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">97</span>
+          <span style="font-family:'JetBrains Mono',monospace">60%</span>
+          <span style="font-size:12px;color:var(--muted)">Most popular route</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">BTEC / Vocational</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue)">58</span>
+          <span style="font-family:'JetBrains Mono',monospace">36%</span>
+          <span style="font-size:12px;color:var(--muted)">Inc. Level 1/2/3 vocational</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;border-bottom:1px solid #f0f4f8;font-size:13px;align-items:center">
+          <span style="font-weight:600">T-Levels</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--purple)">20</span>
+          <span style="font-family:'JetBrains Mono',monospace">12%</span>
+          <span style="font-size:12px;color:var(--muted)">Strong Health, Engineering interest</span>
+        </div>
+        <div style="padding:11px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;font-size:13px;align-items:center">
+          <span style="font-weight:600">Apprenticeship</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber)">12</span>
+          <span style="font-family:'JetBrains Mono',monospace">7%</span>
+          <span style="font-size:12px;color:var(--muted)">Electrical, Engineering, Business</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🎯 Intended Destinations — 2025/26 Cohort</div>
+      <div class="section-sub">205 responses from Year 11 2025/26 — intended destination on leaving school</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin-bottom:20px">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
+          <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:14px">Intended Route</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="font-weight:600">College / Training Provider</span><span style="font-family:'JetBrains Mono',monospace;font-weight:700">92 (44.9%)</span></div>
+              <div style="background:#e8f0fb;border-radius:4px;height:10px"><div style="background:var(--blue);border-radius:4px;height:10px;width:44.9%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="font-weight:600">Sixth Form (other school)</span><span style="font-family:'JetBrains Mono',monospace;font-weight:700">65 (31.7%)</span></div>
+              <div style="background:#e8f0fb;border-radius:4px;height:10px"><div style="background:var(--blue);border-radius:4px;height:10px;width:31.7%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="font-weight:600">Apprenticeship / Traineeship</span><span style="font-family:'JetBrains Mono',monospace;font-weight:700">22 (10.7%)</span></div>
+              <div style="background:#fef3c7;border-radius:4px;height:10px"><div style="background:var(--amber);border-radius:4px;height:10px;width:10.7%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="font-weight:600">Undecided</span><span style="font-family:'JetBrains Mono',monospace;font-weight:700">21 (10.2%)</span></div>
+              <div style="background:#fee2e2;border-radius:4px;height:10px"><div style="background:var(--red);border-radius:4px;height:10px;width:10.2%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="font-weight:600">Other / Employment</span><span style="font-family:'JetBrains Mono',monospace;font-weight:700">5 (2.4%)</span></div>
+              <div style="background:#f1f5f9;border-radius:4px;height:10px"><div style="background:var(--slate);border-radius:4px;height:10px;width:2.4%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
+          <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:14px">Thurrock Growth Sector Interests</div>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+              <span>Health &amp; Care</span>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:80px;background:#e8f0fb;border-radius:4px;height:8px"><div style="background:var(--blue);border-radius:4px;height:8px;width:${22/113*100}%"></div></div>
+                <span style="font-family:'JetBrains Mono',monospace;font-weight:600;width:30px;text-align:right">22</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+              <span>Engineering &amp; Manufacturing</span>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:80px;background:#e8f0fb;border-radius:4px;height:8px"><div style="background:var(--blue);border-radius:4px;height:8px;width:${21/113*100}%"></div></div>
+                <span style="font-family:'JetBrains Mono',monospace;font-weight:600;width:30px;text-align:right">21</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+              <span>Finance</span>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:80px;background:#e8f0fb;border-radius:4px;height:8px"><div style="background:var(--blue);border-radius:4px;height:8px;width:${19/113*100}%"></div></div>
+                <span style="font-family:'JetBrains Mono',monospace;font-weight:600;width:30px;text-align:right">19</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+              <span>Creative</span>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:80px;background:#e8f0fb;border-radius:4px;height:8px"><div style="background:var(--blue);border-radius:4px;height:8px;width:${16/113*100}%"></div></div>
+                <span style="font-family:'JetBrains Mono',monospace;font-weight:600;width:30px;text-align:right">16</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+              <span>Construction</span>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:80px;background:#e8f0fb;border-radius:4px;height:8px"><div style="background:var(--blue);border-radius:4px;height:8px;width:${16/113*100}%"></div></div>
+                <span style="font-family:'JetBrains Mono',monospace;font-weight:600;width:30px;text-align:right">16</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+              <span>IT &amp; Digital</span>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:80px;background:#e8f0fb;border-radius:4px;height:8px"><div style="background:var(--blue);border-radius:4px;height:8px;width:${6/113*100}%"></div></div>
+                <span style="font-family:'JetBrains Mono',monospace;font-weight:600;width:30px;text-align:right">6</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+              <span>Logistics</span>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:80px;background:#e8f0fb;border-radius:4px;height:8px"><div style="background:var(--blue);border-radius:4px;height:8px;width:${3/113*100}%"></div></div>
+                <span style="font-family:'JetBrains Mono',monospace;font-weight:600;width:30px;text-align:right">3</span>
+              </div>
+            </div>
+            <div style="font-size:11px;color:var(--muted);margin-top:4px">113 of 205 respondents indicated a growth sector interest (55%)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📍 Popular Post-16 Destinations</div>
+      <div class="section-sub">Most frequently applied to across 2023/24, 2024/25, and 2025/26 cohorts — source: careers advisor data</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:20px">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--blue);margin-bottom:8px">🏆 Most Popular</div>
+          <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">USP Palmers</div>
+          <div style="font-size:13px;color:#334155;line-height:1.5">Consistently the most common destination across all cohorts. BTEC, A Levels and vocational courses. Strong presence in Business, Health &amp; Social Care, IT.</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--blue);margin-bottom:8px">Sixth Form Route</div>
+          <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">Harris Academies</div>
+          <div style="font-size:13px;color:#334155;line-height:1.5">Harris Chafford, Riverside, Rainham and Ockendon all feature strongly. A Level route. Competitive admissions — Gateway pupils regularly secure places.</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--blue);margin-bottom:8px">Local College</div>
+          <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">South Essex College</div>
+          <div style="font-size:13px;color:#334155;line-height:1.5">Grays and Southend campuses. Vocational and technical routes including Construction, Engineering, Health &amp; Social Care, Hair &amp; Beauty.</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--blue);margin-bottom:8px">Sixth Form Route</div>
+          <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">St Clere's &amp; Havering</div>
+          <div style="font-size:13px;color:#334155;line-height:1.5">St Clere's School sixth form and Havering Sixth Form (New City College) are popular alternatives. A Levels with strong uptake from Gateway pupils.</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--purple);margin-bottom:8px">Aspirational Destinations</div>
+          <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">LAE &amp; Brampton Manor</div>
+          <div style="font-size:13px;color:#334155;line-height:1.5">London Academy of Excellence (LAE) and Brampton Manor Academy — highly selective sixth forms — appear regularly in application lists, demonstrating high aspiration among Gateway pupils.</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--amber);margin-bottom:8px">Apprenticeships</div>
+          <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">Engineering &amp; Trades</div>
+          <div style="font-size:13px;color:#334155;line-height:1.5">Electrical, Engineering, Cybersecurity, Business Admin. Employers include Project Skills Solutions. College day release typically at South Essex or New City.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 Year 11 Leavers Tracked — 2024 Cohort</div>
+      <div class="section-sub">229 pupils tracked — source: careers advisor leavers tracking (Year 1, 2 &amp; 3 follow-up)</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:20px">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green)"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">In Education</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">179</div>
+          <div style="font-size:11px;color:var(--muted)">78.2% of cohort</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue)"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Apprenticeship</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue)">13</div>
+          <div style="font-size:11px;color:var(--muted)">5.7% of cohort</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal)"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Employment</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--teal)">7</div>
+          <div style="font-size:11px;color:var(--muted)">3.1% of cohort</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red)"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">NEET</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--red)">22</div>
+          <div style="font-size:11px;color:var(--muted)">9.6% — inc. yr1/yr2 variations</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber)"></div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Unable to Track</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--amber)">6</div>
+          <div style="font-size:11px;color:var(--muted)">2.6% — inc. won't respond</div>
+        </div>
+        <div style="background:var(--blue-light);border:1px solid #bfdbfe;border-radius:10px;padding:14px">
+          <div style="font-size:11px;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">EET Total</div>
+          <div style="font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--navy)">199</div>
+          <div style="font-size:11px;color:var(--blue)">Ed + Emp + App = 87%</div>
+        </div>
+      </div>
+      <div style="background:var(--blue-light);border:1px solid #bfdbfe;border-radius:10px;padding:14px 18px;font-size:13px;color:#1e3a5f;line-height:1.6"><strong>Context:</strong> The national NEET rate for 16–17 year olds is approximately 6–7%. Gateway's tracked NEET figure of 9.6% includes both Year 1 and Year 2 NEET classifications — some pupils were NEET at Year 1 but re-engaged by Year 2. The "unable to track" group (2.6%) reflects Tilbury's transient population and does not necessarily indicate NEET status. Making Happen and Inspire Thurrock Careers provide targeted support for identified NEETs.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🎓 University Progression — 2023 Leavers Follow-up</div>
+      <div class="section-sub">17 leavers responded to the 2023 alumni follow-up — 8 confirmed progression to university</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px">
+          <div style="text-align:center;padding:16px;background:var(--green-light);border-radius:10px">
+            <div style="font-size:36px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--green)">8</div>
+            <div style="font-size:12px;font-weight:600;color:var(--green);margin-top:4px">Progressed to University</div>
+            <div style="font-size:11px;color:var(--muted)">of 17 respondents (47%)</div>
+          </div>
+          <div style="text-align:center;padding:16px;background:var(--blue-light);border-radius:10px">
+            <div style="font-size:36px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--blue)">4</div>
+            <div style="font-size:12px;font-weight:600;color:var(--blue);margin-top:4px">In Employment</div>
+            <div style="font-size:11px;color:var(--muted)">inc. 1 apprenticeship</div>
+          </div>
+          <div style="text-align:center;padding:16px;background:var(--slate-light);border-radius:10px">
+            <div style="font-size:36px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--slate)">3</div>
+            <div style="font-size:12px;font-weight:600;color:var(--slate);margin-top:4px">Continued at College/6th form</div>
+            <div style="font-size:11px;color:var(--muted)">Further study routes</div>
+          </div>
+        </div>
+        <div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:10px">Universities attended by 2023 Gateway leavers:</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px">Imperial College London</span>
+          <span style="background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px">Queen Mary's University</span>
+          <span style="background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px">University of Law</span>
+          <span style="background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px">Royal Holloway</span>
+          <span style="background:var(--blue-light);color:var(--blue);font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px">City St George's London</span>
+          <span style="background:var(--blue-light);color:var(--blue);font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px">Anglia Ruskin University</span>
+          <span style="background:var(--blue-light);color:var(--blue);font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px">University of Kent</span>
+          <span style="background:var(--blue-light);color:var(--blue);font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px">London South Bank University</span>
+        </div>
+        <div style="margin-top:14px;font-size:13px;color:#334155;line-height:1.6;background:var(--amber-light);border:1px solid #fcd34d;border-radius:8px;padding:12px 14px"><strong>Note:</strong> This data reflects 17 voluntary respondents from the 2023 leaver cohort. The proportion going to university will be higher across the full cohort — these are pupils who chose to respond and includes some of the most engaged alumni. Imperial College London is a Russell Group institution — a particularly strong outcome for a pupil from a high-deprivation context in Tilbury.</div>
+      </div>
+    </div>
+
+    <div class="ofsted-prep">
+      <h3>🏫 Post-16 Destinations — Ofsted Talking Points</h3>
+      <p style="font-size:13px;color:#94a8c8;margin-bottom:16px;line-height:1.6">Key messages for inspection under the 2025 framework — destinations data demonstrates the school's intent and impact beyond Year 11</p>
+      <div class="ofsted-points">
+        <div class="ofsted-point">
+          <div class="op-label">Application Rate</div>
+          <div class="op-stat">84% applied</div>
+          <div class="op-text">84% of Year 11 had made a post-16 application by Easter 2026, with 73% holding conditional offers. The 21 yet to apply are being actively supported through careers interviews and direct referral to providers.</div>
+        </div>
+        <div class="ofsted-point">
+          <div class="op-label">Aspiration</div>
+          <div class="op-stat">A Levels: 60%</div>
+          <div class="op-text">60% of applicants are pursuing A Level routes, with pupils regularly applying to highly selective sixth forms including LAE and Brampton Manor. Imperial College London among universities attended by 2023 leavers.</div>
+        </div>
+        <div class="ofsted-point">
+          <div class="op-label">T-Levels</div>
+          <div class="op-stat">20 pupils</div>
+          <div class="op-text">12% of applicants are pursuing T-Levels — reflecting strong alignment with Thurrock growth sectors, particularly Health &amp; Care and Engineering. Careers programme explicitly maps to Thurrock's economic priorities.</div>
+        </div>
+        <div class="ofsted-point">
+          <div class="op-label">NEET Management</div>
+          <div class="op-stat">Make Happen + Inspire</div>
+          <div class="op-text">All identified NEETs and undecided pupils receive targeted careers interview support. External partners Make Happen and Inspire Thurrock Careers provide wrap-around NEET intervention. Postcodes shared with Make Happen monthly for outreach.</div>
+        </div>
+      </div>
+    </div>
   </div>
 
 
