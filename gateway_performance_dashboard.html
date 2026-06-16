@@ -402,6 +402,7 @@
     <button class="tab-btn" onclick="showTab('inclusion',this)">🤝 Inclusion</button>
     <button class="tab-btn" onclick="showTab('mobility',this)">🔄 Pupil Mobility</button>
     <button class="tab-btn" onclick="showTab('send',this)">♿ SEND</button>
+    <button class="tab-btn" onclick="showTab('sef',this)">📋 SEF</button>
     <button class="tab-btn" onclick="showTab('teaching',this)">📚 Teaching &amp; Learning</button>
     <button class="tab-btn" onclick="showTab('disadvantaged',this)">💙 Disadvantaged</button>
     <button class="tab-btn" onclick="showTab('destinations',this)">🎓 Destinations &amp; Careers</button>
@@ -4029,6 +4030,431 @@
     </div>
 
   </div><!-- /teaching -->
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SEF TAB                                        -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-sef">
+
+    <!-- SEF SPECIFIC STYLES -->
+    <style>
+      .sef-header { background:var(--navy); color:#fff; border-radius:12px; padding:18px 22px; margin-bottom:20px; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .sef-header h2 { font-size:18px; font-weight:800; margin-bottom:4px; }
+      .sef-header p { font-size:12px; color:#94a8c8; line-height:1.6; margin:0; }
+      .sef-meta { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+      .sef-badge { padding:4px 12px; border-radius:20px; font-size:11px; font-weight:700; border:1px solid rgba(255,255,255,.25); color:#fff; background:rgba(255,255,255,.1); }
+      
+      /* EVALUATION AREA CARD */
+      .sef-area { border:1px solid var(--border); border-radius:12px; margin-bottom:20px; overflow:hidden; }
+      .sef-area-header { display:flex; align-items:flex-start; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--border); gap:12px; }
+      .sef-area-title { display:flex; align-items:center; gap:10px; }
+      .sef-area-icon { font-size:22px; flex-shrink:0; }
+      .sef-area-name { font-size:16px; font-weight:800; color:var(--navy); }
+      .sef-area-sub { font-size:12px; color:var(--text-muted); margin-top:2px; }
+      
+      /* GRADE BADGE */
+      .sef-grade { display:flex; flex-direction:column; align-items:flex-end; flex-shrink:0; }
+      .sef-grade-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--text-muted); margin-bottom:4px; }
+      .sef-grade-badge { padding:8px 16px; border-radius:8px; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.3px; -webkit-print-color-adjust:exact; print-color-adjust:exact; cursor:pointer; border:2px solid transparent; }
+      .grade-exceptional   { background:#fef9c3; color:#854d0e; border-color:#fde047; }
+      .grade-strong        { background:#dcfce7; color:#166534; border-color:#86efac; }
+      .grade-expected      { background:#e8f0fb; color:#1e5fa8; border-color:#93c5fd; }
+      .grade-attention     { background:#fef3c7; color:#b45309; border-color:#fcd34d; }
+      .grade-urgent        { background:#fee2e2; color:#b91c1c; border-color:#fca5a5; }
+      .grade-met           { background:#f0fdf4; color:#166534; border-color:#86efac; }
+      
+      /* SEF BODY */
+      .sef-area-body { padding:16px 20px; }
+      .sef-col-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+      
+      .sef-section-title { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.5px; color:var(--text-muted); margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+      
+      .sef-bullets { list-style:none; margin:0; padding:0; }
+      .sef-bullets li { display:flex; gap:8px; font-size:12.5px; color:#334155; line-height:1.55; padding:4px 0; border-bottom:1px solid #f8fafc; }
+      .sef-bullets li:last-child { border-bottom:none; }
+      .sef-bullet-tick { flex-shrink:0; color:var(--green); font-size:12px; margin-top:2px; }
+      .sef-bullet-warn { flex-shrink:0; color:var(--amber); font-size:12px; margin-top:2px; }
+      .sef-bullet-dev  { flex-shrink:0; color:var(--blue); font-size:12px; margin-top:2px; }
+
+      .sef-dev-box { background:var(--blue-light); border:1px solid #bfdbfe; border-radius:8px; padding:10px 12px; margin-top:10px; font-size:12px; color:#1e3a5f; line-height:1.6; }
+      .sef-dev-box strong { color:var(--navy); }
+
+      .sef-evidence-strip { display:flex; gap:6px; flex-wrap:wrap; padding:10px 20px; background:var(--surface); border-top:1px solid var(--border); }
+      .sef-evidence-tag { background:#fff; border:1px solid var(--border); border-radius:20px; padding:3px 10px; font-size:11px; color:var(--text-muted); font-weight:600; }
+
+      .sef-safeguarding { background:linear-gradient(135deg, #166534 0%, #14532d 100%); color:#fff; border-radius:12px; padding:18px 22px; display:flex; align-items:center; gap:16px; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .sef-sg-icon { font-size:32px; flex-shrink:0; }
+      .sef-sg-grade { font-size:28px; font-weight:800; color:#4ade80; }
+      .sef-sg-title { font-size:16px; font-weight:700; }
+      .sef-sg-sub { font-size:12px; color:#86efac; margin-top:3px; line-height:1.5; }
+
+      .sef-draft-note { background:var(--amber-light); border:1px solid #fcd34d; border-radius:8px; padding:12px 16px; font-size:12px; color:#78350f; margin-bottom:20px; line-height:1.6; }
+
+      @media (max-width: 700px) { .sef-col-grid { grid-template-columns:1fr; } .sef-area-header { flex-direction:column; } }
+    </style>
+
+    <!-- DRAFT NOTE -->
+    <div class="sef-draft-note">
+      <strong>⚠️ Working Draft — Self Evaluation Form (SEF)</strong><br>
+      This SEF is a working draft structured around the new Ofsted inspection framework (from November 2025). Grades are draft proposals — click any grade badge to discuss adjustments. Evidence bullet points will be developed further; this document captures the current position based on data held in this dashboard. The SEF should be reviewed and updated termly, and aligned with the School Development Plan before any inspection.
+    </div>
+
+    <!-- SEF HEADER -->
+    <div class="sef-header">
+      <h2>Self Evaluation Form — The Gateway Academy</h2>
+      <p>New Ofsted Framework · November 2025 onwards · Five-point scale: Exceptional / Strong Standard / Expected Standard / Needs Attention / Urgent Improvement · Safeguarding: Met / Not Met</p>
+      <div class="sef-meta">
+        <span class="sef-badge">URN: 133114</span>
+        <span class="sef-badge">Academy Sponsor-Led · Gateway Learning Community</span>
+        <span class="sef-badge">Tilbury, Thurrock</span>
+        <span class="sef-badge">📅 Last updated: June 2026</span>
+        <span class="sef-badge">⚠️ Low Stability 2024 &amp; 2025 cohorts</span>
+        <span class="sef-badge">📊 FSM6 42.3% — highest in Thurrock</span>
+      </div>
+    </div>
+
+    <!-- ── 1. INCLUSION ──────────────────────────────────────── -->
+    <div class="sef-area">
+      <div class="sef-area-header">
+        <div class="sef-area-title">
+          <div class="sef-area-icon">🤝</div>
+          <div>
+            <div class="sef-area-name">1. Inclusion</div>
+            <div class="sef-area-sub">New standalone evaluation area · November 2025 framework · Disadvantaged, SEND, and all vulnerable groups</div>
+          </div>
+        </div>
+        <div class="sef-grade">
+          <div class="sef-grade-label">Draft grade</div>
+          <div class="sef-grade-badge grade-strong">Strong Standard</div>
+        </div>
+      </div>
+
+      <div class="sef-area-body">
+        <div class="sef-col-grid">
+          <div>
+            <div class="sef-section-title">✅ Strengths &amp; Evidence</div>
+            <ul class="sef-bullets">
+              <li><span class="sef-bullet-tick">✅</span><span>Disadvantaged P8 −0.04 vs national −0.57 — <strong>Above (sig+)</strong> in IDSR for two consecutive years. 68 dis. pupils in P8 cohort 2023/24 — statistically robust.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>SEN attendance 90.6% — <strong>#1 of 21</strong> DfE-matched similar schools. Rated DfE Relative Strength for two consecutive reporting periods.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Low prior attaining pupils A8 29.0 vs national 25.2 — <strong>Above (sig+)</strong> in IDSR 2023/24. Many low prior attainers are SEND+PP.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Fairer Schools Index: DfE rank 1,891 → FSI rank 1,156 (+735 places). <strong>Biggest positive jump of any Thurrock secondary</strong> — top 37% nationally when context is applied.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>218 pupils on SEND register (21.2%) — 59% also PP. Despite this highly complex dual-need cohort, outcomes are above national for low prior attainers.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Whole-school STEER psychometric wellbeing screening — 746 pupils assessed in 2024/25 R1. Action plans for priority students (8–11% each round); 75–82% showing measurable improvement on reassessment.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>89.8% of disadvantaged pupils accessed at least one enrichment club or trip in 2025/26. 85.1% of double-disadvantaged (SEND+PP) pupils engaged.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>44 MCB/clinical referrals 2025/26 — active pathways to MHST, CAMHS, NHS Right to Choose. Proactive early mental health intervention.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>215 pupils with formal Exam Access Arrangements — all LHT standardised tested, JCQ compliant. Prompt is most common (141 pupils) — mirrors normal classroom Signature Strategy.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>PP persistent absence 28.6% vs national 41.2% — <strong>12.6pp below national</strong>. PP parents evening attendance: Y11 47% (2023/24) → 90% (2025/26).</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="sef-section-title">📝 Areas for Development</div>
+            <ul class="sef-bullets">
+              <li><span class="sef-bullet-dev">→</span><span>Dis A8 2024/25 (38.1) is Close to average in IDSR — dis outcomes dipped slightly vs 2023/24. Monitoring through Pupil Premium Pursuit strategy and targeted revision programme.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>Languages outcomes for disadvantaged pupils: Below (sig−) in 2024/25. Curriculum review and intervention planned for MFL for PP cohort.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>Teacher Review completion in STEER cycle: dropped to 0% in 2023/24 R2 before recovering to 92% in 2024/25 R2. Embedding consistent cycle completion across all form tutors remains a priority.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>[Add further evidence here — governor challenge on inclusion, pupil voice on inclusion, staff training on SEND strategies, CPD records]</span></li>
+            </ul>
+
+            <div class="sef-dev-box" style="margin-top:12px;">
+              <strong>Rationale for Strong Standard:</strong> Gateway's inclusion outcomes — particularly Dis P8 (sig+), SEN attendance (#1 of 21), and the Fairer Schools Index position — are sustained over multiple years and reflect genuine added value for the most disadvantaged and vulnerable pupils. The proactive identification culture (STEER, EAA, SEND register growth), the breadth of targeted support, and the FSI evidence together demonstrate inclusion as a core strength rather than an aspiration.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sef-evidence-strip">
+        <span class="sef-evidence-tag">📊 Inclusion tab</span>
+        <span class="sef-evidence-tag">♿ SEND tab</span>
+        <span class="sef-evidence-tag">💙 Disadvantaged tab</span>
+        <span class="sef-evidence-tag">📅 Attendance tab</span>
+        <span class="sef-evidence-tag">📈 Overview tab</span>
+        <span class="sef-evidence-tag">🏫 Similar Schools tab</span>
+      </div>
+    </div>
+
+    <!-- ── 2. CURRICULUM & TEACHING ──────────────────────────── -->
+    <div class="sef-area">
+      <div class="sef-area-header">
+        <div class="sef-area-title">
+          <div class="sef-area-icon">📚</div>
+          <div>
+            <div class="sef-area-name">2. Curriculum and Teaching</div>
+            <div class="sef-area-sub">Intent, implementation and impact · Quality of teaching across subjects · Professional development</div>
+          </div>
+        </div>
+        <div class="sef-grade">
+          <div class="sef-grade-label">Draft grade</div>
+          <div class="sef-grade-badge grade-strong">Strong Standard</div>
+        </div>
+      </div>
+
+      <div class="sef-area-body">
+        <div class="sef-col-grid">
+          <div>
+            <div class="sef-section-title">✅ Strengths &amp; Evidence</div>
+            <ul class="sef-bullets">
+              <li><span class="sef-bullet-tick">✅</span><span>796 drop-in observations in 2025/26 (to June) — <strong>47% shoutout rate</strong>. Shoutout rate has risen every year: 21% (2022/23) → 39% (2024/25) → 47% (2025/26). Growing quality, growing volume.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span><strong>Zero flagged observations</strong> in 2025/26. 71 of 85 staff observed. Observation culture is non-threatening, coaching-focused, and near-universal.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>StepLab deliberate practice model: <strong>409 STEPS achieved all time</strong> · 1,003 course modules completed by 48 staff. In-house coaching — precise, teacher-specific development.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>12 Signature Strategies — non-negotiable expectations in every classroom. Most common observation tags: Strong Start (133), Vocabulary Acquisition (111), Strong Finish (101) — confirming strategies are embedded.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>33 lead coaches across all faculties. Peer coaching model — development driven within subject context, not only top-down. 42 active coaching cycles with 50% average feedback completion.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>12 staff in formal development routes: SIT ×4, ECT Year 1 ×4, ECT Year 2 ×2, Apprenticeship ×2. All supported with in-house coaching and formal mentoring.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>External CPD: PhD (started 2024), NPQLT Facilitator (NIoT/Harris), Certificate in Coaching Leadership. Investment in school-wide and individual development.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Shoutout domains highlight curriculum strength: Drive Thought (27%), Optimise Communication (24%), Gather &amp; Give Feedback (15%) — all mapped to high-challenge, high-participation teaching.</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="sef-section-title">📝 Areas for Development</div>
+            <ul class="sef-bullets">
+              <li><span class="sef-bullet-dev">→</span><span>Science outcomes 2024/25: Close to average (sig−) for all pupils — a dip from previous years. Science curriculum and intervention under review.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>High prior attainers P8 remains Close to average — curriculum challenge and stretch for the most able is an identified development area.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>Coaching cycle feedback completion at 50% average — embedding consistent use of full coaching cycle for all coaches is a 2025/26 target.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>[Add further evidence here — curriculum intent statements, subject-level schemes of learning, curriculum review outcomes, lesson observation examples, student work samples]</span></li>
+            </ul>
+            <div class="sef-dev-box" style="margin-top:12px;">
+              <strong>Rationale for Strong Standard:</strong> The StepLab coaching model, combined with 12 non-negotiable Signature Strategies and a whole-staff observation culture, provides a structural framework for sustained teaching improvement that goes beyond individual performance management. The 47% shoutout rate and rising year-on-year quality indicator demonstrate a teaching culture in genuine improvement. Science outcomes and HPA stretch require further development.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sef-evidence-strip">
+        <span class="sef-evidence-tag">📚 Teaching &amp; Learning tab</span>
+        <span class="sef-evidence-tag">📈 Overview tab</span>
+        <span class="sef-evidence-tag">🔍 Detailed Data tab</span>
+      </div>
+    </div>
+
+    <!-- ── 3. ACHIEVEMENT ────────────────────────────────────── -->
+    <div class="sef-area">
+      <div class="sef-area-header">
+        <div class="sef-area-title">
+          <div class="sef-area-icon">📊</div>
+          <div>
+            <div class="sef-area-name">3. Achievement</div>
+            <div class="sef-area-sub">Attainment and progress · All pupils and key groups · KS4 outcomes in context</div>
+          </div>
+        </div>
+        <div class="sef-grade">
+          <div class="sef-grade-label">Draft grade</div>
+          <div class="sef-grade-badge grade-strong">Strong Standard</div>
+        </div>
+      </div>
+
+      <div class="sef-area-body">
+        <div class="sef-col-grid">
+          <div>
+            <div class="sef-section-title">✅ Strengths &amp; Evidence</div>
+            <ul class="sef-bullets">
+              <li><span class="sef-bullet-tick">✅</span><span>A8 46.1 (2024/25) = national 46.1. <strong>In line with national average</strong> for a school with FSM6 42.3% and Low Stability flag. Risen for 3 consecutive years (44.2 → 44.6 → 46.1).</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>P8 +0.07 (2023/24) vs national −0.03 — above national. Full recovery from COVID low of −0.76 (2021/22): −0.76 → +0.23 → +0.07. Two consecutive years above national.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>EM5+ 48.2% vs national 45.4% — above national. EM4+ 64.5% vs national 64.8% — in line with national.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Dis P8 −0.04 vs national −0.57 — <strong>Above (sig+)</strong> for two consecutive years. Dis pupils outperforming national peers by 0.53 P8 points.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Low prior attainers A8 29.0 vs national 25.2 — Above (sig+) 2023/24. Dis Maths G7+ 12.9% vs national 9.9%. Dis English G5+ 51.2% vs national 45.3%.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>National percentile: <strong>79th among 366 FSM-matched academies</strong> on A8. 84th percentile on EM5+. Top 21% of genuinely comparable schools nationally.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Three-year improvement trajectory — consistent upward trend in A8 despite two consecutive Low Stability cohorts. The school's impact on pupils it educates throughout KS4 is significantly stronger than headline figures suggest.</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="sef-section-title">📝 Context &amp; Areas for Development</div>
+            <ul class="sef-bullets">
+              <li><span class="sef-bullet-warn">⚠️</span><span><strong>Low Stability flag 2024 &amp; 2025:</strong> Both KS4 cohorts include a high proportion of mid-KS4 joiners who count in results. This structurally depresses all headline measures — the school's true impact on its core cohort is greater than published figures indicate.</span></li>
+              <li><span class="sef-bullet-warn">⚠️</span><span><strong>No P8 for 2024/25 or 2025/26</strong> — COVID KS2 gap means no national P8 published. All P8 comparisons use 2023/24 (last valid year).</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>Science outcomes dipped to sig− in 2024/25 for all pupils. Identified for improvement — additional intervention and curriculum review planned.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>High prior attainers Close to average across most measures — stretch provision for the most able is an ongoing development priority.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>Dis A8 Close to average (non-sig) in 2024/25 — improvement from 2022/23 but dipped from sig+ in 2023/24. Monitoring via SISRA pupil-level tracking.</span></li>
+            </ul>
+            <div class="sef-dev-box" style="margin-top:12px;">
+              <strong>Rationale for Strong Standard:</strong> Achieving A8 at national average with FSM6 42.3% (highest in Thurrock), a Low Stability flag, and 21.2% SEND is a very strong achievement. The 79th national percentile among FSM-matched peers, sustained Dis P8 (sig+) across two years, and a three-year improvement trajectory represent genuine added value that headline figures alone do not capture.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sef-evidence-strip">
+        <span class="sef-evidence-tag">📈 Overview tab</span>
+        <span class="sef-evidence-tag">🔍 Detailed Data tab</span>
+        <span class="sef-evidence-tag">🏫 Similar Schools tab</span>
+        <span class="sef-evidence-tag">💙 Disadvantaged tab</span>
+      </div>
+    </div>
+
+    <!-- ── 4. ATTENDANCE & BEHAVIOUR ─────────────────────────── -->
+    <div class="sef-area">
+      <div class="sef-area-header">
+        <div class="sef-area-title">
+          <div class="sef-area-icon">📅</div>
+          <div>
+            <div class="sef-area-name">4. Attendance and Behaviour</div>
+            <div class="sef-area-sub">Attendance vs national and similar schools · Behaviour culture · Exclusions and suspensions</div>
+          </div>
+        </div>
+        <div class="sef-grade">
+          <div class="sef-grade-label">Draft grade</div>
+          <div class="sef-grade-badge grade-strong">Strong Standard</div>
+        </div>
+      </div>
+
+      <div class="sef-area-body">
+        <div class="sef-col-grid">
+          <div>
+            <div class="sef-section-title">✅ Attendance Strengths</div>
+            <ul class="sef-bullets">
+              <li><span class="sef-bullet-tick">✅</span><span>Overall attendance 93.2% (2025/26, DfE Monitor Your School) — <strong>2nd of 21</strong> DfE-matched similar schools. Full-year 2024/25: 92.5% vs national 91.6% — Close to average.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>SEN attendance 90.6% — <strong>higher than all 20 similar schools</strong>. DfE Relative Strength for two consecutive reporting periods. SEN PA 19.6% vs similar schools 30.4%.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>FSM attendance 90.7% vs similar schools median 87.0% — +3.7pp above. PP persistent absence 28.6% vs national PP 41.2% — 12.6pp below.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>DfE Similar Schools report (Autumn 2025/26): <strong>zero areas to focus on</strong>. Most similar schools receive 3 areas to focus. School exceeds ABIE (92.8%).</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Attendance improving term by term in 2025/26: Autumn 92.9% → Spring 93.2% → Summer 93.8%. Upward trajectory across the year.</span></li>
+            </ul>
+            <div class="sef-section-title" style="margin-top:12px;">✅ Behaviour Strengths</div>
+            <ul class="sef-bullets">
+              <li><span class="sef-bullet-tick">✅</span><span>Suspension rate 9.4 per 100 pupils (2025/26) vs national 11.31 — <strong>below national</strong>. Declining trend from 11.8 (2021/22). Permanent exclusions: 5 — last resort only.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Merit:demerit ratio 4.3:1 full year, 5.2:1 summer term — meets research benchmark for effective behaviour coaching. 237,902 merits awarded.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>99.5% of lessons SET-free. Under 1% of pupils generate 23% of SET demand — disruption is concentrated, not systemic. Targeted intervention in place.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>68% reduction in SET call-outs since 2018/19 (6,336 → 2,046). Long-term, sustained improvement in behaviour culture over 6 years.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>95% of departures from roll are parent-initiated — clear evidence the school is not off-rolling. Robust CME tracking and safeguarding processes for every leaver.</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="sef-section-title">📝 Areas for Development</div>
+            <ul class="sef-bullets">
+              <li><span class="sef-bullet-dev">→</span><span>Persistent absence 23.6% (2024/25 IDSR full year) vs national 23.4% — broadly in line with national but above 2023/24 figure (21.5%). Focus remains on FSM/SEMH PA cohort.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>Year 9 has the highest SET demand and lowest merit:demerit ratio (3.2:1) — targeted pastoral intervention and behaviour coaching ongoing for this year group.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>176 home visits completed in Autumn 2025/26 to re-engage persistent absentees — 70% contact success. Continuing to develop attendance intervention pathway.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>[Add further evidence here — attendance action plan, governor challenge on attendance, pupil voice on behaviour, case studies of successful PA intervention]</span></li>
+            </ul>
+            <div class="sef-dev-box" style="margin-top:12px;">
+              <strong>Rationale for Strong Standard:</strong> 2nd of 21 similar schools for attendance, #1 for SEN attendance, zero DfE focus areas, and a 68% reduction in behaviour incidents since 2018/19 represent a consistent, sustained improvement in the school's culture and climate. The data is verified by DfE benchmarking against genuinely similar schools, not just internal records.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sef-evidence-strip">
+        <span class="sef-evidence-tag">📅 Attendance tab</span>
+        <span class="sef-evidence-tag">🤝 Inclusion tab</span>
+        <span class="sef-evidence-tag">🔄 Pupil Mobility tab</span>
+      </div>
+    </div>
+
+    <!-- ── 5. PERSONAL DEVELOPMENT & WELLBEING ───────────────── -->
+    <div class="sef-area">
+      <div class="sef-area-header">
+        <div class="sef-area-title">
+          <div class="sef-area-icon">🌱</div>
+          <div>
+            <div class="sef-area-name">5. Personal Development and Well-being</div>
+            <div class="sef-area-sub">Character, culture and values · Careers &amp; destinations · Mental health &amp; well-being · PSHE &amp; RSE</div>
+          </div>
+        </div>
+        <div class="sef-grade">
+          <div class="sef-grade-label">Draft grade</div>
+          <div class="sef-grade-badge grade-strong">Strong Standard</div>
+        </div>
+      </div>
+
+      <div class="sef-area-body">
+        <div class="sef-col-grid">
+          <div>
+            <div class="sef-section-title">✅ Strengths &amp; Evidence</div>
+            <ul class="sef-bullets">
+              <li><span class="sef-bullet-tick">✅</span><span>STEER whole-school psychometric wellbeing screening — 746 pupils assessed 2024/25 R1 (near-complete). Priority students (8–11%) receive structured action plans; 75–82% show measurable improvement on reassessment.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Active clinical referral pathway: 44 MCB/MHST/CAMHS/NHS Right to Choose referrals in 2025/26. Proactive early intervention for SEMH needs.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>89.8% of disadvantaged pupils accessed enrichment in 2025/26. 3,483 ClassCharts rewards shop transactions — self-regulation and aspiration embedded in daily culture.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Careers programme: Gatsby Benchmark coverage across all 5 year groups. 30+ employer/institution contacts per year. Unifrog weekly for all tutor groups. Individual CIAG interviews for all Y11.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>84% of current Y11 already applied by Easter 2026; 73% hold conditional offers before GCSE results. 89% of 2023/24 leavers in sustained education or employment (IDSR).</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Thames Freeport Scholarship: 2 disadvantaged students per year receive £25,000/yr through university. 26 students supported in 2025/26. Genuine social mobility outcomes from Tilbury.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>PSHE programme covers all three statutory focus areas each year: Living in the Wider World, Relationships, Health &amp; Wellbeing — across all 5 year groups.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Youth Parliament, Thurrock's Next Top Boss, Lower Thames Crossing trips, NHS careers, Barking Abbey cadets — breadth of opportunity beyond the academic curriculum.</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="sef-section-title">📝 Areas for Development</div>
+            <ul class="sef-bullets">
+              <li><span class="sef-bullet-dev">→</span><span>Enrichment participation data for non-disadvantaged pupils — tracking needs to be whole-school, not just PP-focused, to fully evidence PD&amp;W breadth.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>Student voice — evidence of how pupil feedback shapes school decisions is an identified gap. School Council, pupil surveys, and student leadership roles need evidencing.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>SMSC and British Values — explicit documentation of how these are embedded across the curriculum (not just in PSHE) is needed for inspection readiness.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>Post-16 destination tracking — voluntary, partial data. Systematic tracking is in development; improving year on year but not yet census-accurate.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>[Add further evidence here — PSHE schemes of learning, RSE policy, enrichment register, student leadership roles, charity/community work, Gatsby Benchmark self-assessment]</span></li>
+            </ul>
+            <div class="sef-dev-box" style="margin-top:12px;">
+              <strong>Rationale for Strong Standard:</strong> The combination of STEER whole-school wellbeing screening (embedded over 3 years), proactive clinical referral pathways, a structured Gatsby-aligned careers programme, and the Thames Freeport Scholarship demonstrates a school that takes personal development seriously and can evidence it. Known gaps (student voice, SMSC documentation) are acknowledged and being addressed.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sef-evidence-strip">
+        <span class="sef-evidence-tag">🎓 Destinations &amp; Careers tab</span>
+        <span class="sef-evidence-tag">🤝 Inclusion tab</span>
+        <span class="sef-evidence-tag">💙 Disadvantaged tab</span>
+        <span class="sef-evidence-tag">♿ SEND tab</span>
+      </div>
+    </div>
+
+    <!-- ── 6. LEADERSHIP & GOVERNANCE ───────────────────────── -->
+    <div class="sef-area">
+      <div class="sef-area-header">
+        <div class="sef-area-title">
+          <div class="sef-area-icon">🏛️</div>
+          <div>
+            <div class="sef-area-name">6. Leadership and Governance</div>
+            <div class="sef-area-sub">Strategic leadership · Governance · Staff development · Accountability · Self-evaluation</div>
+          </div>
+        </div>
+        <div class="sef-grade">
+          <div class="sef-grade-label">Draft grade</div>
+          <div class="sef-grade-badge grade-strong">Strong Standard</div>
+        </div>
+      </div>
+
+      <div class="sef-area-body">
+        <div class="sef-col-grid">
+          <div>
+            <div class="sef-section-title">✅ Strengths &amp; Evidence</div>
+            <ul class="sef-bullets">
+              <li><span class="sef-bullet-tick">✅</span><span>Three-year A8 improvement trajectory (44.2 → 44.6 → 46.1) during a period of significant community challenge — demonstrating sustained, strategic leadership of improvement.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>StepLab in-house coaching model — self-sustaining professional development culture. 796 drop-ins, 409 STEPS, 1,003 course modules. T&amp;L improvement driven from within the school.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>PP strategy (3-strand): Quality First Teaching, targeted academic support, whole-child provision. Summer School £90/pupil, Easter School, free alumni tutoring 5 days/week — all evidence of strategic PP deployment.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Admissions transparency: robust CME processes, detailed removal tracking, home visit programme (176 visits, 70% contact success). No evidence of off-rolling — actively absorbs complex pupils.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>ECT/SIT pipeline: 12 staff in structured development. School grows its own teachers — reducing dependency on agency supply and building institutional knowledge.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Fairer Schools Index leadership: +735 places. Ofsted ungraded inspection — standards maintained. MAT (GLC) grade profile shows 5 schools graded/ungraded, none in category.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>SEND register accuracy audit since 2022 — identification rate grown from 14.15% (2023 census) to 21.2% (April 2026 live register). Systematic, evidenced approach to SEN identification.</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="sef-section-title">📝 Areas for Development</div>
+            <ul class="sef-bullets">
+              <li><span class="sef-bullet-dev">→</span><span>Governance evidence — governor challenge minutes, committee structure, skills audit, governor visit records, and link governor activity need to be collated and evidenced for this section.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>Staff wellbeing — evidence of workload reduction strategies, staff survey data, and retention rates would strengthen the leadership narrative.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>MAT-level self-evaluation — GLC-wide improvement strategy and trust-level governance oversight to be evidenced alongside school-level leadership.</span></li>
+              <li><span class="sef-bullet-dev">→</span><span>[Add further evidence here — Ofsted inspection report, governor minutes, SLT structure, performance management framework, budget/financial management, stakeholder engagement]</span></li>
+            </ul>
+            <div class="sef-dev-box" style="margin-top:12px;">
+              <strong>Rationale for Strong Standard:</strong> The sustained A8 improvement, PP strategy evidence, ECT pipeline, in-house coaching model, and CME processes all point to strategic, accountable leadership. The honest gap is governance documentation — the evidence exists, but needs to be compiled and evidenced in this SEF for inspection readiness.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sef-evidence-strip">
+        <span class="sef-evidence-tag">📚 Teaching &amp; Learning tab</span>
+        <span class="sef-evidence-tag">💙 Disadvantaged tab</span>
+        <span class="sef-evidence-tag">🔄 Pupil Mobility tab</span>
+        <span class="sef-evidence-tag">📈 Overview tab</span>
+      </div>
+    </div>
+
+    <!-- ── SAFEGUARDING ──────────────────────────────────────── -->
+    <div class="sef-safeguarding">
+      <div class="sef-sg-icon">🛡️</div>
+      <div>
+        <div class="sef-sg-grade">Safeguarding: Met</div>
+        <div class="sef-sg-title">Safeguarding is effective — all statutory requirements met</div>
+        <div class="sef-sg-sub">Safeguarding is evaluated separately under the new framework as Met / Not Met only — it is not graded on the 5-point scale. Evidence: STEER wellbeing screening · Clinical referral pathways (MCB, CAMHS, MHST) · CME tracking for all leavers · Home visit programme · Robust EHC plan review cycle · Designated Safeguarding Lead in post · [Add: SCR, single central record, DSL training dates, governor safeguarding training]</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;" class="info-box ib-blue">
+      <strong>Next steps for this SEF:</strong> (1) Review and confirm grades with SLT. (2) Add governance evidence to Leadership section. (3) Populate student voice and SMSC evidence in Personal Development. (4) Align this SEF with the School Development Plan priorities. (5) Update after any new data (November IDSR, DfE attendance publication). (6) Share with governors for challenge and approval before inspection window opens.
+    </div>
+
+  </div><!-- /sef -->
 
 </div><!-- /main -->
 
