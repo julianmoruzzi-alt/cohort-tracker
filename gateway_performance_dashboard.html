@@ -290,7 +290,7 @@
     <div class="header-badges">
       <span class="header-badge">📍 Tilbury, Thurrock</span>
       <span class="header-badge">IDSR Nov 2025 · DfE 2024/25</span>
-      <button class="header-btn" onclick="window.print()">🖨 Print</button>
+      <button class="header-btn" id="tabPrintBtn" onclick="printCurrentTab()">🖨 Print This Tab</button>
       <button class="header-btn" id="govPrintBtn" onclick="openGovernorSummary()" style="background:rgba(52,211,153,.18);border-color:rgba(52,211,153,.45);">📄 Governor Summary</button>
     </div>
   </div>
@@ -3548,6 +3548,569 @@
   // ── GOVERNOR PRINT ───────────────────────────────────────────
 
 
+  // ── TAB-AWARE PRINT ──────────────────────────────────────────
+  function printCurrentTab() {
+    var activePanel = document.querySelector('.tab-panel.active');
+    var tabId = activePanel ? activePanel.id.replace('tab-', '') : 'overview';
+    var today = new Date().toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'});
+    var w = window.open('', '_blank', 'width=920,height=720');
+    w.document.write(getTabPrintHTML(tabId, today));
+    w.document.close();
+    w.focus();
+  }
+
+  function tabPrintShell(title, subtitle, date, body) {
+    return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<title>Gateway Academy — ${title}</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0f2744;--blue:#1e5fa8;--green:#166534;--amber:#b45309;
+  --red:#b91c1c;--purple:#6d28d9;--muted:#64748b;
+  --border:#dde3ed;--surface:#f7f9fc;
+  --gl:#dcfce7;--gb:#86efac;--bl:#e8f0fb;--al:#fef3c7;--ab:#fcd34d;
+  --rl:#fee2e2;--rb:#fca5a5;--pl:#ede9fe;
+}
+body{font-family:'Inter',sans-serif;font-size:10pt;color:#0f172a;background:#fff;line-height:1.5;}
+a{color:var(--blue);}
+.page{width:210mm;min-height:277mm;margin:0 auto;padding:13mm 15mm 12mm;}
+.page+.page{border-top:3px dashed #e2e8f0;margin-top:6mm;}
+@media print{
+  .page+.page{border-top:none;page-break-before:always;break-before:page;}
+  .print-btn{display:none!important;}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  @page{margin:12mm 14mm 16mm;size:A4;}
+}
+.print-btn{position:fixed;top:14px;right:14px;background:var(--navy);color:#fff;border:none;
+  padding:9px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;
+  font-family:inherit;z-index:999;box-shadow:0 2px 8px rgba(0,0,0,.3);}
+.print-btn:hover{background:#1a3d6b;}
+/* HEADER */
+.hdr{background:var(--navy);color:#fff;padding:13px 17px;border-radius:10px;margin-bottom:14px;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.hdr-title{font-size:15pt;font-weight:800;letter-spacing:-.3px;}
+.hdr-sub{font-size:8pt;color:#94a8c8;margin-top:3px;}
+.hdr-meta{text-align:right;font-size:8pt;color:#94a8c8;line-height:1.7;}
+/* SECTION */
+.sh{font-size:10.5pt;font-weight:800;color:var(--navy);border-bottom:1.5px solid var(--navy);
+  padding-bottom:4px;margin:13px 0 9px;text-transform:uppercase;letter-spacing:.4px;}
+/* STAT GRID */
+.sg{display:grid;gap:7px;margin-bottom:10px;}
+.sg-4{grid-template-columns:repeat(4,1fr);}
+.sg-3{grid-template-columns:repeat(3,1fr);}
+.sg-2{grid-template-columns:repeat(2,1fr);}
+.sb{border:1px solid var(--border);border-radius:7px;padding:9px 10px;position:relative;overflow:hidden;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.sb::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:7px 0 0 7px;}
+.sb-g::before{background:var(--green);}
+.sb-b::before{background:var(--blue);}
+.sb-a::before{background:var(--amber);}
+.sb-p::before{background:var(--purple);}
+.sb-r::before{background:var(--red);}
+.sl{font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:3px;}
+.sv{font-size:18pt;font-weight:800;line-height:1;margin-bottom:2px;}
+.sv-g{color:var(--green)}.sv-b{color:var(--blue)}.sv-a{color:var(--amber)}.sv-p{color:var(--purple)}.sv-r{color:var(--red)}
+.sn{font-size:7.5pt;color:var(--muted);}
+.stag{display:inline-block;font-size:7pt;font-weight:700;padding:1px 6px;border-radius:10px;margin-top:3px;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.tg{background:var(--gl);color:var(--green);}
+.tb{background:var(--bl);color:var(--blue);}
+.ta{background:var(--al);color:var(--amber);}
+.tp{background:var(--pl);color:var(--purple);}
+/* TABLE */
+.dt{width:100%;border-collapse:collapse;font-size:8.5pt;margin-bottom:10px;}
+.dt th{background:var(--navy);color:#fff;padding:6px 9px;text-align:left;
+  font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.4px;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.dt td{padding:5px 9px;border-bottom:1px solid #f0f4f8;vertical-align:middle;}
+.dt tr:last-child td{border-bottom:none;}
+.dt tr.gw td{background:#f0f9ff;font-weight:700;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.dt tr.sub td{background:var(--surface);font-size:7.5pt;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.3px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.dt tr.hi td{background:#f0fdf4;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.mono{font-family:monospace;font-weight:700;}
+.cg{color:var(--green)}.cb{color:var(--blue)}.ca{color:var(--amber)}.cr{color:var(--red)}.cm{color:var(--muted)}.cp{color:var(--purple)}
+.fw{font-weight:700;}
+/* INFO BOX */
+.ib{border-radius:7px;padding:9px 12px;font-size:8pt;line-height:1.6;margin-bottom:10px;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.ib-g{background:var(--gl);border:1px solid var(--gb);color:var(--green);}
+.ib-b{background:var(--bl);border:1px solid #bfdbfe;color:#1e3a5f;}
+.ib-a{background:var(--al);border:1px solid var(--ab);color:#78350f;}
+/* NARR CARDS */
+.ng{display:grid;gap:8px;margin-bottom:10px;}
+.ng-2{grid-template-columns:1fr 1fr;}
+.nc{border:1px solid var(--border);border-radius:7px;padding:10px 12px;position:relative;overflow:hidden;}
+.nc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:7px 0 0 7px;}
+.nc-g::before{background:var(--green)}.nc-b::before{background:var(--blue)}
+.nc-p::before{background:var(--purple)}.nc-a::before{background:var(--amber)}
+.ne{font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:3px;}
+.ns{font-size:13pt;font-weight:800;margin-bottom:3px;}
+.nc-g .ns{color:var(--green)}.nc-b .ns{color:var(--blue)}.nc-p .ns{color:var(--purple)}.nc-a .ns{color:var(--amber)}
+.nt{font-size:8.5pt;font-weight:700;color:var(--navy);margin-bottom:3px;line-height:1.3;}
+.nx{font-size:8pt;color:#334155;line-height:1.55;}
+/* DARK BLOCK */
+.dk{background:var(--navy);border-radius:10px;padding:14px 16px;color:#fff;margin-bottom:12px;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.dk h3{font-size:12pt;font-weight:800;margin-bottom:5px;}
+.dk p{font-size:8pt;color:#94a8c8;margin-bottom:10px;line-height:1.5;}
+.dp{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.dpc{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:8px;padding:10px 12px;}
+.dpl{font-size:7pt;font-weight:700;text-transform:uppercase;color:#94a8c8;margin-bottom:4px;}
+.dpv{font-family:monospace;font-size:14pt;font-weight:700;color:#34d399;margin-bottom:3px;}
+.dpt{font-size:7.5pt;color:#e2e8f0;line-height:1.5;}
+/* KEY MSGS */
+.km{list-style:none;}
+.km li{display:flex;gap:8px;align-items:flex-start;font-size:8.5pt;color:#334155;
+  line-height:1.55;padding:5px 0;border-bottom:1px solid #f0f4f8;}
+.km li:last-child{border-bottom:none;}
+/* FOOTER */
+.ft{margin-top:12px;padding-top:8px;border-top:1px solid var(--border);font-size:7.5pt;
+  color:var(--muted);display:flex;justify-content:space-between;}
+/* UTIL */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.mb8{margin-bottom:8px!important}
+</style>
+
+</head><body>
+<button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+${body}
+</body></html>`;
+  }
+
+  function hdr(title, sub, date, page) {
+    return `<div class="hdr">
+      <div><div class="hdr-title">${title}</div>
+      <div class="hdr-sub">The Gateway Academy · URN 133114 · Tilbury, Thurrock · Gateway Learning Community</div>
+      ${sub ? '<div class="hdr-sub" style="margin-top:2px;">'+sub+'</div>' : ''}
+      </div>
+      <div class="hdr-meta">Confidential<br>${date}<br>${page}</div>
+    </div>`;
+  }
+
+  function ft(section, source) {
+    return `<div class="ft"><span>The Gateway Academy — ${section}</span><span>${source}</span><span>Confidential</span></div>`;
+  }
+
+  function getTabPrintHTML(tabId, date) {
+    var html = '';
+    switch(tabId) {
+
+      case 'overview':
+        html = `<div class="page">
+          ${hdr('KS4 Outcomes — Overview', 'IDSR November 2025 · DfE KS4 2024/25 (final)', date, 'Overview Report')}
+          <div class="ib ib-a"><strong>Key context:</strong> FSM6 40.6% (highest in Thurrock) · Low Stability flag 2024 &amp; 2025 · EAL 25.1% · Ungraded Ofsted — Standards Maintained. All measures should be read with cohort context in mind.</div>
+          <div class="sh">Headline Measures 2024/25</div>
+          <div class="sg sg-4 mb8">
+            <div class="sb sb-b"><div class="sl">Attainment 8</div><div class="sv sv-b">46.0</div><div class="sn">National: 45.9</div><span class="stag tb">In line</span></div>
+            <div class="sb sb-g"><div class="sl">Progress 8 (2023/24)</div><div class="sv sv-g">+0.07</div><div class="sn">National: −0.03</div><span class="stag tg">Above national</span></div>
+            <div class="sb sb-g"><div class="sl">Eng &amp; Maths 5+</div><div class="sv sv-g">48.2%</div><div class="sn">National: 41.4%</div><span class="stag tg">+6.8pp above</span></div>
+            <div class="sb sb-g"><div class="sl">Eng &amp; Maths 4+</div><div class="sv sv-g">64.5%</div><div class="sn">National: 58.8%</div><span class="stag tg">+5.7pp above</span></div>
+          </div>
+          <div class="sg sg-4 mb8">
+            <div class="sb sb-g"><div class="sl">Dis. Attainment 8</div><div class="sv sv-g">38.0</div><div class="sn">National dis: 34.9</div><span class="stag tg">+3.1 above</span></div>
+            <div class="sb sb-g"><div class="sl">Dis. Progress 8 (23/24)</div><div class="sv sv-g">−0.04</div><div class="sn">National dis: −0.57</div><span class="stag tg">Above (sig+) ⭐</span></div>
+            <div class="sb sb-g"><div class="sl">Dis. Eng &amp; Maths 5+</div><div class="sv sv-g">34.2%</div><div class="sn">National dis: 25.6%</div><span class="stag tg">+8.6pp above</span></div>
+            <div class="sb sb-p"><div class="sl">National Percentile</div><div class="sv sv-p">79th</div><div class="sn">vs FSM-matched peers</div><span class="stag tp">84th — EM5+</span></div>
+          </div>
+          <div class="sh">Three-Year Trend</div>
+          <table class="dt mb8">
+            <thead><tr><th>Measure</th><th>2022/23</th><th>2023/24</th><th>2024/25</th><th>National 2024/25</th><th>vs National</th></tr></thead>
+            <tbody>
+              <tr><td class="fw">A8 — All Pupils</td><td class="mono">44.2</td><td class="mono">44.6</td><td class="mono cg fw">46.0</td><td class="mono cm">45.9</td><td class="cg fw">+0.1</td></tr>
+              <tr><td class="fw">P8 — All Pupils</td><td class="mono cg">+0.23</td><td class="mono cg fw">+0.07</td><td class="mono cm">n/a*</td><td class="mono cm">−0.03</td><td class="cg fw">+0.10 (23/24)</td></tr>
+              <tr><td class="fw">Eng &amp; Maths 5+</td><td class="mono">44.2%</td><td class="mono">47.2%</td><td class="mono cg fw">48.2%</td><td class="mono cm">41.4%</td><td class="cg fw">+6.8pp</td></tr>
+              <tr class="hi"><td class="fw">Dis. A8</td><td class="mono cg">39.3</td><td class="mono cg">38.9</td><td class="mono cg fw">38.0</td><td class="mono cm">34.9</td><td class="cg fw">+3.1</td></tr>
+              <tr class="hi"><td class="fw">Dis. P8</td><td class="mono cg">+0.15</td><td class="mono cg fw">−0.04</td><td class="mono cm">n/a*</td><td class="mono cm">−0.57</td><td class="cg fw">+0.53 (23/24) ⭐</td></tr>
+            </tbody>
+          </table>
+          <div class="ib ib-b" style="font-size:7.5pt;">* P8 not published nationally for 2024/25 or 2025/26 — those cohorts did not sit KS2 SATs due to COVID. All P8 data uses 2023/24 — the latest valid year. Dis. P8 rated <strong>Above (sig+)</strong> in the IDSR for two consecutive years.</div>
+          <div class="two">
+            <div class="ib ib-g"><strong>P8 recovery:</strong> −0.76 (2021/22) → +0.23 (2022/23) → +0.07 (2023/24). Above national average of −0.03 for two consecutive years. Significant improvement from post-COVID low.</div>
+            <div class="ib ib-g"><strong>Similar schools:</strong> Among 366 academies with FSM≥30% and comparable cohort size, Gateway ranks 79th on A8 (top 21%) and 84th on EM5+ — top sixth nationally among comparable schools.</div>
+          </div>
+          ${ft('KS4 Overview', 'IDSR Nov 2025 · DfE KS4 2024/25')}
+        </div>`;
+        break;
+
+      case 'attendance':
+        html = `<div class="page">
+          ${hdr('Attendance Report', 'DfE Monitor Your School · Similar Schools Autumn 2025/26 · To 12 June 2026', date, 'Attendance Report')}
+          <div class="sh">Current Year Headline — To 12 June 2026</div>
+          <div class="sg sg-4 mb8">
+            <div class="sb sb-g"><div class="sl">Overall Attendance</div><div class="sv sv-g">93.2%</div><div class="sn">National: 92.1%</div><span class="stag tg">2nd of 21 similar</span></div>
+            <div class="sb sb-g"><div class="sl">SEN Attendance</div><div class="sv sv-g">90.6%</div><div class="sn">Similar median: 84.3%</div><span class="stag tg">#1 of 21 ⭐</span></div>
+            <div class="sb sb-g"><div class="sl">FSM Attendance</div><div class="sv sv-g">90.7%</div><div class="sn">Similar median: 87.0%</div><span class="stag tg">+3.7pp above</span></div>
+            <div class="sb sb-b"><div class="sl">Persistent Absence</div><div class="sv sv-b">19.0%</div><div class="sn">Similar median: 25.7%</div><span class="stag tb">3rd of 21</span></div>
+          </div>
+          <div class="sh">vs Similar Schools — Autumn 2025/26 (DfE matched group)</div>
+          <table class="dt mb8">
+            <thead><tr><th>Pupil Group</th><th>Gateway</th><th>Similar Schools Median</th><th>Difference</th><th>DfE Finding</th></tr></thead>
+            <tbody>
+              <tr class="hi"><td class="fw">All Pupils</td><td class="mono cg fw">92.9%</td><td class="mono cm">90.9%</td><td class="cg fw">+2.0pp</td><td style="font-size:7.5pt;">Ranked 2nd of 21</td></tr>
+              <tr><td class="fw">FSM Pupils</td><td class="mono cg fw">90.7%</td><td class="mono cm">87.0%</td><td class="cg fw">+3.7pp</td><td style="font-size:7.5pt;">Above similar schools</td></tr>
+              <tr><td class="fw">Non-FSM</td><td class="mono cg fw">94.5%</td><td class="mono cm">93.6%</td><td class="cg fw">+0.9pp</td><td style="font-size:7.5pt;">Above similar schools</td></tr>
+              <tr class="hi"><td class="fw">SEN Pupils ⭐</td><td class="mono cg fw">90.6%</td><td class="mono cm">84.3%</td><td class="cg fw">+6.3pp</td><td style="font-size:7.5pt;"><strong>#1 of 21 — DfE Relative Strength</strong></td></tr>
+              <tr><td class="fw">Non-SEN</td><td class="mono cg fw">93.5%</td><td class="mono cm">92.6%</td><td class="cg fw">+0.9pp</td><td style="font-size:7.5pt;">Above similar schools</td></tr>
+            </tbody>
+          </table>
+          <div class="sh">Year-on-Year Term Comparison</div>
+          <table class="dt mb8">
+            <thead><tr><th>Term</th><th>Attendance 2024/25</th><th>Attendance 2025/26</th><th>Change</th><th>Absence 2025/26</th><th>Unauth. 2025/26</th></tr></thead>
+            <tbody>
+              <tr><td class="fw">Autumn</td><td class="mono">93.0%</td><td class="mono cb fw">92.9%</td><td class="ca fw">−0.1pp</td><td class="mono">7.1%</td><td class="mono">5.5%</td></tr>
+              <tr class="hi"><td class="fw">Spring</td><td class="mono">92.4%</td><td class="mono cg fw">93.2%</td><td class="cg fw">+0.8pp ↑</td><td class="mono cg">6.8%</td><td class="mono cg">5.0%</td></tr>
+              <tr class="hi"><td class="fw">Summer</td><td class="mono">93.1%</td><td class="mono cg fw">93.8%</td><td class="cg fw">+0.7pp ↑</td><td class="mono cg">6.2%</td><td class="mono cg">4.3%</td></tr>
+              <tr><td class="fw">Full Year</td><td class="mono">92.8%</td><td class="mono cg fw">93.2%</td><td class="cg fw">+0.4pp ↑</td><td class="mono cg">6.8%</td><td class="mono cg">5.1%</td></tr>
+            </tbody>
+          </table>
+          <div class="ib ib-g"><strong>DfE Similar Schools report finding (Autumn 2025/26):</strong> Gateway ranked 2nd of 21 similar schools for overall attendance. SEN attendance higher than all 20 similar schools — rated DfE Relative Strength for two consecutive periods. <strong>Zero areas to focus on</strong> (most schools receive 3). School exceeds its ABIE (92.8%) — current attendance 93.2%.</div>
+          ${ft('Attendance Report', 'DfE Monitor Your School · Similar Schools Autumn 25/26')}
+        </div>`;
+        break;
+
+      case 'similar':
+        html = `<div class="page">
+          ${hdr('Similar Schools — National Comparisons', 'DfE KS4 2024/25 · 4,067 state-funded schools', date, 'Similar Schools Report')}
+          <div class="sh">National Percentile Position</div>
+          <div class="sg sg-4 mb8">
+            <div class="sb sb-b"><div class="sl">A8 — All State Schools</div><div class="sv sv-b">55th</div><div class="sn">Percentile · A8: 46.1</div><span class="stag tb">Above half nationally</span></div>
+            <div class="sb sb-g"><div class="sl">A8 — Similar Schools (366)</div><div class="sv sv-g">79th</div><div class="sn">Peer group mean: 41.3</div><span class="stag tg">Top 21% of peers</span></div>
+            <div class="sb sb-g"><div class="sl">EM 5+ — All State</div><div class="sv sv-g">64th</div><div class="sn">48.2% vs national 41.4%</div><span class="stag tg">Top third nationally</span></div>
+            <div class="sb sb-g"><div class="sl">EM 5+ — Similar Schools</div><div class="sv sv-g">84th</div><div class="sn">Peer group mean: 35.4%</div><span class="stag tg">Top sixth of peers ⭐</span></div>
+          </div>
+          <div class="sh">Thurrock Schools — A8 Ranking 2024/25</div>
+          <table class="dt mb8">
+            <thead><tr><th>School</th><th>A8</th><th>EM 5+</th><th>FSM6 %</th><th>P8 (2023/24)</th></tr></thead>
+            <tbody>
+              <tr><td class="fw">Grays Convent High School</td><td class="mono cg fw">55.7</td><td class="mono cg">61.3%</td><td class="mono cm">16.1%</td><td class="mono cg">+0.76</td></tr>
+              <tr><td class="fw">Harris Academy Chafford Hundred</td><td class="mono cg fw">55.5</td><td class="mono cg">68.1%</td><td class="mono cm">10.1%</td><td class="mono cg">+1.04</td></tr>
+              <tr><td class="fw">Harris Academy Riverside</td><td class="mono cb">47.9</td><td class="mono cb">45.3%</td><td class="mono">26.5%</td><td class="mono cg">+0.23</td></tr>
+              <tr><td class="fw">Harris Academy Ockendon</td><td class="mono cb">47.3</td><td class="mono cb">49.4%</td><td class="mono">24.9%</td><td class="mono cg">+0.46</td></tr>
+              <tr><td class="fw">Thames Park Secondary</td><td class="mono cb">46.4</td><td class="mono cb">54.1%</td><td class="mono">27.9%</td><td class="mono cm">n/a</td></tr>
+              <tr class="gw"><td class="fw">🏫 The Gateway Academy</td><td class="mono cb fw">46.0</td><td class="mono cb">48.2%</td><td class="mono cr fw">40.6%*</td><td class="mono cg">+0.07</td></tr>
+              <tr><td class="fw">Ortu Gable Hall</td><td class="mono cb">45.8</td><td class="mono cb">43.9%</td><td class="mono">19.4%</td><td class="mono ca">−0.51</td></tr>
+              <tr><td class="fw">Ortu Hassenbrook</td><td class="mono ca">43.8</td><td class="mono ca">43.8%</td><td class="mono ca">35.2%</td><td class="mono cr">−0.76</td></tr>
+              <tr><td class="fw">Ormiston Park Academy</td><td class="mono cr">37.5</td><td class="mono cr">28.3%</td><td class="mono cr">39.4%</td><td class="mono cr">−0.73</td></tr>
+            </tbody>
+          </table>
+          <div class="ib ib-b" style="font-size:7.5pt;">* Gateway FSM6: 40.6% whole-school (IDSR). 38.6% KS4 cohort (DfE table). Both figures are the highest or near-highest FSM rate of any mainstream Thurrock secondary. All schools above Gateway have FSM rates of 10–28%.</div>
+          <div class="sh">National Peer Group — Similar Academies (FSM≥30%, 150–350 pupils)</div>
+          <div class="ib ib-g">366 schools nationally match Gateway's profile. Their A8 mean is 41.3 — Gateway scores 46.1, placing it in the <strong>79th percentile</strong> of this group. EM5+ mean for the group is 35.4% — Gateway at 48.2% places it in the <strong>84th percentile</strong>. Many of the schools above Gateway are London academies benefiting from the London Challenge legacy effect. Among non-London comparable schools, Gateway's position is even stronger.</div>
+          ${ft('Similar Schools Report', 'DfE KS4 2024/25 final')}
+        </div>`;
+        break;
+
+      case 'inclusion':
+        html = `<div class="page">
+          ${hdr('Behaviour &amp; Inclusion Report', 'ClassCharts 2025/26 · Suspensions Register · Rewards Shop Data', date, 'Inclusion Report')}
+          <div class="sh">Headline Measures 2025/26</div>
+          <div class="sg sg-4 mb8">
+            <div class="sb sb-g"><div class="sl">Suspension Rate / 100</div><div class="sv sv-g">9.4</div><div class="sn">National: 11.31</div><span class="stag tg">Below national</span></div>
+            <div class="sb sb-g"><div class="sl">Merit:Demerit Ratio</div><div class="sv sv-g">4.3:1</div><div class="sn">Summer term: 5.2:1</div><span class="stag tg">Improving every term</span></div>
+            <div class="sb sb-g"><div class="sl">SET-Free Lessons</div><div class="sv sv-g">99.5%</div><div class="sn">2,046 SET call-outs</div><span class="stag tg">Disruption is rare</span></div>
+            <div class="sb sb-g"><div class="sl">SET Reduction vs 2018/19</div><div class="sv sv-g">−68%</div><div class="sn">6,336 → 2,046</div><span class="stag tg">Long-term improvement</span></div>
+          </div>
+          <div class="sh">ClassCharts — Year Group Breakdown 2025/26</div>
+          <table class="dt mb8">
+            <thead><tr><th>Year Group</th><th>Merits</th><th>Demerits</th><th>Ratio</th><th>SET Call-Outs</th><th>Context</th></tr></thead>
+            <tbody>
+              <tr class="hi"><td class="fw">Year 7</td><td class="mono cg">61,451</td><td class="mono">10,201</td><td class="mono cg fw">6.0:1</td><td class="mono">265</td><td style="font-size:7.5pt;">Strongest ratio — excellent embedding</td></tr>
+              <tr><td class="fw">Year 8</td><td class="mono cg">64,546</td><td class="mono">16,268</td><td class="mono cb fw">4.0:1</td><td class="mono">526</td><td style="font-size:7.5pt;">Highest merit volume</td></tr>
+              <tr><td class="fw">Year 9</td><td class="mono">57,420</td><td class="mono ca">18,076</td><td class="mono ca fw">3.2:1</td><td class="mono ca">700</td><td style="font-size:7.5pt;">Most SET — targeted intervention in place</td></tr>
+              <tr><td class="fw">Year 10</td><td class="mono cg">34,315</td><td class="mono">7,412</td><td class="mono cg fw">4.6:1</td><td class="mono">364</td><td style="font-size:7.5pt;">Strong — GCSE focus embedding</td></tr>
+              <tr class="hi"><td class="fw">Year 11</td><td class="mono cg">20,170</td><td class="mono">3,476</td><td class="mono cg fw">5.8:1</td><td class="mono cg">191</td><td style="font-size:7.5pt;">Excellent — exam year maturity</td></tr>
+              <tr class="sub"><td>Total</td><td class="mono">237,902</td><td class="mono">55,433</td><td class="mono">4.3:1</td><td class="mono">2,046</td><td style="font-size:7.5pt;">Improving every term: 3.9 → 4.1 → 5.2:1</td></tr>
+            </tbody>
+          </table>
+          <div class="sh">Suspension Trend</div>
+          <table class="dt mb8">
+            <thead><tr><th>Year</th><th>Cohort</th><th>Suspensions</th><th>Per 100 Pupils</th><th>vs National (11.31)</th><th>Perm. Excl.</th></tr></thead>
+            <tbody>
+              <tr><td class="fw">2021/22</td><td class="mono">1,071</td><td class="mono cr">126</td><td class="mono cr">11.8</td><td class="cr">+0.5 above</td><td class="mono cr">9</td></tr>
+              <tr><td class="fw">2022/23</td><td class="mono">1,079</td><td class="mono cg">94</td><td class="mono cg">8.7</td><td class="cg">−2.6 below</td><td class="mono ca">6</td></tr>
+              <tr><td class="fw">2023/24</td><td class="mono">1,100</td><td class="mono ca">106</td><td class="mono ca">9.6</td><td class="cg">−1.7 below</td><td class="mono ca">6</td></tr>
+              <tr><td class="fw">2024/25</td><td class="mono">1,037</td><td class="mono ca">118</td><td class="mono ca">11.4</td><td class="cg">−0.1 below</td><td class="mono cg">4</td></tr>
+              <tr class="hi"><td class="fw">2025/26 (to date)</td><td class="mono">1,031</td><td class="mono cg fw">97</td><td class="mono cg fw">9.4</td><td class="cg fw">−1.9 below ✓</td><td class="mono ca">5</td></tr>
+            </tbody>
+          </table>
+          <div class="two">
+            <div class="ib ib-g"><strong>Rewards Shop (Jan–Jun 2026):</strong> 3,483 fulfilled transactions · 313 unique students (30% of roll) · 46,290 points redeemed. Year 7: 50% of cohort engaging. Halal provision stocked. 472 stationery purchases — pupils using merits for academic readiness.</div>
+            <div class="ib ib-b"><strong>Disruption is concentrated:</strong> Under 1% of pupils generate 23% of SET demand — enabling precise, targeted intervention. 99.5% of lessons proceeded without a SET call-out. Summer term merit:demerit ratio of 5.2:1 meets the research benchmark for effective behaviour coaching.</div>
+          </div>
+          ${ft('Behaviour &amp; Inclusion Report', 'ClassCharts 2025/26 · Suspensions Register')}
+        </div>`;
+        break;
+
+      case 'send':
+        html = `<div class="page">
+          ${hdr('SEND Report', 'SEND Student Directory April 2026 · EAA Register January 2026', date, 'SEND Report')}
+          <div class="sh">SEND Register — April 2026</div>
+          <div class="sg sg-4 mb8">
+            <div class="sb sb-b"><div class="sl">Total on Register</div><div class="sv sv-b">218</div><div class="sn">21.2% of roll</div><span class="stag tb">Above national avg</span></div>
+            <div class="sb sb-p"><div class="sl">EHCPs</div><div class="sv sv-p">30</div><div class="sn">2.9% — legal plans</div><span class="stag tp">17 also PP</span></div>
+            <div class="sb sb-b"><div class="sl">SEN Support (K)</div><div class="sv sv-b">175</div><div class="sn">17.0% of roll</div><span class="stag tb">104 also PP</span></div>
+            <div class="sb sb-r"><div class="sl">SEND + PP Overlap</div><div class="sv sv-r">59%</div><div class="sn">128 dual-need pupils</div><span class="stag" style="background:var(--rl);color:var(--red);">Most complex group</span></div>
+          </div>
+          <div class="sh">By Year Group</div>
+          <table class="dt mb8">
+            <thead><tr><th>Year</th><th>Pupils</th><th>Total SEND</th><th>% SEND</th><th>EHCP</th><th>SEN K</th><th>SEND+PP</th><th>% of SEND also PP</th></tr></thead>
+            <tbody>
+              <tr><td class="fw">Year 7</td><td class="mono">211</td><td class="mono cb fw">55</td><td><span class="stag ta">26%</span></td><td class="mono cp">5</td><td class="mono cb">44</td><td class="mono cr">35</td><td class="mono">64%</td></tr>
+              <tr><td class="fw">Year 8</td><td class="mono">205</td><td class="mono cb fw">43</td><td><span class="stag tb">21%</span></td><td class="mono cp">6</td><td class="mono cb">32</td><td class="mono cr">22</td><td class="mono">51%</td></tr>
+              <tr><td class="fw">Year 9</td><td class="mono">216</td><td class="mono cb fw">48</td><td><span class="stag tb">22%</span></td><td class="mono cp">8</td><td class="mono cb">39</td><td class="mono cr">31</td><td class="mono">65%</td></tr>
+              <tr><td class="fw">Year 10</td><td class="mono">205</td><td class="mono cb fw">40</td><td><span class="stag tb">20%</span></td><td class="mono cp">6</td><td class="mono cb">34</td><td class="mono cr">22</td><td class="mono">55%</td></tr>
+              <tr class="hi"><td class="fw">Year 11</td><td class="mono">192</td><td class="mono cg fw">32</td><td><span class="stag tg">17%</span></td><td class="mono cp">5</td><td class="mono cb">26</td><td class="mono cr">18</td><td class="mono">56%</td></tr>
+              <tr class="sub"><td>Total</td><td class="mono">1,029</td><td class="mono fw">218</td><td>21.2%</td><td class="mono">30</td><td class="mono">175</td><td class="mono fw">128</td><td class="mono">59%</td></tr>
+            </tbody>
+          </table>
+          <div class="sh">Primary SEN Needs &amp; EAA</div>
+          <div class="two mb8">
+            <table class="dt">
+              <thead><tr><th>Primary Need</th><th>Pupils</th><th>% of register</th></tr></thead>
+              <tbody>
+                <tr class="hi"><td class="fw">SEMH</td><td class="mono cr fw">79</td><td class="mono cr">36%</td></tr>
+                <tr><td class="fw">Moderate Learning Difficulty</td><td class="mono cb fw">63</td><td class="mono">29%</td></tr>
+                <tr><td class="fw">Speech &amp; Language (SLCN)</td><td class="mono cb">32</td><td class="mono">15%</td></tr>
+                <tr><td class="fw">ASD</td><td class="mono cg">31</td><td class="mono">14%</td></tr>
+                <tr><td class="fw">SPLD / HI / PD / VI</td><td class="mono cm">13</td><td class="mono">6%</td></tr>
+              </tbody>
+            </table>
+            <table class="dt">
+              <thead><tr><th>EAA Arrangement</th><th>Pupils</th></tr></thead>
+              <tbody>
+                <tr class="hi"><td class="fw">Total with EAA</td><td class="mono cb fw">215 (20.8%)</td></tr>
+                <tr><td class="fw">Prompt</td><td class="mono">141</td></tr>
+                <tr><td class="fw">Alt Venue (Hall)</td><td class="mono">85</td></tr>
+                <tr><td class="fw">Supervised Rest Break</td><td class="mono">85</td></tr>
+                <tr><td class="fw">25% Extra Time</td><td class="mono">64</td></tr>
+                <tr><td class="fw">Laptop</td><td class="mono">56</td></tr>
+                <tr><td class="fw">Physical Reader</td><td class="mono">51</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="ib ib-g"><strong>SEN attendance — #1 of 21 similar schools:</strong> SEN pupils attend at 90.6% — 6.3pp above the DfE similar schools median of 84.3%. Higher than all 20 similar schools — rated DfE Relative Strength for two consecutive periods. Low prior attaining pupils (many SEND+PP) achieve A8 of 29.0 vs national 25.2 — statistically significantly Above (sig+).</div>
+          ${ft('SEND Report', 'SEND Directory Apr 2026 · EAA Register Jan 2026')}
+        </div>`;
+        break;
+
+      case 'disadvantaged':
+        html = `<div class="page">
+          ${hdr('Disadvantaged Pupils Report', 'Disadvantaged Impact Report 2025/26 (K. Kitsiou) · DfE KS4 2024/25', date, 'Disadvantaged Report')}
+          <div class="sh">Profile &amp; Headlines</div>
+          <div class="sg sg-4 mb8">
+            <div class="sb sb-b"><div class="sl">Total PP Pupils</div><div class="sv sv-b">456</div><div class="sn">44% of 1,035 pupils</div><span class="stag tb">Highest in Thurrock area</span></div>
+            <div class="sb sb-g"><div class="sl">PP Persistent Absence</div><div class="sv sv-g">28.6%</div><div class="sn">National PP PA: 41.2%</div><span class="stag tg">12.6pp below national ⭐</span></div>
+            <div class="sb sb-g"><div class="sl">Enrichment Participation</div><div class="sv sv-g">89.8%</div><div class="sn">399 of 456 PP pupils</div><span class="stag tg">Full year · Clubs/trips</span></div>
+            <div class="sb sb-p"><div class="sl">Fairer Schools Index</div><div class="sv sv-p">+735</div><div class="sn">DfE 1,891 → FSI 1,156</div><span class="stag tp">Top 37% nationally</span></div>
+          </div>
+          <div class="sh">KS4 Outcomes — Disadvantaged vs National Disadvantaged 2024/25</div>
+          <table class="dt mb8">
+            <thead><tr><th>Measure</th><th>Gateway Dis.</th><th>National Dis.</th><th>vs National Dis.</th></tr></thead>
+            <tbody>
+              <tr><td class="fw">Attainment 8</td><td class="mono cb fw">37.0</td><td class="mono cm">37.0</td><td class="cb fw">In line</td></tr>
+              <tr class="hi"><td class="fw">Maths Grade 7+ ⭐</td><td class="mono cg fw">12.9%</td><td class="mono cm">9.9%</td><td class="cg fw">+3.0pp above</td></tr>
+              <tr class="hi"><td class="fw">English Grade 5+ ⭐</td><td class="mono cg fw">51.2%</td><td class="mono cm">45.3%</td><td class="cg fw">+5.9pp above</td></tr>
+              <tr class="hi"><td class="fw">Maths Grade 5+ ⭐</td><td class="mono cg fw">36.3%</td><td class="mono cm">33.9%</td><td class="cg fw">+2.4pp above</td></tr>
+              <tr><td class="fw">English Grade 4+</td><td class="mono cg fw">65.0%</td><td class="mono cm">61.6%</td><td class="cg fw">+3.4pp above</td></tr>
+              <tr><td class="fw">Basics 5+ (Eng &amp; Maths)</td><td class="mono cg fw">32.5%</td><td class="mono cm">28.5%</td><td class="cg fw">+4.0pp above</td></tr>
+            </tbody>
+          </table>
+          <div class="sh">3-Strand PP Strategy — Implementation Highlights</div>
+          <div class="three mb8">
+            <div class="nc nc-g"><div class="ne">Strand 1 — Teaching</div><div class="ns">Quality First</div><div class="nt">Pupil Premium Pursuit</div><div class="nx">Focus students updated after every data drop, shared in weekly bulletin, immediate learning walk actioned. Targeted in every subject across the school. High thinking / high participation insistence.</div></div>
+            <div class="nc nc-b"><div class="ne">Strand 2 — Targeted Support</div><div class="ns">226 + 84</div><div class="nt">Summer &amp; Easter holiday schools</div><div class="nx">Summer School: 226 pupils, £90/pupil, 87 PP. Easter School: 84 pupils, £55/pupil, 28 PP, Hollywood Bowl trip. Free alumni tutoring 5 days/week. 30+ weekend &amp; evening revision sessions Mar–Jun 2026.</div></div>
+            <div class="nc nc-p"><div class="ne">Strand 3 — Whole Child</div><div class="ns">£25,000</div><div class="nt">Thames Freeport Scholarship</div><div class="nx">26 dis. students supported. 2 students per year receive £25,000/yr through university. Gift giving tree (91 dis.), free Christmas dinner, school shoes, Food Tech ingredients funded, BBC Children in Need applications.</div></div>
+          </div>
+          <div class="sh">Parents Evening Attendance — PP Pupils</div>
+          <table class="dt mb8">
+            <thead><tr><th>Year Group</th><th>PP Attend. 2023/24</th><th>PP Attend. 2024/25</th><th>PP Attend. 2025/26</th><th>Change (2 yrs)</th></tr></thead>
+            <tbody>
+              <tr><td class="fw">Year 7</td><td class="mono cr">51%</td><td class="mono ca">82%</td><td class="mono cg fw">86%</td><td class="cg fw">+35pp</td></tr>
+              <tr><td class="fw">Year 9</td><td class="mono ca">69%</td><td class="mono ca">75%</td><td class="mono cg fw">98%</td><td class="cg fw">+29pp ⭐</td></tr>
+              <tr class="hi"><td class="fw">Year 11</td><td class="mono cr">47%</td><td class="mono ca">77%</td><td class="mono cg fw">90%</td><td class="cg fw">+43pp ⭐</td></tr>
+            </tbody>
+          </table>
+          <div class="ib ib-g"><strong>Fairer Schools Index:</strong> Gateway moves from 1,891 (DfE raw league) to 1,156 (Fairer Schools Index) — a rise of +735, the biggest positive jump of any Thurrock secondary. This places Gateway in the top 37% of schools nationally when context is properly applied. Grays Convent drops 921 places; Harris Chafford drops 323. Gateway's raw rank is suppressed by Low Stability, high FSM, and high SEND — not by teaching quality.</div>
+          ${ft('Disadvantaged Report', 'DIR 2025/26 · DfE KS4 2024/25')}
+        </div>`;
+        break;
+
+      case 'mobility':
+        html = `<div class="page">
+          ${hdr('Pupil Mobility Report', 'Admissions &amp; Mobility Report (Jan 2026) · Year 7 Intake Data (Sept 2026)', date, 'Mobility Report')}
+          <div class="sh">Current Roll — June 2026</div>
+          <div class="sg sg-4 mb8">
+            <div class="sb sb-b"><div class="sl">Total On Roll</div><div class="sv sv-b">1,037</div><div class="sn">June 2026 (fluctuates)</div><span class="stag tb">Stable despite mobility</span></div>
+            <div class="sb sb-a"><div class="sl">Removals 2025/26</div><div class="sv sv-a">40</div><div class="sn">To January 2026</div><span class="stag ta">95% parent-initiated</span></div>
+            <div class="sb sb-b"><div class="sl">In-Year Admissions</div><div class="sv sv-b">22</div><div class="sn">To January 2026</div><span class="stag tb">Declining trend</span></div>
+            <div class="sb sb-g"><div class="sl">Sept 2026 Y7 Intake</div><div class="sv sv-g">210</div><div class="sn">All places offered</div><span class="stag tg">82% GLC/feeder connected</span></div>
+          </div>
+          <div class="sh">Reasons for Removal — 2025/26 (to date, 40 pupils)</div>
+          <table class="dt mb8">
+            <thead><tr><th>Reason</th><th>Number</th><th>%</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td class="fw">Relocation / Left country</td><td class="mono cb fw">19</td><td class="mono">47.5%</td><td style="font-size:7.5pt;">International, domestic — parent-initiated</td></tr>
+              <tr><td class="fw">Elective Home Education</td><td class="mono ca fw">13</td><td class="mono">32.5%</td><td style="font-size:7.5pt;">Parent choice — incl. Traveller/Showman families</td></tr>
+              <tr><td class="fw">School preference</td><td class="mono cb">4</td><td class="mono">10.0%</td><td style="font-size:7.5pt;">Parent choice — closer school</td></tr>
+              <tr class="hi"><td class="fw">Permanent exclusion</td><td class="mono cr">2</td><td class="mono">5.0%</td><td style="font-size:7.5pt;">Last resort — after extensive graduated support</td></tr>
+              <tr><td class="fw">Managed move</td><td class="mono ca">2</td><td class="mono">5.0%</td><td style="font-size:7.5pt;">One failed MM, one current</td></tr>
+            </tbody>
+          </table>
+          <div class="sh">September 2026 — Year 7 Intake (210 places)</div>
+          <div class="two mb8">
+            <table class="dt">
+              <thead><tr><th>Feeder School</th><th>Pupils</th><th>%</th></tr></thead>
+              <tbody>
+                <tr class="hi"><td class="fw">Lansdowne Primary Academy</td><td class="mono cg fw">67</td><td class="mono">32%</td></tr>
+                <tr><td class="fw">Gateway Primary Free School</td><td class="mono cg">53</td><td class="mono">25%</td></tr>
+                <tr><td class="fw">Tilbury Pioneer Academy</td><td class="mono cb">45</td><td class="mono">21%</td></tr>
+                <tr><td class="fw">Herringham Primary Academy</td><td class="mono cb">26</td><td class="mono">12%</td></tr>
+                <tr><td class="fw">Other</td><td class="mono cm">19</td><td class="mono">9%</td></tr>
+              </tbody>
+            </table>
+            <table class="dt">
+              <thead><tr><th>Admissions Criteria</th><th>Pupils</th><th>%</th></tr></thead>
+              <tbody>
+                <tr class="hi"><td class="fw">GLC Community</td><td class="mono cg fw">88</td><td class="mono">42%</td></tr>
+                <tr><td class="fw">Sibling</td><td class="mono cg">68</td><td class="mono">32%</td></tr>
+                <tr><td class="fw">Gateway Primary attendee</td><td class="mono cb">37</td><td class="mono">18%</td></tr>
+                <tr><td class="fw">SEN / EHCP</td><td class="mono cp">8</td><td class="mono">4%</td></tr>
+                <tr><td class="fw">Distance / LAC</td><td class="mono cm">9</td><td class="mono">4%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="ib ib-g"><strong>Key messages:</strong> 95% of departures are parent-initiated — clear evidence the school is not off-rolling pupils. Only 5% (2 of 40) were permanent exclusions. 46% of next year's Year 7 have a sibling connection — strong indicator of community confidence. 71% are from Tilbury itself; 93% live within 2km. The Low Stability flag on IDSR is caused by mid-KS4 joiners (Y10/Y11 in-year admissions) — this structurally depresses headline outcomes and is a recognised Ofsted mitigating factor.</div>
+          ${ft('Pupil Mobility Report', 'Admissions &amp; Mobility Report Jan 2026')}
+        </div>`;
+        break;
+
+      case 'destinations':
+        html = `<div class="page">
+          ${hdr('Destinations &amp; Careers Report', 'Destinations tracking data · Careers Activities 2025/26 · Easter 2026 snapshot', date, 'Destinations &amp; Careers')}
+          <div class="sh">Post-16 Destinations — Key Indicators</div>
+          <div class="sg sg-4 mb8">
+            <div class="sb sb-g"><div class="sl">In Education/Training (23/24)</div><div class="sv sv-g">84%</div><div class="sn">229 tracked leavers</div><span class="stag tg">78% ed · 6% apprentice</span></div>
+            <div class="sb sb-g"><div class="sl">Applied by Easter (Y11)</div><div class="sv sv-g">84%</div><div class="sn">162 of 192 pupils</div><span class="stag tg">Before GCSE results</span></div>
+            <div class="sb sb-g"><div class="sl">Conditional Offers (Y11)</div><div class="sv sv-g">73%</div><div class="sn">141 of 192 pupils</div><span class="stag tg">Secured before exams</span></div>
+            <div class="sb sb-g"><div class="sl">Planning Ed/Training (25/26)</div><div class="sv sv-g">88%</div><div class="sn">205 intended responses</div><span class="stag tg">Only 1% no training</span></div>
+          </div>
+          <div class="sh">Intended Destinations 2025/26 Y11 (n=205)</div>
+          <table class="dt mb8">
+            <thead><tr><th>Destination</th><th>Number</th><th>%</th></tr></thead>
+            <tbody>
+              <tr class="hi"><td class="fw">College / Training Provider</td><td class="mono cg fw">92</td><td class="mono">45%</td></tr>
+              <tr class="hi"><td class="fw">Sixth Form (other school)</td><td class="mono cg">65</td><td class="mono">32%</td></tr>
+              <tr><td class="fw">Apprenticeship</td><td class="mono cb">22</td><td class="mono">11%</td></tr>
+              <tr><td class="fw">Undecided</td><td class="mono cm">21</td><td class="mono">10%</td></tr>
+              <tr><td class="fw">Employment / Other</td><td class="mono cm">5</td><td class="mono">2%</td></tr>
+              <tr class="sub"><td>Education or training</td><td class="mono cg fw">179</td><td class="mono cg fw">88%</td></tr>
+            </tbody>
+          </table>
+          <div class="sh">University Aspirations (2023 Leavers Survey — n=17, illustrative)</div>
+          <div class="ib ib-b">Confirmed university destinations include: <strong>Imperial College London</strong> (Chemical Engineering), Queen Mary's University (Neuroscience), Royal Holloway (Drama), University of Kent (Law), City St George's University, University of Law (LLB Hons), Anglia Ruskin (Civil Engineering), London South Bank (Architecture). In a community where higher education participation is historically low, these destinations reflect genuine social mobility outcomes. Note: small voluntary sample — aspirational, not census data.</div>
+          <div class="sh">Careers Programme — Gatsby Benchmark Coverage 2025/26</div>
+          <table class="dt mb8">
+            <thead><tr><th>Year Group</th><th>Key Provision</th><th>Employer / Institution Contacts</th></tr></thead>
+            <tbody>
+              <tr><td class="fw">Y7–Y9</td><td style="font-size:7.5pt;">Unifrog weekly, Aspirations Survey, Careers Fair (March), National Apprenticeship Week, National Careers Week, PAD careers sessions, Lower Thames Crossing trip, DWP/ARU assemblies, Youth Parliament</td><td style="font-size:7.5pt;">DWP, Anglia Ruskin, Lower Thames Crossing, Barking Abbey</td></tr>
+              <tr class="hi"><td class="fw">Y10</td><td style="font-size:7.5pt;">Work experience (1 week, June), Mock Interview Day (July), Next Steps Evening, NHS Careers trip, Gear Up Easter School, CV writing, interview technique, apprenticeship fair</td><td style="font-size:7.5pt;">Make Happen, USP, NHS, South Essex College, Thameside Theatre</td></tr>
+              <tr class="hi"><td class="fw">Y11</td><td style="font-size:7.5pt;">Individual CIAG careers interviews (all pupils, Sep–Dec), Next Steps Evenings ×2, Careers Fair, assemblies from 6 different colleges/sixth forms</td><td style="font-size:7.5pt;">Mossbourne, Harris Chafford, Harris Riverside, South Essex College, St Clere's, USP College</td></tr>
+            </tbody>
+          </table>
+          <div class="ib ib-b" style="font-size:7.5pt;"><strong>Data note:</strong> Post-16 destination tracking relies on voluntary responses and is inherently partial. The 2023/24 figure (84%, 229 tracked) is the most complete dataset. Easter 2026 snapshot and intended destination surveys are self-reported. Full systematic tracking is an area of ongoing development.</div>
+          ${ft('Destinations &amp; Careers Report', 'Destinations Data 2023/24–2025/26 · Careers Programme 2025/26')}
+        </div>`;
+        break;
+
+      case 'ofsted':
+        html = `<div class="page">
+          ${hdr('Ofsted Narrative — Key Talking Points', 'IDSR November 2025 · DfE KS4 2024/25', date, 'Ofsted Narrative')}
+          <div class="sh">Key Strengths to Articulate</div>
+          <div class="three mb8">
+            <div class="nc nc-g"><div class="ne">⭐ Standout Strength</div><div class="ns">+8.6pp</div><div class="nt">Dis. pupils outperform national dis. peers</div><div class="nx">34.2% of Gateway's disadvantaged pupils achieved Grade 5+ in English &amp; Maths vs 25.6% nationally. Sustained across multiple years.</div></div>
+            <div class="nc nc-g"><div class="ne">📈 Progress Recovery</div><div class="ns">−0.76 → +0.07</div><div class="nt">P8 above national for 2 consecutive years</div><div class="nx">P8 recovered from COVID low of −0.76 (2021/22) to +0.07 (2023/24) — above national average of −0.03 both years.</div></div>
+            <div class="nc nc-p"><div class="ne">📊 Dis. Progress</div><div class="ns">Above (sig+)</div><div class="nt">Dis. P8 statistically significantly above national dis. average — 2 years</div><div class="nx">Dis. P8 of −0.04 is 0.53 points above national dis. average of −0.57. Rated Above (sig+) in IDSR for two consecutive years.</div></div>
+          </div>
+          <div class="three mb8">
+            <div class="nc nc-b"><div class="ne">🏆 National Percentile</div><div class="ns">79th / 84th</div><div class="nt">Top fifth among FSM-matched academies</div><div class="nx">Among 366 academies with FSM≥30%, Gateway ranks 79th on A8 and 84th on EM5+. Similar school A8 mean is 41.3 — Gateway: 46.1.</div></div>
+            <div class="nc nc-g"><div class="ne">📅 Attendance</div><div class="ns">2nd of 21</div><div class="nt">SEN attendance #1 of 21 similar schools</div><div class="nx">SEN attendance 90.6% — higher than all 20 DfE-matched similar schools. Zero areas to focus on in DfE report. FSM PA 28.6% vs national 41.2%.</div></div>
+            <div class="nc nc-b"><div class="ne">📊 Fairer Schools</div><div class="ns">Top 37%</div><div class="nt">Biggest Thurrock jump in Fairer Schools Index</div><div class="nx">DfE rank 1,891 → Fairer Schools rank 1,156 (+735 places). Biggest positive move of any Thurrock school. Raw rank suppressed by context, not quality.</div></div>
+          </div>
+          <div class="sh">Key Messages Summary</div>
+          <ul class="km">
+            <li><span style="color:var(--green)">✅</span><div><strong>A8 46.0</strong> — above national mean of 44.4 (DfE), risen for 3 consecutive years. 79th percentile among FSM peer schools nationally.</div></li>
+            <li><span style="color:var(--green)">✅</span><div><strong>P8 +0.07</strong> (2023/24) — above national −0.03. Full recovery from COVID low. P8 not published for 2024/25 or 2025/26 (COVID KS2 gap).</div></li>
+            <li><span style="color:var(--green)">✅</span><div><strong>Dis. P8 −0.04</strong> — 0.53 points above national dis. average (−0.57). Above (sig+) in IDSR for two consecutive years.</div></li>
+            <li><span style="color:var(--green)">✅</span><div><strong>Attendance 93.2%</strong> — 2nd of 21 similar schools. SEN attendance #1. Zero DfE areas to focus on. ABIE exceeded.</div></li>
+            <li><span style="color:var(--green)">✅</span><div><strong>Suspension rate 9.4</strong> — below national 11.31. 95% of roll departures are parent-initiated. Perm. excl. declining (9 → 2).</div></li>
+            <li><span style="color:var(--green)">✅</span><div><strong>Fairer Schools Index — top 37%</strong> nationally, biggest positive jump of any Thurrock school (+735 places).</div></li>
+            <li><span style="color:var(--amber)">⚠️</span><div><strong>Low Stability context</strong> — 2024 &amp; 2025 cohorts carry Low Stability flag. High pupil mobility structurally depresses headline measures — recognised Ofsted mitigating factor.</div></li>
+            <li><span style="color:var(--amber)">⚠️</span><div><strong>No P8 for 2024/25 or 2025/26</strong> — COVID KS2 gap means no national P8 for these cohorts. All P8 comparisons use 2023/24 — the last valid published year.</div></li>
+          </ul>
+          ${ft('Ofsted Narrative', 'IDSR Nov 2025 · DfE KS4 2024/25')}
+        </div>`;
+        break;
+
+      case 'detailed':
+        html = `<div class="page">
+          ${hdr('Detailed Data — KS4 Performance Tables', 'IDSR November 2025 · DfE KS4 2024/25 (final) · DfE 2023/24 (final)', date, 'Detailed Data')}
+          <div class="sh">All Pupils — Key Measures</div>
+          <table class="dt mb8">
+            <thead><tr><th>Measure</th><th>Year</th><th>Cohort</th><th>School</th><th>National</th><th>vs National</th><th>IDSR Banding</th></tr></thead>
+            <tbody>
+              <tr class="sub"><td colspan="7">Attainment 8</td></tr>
+              <tr class="hi"><td class="fw">A8 — All Pupils</td><td>2024/25</td><td class="mono">197</td><td class="mono cb fw">46.0</td><td class="mono cm">45.9</td><td class="cb fw">+0.1</td><td><span class="stag tb">Close to average</span></td></tr>
+              <tr><td class="fw">A8 — All Pupils</td><td>2023/24</td><td class="mono">233</td><td class="mono cb">44.6</td><td class="mono cm">45.9</td><td class="ca">−1.3</td><td><span class="stag tb">Close to average</span></td></tr>
+              <tr><td class="fw">A8 — All Pupils</td><td>2022/23</td><td class="mono">197</td><td class="mono cb">44.2</td><td class="mono cm">46.3</td><td class="ca">−2.1</td><td><span class="stag tb">Close to average</span></td></tr>
+              <tr class="sub"><td colspan="7">Progress 8 (no P8 for 2024/25 — COVID KS2 gap)</td></tr>
+              <tr class="hi"><td class="fw">P8 — All Pupils</td><td>2023/24</td><td class="mono">208</td><td class="mono cg fw">+0.07</td><td class="mono cm">−0.03</td><td class="cg fw">+0.10</td><td><span class="stag tb">Close to average</span></td></tr>
+              <tr><td class="fw">P8 — All Pupils</td><td>2022/23</td><td class="mono">185</td><td class="mono cg fw">+0.23</td><td class="mono cm">−0.03</td><td class="cg fw">+0.26</td><td><span class="stag tg">Close to avg (sig+)</span></td></tr>
+              <tr><td class="fw">P8 — All Pupils</td><td>2021/22</td><td class="mono">200</td><td class="mono cr fw">−0.76</td><td class="mono cm">−0.03</td><td class="cr">−0.73</td><td><span class="stag" style="background:var(--rl);color:var(--red);">Below (sig−)</span></td></tr>
+              <tr class="sub"><td colspan="7">English &amp; Mathematics</td></tr>
+              <tr class="hi"><td class="fw">Eng &amp; Maths 5+</td><td>2024/25</td><td class="mono">197</td><td class="mono cg fw">48.2%</td><td class="mono cm">41.4%</td><td class="cg fw">+6.8pp</td><td><span class="stag tb">Close to average</span></td></tr>
+              <tr class="hi"><td class="fw">Eng &amp; Maths 4+</td><td>2024/25</td><td class="mono">197</td><td class="mono cg fw">64.5%</td><td class="mono cm">58.8%</td><td class="cg fw">+5.7pp</td><td><span class="stag tb">Close to average</span></td></tr>
+            </tbody>
+          </table>
+          <div class="sh">Disadvantaged Pupils</div>
+          <table class="dt mb8">
+            <thead><tr><th>Measure</th><th>Year</th><th>School</th><th>Nat. Dis.</th><th>vs Nat. Dis.</th><th>Nat. Non-Dis.</th><th>IDSR Banding</th></tr></thead>
+            <tbody>
+              <tr class="hi"><td class="fw">A8 Dis.</td><td>2024/25</td><td class="mono cg fw">38.0</td><td class="mono cm">34.9</td><td class="cg fw">+3.1</td><td class="mono cm">50.3</td><td><span class="stag tb">Close to average</span></td></tr>
+              <tr class="hi"><td class="fw">P8 Dis.</td><td>2023/24</td><td class="mono cg fw">−0.04</td><td class="mono cm">−0.57</td><td class="cg fw">+0.53</td><td class="mono cm">+0.16</td><td><span class="stag tg">Above (sig+) ⭐</span></td></tr>
+              <tr class="hi"><td class="fw">EM 5+ Dis.</td><td>2024/25</td><td class="mono cg fw">34.2%</td><td class="mono cm">25.6%</td><td class="cg fw">+8.6pp</td><td class="mono cm">52.8%</td><td><span class="stag tb">Close to average</span></td></tr>
+              <tr><td class="fw">P8 Dis.</td><td>2022/23</td><td class="mono cg fw">+0.15</td><td class="mono cm">−0.57</td><td class="cg fw">+0.72</td><td class="mono cm">+0.17</td><td><span class="stag tg">Above (sig+) ⭐</span></td></tr>
+            </tbody>
+          </table>
+          <div class="sh">Prior Attainment Groups (2023/24)</div>
+          <table class="dt">
+            <thead><tr><th>Group</th><th>Cohort</th><th>A8 School</th><th>A8 National</th><th>A8 Banding</th><th>P8 School</th><th>P8 National</th><th>P8 Banding</th></tr></thead>
+            <tbody>
+              <tr class="hi"><td class="fw">Low Prior Attainers</td><td class="mono">57</td><td class="mono cg fw">29.0</td><td class="mono cm">25.2</td><td><span class="stag tg">Above (sig+) ⭐</span></td><td class="mono cg fw">+0.20</td><td class="mono cm">−0.14</td><td><span class="stag tg">Above (non-sig)</span></td></tr>
+              <tr><td class="fw">Middle Prior Attainers</td><td class="mono">116</td><td class="mono cb fw">46.6</td><td class="mono cm">46.2</td><td><span class="stag tb">Close to average</span></td><td class="mono cg">+0.12</td><td class="mono cm">−0.01</td><td><span class="stag tb">Close to average</span></td></tr>
+              <tr><td class="fw">High Prior Attainers</td><td class="mono">35</td><td class="mono cb">62.6</td><td class="mono cm">66.1</td><td><span class="stag tb">Close to average</span></td><td class="mono ca">−0.30</td><td class="mono cm">+0.02</td><td><span class="stag tb">Close to average</span></td></tr>
+            </tbody>
+          </table>
+          ${ft('Detailed Data', 'IDSR Nov 2025 · DfE KS4 2024/25 + 2023/24 final')}
+        </div>`;
+        break;
+
+      default:
+        html = `<div class="page">
+          ${hdr('Performance Report', '', date, 'Report')}
+          <div class="ib ib-b">Select a specific tab and click "Print This Tab" to generate a report for that section.</div>
+          ${ft('Performance Report', 'Gateway Academy Dashboard')}
+        </div>`;
+    }
+
+    return tabPrintShell('Performance Report', '', date, html);
+  }
+
+  // ── GOVERNOR SUMMARY (2-3 page print-ready document) ─────────
   // ── GOVERNOR SUMMARY (2-3 page print-ready document) ─────────
   function openGovernorSummary() {
     var w = window.open('', '_blank', 'width=900,height=700');
