@@ -43,9 +43,9 @@
     .context-banner-text { font-size:13px; color:#78350f; line-height:1.6; }
 
     /* TABS */
-    .tab-nav { display:flex; gap:0; border-bottom:2px solid var(--border); margin-bottom:28px; overflow-x:auto; scrollbar-width:none; }
+    .tab-nav { display:flex; gap:0; border-bottom:2px solid var(--border); margin-bottom:28px; overflow-x:auto; scrollbar-width:none; flex-wrap:wrap; }
     .tab-nav::-webkit-scrollbar { display:none; }
-    .tab-btn { padding:10px 18px; font-size:13px; font-weight:600; cursor:pointer; border:none; background:none; font-family:'Inter',sans-serif; color:var(--text-muted); border-bottom:2px solid transparent; margin-bottom:-2px; transition:color .15s,border-color .15s; white-space:nowrap; }
+    .tab-btn { padding:8px 13px; font-size:12px; font-weight:600; cursor:pointer; border:none; background:none; font-family:'Inter',sans-serif; color:var(--text-muted); border-bottom:2px solid transparent; margin-bottom:-2px; transition:color .15s,border-color .15s; white-space:nowrap; }
     .tab-btn:hover { color:var(--blue); }
     .tab-btn.active { color:var(--blue); border-bottom-color:var(--blue); }
     .tab-panel { display:none; }
@@ -402,6 +402,7 @@
     <button class="tab-btn" onclick="showTab('inclusion',this)">🤝 Inclusion</button>
     <button class="tab-btn" onclick="showTab('mobility',this)">🔄 Pupil Mobility</button>
     <button class="tab-btn" onclick="showTab('send',this)">♿ SEND</button>
+    <button class="tab-btn" onclick="showTab('disadvantaged',this)">💙 Disadvantaged</button>
     <button class="tab-btn" onclick="showTab('destinations',this)">🎓 Destinations &amp; Careers</button>
   </nav>
 
@@ -3211,6 +3212,333 @@
     </div>
 
   </div><!-- /destinations -->
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- DISADVANTAGED TAB                              -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-disadvantaged">
+
+    <div class="idsr-note">
+      <span>📋</span>
+      <div>Sources: Disadvantaged Impact Report 2025/26 (K. Kitsiou) · IDSR November 2025 · DfE KS4 2024/25 · Fairer Schools Index 2025. The school's full Pupil Premium Strategy is published at: <a href="https://www.theglc-gatewayacademy.org.uk/_site/data/files/users/2024-2025/4241AB3AFB25D8E0CE6C43906762ECDE.pdf" target="_blank" style="color:var(--blue);">theglc-gatewayacademy.org.uk</a></div>
+    </div>
+
+    <!-- DISADVANTAGED PROFILE -->
+    <div class="section">
+      <div class="section-title">💙 Disadvantaged Pupil Profile — 2025/26</div>
+      <div class="section-sub">PP = Pupil Premium eligible (FSM6 + Looked After Children + service children). FSM = Free School Meals only. Source: DIR 2025/26.</div>
+
+      <div class="metrics-grid">
+        <div class="metric-card mc-blue">
+          <div class="metric-label">Total PP Pupils</div>
+          <div class="metric-value mv-blue">456</div>
+          <div class="metric-plain-label mpl-blue">44% of school roll</div>
+          <div class="metric-vs">of 1,035 pupils on roll</div>
+          <div class="metric-idsr">One of the highest PP rates in Thurrock</div>
+        </div>
+        <div class="metric-card mc-blue">
+          <div class="metric-label">FSM Pupils</div>
+          <div class="metric-value mv-blue">423</div>
+          <div class="metric-plain-label mpl-blue">41% of school roll</div>
+          <div class="metric-vs">Whole school · IDSR: 40.6%</div>
+          <div class="metric-idsr">Highest FSM rate of any mainstream secondary in Thurrock</div>
+        </div>
+        <div class="metric-card mc-green">
+          <div class="metric-label">PP Persistent Absence</div>
+          <div class="metric-value mv-green">28.6%</div>
+          <div class="metric-plain-label mpl-green">12.6pp below national</div>
+          <div class="metric-vs">National PP PA: 41.2%</div>
+          <div class="metric-idsr">PP pupils attending significantly better than national PP average</div>
+        </div>
+        <div class="metric-card mc-green">
+          <div class="metric-label">Enrichment Participation</div>
+          <div class="metric-value mv-green">89.8%</div>
+          <div class="metric-plain-label mpl-green">of dis pupils this year</div>
+          <div class="metric-vs">399 of 456 PP pupils</div>
+          <div class="metric-idsr">85.1% of double-disadvantaged pupils (SEND+PP) also engaged</div>
+        </div>
+        <div class="metric-card mc-purple">
+          <div class="metric-label">Fairer Schools Index</div>
+          <div class="metric-value mv-purple">+735</div>
+          <div class="metric-plain-label mpl-purple">DfE rank 1,891 → FSI rank 1,156</div>
+          <div class="metric-vs">Biggest improvement of any Thurrock school</div>
+          <div class="metric-idsr">Top 37% nationally when contextual factors are applied</div>
+        </div>
+        <div class="metric-card mc-green">
+          <div class="metric-label">Parents Evening — Y11 PP</div>
+          <div class="metric-value mv-green">90%</div>
+          <div class="metric-plain-label mpl-green">2025/26 attendance</div>
+          <div class="metric-vs">Was 47% in 2023/24 — +43pp in two years</div>
+          <div class="metric-idsr">Home visit strategy driving sustained engagement improvement</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAIRER SCHOOLS INDEX — BIG STORY -->
+    <div class="dark-callout">
+      <h3>📊 The Fairer Schools Index — Gateway's Real Position</h3>
+      <p>The Fairer Schools Index adjusts for deprivation, prior attainment, mobility and other contextual factors. It shows what schools achieve <em>relative to their context</em> — not just raw outcomes. Gateway's position changes dramatically.</p>
+      <div class="dark-points">
+        <div class="dark-point">
+          <div class="dark-point-label">DfE League Table Rank</div>
+          <div class="dark-point-stat">1,891</div>
+          <div class="dark-point-text">Raw rank among all secondary schools in England based on unadjusted headline measures. Affected by Low Stability flag, high FSM, high SEND, and mid-KS4 admissions.</div>
+        </div>
+        <div class="dark-point">
+          <div class="dark-point-label">Fairer Schools Index Rank</div>
+          <div class="dark-point-stat">1,156</div>
+          <div class="dark-point-text">Once contextual factors are applied — deprivation, prior attainment, pupil mobility, SEND — Gateway rises 735 places. Top 37% of schools nationally. The biggest positive jump of any Thurrock secondary.</div>
+        </div>
+        <div class="dark-point">
+          <div class="dark-point-label">Thurrock comparison</div>
+          <div class="dark-point-stat">+735 places</div>
+          <div class="dark-point-text">Grays Convent drops 921 places when context is applied. Harris Chafford drops 323. Gateway rises 735 — demonstrating that Gateway adds more value relative to its community than any other Thurrock school.</div>
+        </div>
+        <div class="dark-point">
+          <div class="dark-point-label">What this means</div>
+          <div class="dark-point-stat">Top 37%</div>
+          <div class="dark-point-text">The raw DfE league table does not reflect teaching quality at Gateway — it reflects intake context. The Fairer Schools Index is the most accurate measure of Gateway's educational effectiveness, and it places the school in the top third nationally.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAIRER SCHOOLS TABLE -->
+    <div class="section">
+      <div class="section-title">Fairer Schools Index — All Thurrock Schools</div>
+      <div class="section-sub">Schools that rise in the Fairer Schools Index are adding more value than raw outcomes suggest. Schools that fall are benefiting from advantaged intakes.</div>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>School</th><th>DfE League Table Rank</th><th>Fairer Schools Index Rank</th><th>Change</th><th>What it means</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fw-bold">Grays Convent High School</td>
+              <td class="mono">226</td><td class="mono">1,147</td>
+              <td class="mono fw-bold text-red">−921</td>
+              <td style="font-size:12px;">High raw rank; drops significantly once low FSM (16%) is accounted for</td>
+            </tr>
+            <tr>
+              <td class="fw-bold">Harris Academy Chafford Hundred</td>
+              <td class="mono">305</td><td class="mono">628</td>
+              <td class="mono fw-bold text-red">−323</td>
+              <td style="font-size:12px;">Very low FSM (10%) — advantaged intake boosting raw rank</td>
+            </tr>
+            <tr class="row-gw">
+              <td class="fw-bold text-navy">🏫 The Gateway Academy</td>
+              <td class="mono fw-bold text-blue">1,891</td>
+              <td class="mono fw-bold text-green">1,156</td>
+              <td class="mono fw-bold text-green">+735 ⭐</td>
+              <td style="font-size:12px;">Biggest positive jump in Thurrock — top 37% nationally when context is applied</td>
+            </tr>
+            <tr>
+              <td class="fw-bold">St Clere's School</td>
+              <td class="mono">1,309</td><td class="mono">846</td>
+              <td class="mono fw-bold text-green">+463</td>
+              <td style="font-size:12px;">Also rises — moderate deprivation, good value-add</td>
+            </tr>
+            <tr>
+              <td class="fw-bold">Ormiston Park Academy</td>
+              <td class="mono">2,691</td><td class="mono">2,460</td>
+              <td class="mono fw-bold text-green">+231</td>
+              <td style="font-size:12px;">High FSM — slight positive adjustment</td>
+            </tr>
+            <tr>
+              <td class="fw-bold">William Edwards School</td>
+              <td class="mono">2,079</td><td class="mono">2,340</td>
+              <td class="mono fw-bold text-red">−261</td>
+              <td style="font-size:12px;">Low FSM — raw rank flattered by intake</td>
+            </tr>
+            <tr>
+              <td class="fw-bold">Ortu Gable Hall School</td>
+              <td class="mono">2,715</td><td class="mono">2,869</td>
+              <td class="mono fw-bold text-red">−154</td>
+              <td style="font-size:12px;">Low FSM — slight negative adjustment</td>
+            </tr>
+            <tr>
+              <td class="fw-bold">The Hathaway Academy</td>
+              <td class="mono">2,653</td><td class="mono">2,856</td>
+              <td class="mono fw-bold text-red">−203</td>
+              <td style="font-size:12px;">Moderate FSM — falls slightly when context applied</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- STRAND 1: OUTCOMES -->
+    <div class="section">
+      <div class="section-title">📊 Strand 1 — KS4 Outcomes: Disadvantaged Pupils vs National 2024/25</div>
+      <div class="section-sub">Source: DIR 2025/26 (K. Kitsiou) · DfE KS4 Performance Tables 2024/25 · All figures for Gateway's disadvantaged pupils vs national disadvantaged averages</div>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Measure</th><th>Gateway Dis.</th><th>National Dis.</th><th>vs National Dis.</th><th>Context</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fw-bold text-navy">Attainment 8</td>
+              <td class="mono fw-bold text-blue">37.0</td>
+              <td class="mono text-muted">37.0</td>
+              <td class="fw-bold text-blue">In line</td>
+              <td style="font-size:12px;">Matching national despite Low Stability flag and highest FSM in Thurrock</td>
+            </tr>
+            <tr class="row-highlight">
+              <td class="fw-bold text-navy">Maths Grade 7+ ⭐</td>
+              <td class="mono fw-bold text-green">12.9%</td>
+              <td class="mono text-muted">9.9%</td>
+              <td class="fw-bold text-green">+3.0pp above</td>
+              <td style="font-size:12px;">Dis pupils achieving highest Maths grades above national dis peers</td>
+            </tr>
+            <tr class="row-highlight">
+              <td class="fw-bold text-navy">English Grade 5+ ⭐</td>
+              <td class="mono fw-bold text-green">51.2%</td>
+              <td class="mono text-muted">45.3%</td>
+              <td class="fw-bold text-green">+5.9pp above</td>
+              <td style="font-size:12px;">Majority of dis pupils achieving strong pass in English</td>
+            </tr>
+            <tr class="row-highlight">
+              <td class="fw-bold text-navy">Maths Grade 5+ ⭐</td>
+              <td class="mono fw-bold text-green">36.3%</td>
+              <td class="mono text-muted">33.9%</td>
+              <td class="fw-bold text-green">+2.4pp above</td>
+              <td style="font-size:12px;">Above national dis peers on strong Maths pass</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-navy">English Grade 4+</td>
+              <td class="mono fw-bold text-green">65.0%</td>
+              <td class="mono text-muted">61.6%</td>
+              <td class="fw-bold text-green">+3.4pp above</td>
+              <td style="font-size:12px;">Almost two-thirds achieving standard pass in English</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-navy">Maths Grade 4+</td>
+              <td class="mono fw-bold text-green">35.0%</td>
+              <td class="mono text-muted">32.4%</td>
+              <td class="fw-bold text-green">+2.6pp above</td>
+              <td style="font-size:12px;">Above national dis peers on standard Maths pass</td>
+            </tr>
+            <tr class="row-highlight">
+              <td class="fw-bold text-navy">Basics 5+ (Eng &amp; Maths)</td>
+              <td class="mono fw-bold text-green">32.5%</td>
+              <td class="mono text-muted">28.5%</td>
+              <td class="fw-bold text-green">+4.0pp above</td>
+              <td style="font-size:12px;">Dis pupils achieving strong pass in both subjects — above national</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-navy">Basics 4+ (Eng &amp; Maths)</td>
+              <td class="mono fw-bold text-green">48.8%</td>
+              <td class="mono text-muted">48.0%</td>
+              <td class="fw-bold text-green">+0.8pp above</td>
+              <td style="font-size:12px;">Almost half of dis pupils achieving standard pass in both subjects</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-box ib-green">
+        <strong>Subject-level standouts:</strong> Gateway's disadvantaged pupils outperformed their non-disadvantaged peers at the highest grades (8/9) in <strong>Chemistry, Further Maths and Psychology</strong>. At grade 5+, disadvantaged pupils outperformed non-disadvantaged in <strong>PE, Health &amp; Social Care and BTEC Design</strong>. At grade 4+, disadvantaged pupils outperformed non-disadvantaged in <strong>Physics, Psychology, Drama, Photography and PE</strong> — five subjects where the most deprived pupils are outperforming their more advantaged peers within the same school.
+      </div>
+    </div>
+
+    <!-- STRAND 2: TARGETED SUPPORT -->
+    <div class="section">
+      <div class="section-title">🎯 Strand 2 — Targeted Academic Support</div>
+
+      <div class="narrative-grid">
+        <div class="narrative-card nc-green">
+          <div class="nc-eyebrow">☀️ Summer School 2025</div>
+          <div class="nc-stat">226 pupils</div>
+          <div class="nc-title">One week · £90.23 per pupil · Years 6–10</div>
+          <div class="nc-text">English and Maths focus with enrichment sessions including food workshop, drumming, drama, dance, inflatables and sports. 87 PP pupils attended · 31 SEND · 16 double-disadvantaged. Cost per pupil for the entire week: <strong>£18 per day</strong>. Parent feedback was overwhelmingly positive — multiple parents describing the school as doing "a fantastic job" for their children.</div>
+        </div>
+        <div class="narrative-card nc-blue">
+          <div class="nc-eyebrow">🐣 Easter School 2026</div>
+          <div class="nc-stat">84 pupils</div>
+          <div class="nc-title">£55 per pupil · Years 10–11 · Hollywood Bowl trip</div>
+          <div class="nc-text">English, Maths and Science with food and sports sessions, plus an external trip to Hollywood Bowl in Lakeside. 28 PP pupils · 10 SEND · 6 double-disadvantaged. Open to all but key pupils targeted. Over 100 students applied — reflecting genuine pupil appetite for the provision.</div>
+        </div>
+        <div class="narrative-card nc-purple">
+          <div class="nc-eyebrow">🎓 Alumni Tutoring</div>
+          <div class="nc-stat">Free · 5 days/wk</div>
+          <div class="nc-title">Previous high-achieving students tutoring Y11 for free</div>
+          <div class="nc-text">Subjects include Science, Maths (standard and 7+ stream), English, History, Psychology, Business Studies and Further Maths. Evening sessions offered including free pizza. Tutors are recent Gateway leavers who achieved exceptional results — relatable role models who navigated the same journey.</div>
+        </div>
+        <div class="narrative-card nc-green">
+          <div class="nc-eyebrow">📚 Revision Programme</div>
+          <div class="nc-stat">30+ sessions</div>
+          <div class="nc-title">Weekends, evenings and holidays — March to June 2026</div>
+          <div class="nc-text">An extensive additional revision programme ran from March through to June — weekday evenings, Saturdays, Sundays, Easter holidays. Subjects covered: English, Maths (foundation and higher), Science, History, Geography, Spanish, Art, Photography, PE, Business, Health &amp; Social Care, Psychology and Further Maths.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STRAND 3: THE WHOLE CHILD -->
+    <div class="section">
+      <div class="section-title">❤️ Strand 3 — The Whole Child</div>
+      <div class="section-sub">Going beyond academics to remove barriers and build aspiration — practical, human-centred support</div>
+
+      <div class="narrative-grid">
+        <div class="narrative-card nc-purple">
+          <div class="nc-eyebrow">🏛️ Thames Freeport Scholarship</div>
+          <div class="nc-stat">£25,000</div>
+          <div class="nc-title">Per student, every year through university — 2 students per year</div>
+          <div class="nc-text">Funded by Thames Freeport partners Forth Ports and DP World. 26 disadvantaged students supported with London visit, keynote speakers, dinner, and a £800–1,000 clothing allowance. Two students per year receive a £25,000 scholarship for every year of their university degree. Designed explicitly to ensure financial barriers do not prevent talented pupils from Tilbury from reaching their potential.</div>
+        </div>
+        <div class="narrative-card nc-green">
+          <div class="nc-eyebrow">🍽️ Removing Material Barriers</div>
+          <div class="nc-stat">FSM+</div>
+          <div class="nc-title">Food Tech funding, school shoes, gift tree, free Christmas dinner</div>
+          <div class="nc-text">Food Technology ingredients funded for FSM pupils — Y10: 21/40 (53%), Y11: 18/30 (60%) now choosing Food Tech. 122 gifts given at Christmas (91 disadvantaged, 54 SEN). Free Christmas dinner for all pupils. School shoes stocked for pupils in need. William Palmer Fund: £7,000 (T1) + £5,193 (T2). BBC Children in Need applications for emergency essentials including white goods, furniture and clothing.</div>
+        </div>
+        <div class="narrative-card nc-blue">
+          <div class="nc-eyebrow">📅 Parents Evening Drive</div>
+          <div class="nc-stat">47% → 90%</div>
+          <div class="nc-title">Y11 PP parents evening attendance in two years</div>
+          <div class="nc-text">A targeted home visit strategy drove dramatic improvements in parents evening attendance across all year groups. 176 home visits in Autumn 2, 70% contact success rate. PP attendance at parents evenings across all year groups is now 76–98% — transforming parental engagement for the school's most disadvantaged families.</div>
+        </div>
+        <div class="narrative-card nc-green">
+          <div class="nc-eyebrow">🎮 Enrichment Access</div>
+          <div class="nc-stat">89.8%</div>
+          <div class="nc-title">Disadvantaged pupils in at least one club or trip this year</div>
+          <div class="nc-text">T1: 78% · T2: 80.8% · Full year: 89.8% (399 of 456 PP pupils). 85.1% of double-disadvantaged pupils (SEND+PP) also engaged in enrichment — 109 of 128 pupils. Gateway's most vulnerable pupils are not excluded from the wider life of the school. The removal of cost barriers (ingredients, kit, equipment, subsidised trips) is directly enabling this participation.</div>
+        </div>
+      </div>
+
+      <!-- PARENTS EVENING TREND TABLE -->
+      <div class="section-title" style="font-size:15px;margin-top:8px;">Parents Evening Attendance Trend</div>
+      <div class="section-sub">% of PP parents attending parents evenings by year group — dramatic improvement over three years</div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Year Group</th><th>Overall 2023/24</th><th>PP 2023/24</th><th>Overall 2024/25</th><th>PP 2024/25</th><th>Overall 2025/26</th><th>PP 2025/26</th><th>PP Change (2 yrs)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="fw-bold">Year 7</td><td class="mono">52%</td><td class="mono text-red">51%</td><td class="mono">86%</td><td class="mono">82%</td><td class="mono fw-bold text-green">90%</td><td class="mono fw-bold text-green">86%</td><td class="fw-bold text-green">+35pp</td></tr>
+            <tr><td class="fw-bold">Year 8</td><td class="mono">59%</td><td class="mono text-red">49%</td><td class="mono">91%</td><td class="mono">88%</td><td class="mono fw-bold text-blue">87%</td><td class="mono fw-bold text-blue">76%</td><td class="fw-bold text-green">+27pp</td></tr>
+            <tr><td class="fw-bold">Year 9</td><td class="mono">63%</td><td class="mono text-red">69%</td><td class="mono">82%</td><td class="mono">75%</td><td class="mono fw-bold text-green">95%</td><td class="mono fw-bold text-green">98%</td><td class="fw-bold text-green">+29pp</td></tr>
+            <tr><td class="fw-bold">Year 10</td><td class="mono">53%</td><td class="mono text-red">47%</td><td class="mono">76%</td><td class="mono">60%</td><td class="mono fw-bold text-green">85%</td><td class="mono fw-bold text-green">80%</td><td class="fw-bold text-green">+33pp</td></tr>
+            <tr class="row-highlight"><td class="fw-bold text-navy">Year 11</td><td class="mono">61%</td><td class="mono text-red">47%</td><td class="mono">84%</td><td class="mono">77%</td><td class="mono fw-bold text-green">94%</td><td class="mono fw-bold text-green">90%</td><td class="fw-bold text-green">+43pp ⭐</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-box ib-green">
+        <strong>Parental engagement narrative:</strong> In 2023/24, only 47–51% of PP parents attended parents evenings — a significant barrier to the partnership between school and home. By 2025/26, PP attendance at parents evenings ranges from 76–98% across all year groups. This transformation, driven by a targeted home visit strategy and relationship-building, is one of the strongest indicators of community trust in the school.
+      </div>
+    </div>
+
+    <!-- OFSTED NARRATIVE -->
+    <div class="section">
+      <div class="section-title">💬 Disadvantaged — Ofsted Narrative</div>
+      <div class="info-box ib-blue">
+        <strong>The overall picture:</strong> Gateway's disadvantaged provision operates on three strands — quality first teaching (so disadvantaged pupils receive the same high-quality classroom experience as all pupils), targeted academic support (holiday schools, alumni tutoring, revision programmes), and whole-child support (removing material barriers, building aspiration, engaging families). The data shows this is working: PP pupils outperform national disadvantaged peers across multiple headline measures; the Fairer Schools Index places the school in the top 37% nationally; parents evening attendance has risen by up to 43 percentage points in two years; and 89.8% of disadvantaged pupils are accessing enrichment. The Thames Freeport Scholarship represents a genuine pathway from Tilbury to university for Gateway's most promising disadvantaged students.
+      </div>
+    </div>
+
+  </div><!-- /disadvantaged -->
 
 </div><!-- /main -->
 
