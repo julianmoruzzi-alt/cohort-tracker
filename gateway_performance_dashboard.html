@@ -292,6 +292,8 @@
       <span class="header-badge">IDSR Jun 2026 · DfE 2024/25</span>
       <button class="header-btn" id="tabPrintBtn" onclick="printCurrentTab()">🖨 Print This Tab</button>
       <button class="header-btn" id="govPrintBtn" onclick="openGovernorSummary()" style="background:rgba(52,211,153,.18);border-color:rgba(52,211,153,.45);">📄 Governor Summary</button>
+      <button class="header-btn" onclick="downloadSEFWord()" style="background:rgba(99,102,241,.18);border-color:rgba(99,102,241,.45);">⬇ Download SEF</button>
+      <button class="header-btn" onclick="downloadDevPlanWord()" style="background:rgba(245,158,11,.18);border-color:rgba(245,158,11,.45);">⬇ Download Dev Plan</button>
     </div>
   </div>
 </header>
@@ -6337,6 +6339,293 @@
 
 <!-- SCRIPTS -->
 <script>
+
+  // ── WORD DOCUMENT DOWNLOADS ──────────────────────────────────
+
+  function buildWordShell(title, date, bodyHtml) {
+    return '<!DOCTYPE html>\n' +
+      '<html xmlns:o="urn:schemas-microsoft-com:office:office" ' +
+      'xmlns:w="urn:schemas-microsoft-com:office:word" ' +
+      'xmlns="http://www.w3.org/TR/REC-html40">\n' +
+      '<head>\n<meta charset="utf-8">\n<title>' + title + '</title>\n' +
+      '<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View>' +
+      '<w:Zoom>90</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]-->\n' +
+      '<style>\n' +
+      'body{font-family:Arial,sans-serif;font-size:11pt;color:#0f172a;line-height:1.5;margin:0;padding:0;}\n' +
+      'h1{font-size:18pt;font-weight:bold;color:#0f2744;margin:0 0 8pt;}\n' +
+      'h2{font-size:13pt;font-weight:bold;color:#0f2744;margin:16pt 0 4pt;page-break-after:avoid;}\n' +
+      'h3{font-size:10.5pt;font-weight:bold;color:#334155;margin:10pt 0 3pt;}\n' +
+      'p{font-size:10.5pt;margin:0 0 5pt;}\n' +
+      'ul{margin:0 0 7pt 18pt;padding:0;}\n' +
+      'li{font-size:10pt;line-height:1.55;margin-bottom:3pt;}\n' +
+      'table{border-collapse:collapse;width:100%;margin-bottom:10pt;font-size:9.5pt;}\n' +
+      'th{background-color:#0f2744;color:white;padding:5pt 7pt;text-align:left;font-size:8.5pt;font-weight:bold;text-transform:uppercase;letter-spacing:0.3pt;}\n' +
+      'td{padding:5pt 7pt;border:0.5pt solid #dde3ed;vertical-align:top;}\n' +
+      'tr:nth-child(even) td{background-color:#f7f9fc;}\n' +
+      '.area-hdr{border-left:4pt solid #1e5fa8;padding:5pt 0 5pt 10pt;margin:14pt 0 6pt;background:#f8faff;padding-right:10pt;}\n' +
+      '.grade{display:inline-block;padding:2pt 8pt;border-radius:3pt;font-weight:bold;font-size:9.5pt;background:#fef9c3;color:#854d0e;border:0.5pt solid #fde047;}\n' +
+      '.grade-strong{background:#dcfce7;color:#166534;border:0.5pt solid #86efac;}\n' +
+      '.grade-expected{background:#e8f0fb;color:#1e5fa8;border:0.5pt solid #93c5fd;}\n' +
+      '.rationale{background:#eff6ff;border:0.5pt solid #bfdbfe;padding:8pt 10pt;margin:7pt 0;font-size:9.5pt;color:#1e3a5f;}\n' +
+      '.safeguarding{background:#f0fdf4;border:1pt solid #86efac;padding:10pt 12pt;margin-top:14pt;}\n' +
+      '.context-box{background:#fef3c7;border:0.5pt solid #fcd34d;padding:7pt 10pt;margin-bottom:10pt;font-size:9.5pt;color:#78350f;}\n' +
+      '.wig-box{background:#eff6ff;border:0.5pt solid #bfdbfe;padding:10pt 12pt;margin-bottom:14pt;}\n' +
+      '.evidence-box{background:#f8fafc;border:0.5pt solid #dde3ed;padding:7pt 10pt;margin-top:8pt;}\n' +
+      '.stat-val{font-size:13pt;font-weight:bold;color:#1e5fa8;}\n' +
+      '.footer-note{color:#64748b;font-size:8.5pt;border-top:0.5pt solid #dde3ed;padding-top:5pt;margin-top:6pt;}\n' +
+      '.next-steps{background:#eff6ff;border:0.5pt solid #bfdbfe;padding:9pt 11pt;margin-top:14pt;font-size:10pt;}\n' +
+      '.dev-area-hdr{border-left:4pt solid #166534;padding:5pt 0 5pt 10pt;margin:14pt 0 6pt;background:#f0fdf4;padding-right:10pt;}\n' +
+      '@page{margin:2cm 2.2cm;size:A4;}\n' +
+      '</style>\n</head>\n<body>\n' + bodyHtml + '\n</body>\n</html>';
+  }
+
+  function triggerWordDownload(html, filename) {
+    var blob = new Blob(['\ufeff', html], { type: 'application/msword' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function() { URL.revokeObjectURL(url); }, 150);
+  }
+
+  // ── SEF WORD DOWNLOAD ──────────────────────────────────────────
+
+  function downloadSEFWord() {
+    var date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    var tab = document.getElementById('tab-sef');
+    var c = '';
+
+    // Title block
+    c += '<h1>Self Evaluation Form — The Gateway Academy</h1>';
+    c += '<p style="color:#64748b;font-size:9.5pt;">New Ofsted Framework · November 2025 onwards · Five-point scale: Exceptional / Strong Standard / Expected Standard / Needs Attention / Urgent Improvement</p>';
+    c += '<p style="color:#64748b;font-size:9.5pt;">URN: 133114 · Academy Sponsor-Led · Gateway Learning Community · Tilbury, Thurrock</p>';
+    c += '<p style="color:#64748b;font-size:9.5pt;">Head of School: Grainne McLaughlin · Last Ofsted: 10 December 2024 — Ungraded, Standards Maintained</p>';
+    c += '<p style="color:#64748b;font-size:9.5pt;margin-bottom:10pt;">Generated: ' + date + '</p>';
+    c += '<div class="context-box"><strong>Working Draft:</strong> This SEF is a working draft structured around the new Ofsted inspection framework (from November 2025). All six areas are currently graded Exceptional — the Head of School\'s leading position. Grades and evidence are subject to SLT review, alignment with the School Development Plan, and governor approval before inspection. Evidence bullet points will be developed further as additional documentation is added to the dashboard.</div>';
+    c += '<hr style="border:none;border-top:2pt solid #0f2744;margin:14pt 0 10pt;">';
+
+    // Each SEF area
+    var areas = tab.querySelectorAll('.sef-area');
+    areas.forEach(function(area) {
+      var areaNameEl = area.querySelector('.sef-area-name');
+      var areaSubEl  = area.querySelector('.sef-area-sub');
+      var gradeEl    = area.querySelector('.sef-grade-badge');
+      var evTags     = area.querySelectorAll('.sef-evidence-tag');
+      if (!areaNameEl) return;
+
+      var areaName = areaNameEl.textContent.trim();
+      var areaSub  = areaSubEl  ? areaSubEl.textContent.trim()  : '';
+      var grade    = gradeEl    ? gradeEl.textContent.trim()    : '';
+      var gradeClass = (grade === 'Exceptional') ? 'grade' : (grade === 'Strong Standard') ? 'grade grade-strong' : 'grade grade-expected';
+
+      c += '<div class="area-hdr">';
+      c += '<h2 style="margin:0 0 2pt;">' + areaName + '</h2>';
+      if (areaSub) c += '<p style="margin:0 0 4pt;color:#64748b;font-size:9pt;font-style:italic;">' + areaSub + '</p>';
+      c += '<p style="margin:0;">Draft Grade: <span class="' + gradeClass + '">' + grade + '</span></p>';
+      c += '</div>';
+
+      // Walk column children
+      var grid = area.querySelector('.sef-col-grid');
+      if (grid) {
+        Array.from(grid.children).forEach(function(col) {
+          Array.from(col.children).forEach(function(child) {
+            if (child.classList.contains('sef-section-title')) {
+              c += '<h3>' + child.textContent.trim() + '</h3>';
+            } else if (child.classList.contains('sef-bullets')) {
+              c += '<ul>';
+              child.querySelectorAll('li').forEach(function(li) {
+                var spans = li.querySelectorAll('span');
+                var text = spans.length > 1 ? spans[1].innerHTML : li.textContent.trim();
+                c += '<li>' + text + '</li>';
+              });
+              c += '</ul>';
+            } else if (child.classList.contains('sef-dev-box')) {
+              c += '<div class="rationale">' + child.innerHTML + '</div>';
+            }
+          });
+        });
+      }
+
+      // Evidence sources
+      if (evTags.length > 0) {
+        var tags = Array.from(evTags).map(function(t) { return t.textContent.trim(); });
+        c += '<p class="footer-note"><strong>Evidence sources:</strong> ' + tags.join(' &nbsp;·&nbsp; ') + '</p>';
+      }
+      c += '<hr style="border:none;border-top:0.75pt solid #e2e8f0;margin:13pt 0;">';
+    });
+
+    // Safeguarding
+    var sg = tab.querySelector('.sef-safeguarding');
+    if (sg) {
+      var sgGrade = sg.querySelector('.sef-sg-grade');
+      var sgTitle = sg.querySelector('.sef-sg-title');
+      var sgSub   = sg.querySelector('.sef-sg-sub');
+      c += '<div class="safeguarding">';
+      c += '<h2 style="color:#166534;margin:0 0 4pt;">Safeguarding</h2>';
+      if (sgGrade) c += '<p style="font-size:13pt;font-weight:bold;color:#166534;margin:0 0 3pt;">' + sgGrade.textContent.trim() + '</p>';
+      if (sgTitle) c += '<p style="font-weight:bold;margin:0 0 5pt;">' + sgTitle.textContent.trim() + '</p>';
+      if (sgSub)   c += '<p style="font-size:10pt;color:#334155;line-height:1.6;">' + sgSub.textContent.trim() + '</p>';
+      c += '</div>';
+    }
+
+    // Next steps
+    var ns = tab.querySelector('.info-box.ib-blue');
+    if (ns) {
+      c += '<div class="next-steps"><h3 style="margin:0 0 6pt;">Next Steps</h3>' + ns.innerHTML + '</div>';
+    }
+
+    triggerWordDownload(buildWordShell('Gateway Academy — Self Evaluation Form', date, c), 'Gateway_SEF_Draft.doc');
+  }
+
+  // ── DEV PLAN WORD DOWNLOAD ─────────────────────────────────────
+
+  function downloadDevPlanWord() {
+    var date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    var tab = document.getElementById('tab-sdp');
+    var c = '';
+
+    // Title block
+    c += '<h1>School Development Plan 2025/26 — The Gateway Academy</h1>';
+    c += '<p style="color:#64748b;font-size:9.5pt;">Mapped to the November 2025 Ofsted Evaluation Framework · URN: 133114 · Tilbury, Thurrock · Gateway Learning Community</p>';
+    c += '<p style="color:#64748b;font-size:9.5pt;margin-bottom:10pt;">Generated: ' + date + '</p>';
+    c += '<hr style="border:none;border-top:2pt solid #0f2744;margin:10pt 0 12pt;">';
+
+    // WIG Banner — extract from DOM
+    var wigDiv = tab.querySelector('div[style*="Wildly Important Goal"]');
+    if (!wigDiv) {
+      // fallback: first big styled div after the idsr-note
+      var tabDivs = Array.from(tab.children);
+      for (var i = 0; i < tabDivs.length; i++) {
+        if (tabDivs[i].textContent.indexOf('Wildly Important Goal') > -1) { wigDiv = tabDivs[i]; break; }
+      }
+    }
+    c += '<div class="wig-box">';
+    c += '<p style="font-size:8pt;font-weight:bold;text-transform:uppercase;letter-spacing:0.4pt;color:#64748b;margin:0 0 4pt;">Wildly Important Goal (WIG) — Academic Year 2025/26</p>';
+    if (wigDiv) {
+      // Get the main goal text
+      var wigTitle = wigDiv.querySelector('div[style*="font-size:20px"]');
+      var wigDesc  = wigDiv.querySelector('div[style*="font-size:12px"]');
+      if (wigTitle) c += '<h2 style="margin:0 0 5pt;">' + wigTitle.textContent.trim() + '</h2>';
+      if (wigDesc)  c += '<p style="font-size:10pt;color:#334155;margin:0 0 5pt;">' + wigDesc.textContent.trim() + '</p>';
+      // Current and target values
+      var monoVals = wigDiv.querySelectorAll('div[style*="JetBrains Mono"]');
+      if (monoVals.length >= 2) {
+        c += '<p style="margin:0;"><strong>Current A8: ' + monoVals[0].textContent.trim() + '</strong> &nbsp;&nbsp; <strong>WIG Target: ' + monoVals[1].textContent.trim() + '</strong></p>';
+      }
+    }
+    c += '</div>';
+
+    // Find the 5 area cards — divs that contain "Ofsted Evaluation Area" text
+    var areaCards = Array.from(tab.children).filter(function(el) {
+      return el.tagName === 'DIV' && el.textContent.indexOf('Ofsted Evaluation Area') > -1;
+    });
+
+    var areaHdrColors = ['#1e5fa8','#166534','#0f2744','#6d28d9','#b45309'];
+
+    areaCards.forEach(function(card, idx) {
+      var headerDiv = card.children[0];
+      var bodyDiv   = card.children[1];
+
+      // Extract header data
+      var areaNum  = '';
+      var areaName = '';
+      var leads    = '';
+      var status   = '';
+
+      if (headerDiv) {
+        // Area number: small uppercase div
+        var allLeafDivs = Array.from(headerDiv.querySelectorAll('div')).filter(function(d) { return d.children.length === 0; });
+        allLeafDivs.forEach(function(d) {
+          var t = d.textContent.trim();
+          if (t.startsWith('Ofsted Evaluation Area')) areaNum = t;
+        });
+        // Area name: font-size:18px div
+        var nameDiv = headerDiv.querySelector('div[style*="font-size:18px"]');
+        if (nameDiv) areaName = nameDiv.textContent.trim();
+        // Leads and status: spans
+        var spans = headerDiv.querySelectorAll('span');
+        if (spans[0]) leads  = spans[0].textContent.trim();
+        if (spans[1]) status = spans[1].textContent.trim();
+      }
+
+      var col = areaHdrColors[idx] || '#1e5fa8';
+      c += '<div style="border-left:4pt solid ' + col + ';padding:5pt 10pt;margin:15pt 0 6pt;background:#fafbff;">';
+      c += '<p style="font-size:8.5pt;color:#64748b;text-transform:uppercase;letter-spacing:0.3pt;margin:0 0 2pt;">' + areaNum + '</p>';
+      c += '<h2 style="margin:0 0 2pt;color:#0f2744;">' + areaName + '</h2>';
+      if (leads || status) c += '<p style="margin:0;font-size:9pt;"><strong>Leads:</strong> ' + leads + ' &nbsp;&nbsp; <strong>Status:</strong> ' + status + '</p>';
+      c += '</div>';
+
+      if (bodyDiv) {
+        // Three-column grid
+        var threeCol = bodyDiv.querySelector('div[style*="1fr 1fr 1fr"]');
+        if (threeCol && threeCol.children.length >= 3) {
+          var colTitles = ['SDP Intentions', 'Key Actions 2025/26', 'Success Criteria (KPIs)'];
+          c += '<table>';
+          c += '<tr>';
+          colTitles.forEach(function(t) { c += '<th style="width:33%;">' + t + '</th>'; });
+          c += '</tr><tr>';
+          Array.from(threeCol.children).slice(0, 3).forEach(function(colDiv) {
+            var ul = colDiv.querySelector('ul');
+            c += '<td>';
+            if (ul) {
+              c += '<ul style="margin:0 0 0 14pt;padding:0;">';
+              ul.querySelectorAll('li').forEach(function(li) {
+                c += '<li style="font-size:9pt;line-height:1.5;margin-bottom:2pt;">' + li.textContent.trim() + '</li>';
+              });
+              c += '</ul>';
+            }
+            c += '</td>';
+          });
+          c += '</tr></table>';
+        }
+
+        // Evidence stats
+        var evidenceGrid = bodyDiv.querySelector('div[style*="repeat(auto-fit"]');
+        if (evidenceGrid && evidenceGrid.children.length > 0) {
+          c += '<div class="evidence-box"><p style="font-size:8pt;font-weight:bold;text-transform:uppercase;color:#64748b;margin:0 0 6pt;letter-spacing:0.3pt;">Live Evidence — from this dashboard</p>';
+          c += '<table><tr>';
+          var statCount = 0;
+          Array.from(evidenceGrid.children).forEach(function(statCard) {
+            var divs = statCard.querySelectorAll('div');
+            if (divs.length >= 2) {
+              var val   = divs[0].textContent.trim();
+              var label = divs[1].textContent.trim();
+              if (statCount > 0 && statCount % 4 === 0) c += '</tr><tr>';
+              c += '<td style="text-align:center;border:0.5pt solid #e2e8f0;background:#fff;padding:6pt;">';
+              c += '<div class="stat-val">' + val + '</div>';
+              c += '<div style="font-size:7.5pt;color:#64748b;margin-top:2pt;">' + label + '</div>';
+              c += '</td>';
+              statCount++;
+            }
+          });
+          c += '</tr></table></div>';
+        }
+      }
+
+      c += '<hr style="border:none;border-top:0.75pt solid #e2e8f0;margin:14pt 0;">';
+    });
+
+    // Safeguarding footer
+    c += '<div class="safeguarding">';
+    c += '<h2 style="color:#166534;margin:0 0 5pt;">Safeguarding — Binary Judgement (November 2025 Ofsted Framework)</h2>';
+    var sgDiv = Array.from(tab.children).find(function(el) {
+      return el.tagName === 'DIV' && el.textContent.indexOf('Safeguarding is effective') > -1 && el.textContent.indexOf('Ofsted Evaluation Area') < 0;
+    });
+    if (sgDiv) {
+      var sgTitle = sgDiv.querySelector('div[style*="font-size:17px"]');
+      var sgDesc  = sgDiv.querySelector('div[style*="font-size:12px"]');
+      var sgBadge = sgDiv.querySelector('div[style*="background:#22c55e"]');
+      if (sgBadge) c += '<p style="font-size:12pt;font-weight:bold;color:#166534;margin:0 0 4pt;">' + sgBadge.textContent.trim() + '</p>';
+      if (sgTitle) c += '<p style="font-weight:bold;margin:0 0 5pt;">' + sgTitle.textContent.trim() + '</p>';
+      if (sgDesc)  c += '<p style="font-size:10pt;color:#334155;line-height:1.6;">' + sgDesc.textContent.trim() + '</p>';
+    }
+    c += '</div>';
+
+    triggerWordDownload(buildWordShell('Gateway Academy — School Development Plan 2025/26', date, c), 'Gateway_DevPlan_Draft.doc');
+  }
 
   // ── GOVERNOR PRINT ───────────────────────────────────────────
 
