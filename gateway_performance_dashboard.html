@@ -292,8 +292,6 @@
       <span class="header-badge">IDSR Jun 2026 · DfE 2024/25</span>
       <button class="header-btn" id="tabPrintBtn" onclick="printCurrentTab()">🖨 Print This Tab</button>
       <button class="header-btn" id="govPrintBtn" onclick="openGovernorSummary()" style="background:rgba(52,211,153,.18);border-color:rgba(52,211,153,.45);">📄 Governor Summary</button>
-      <button class="header-btn" onclick="downloadSEFWord()" style="background:rgba(99,102,241,.18);border-color:rgba(99,102,241,.45);">⬇ Download SEF</button>
-      <button class="header-btn" onclick="downloadDevPlanWord()" style="background:rgba(245,158,11,.18);border-color:rgba(245,158,11,.45);">⬇ Download Dev Plan</button>
     </div>
   </div>
 </header>
@@ -369,7 +367,7 @@
       </div>
 
       <div style="text-align:center;padding:12px 8px;background:var(--green-light);border-radius:10px;border:1px solid var(--green-border);">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:800;color:var(--green);line-height:1;">9.4</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:800;color:var(--green);line-height:1;">10.7</div>
         <div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-top:4px;">Susp / 100</div>
         <div style="font-size:10px;color:var(--text-muted);margin-top:2px;">National: 11.31</div>
       </div>
@@ -405,7 +403,6 @@
     <button class="tab-btn" onclick="showTab('mobility',this)">🔄 Pupil Mobility</button>
     <button class="tab-btn" onclick="showTab('send',this)">♿ SEND</button>
     <button class="tab-btn" onclick="showTab('sef',this)">📋 SEF</button>
-    <button class="tab-btn" onclick="showTab('sdp',this)">🏫 Dev Plan</button>
     <button class="tab-btn" onclick="showTab('teaching',this)">📚 Teaching &amp; Learning</button>
     <button class="tab-btn" onclick="showTab('disadvantaged',this)">💙 Disadvantaged</button>
     <button class="tab-btn" onclick="showTab('destinations',this)">🎓 Destinations &amp; Careers</button>
@@ -1615,7 +1612,7 @@
 
     <div class="idsr-note">
       <span>📋</span>
-      <div>Sources: ClassCharts full-year export (Aug 2025–Jul 2026) · Suspensions register — final year to Jul 2026 · SIMS end-of-year behaviour export (Sep 2025–Jul 2026) · Behaviour &amp; Attitudes Report (Jan 2026). National suspension benchmark: DfE 2023/24 (11.31 per 100 pupils). Merits and demerits reflect Signature Strategy coaching — not solely behaviour incidents. SET call-out figures in the year group table are from the ClassCharts Jun 2026 report; the SIMS export records SET warnings using a wider definition and is not directly comparable.</div>
+      <div>Sources: ClassCharts full-year export (Sep 2025–Jul 2026) · Suspensions register to Jul 2026 · Behaviour &amp; Attitudes Report (Jan 2026) · ClassCharts SET report (new format, Jul 2026). National suspension benchmark: DfE 2023/24 (11.31 per 100 pupils). Merits and demerits reflect Signature Strategy coaching — not solely behaviour incidents.</div>
     </div>
 
     <!-- HEADLINE METRICS -->
@@ -1625,26 +1622,26 @@
 
         <div class="metric-card mc-green">
           <div class="metric-label">Merit:Demerit Ratio</div>
-          <div class="metric-value mv-green">4.2:1</div>
-          <div class="metric-plain-label mpl-green">Full year — improving every term</div>
+          <div class="metric-value mv-green">4.3:1</div>
+          <div class="metric-plain-label mpl-green">Improving every term</div>
           <div class="metric-vs">3.9:1 Autumn → 4.1:1 Spring → 5.2:1 Summer</div>
           <div class="metric-idsr">Research benchmark for effective coaching: 5:1 — achieved Summer term</div>
         </div>
 
         <div class="metric-card mc-green">
           <div class="metric-label">SET-Free Lessons</div>
-          <div class="metric-value mv-green">99.5%</div>
+          <div class="metric-value mv-green">99.0%</div>
           <div class="metric-plain-label mpl-green">Disruption remains rare</div>
-          <div class="metric-vs">2,046 SET call-outs / ~400,000 lessons</div>
-          <div class="metric-idsr">Only 0.5% of lessons required SET intervention</div>
+          <div class="metric-vs">3,982 SET call-outs / ~400,000 lessons</div>
+          <div class="metric-idsr">Only 1.0% of lessons required SET intervention</div>
         </div>
 
         <div class="metric-card mc-green">
           <div class="metric-label">Suspension Rate / 100</div>
-          <div class="metric-value mv-green">10.6</div>
+          <div class="metric-value mv-green">10.7</div>
           <div class="metric-plain-label mpl-green">Below national average</div>
           <div class="metric-vs">National avg 2023/24: 11.31 per 100</div>
-          <div class="metric-idsr">110 suspensions / 1,034 pupils — 60 unique students · Final year figure</div>
+          <div class="metric-idsr">110 suspensions / 1,031 pupils — 60 unique pupils</div>
         </div>
 
         <div class="metric-card mc-green">
@@ -1657,10 +1654,10 @@
 
         <div class="metric-card mc-green">
           <div class="metric-label">Total Merits 2025/26</div>
-          <div class="metric-value mv-green">258,724</div>
-          <div class="metric-plain-label mpl-green">Full year Aug 2025–Jul 2026</div>
-          <div class="metric-vs">~6,700 merits per week average</div>
-          <div class="metric-idsr">1,035 students in system — 100% of school roll</div>
+          <div class="metric-value mv-green">258,692</div>
+          <div class="metric-plain-label mpl-green">Universal system coverage</div>
+          <div class="metric-vs">~6,800 merits per week average</div>
+          <div class="metric-idsr">1,031 students in system — 99.3% of school roll</div>
         </div>
 
         <div class="metric-card mc-blue">
@@ -1673,17 +1670,17 @@
 
         <div class="metric-card mc-green">
           <div class="metric-label">SET Reduction vs Pre-COVID</div>
-          <div class="metric-value mv-green">68%</div>
+          <div class="metric-value mv-green">37%</div>
           <div class="metric-plain-label mpl-green">Long-term improvement</div>
-          <div class="metric-vs">6,336 (2018/19) → 2,046 (2025/26)</div>
+          <div class="metric-vs">6,336 (2018/19) → 3,982 (2025/26)</div>
           <div class="metric-idsr">Sustained reduction despite raised expectations</div>
         </div>
 
         <div class="metric-card mc-green">
           <div class="metric-label">Zero-Demerit Students</div>
-          <div class="metric-value mv-green">56</div>
+          <div class="metric-value mv-green">55</div>
           <div class="metric-plain-label mpl-green">All year, no demerits</div>
-          <div class="metric-vs">Of 1,035 students in system</div>
+          <div class="metric-vs">Of 1,031 students in system</div>
           <div class="metric-idsr">Reward Shop: 3,537 transactions by 317 students</div>
         </div>
 
@@ -1720,13 +1717,13 @@
       <div class="dark-points">
         <div class="dark-point">
           <div class="dark-point-label">Suspension Rate</div>
-          <div class="dark-point-stat">10.6 vs 11.31</div>
-          <div class="dark-point-text">Final year suspension rate of 10.6 per 100 pupils is below the national average (11.31), despite a significantly higher deprivation profile. Improving from 11.8/100 in 2021/22.</div>
+          <div class="dark-point-stat">10.7 vs 11.31</div>
+          <div class="dark-point-text">Suspension rate of 10.7 per 100 pupils is below the national average (11.31), despite a significantly higher deprivation profile. Improving from 11.8/100 in 2021/22.</div>
         </div>
         <div class="dark-point">
           <div class="dark-point-label">Disruption Isolated</div>
-          <div class="dark-point-stat">99.5% SET-free</div>
-          <div class="dark-point-text">99.5% of all lessons proceeded without a SET call-out. Disruption is concentrated in under 1% of the cohort — enabling precise, targeted intervention.</div>
+          <div class="dark-point-stat">99.0% SET-free</div>
+          <div class="dark-point-text">99.0% of all lessons proceeded without a SET call-out. Disruption is concentrated in under 1% of the cohort — enabling precise, targeted intervention.</div>
         </div>
         <div class="dark-point">
           <div class="dark-point-label">Improving Culture</div>
@@ -1735,8 +1732,8 @@
         </div>
         <div class="dark-point">
           <div class="dark-point-label">Long-Term Trend</div>
-          <div class="dark-point-stat">−68% SET</div>
-          <div class="dark-point-text">SET call-outs have fallen 68% from 6,336 in 2018/19 to 2,046 in 2025/26 — a sustained, multi-year improvement despite raised expectations and higher SEND identification.</div>
+          <div class="dark-point-stat">−37% SET</div>
+          <div class="dark-point-text">SET call-outs have fallen 37% from 6,336 in 2018/19 to 3,982 in 2025/26 — a sustained, multi-year improvement despite raised expectations and higher SEND identification.</div>
         </div>
       </div>
     </div>
@@ -1744,7 +1741,7 @@
     <!-- CLASSCHARTS YEAR GROUP BREAKDOWN -->
     <div class="section">
       <div class="section-title">📊 ClassCharts System — Year Group Breakdown 2025/26</div>
-      <div class="section-sub">Full year data (August 2025 – July 2026). Merits and demerits are Signature Strategy coaching tools — not solely behaviour records. SET = removal from class after two demerits in a lesson. SET figures from ClassCharts Jun 2026 report.</div>
+      <div class="section-sub">Full year data (September 2025 – June 2026). Merits and demerits are Signature Strategy coaching tools — not solely behaviour records. SET = removal from class after two demerits in a lesson.</div>
 
       <div class="data-table-wrap">
         <table class="data-table">
@@ -1766,7 +1763,7 @@
               <td class="mono">11,572</td>
               <td class="mono fw-bold text-green">5.9:1</td>
               <td class="mono">265</td>
-              <td class="mono text-green">~12.3</td>
+              <td class="mono text-green">~12.5</td>
               <td><span class="tag tag-green">Strongest ratio — excellent embedding</span></td>
             </tr>
             <tr>
@@ -1775,7 +1772,7 @@
               <td class="mono">18,088</td>
               <td class="mono fw-bold text-blue">3.9:1</td>
               <td class="mono">526</td>
-              <td class="mono text-blue">~25.7</td>
+              <td class="mono text-blue">~24.8</td>
               <td><span class="tag tag-blue">Highest merit volume — active year group</span></td>
             </tr>
             <tr>
@@ -1784,7 +1781,7 @@
               <td class="mono text-amber fw-bold">19,546</td>
               <td class="mono fw-bold text-amber">3.2:1</td>
               <td class="mono text-amber fw-bold">700</td>
-              <td class="mono text-amber">~32.4</td>
+              <td class="mono text-amber">~33.0</td>
               <td><span class="tag tag-amber">Most SET — targeted intervention in place</span></td>
             </tr>
             <tr>
@@ -1793,7 +1790,7 @@
               <td class="mono">8,224</td>
               <td class="mono fw-bold text-green">4.4:1</td>
               <td class="mono">364</td>
-              <td class="mono text-blue">~17.8</td>
+              <td class="mono text-blue">~17.2</td>
               <td><span class="tag tag-green">Strong — GCSE focus embedding</span></td>
             </tr>
             <tr>
@@ -1802,24 +1799,24 @@
               <td class="mono">3,476</td>
               <td class="mono fw-bold text-green">5.8:1</td>
               <td class="mono text-green fw-bold">191</td>
-              <td class="mono text-green">~9.9</td>
+              <td class="mono text-green">~9.0</td>
               <td><span class="tag tag-green">Excellent — exam year maturity evident</span></td>
             </tr>
             <tr class="row-subhead">
               <td>Total / School</td>
-              <td class="mono fw-bold">258,724</td>
-              <td class="mono fw-bold">60,908</td>
-              <td class="mono fw-bold text-green">4.2:1</td>
-              <td class="mono fw-bold">2,046</td>
+              <td class="mono fw-bold">258,692</td>
+              <td class="mono fw-bold">60,906</td>
+              <td class="mono fw-bold text-green">4.3:1</td>
+              <td class="mono fw-bold">3,982</td>
               <td class="mono text-green">~19.8</td>
-              <td><span class="tag tag-green">Full year Aug 2025–Jul 2026</span></td>
+              <td><span class="tag tag-green">Full year final figures</span></td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="info-box ib-blue">
-        <strong>Understanding the data:</strong> Merits and demerits are a coaching tool, not a punishment system. A demerit signals that a student needs to adjust a specific Signature Strategy behaviour — it is corrective, not disciplinary. The 4.2:1 overall ratio means students receive 4.2 positive interactions for every one corrective interaction. The research benchmark for effective coaching environments is 5:1 — achieved in the Summer term (5.2:1).
+        <strong>Understanding the data:</strong> Merits and demerits are a coaching tool, not a punishment system. A demerit signals that a student needs to adjust a specific Signature Strategy behaviour — it is corrective, not disciplinary. The 4.3:1 overall ratio means students receive 4.3 positive interactions for every one corrective interaction. The research benchmark for effective coaching environments is 5:1 — achieved in the Summer term (5.2:1).
       </div>
     </div>
 
@@ -1893,10 +1890,10 @@
               <td class="mono text-green">4</td>
             </tr>
             <tr class="row-highlight">
-              <td class="fw-bold text-navy">2025/26 (final year)</td><td class="mono">1,034</td>
+              <td class="fw-bold text-navy">2025/26 (final)</td><td class="mono">1,031</td>
               <td class="mono fw-bold text-green">110</td>
-              <td class="mono fw-bold text-green">10.6</td>
-              <td class="text-green fw-bold">−0.7 below</td>
+              <td class="mono fw-bold text-green">10.7</td>
+              <td class="text-green fw-bold">−0.6 below</td>
               <td class="mono">60</td>
               <td class="mono text-amber">5</td>
             </tr>
@@ -1910,18 +1907,18 @@
       <div class="charts-grid">
         <div class="chart-card">
           <div class="chart-card-title">Suspension Rate per 100 Pupils — 5-Year Trend</div>
-          <div class="chart-card-sub">Gateway vs national average (11.31). 2025/26 is the final full-year figure.</div>
+          <div class="chart-card-sub">Gateway vs national average (11.31). 2025/26 is the confirmed full-year final figure.</div>
           <div class="chart-wrap"><canvas id="chartSuspRate"></canvas></div>
         </div>
         <div class="chart-card">
           <div class="chart-card-title">Suspension Reasons 2025/26</div>
-          <div class="chart-card-sub">Breakdown of all 110 suspension incidents by reason (final year 2025/26)</div>
+          <div class="chart-card-sub">Breakdown of all 110 suspension incidents by reason</div>
           <div class="chart-wrap"><canvas id="chartSuspReason"></canvas></div>
         </div>
       </div>
 
       <div class="info-box ib-amber">
-        <strong>Context — suspension rate and deprivation:</strong> 78% of Gateway's suspension incidents involved FSM-eligible pupils, consistent with national patterns for schools serving areas of high deprivation. DfE analysis consistently shows that disadvantaged pupils and those with SEND are disproportionately represented in national suspension data. Gateway's rate of 10.6 per 100 is below national average despite serving one of the highest-deprivation communities in Essex. 47% of suspension incidents involved students with identified SEND.
+        <strong>Context — suspension rate and deprivation:</strong> The majority of Gateway's suspension incidents involved FSM-eligible pupils, consistent with national patterns for schools serving areas of high deprivation. DfE analysis consistently shows that disadvantaged pupils and those with SEND are disproportionately represented in national suspension data. Gateway's rate of 10.7 per 100 is below national average despite serving one of the highest-deprivation communities in Essex.
       </div>
     </div>
 
@@ -1939,36 +1936,36 @@
             <tr>
               <td class="fw-bold">Year 7</td>
               <td class="mono text-green fw-bold">1</td>
-              <td class="mono text-green">1.2%</td>
-              <td class="mono">~1</td>
+              <td class="mono text-green">0.9%</td>
               <td class="mono">1</td>
+              <td class="mono text-green">0</td>
             </tr>
             <tr>
               <td class="fw-bold">Year 8</td>
               <td class="mono fw-bold text-blue">10</td>
-              <td class="mono text-blue">11.6%</td>
-              <td class="mono">~8</td>
+              <td class="mono text-blue">9.1%</td>
+              <td class="mono">8</td>
               <td class="mono text-green">0</td>
             </tr>
             <tr>
               <td class="fw-bold text-navy">Year 9</td>
               <td class="mono fw-bold text-amber">38</td>
-              <td class="mono text-amber">44.2%</td>
-              <td class="mono">~24</td>
-              <td class="mono text-amber">2</td>
+              <td class="mono text-amber">34.5%</td>
+              <td class="mono">19</td>
+              <td class="mono text-green">0</td>
             </tr>
             <tr>
               <td class="fw-bold">Year 10</td>
               <td class="mono fw-bold text-blue">29</td>
-              <td class="mono text-blue">33.7%</td>
-              <td class="mono">~20</td>
-              <td class="mono text-amber">2</td>
+              <td class="mono text-blue">26.4%</td>
+              <td class="mono">14</td>
+              <td class="mono text-green">0</td>
             </tr>
             <tr>
               <td class="fw-bold">Year 11</td>
               <td class="mono fw-bold text-blue">8</td>
-              <td class="mono text-blue">9.3%</td>
-              <td class="mono">~6</td>
+              <td class="mono text-blue">7.3%</td>
+              <td class="mono">6</td>
               <td class="mono text-green">0</td>
             </tr>
           </tbody>
@@ -1976,7 +1973,7 @@
       </div>
 
       <div class="info-box ib-blue">
-        <strong>Year 7 — exceptional transition:</strong> Only 1 suspension incident in Year 7 across the full year — the strongest Year 7 suspension figure on record, consistent with the 5.9:1 merit:demerit ratio showing excellent expectation-setting with the newest cohort. <strong>Year 9 note:</strong> Year 9 accounts for 44% of suspension incidents and the highest SET call-out volume (700), consistent with national adolescent patterns. Targeted pastoral interventions are in place for this year group. <strong>Year 11 — exam focus:</strong> Only 8 incidents and a 5.8:1 merit ratio — a focused, mature cohort in their final year.
+        <strong>Year 7 — exceptional transition:</strong> Only 1 suspension incident in Year 7 — consistent with the 5.9:1 merit:demerit ratio showing excellent expectation-setting with the newest cohort. <strong>Year 9 note:</strong> Year 9 accounts for the highest share of both SET call-outs (34.2%) and suspensions (34.5%), consistent with national adolescent patterns. The school has specific Year 9 pastoral interventions in place. <strong>Year 11 — exam focus:</strong> Only 8 incidents and a 5.8:1 merit ratio — clear evidence of a focused, mature cohort in their final year. <strong>Note:</strong> All 5 permanent exclusions in 2025/26 were students on managed moves or no longer on main roll at point of exclusion.
       </div>
     </div>
 
@@ -2353,7 +2350,7 @@
         <div class="chart-wrap" style="height:260px;"><canvas id="chartSETHistory"></canvas></div>
       </div>
       <div class="info-box ib-green">
-        <strong>Sustained improvement:</strong> SET call-outs have fallen from 6,336 in 2018/19 to 2,046 in 2025/26 — a 68% reduction. This trend has been sustained across multiple leadership priorities: raised expectations, improved SEND identification, and the introduction of ClassCharts. The reduction is in the context of deliberate raising of non-negotiables and expectations, which typically increases call-outs short-term before the culture embeds.
+        <strong>Sustained improvement:</strong> SET call-outs have fallen from 6,336 in 2018/19 to 3,982 in 2025/26 — a 37% reduction. This trend has been sustained across multiple leadership priorities: raised expectations, improved SEND identification, and the introduction of ClassCharts. The 2025/26 figure uses ClassCharts new-format SET categories (SET — Choice &amp; Consequences, Routines &amp; Expectations, Focus &amp; Attention, Resilience &amp; Self-Mastery, Respect &amp; Manners), introduced mid-year when ClassCharts updated its logging system.
       </div>
     </div>
 
@@ -2701,18 +2698,18 @@
 
     <div class="idsr-note">
       <span>📋</span>
-      <div>Sources: SEND Student Directory (July 2026) · Gateway Student Review database (2025/26) · EAA Register (January 2026) · Inclusion Strategy 2026/27. Total school roll at time of data: 1,034. Note: SEND register is a live document — numbers vary slightly across different snapshot dates. The IDSR (Nov 2025) shows 18.2% SEN; the live register (July 2026) shows 21.5%, reflecting continued identification and accuracy work since the IDSR snapshot. SEND attendance full year 2024/25: 91.0% (IDSR) — #1 of 21 similar schools.</div>
+      <div>Sources: SEND Student Directory (April 2026) · Gateway Student Review database (2025/26) · SEND Register overview sheet. Total school roll at time of data: 1,029. Note: SEND register is a live document — numbers vary slightly across different snapshot dates. The IDSR (Nov 2025) shows 18.2% SEN; the live register (Apr 2026) shows 21.2%, reflecting continued identification and accuracy work since the IDSR snapshot.</div>
     </div>
 
     <!-- HEADLINE METRICS -->
     <div class="section">
-      <div class="section-title">♿ SEND — Headline Measures (July 2026)</div>
+      <div class="section-title">♿ SEND — Headline Measures (April 2026)</div>
       <div class="metrics-grid">
 
         <div class="metric-card mc-blue">
           <div class="metric-label">Total on SEND Register</div>
-          <div class="metric-value mv-blue">222</div>
-          <div class="metric-plain-label mpl-blue">21.5% of school roll</div>
+          <div class="metric-value mv-blue">218</div>
+          <div class="metric-plain-label mpl-blue">21.2% of school roll</div>
           <div class="metric-vs">National secondary avg: ~17.9%</div>
           <div class="metric-idsr">Reflects sustained accuracy audit and improved identification since 2022</div>
         </div>
@@ -2727,24 +2724,24 @@
 
         <div class="metric-card mc-blue">
           <div class="metric-label">SEN Support (K)</div>
-          <div class="metric-value mv-blue">178</div>
-          <div class="metric-plain-label mpl-blue">17.2% of school roll</div>
+          <div class="metric-value mv-blue">175</div>
+          <div class="metric-plain-label mpl-blue">17.0% of school roll</div>
           <div class="metric-vs">Largest SEND category</div>
-          <div class="metric-idsr">106 pupils also PP — complex dual-need cohort</div>
+          <div class="metric-idsr">104 pupils also PP — complex dual-need cohort</div>
         </div>
 
         <div class="metric-card mc-green">
           <div class="metric-label">Monitoring (M)</div>
-          <div class="metric-value mv-green">14</div>
-          <div class="metric-plain-label mpl-blue">1.4% of school roll</div>
+          <div class="metric-value mv-green">13</div>
+          <div class="metric-plain-label mpl-blue">1.3% of school roll</div>
           <div class="metric-vs">Under observation / assessment</div>
           <div class="metric-idsr">Early identification pathway — prevention before escalation</div>
         </div>
 
         <div class="metric-card mc-red">
           <div class="metric-label">SEND + Disadvantaged (PP)</div>
-          <div class="metric-value mv-red">136</div>
-          <div class="metric-plain-label mpl-red">61% of all SEND pupils</div>
+          <div class="metric-value mv-red">128</div>
+          <div class="metric-plain-label mpl-red">59% of all SEND pupils</div>
           <div class="metric-vs">Dual-disadvantage — most complex group</div>
           <div class="metric-idsr">Highest-need pupils receiving targeted provision and PP funding</div>
         </div>
@@ -2767,9 +2764,9 @@
 
         <div class="metric-card mc-green">
           <div class="metric-label">Student Reviews Completed</div>
-          <div class="metric-value mv-green">141</div>
-          <div class="metric-plain-label mpl-green">Reviews completed 2025/26</div>
-          <div class="metric-vs">171 review records · 141 completed · referrals from staff, parents &amp; SENCo</div>
+          <div class="metric-value mv-green">130</div>
+          <div class="metric-plain-label mpl-green">Unique SEND pupils reviewed</div>
+          <div class="metric-vs">166 review records · 142 completed · 13 in LHT testing</div>
           <div class="metric-idsr">Comprehensive annual review cycle for all SEND pupils</div>
         </div>
 
@@ -2807,7 +2804,7 @@
     <!-- YEAR GROUP BREAKDOWN -->
     <div class="section">
       <div class="section-title">SEND Register — Year Group Breakdown</div>
-      <div class="section-sub">Source: SEND Student Directory Overview (July 2026) · All five year groups</div>
+      <div class="section-sub">Source: SEND Student Directory Overview (April 2026) · All five year groups</div>
 
       <div class="data-table-wrap">
         <table class="data-table">
@@ -2827,47 +2824,47 @@
           <tbody>
             <tr>
               <td class="fw-bold text-navy">Year 7</td>
-              <td class="mono">215</td>
+              <td class="mono">211</td>
               <td class="mono fw-bold text-blue">55</td>
               <td><span class="tag tag-amber">26%</span></td>
               <td class="mono text-purple fw-bold">5</td>
-              <td class="mono text-blue fw-bold">45</td>
-              <td class="mono text-slate">5</td>
-              <td class="mono text-red fw-bold">34</td>
-              <td class="mono">62%</td>
+              <td class="mono text-blue fw-bold">44</td>
+              <td class="mono text-slate">6</td>
+              <td class="mono text-red fw-bold">35</td>
+              <td class="mono">64%</td>
             </tr>
             <tr>
               <td class="fw-bold text-navy">Year 8</td>
               <td class="mono">205</td>
-              <td class="mono fw-bold text-blue">44</td>
+              <td class="mono fw-bold text-blue">43</td>
               <td><span class="tag tag-blue">21%</span></td>
               <td class="mono text-purple fw-bold">6</td>
               <td class="mono text-blue fw-bold">32</td>
-              <td class="mono text-slate">6</td>
-              <td class="mono text-red fw-bold">23</td>
-              <td class="mono">52%</td>
+              <td class="mono text-slate">5</td>
+              <td class="mono text-red fw-bold">22</td>
+              <td class="mono">51%</td>
             </tr>
             <tr>
               <td class="fw-bold text-navy">Year 9</td>
-              <td class="mono">217</td>
-              <td class="mono fw-bold text-blue">49</td>
-              <td><span class="tag tag-blue">23%</span></td>
+              <td class="mono">216</td>
+              <td class="mono fw-bold text-blue">48</td>
+              <td><span class="tag tag-blue">22%</span></td>
               <td class="mono text-purple fw-bold">8</td>
               <td class="mono text-blue fw-bold">39</td>
-              <td class="mono text-slate">2</td>
-              <td class="mono text-red fw-bold">37</td>
-              <td class="mono">76%</td>
+              <td class="mono text-slate">1</td>
+              <td class="mono text-red fw-bold">31</td>
+              <td class="mono">65%</td>
             </tr>
             <tr>
               <td class="fw-bold text-navy">Year 10</td>
               <td class="mono">205</td>
-              <td class="mono fw-bold text-blue">42</td>
+              <td class="mono fw-bold text-blue">40</td>
               <td><span class="tag tag-blue">20%</span></td>
               <td class="mono text-purple fw-bold">6</td>
-              <td class="mono text-blue fw-bold">36</td>
+              <td class="mono text-blue fw-bold">34</td>
               <td class="mono text-slate">0</td>
-              <td class="mono text-red fw-bold">24</td>
-              <td class="mono">57%</td>
+              <td class="mono text-red fw-bold">22</td>
+              <td class="mono">55%</td>
             </tr>
             <tr>
               <td class="fw-bold text-navy">Year 11</td>
@@ -2882,21 +2879,21 @@
             </tr>
             <tr class="row-subhead">
               <td>Total</td>
-              <td class="mono fw-bold">1,034</td>
-              <td class="mono fw-bold">222</td>
-              <td class="mono fw-bold">21.5%</td>
+              <td class="mono fw-bold">1,029</td>
+              <td class="mono fw-bold">218</td>
+              <td class="mono fw-bold">21.2%</td>
               <td class="mono fw-bold">30</td>
-              <td class="mono fw-bold">178</td>
-              <td class="mono fw-bold">14</td>
-              <td class="mono fw-bold">136</td>
-              <td class="mono fw-bold">61%</td>
+              <td class="mono fw-bold">175</td>
+              <td class="mono fw-bold">13</td>
+              <td class="mono fw-bold">128</td>
+              <td class="mono fw-bold">59%</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="info-box ib-amber">
-        <strong>Year 7 SEND rate (26%):</strong> Year 7 has the highest SEND prevalence, reflecting the school's proactive identification approach for new pupils — thorough baseline assessment ensures needs are identified quickly on entry. 62% of Year 7 SEND pupils also receive PP funding. Year 9 has the highest PP overlap at 76% — the most complex dual-need profile in the school.
+        <strong>Year 7 SEND rate (26%):</strong> Year 7 has the highest SEND prevalence, reflecting the school's proactive identification approach for new pupils — thorough baseline assessment ensures needs are identified quickly on entry. 64% of Year 7 SEND pupils also receive PP funding — the most complex profile of any year group.
       </div>
     </div>
 
@@ -2906,7 +2903,7 @@
       <div class="charts-grid">
         <div class="chart-card">
           <div class="chart-card-title">Primary SEN Need — All Register</div>
-          <div class="chart-card-sub">Four Ofsted/DfE need areas for all 222 pupils (July 2026) — SEMH 35%, C&amp;L 32%, C&amp;I 29%, S&amp;P 5%</div>
+          <div class="chart-card-sub">IDSR SEN Need categories for all 218 pupils with identified primary need</div>
           <div class="chart-wrap" style="height:280px;"><canvas id="chartSENNeeds"></canvas></div>
         </div>
         <div class="chart-card">
@@ -2925,9 +2922,9 @@
       <div class="narrative-grid">
         <div class="narrative-card nc-purple">
           <div class="nc-eyebrow">📊 PP + SEND overlap</div>
-          <div class="nc-stat">61%</div>
-          <div class="nc-title">61% of all SEND pupils are also disadvantaged (PP)</div>
-          <div class="nc-text">136 pupils carry both a SEND identification and PP eligibility. This dual-disadvantage group represents Gateway's most complex learners — requiring both SEND provision and the additional support that PP funding enables. Research consistently shows this intersection has the greatest impact on attainment.</div>
+          <div class="nc-stat">59%</div>
+          <div class="nc-title">59% of all SEND pupils are also disadvantaged (PP)</div>
+          <div class="nc-text">128 pupils carry both a SEND identification and PP eligibility. This dual-disadvantage group represents Gateway's most complex learners — requiring both SEND provision and the additional support that PP funding enables. Research consistently shows this intersection has the greatest impact on attainment.</div>
         </div>
         <div class="narrative-card nc-blue">
           <div class="nc-eyebrow">📋 EHCP + PP</div>
@@ -2943,9 +2940,9 @@
         </div>
         <div class="narrative-card nc-amber">
           <div class="nc-eyebrow">⚠️ SEMH prevalence</div>
-          <div class="nc-stat">35% of needs</div>
+          <div class="nc-stat">36% of needs</div>
           <div class="nc-title">Social, Emotional &amp; Mental Health is the largest need category</div>
-          <div class="nc-text">77 pupils have SEMH as their primary identified need — the largest single category. This is consistent with national patterns in areas of high deprivation and post-COVID recovery. The school's 44 MCB/clinical referrals this year demonstrate proactive early intervention for this group.</div>
+          <div class="nc-text">79 pupils have SEMH as their primary identified need — the largest single category. This is consistent with national patterns in areas of high deprivation and post-COVID recovery. The school's 44 MCB/clinical referrals this year demonstrate proactive early intervention for this group.</div>
         </div>
       </div>
     </div>
@@ -2983,13 +2980,13 @@
             </tr>
             <tr class="row-subhead"><td colspan="3">Student Review Cycle (2025/26)</td></tr>
             <tr>
-              <td class="fw-bold">Total review records 2025/26</td>
-              <td class="mono fw-bold text-green">171</td>
+              <td class="fw-bold">Unique SEND pupils reviewed</td>
+              <td class="mono fw-bold text-green">130</td>
               <td style="font-size:12px;">Comprehensive annual review cycle — every SEND pupil has a review</td>
             </tr>
             <tr>
               <td class="fw-bold">Reviews completed</td>
-              <td class="mono fw-bold text-green">141</td>
+              <td class="mono fw-bold text-green">142</td>
               <td style="font-size:12px;">Includes EHCP annual reviews, SEN support plan reviews, LHT testing</td>
             </tr>
             <tr>
@@ -3042,77 +3039,17 @@
       </div>
     </div>
 
-    <!-- INCLUSION STRATEGY 2026/27 -->
-    <div class="section">
-      <div class="section-title">📋 Inclusion Strategy 2026/27 — Gateway Academy</div>
-      <div class="section-sub">Published in accordance with the Inclusive Mainstream Fund (IMF) conditions of grant · DfE Methodology March 2026 · SENDCo: Laura Hunt · Trust Lead: Sarah Curtis</div>
-
-      <div class="dark-callout" style="margin-bottom:16px;">
-        <h3>📋 Inclusion Strategy — Key Context</h3>
-        <p>This is Gateway Academy's first Inclusion Strategy, published in compliance with the Inclusive Mainstream Fund (DfE, March 2026). The strategy is structured around seven themes and positions the school within the three-phase SEND reform programme (Schools White Paper, February 2026). Existing SEND law is unchanged — no changes take effect before September 2029.</p>
-        <div class="dark-points">
-          <div class="dark-point">
-            <div class="dark-point-label">Phase 1 (2025–27)</div>
-            <div class="dark-point-stat">Aligning to best practice</div>
-            <div class="dark-point-text">Student Support Plans, graduated approach, external agency partnerships and monitoring systems place Gateway well within Phase 1 requirements. The Inclusion Strategy and IMF participation are key Phase 2 foci.</div>
-          </div>
-          <div class="dark-point">
-            <div class="dark-point-label">SEND + PP overlap</div>
-            <div class="dark-point-stat">61% — 136 pupils</div>
-            <div class="dark-point-text">61% of the SEND register are also eligible for Pupil Premium. The Pupil Premium strategy and Inclusion Strategy are planned and reviewed together, ensuring joined-up provision for Gateway's most complex learners.</div>
-          </div>
-          <div class="dark-point">
-            <div class="dark-point-label">SEND Attendance</div>
-            <div class="dark-point-stat">91.0% — #1 of 21</div>
-            <div class="dark-point-text">Full-year 2024/25 SEND attendance: 91.0% (IDSR) — highest of all 21 DfE-matched similar schools. National similar schools median: 90.6%. A sustained DfE Relative Strength for two consecutive periods.</div>
-          </div>
-          <div class="dark-point">
-            <div class="dark-point-label">Inclusive Mainstream Fund</div>
-            <div class="dark-point-stat">2026/27 allocation</div>
-            <div class="dark-point-text">IMF funding is deployed across 10 priority activities including extended Thinking Reading capacity (Y7), SEND-focused CPD for all staff, increased specialist assessment sessions, LSA deployment review, Y7 enhanced baseline screening, belonging &amp; engagement monitoring, SEND parent forums, and Preparation for Adulthood (Y9).</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="narrative-grid">
-        <div class="narrative-card nc-blue">
-          <div class="nc-eyebrow">📌 Theme 1</div>
-          <div class="nc-stat">Identification</div>
-          <div class="nc-title">Needs-led, accurate identification</div>
-          <div class="nc-text">Register is needs-led — a diagnosis is one source of information, never the sole determinant. Identification rates reviewed against national and similar-school benchmarks. Students removed from the register if progressing in line with national peers without personalisation.</div>
-        </div>
-        <div class="narrative-card nc-green">
-          <div class="nc-eyebrow">📌 Theme 2</div>
-          <div class="nc-stat">Provision</div>
-          <div class="nc-title">High-quality first teaching &amp; intervention</div>
-          <div class="nc-text">Universal offer: 8 signature teaching strategies (EEF evidence base). Targeted: Thinking Reading, Language for B&amp;E, Language for Thinking, Talkabout, Smart Thinking, Peer Reading. IMF funds extended Thinking Reading capacity and Y7 enhanced baseline screening.</div>
-        </div>
-        <div class="narrative-card nc-purple">
-          <div class="nc-eyebrow">📌 Theme 3</div>
-          <div class="nc-stat">Staff expertise</div>
-          <div class="nc-title">SEND-focused CPD for all staff</div>
-          <div class="nc-text">IMF-funded CPD programme covering ADHD, dyslexia, anxiety and ASC for all staff. LSA deployment reviewed using EEF evidence — moving to enhanced targeted small-group model. Consistent, unified approach to coaching and QA (StepLab).</div>
-        </div>
-        <div class="narrative-card nc-amber">
-          <div class="nc-eyebrow">📌 Themes 4–7</div>
-          <div class="nc-stat">Belonging</div>
-          <div class="nc-title">Transitions, belonging, families &amp; agencies</div>
-          <div class="nc-text">Preparation for Adulthood programme (Y9 SEND cohort). Belonging &amp; engagement monitoring framework. Twice-yearly SEND parent forums (new for 2026/27). Joint DSL/SENDCo review protocol for students with both safeguarding and SEND needs. Experts at Hand programme via Thurrock LA.</div>
-        </div>
-      </div>
-    </div>
-
     <!-- EXAM ACCESS ARRANGEMENTS -->
     <div class="section">
-      <div class="section-title">📝 Exam Access Arrangements (EAA) — July 2026</div>
-      <div class="section-sub">Source: SEND Student Directory (July 2026) · EAA type breakdown from LHT assessment cycle (January 2026) · All arrangements formally assessed via standardised testing · JCQ compliant · Applied through Pearson/AQA examination systems</div>
+      <div class="section-title">📝 Exam Access Arrangements (EAA) — January 2026</div>
+      <div class="section-sub">Source: EAA Register (as at 18 January 2026) · All arrangements formally assessed via LHT standardised testing · JCQ compliant · Applied through Pearson/AQA examination systems</div>
 
       <div class="metrics-grid">
         <div class="metric-card mc-blue">
           <div class="metric-label">Total Pupils with EAA</div>
-          <div class="metric-value mv-blue">212</div>
-          <div class="metric-plain-label mpl-blue">20.5% of school roll</div>
-          <div class="metric-vs">1,034 total pupils · Years 7–11</div>
+          <div class="metric-value mv-blue">215</div>
+          <div class="metric-plain-label mpl-blue">20.8% of school roll</div>
+          <div class="metric-vs">1,031 total pupils · Years 7–11</div>
           <div class="metric-idsr">All arrangements reflect the pupil's normal way of working — JCQ requirement</div>
         </div>
         <div class="metric-card mc-purple">
@@ -4734,10 +4671,10 @@
             </ul>
             <div class="sef-section-title" style="margin-top:12px;">✅ Behaviour Strengths</div>
             <ul class="sef-bullets">
-              <li><span class="sef-bullet-tick">✅</span><span>Suspension rate 10.6 per 100 pupils (2025/26 final year) vs national 11.31 — <strong>below national</strong>. Improving trend from 11.8 (2021/22). 5 permanent exclusions — last resort only, all following extensive graduated support.</span></li>
-              <li><span class="sef-bullet-tick">✅</span><span>Merit:demerit ratio 4.2:1 full year, 5.2:1 summer term — meets research benchmark for effective behaviour coaching. 258,724 merits awarded.</span></li>
-              <li><span class="sef-bullet-tick">✅</span><span>99.5% of lessons SET-free. Under 1% of pupils generate 23% of SET demand — disruption is concentrated, not systemic. Targeted intervention in place.</span></li>
-              <li><span class="sef-bullet-tick">✅</span><span>68% reduction in SET call-outs since 2018/19 (6,336 → 2,046). Long-term, sustained improvement in behaviour culture over 6 years.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Suspension rate 10.7 per 100 pupils (2025/26) vs national 11.31 — <strong>below national</strong>. 5 permanent exclusions — all last resort, following extensive graduated support.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>Merit:demerit ratio 4.3:1 full year, 5.2:1 summer term — meets research benchmark for effective behaviour coaching. 258,692 merits awarded (final year).</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>99.0% of lessons SET-free. Under 1% of pupils generate the majority of SET demand — disruption is concentrated, not systemic. Targeted intervention in place.</span></li>
+              <li><span class="sef-bullet-tick">✅</span><span>37% reduction in SET call-outs since 2018/19 (6,336 → 3,982). Long-term, sustained improvement in behaviour culture over 6 years.</span></li>
               <li><span class="sef-bullet-tick">✅</span><span>95% of departures from roll are parent-initiated — clear evidence the school is not off-rolling. Robust CME tracking and safeguarding processes for every leaver.</span></li>
               <li><span class="sef-bullet-tick">✅</span><span>Whole-school attendance above national for <strong>three consecutive years</strong>: 92.8% vs 91.0% (2022/23) · 93.1% vs 91.1% (2023/24) · 92.9% vs 91.6% (2024/25). FSM6 and SEND attendance above national all three years.</span></li>
               <li><span class="sef-bullet-tick">✅</span><span><strong>99% of pupils feel safe</strong> (safeguarding triangulation). 97% in pupil survey. Validated through STEER data, CPOMS analysis, attendance patterns and parental feedback. Bullying is rare and swiftly addressed through restorative follow-up and peer-led anti-bullying ambassadors.</span></li>
@@ -4753,7 +4690,7 @@
               <li><span class="sef-bullet-dev">→</span><span>[Add further evidence here — attendance action plan, governor challenge on attendance, pupil voice on behaviour, case studies of successful PA intervention]</span></li>
             </ul>
             <div class="sef-dev-box" style="margin-top:12px;">
-              <strong>Rationale for Strong Standard:</strong> 2nd of 21 similar schools for attendance, #1 for SEN attendance, zero DfE focus areas, and a 68% reduction in behaviour incidents since 2018/19 represent a consistent, sustained improvement in the school's culture and climate. The data is verified by DfE benchmarking against genuinely similar schools, not just internal records.
+              <strong>Rationale for Strong Standard:</strong> 2nd of 21 similar schools for attendance, #1 for SEN attendance, zero DfE focus areas, and a 37% reduction in SET call-outs since 2018/19 represent a consistent, sustained improvement in the school's culture and climate. The data is verified by DfE benchmarking against genuinely similar schools, not just internal records.
             </div>
           </div>
         </div>
@@ -4932,7 +4869,7 @@
 
     <div class="idsr-note">
       <span>📋</span>
-      <div>Sources: Gateway Times Issues 1–4 (Feb–Jul 2026), Gateway Spotlight on Excellence Issues 1–3 (Mar, May &amp; Jul 2026). Evidence covers 2025/26 academic year. Achievements relate to sport, arts, leadership, enrichment, CCF and More Able provision across all year groups. Gateway Times Issue 4 and Spotlight Issue 3 dated 16–17 July 2026 — end-of-year editions.</div>
+      <div>Sources: Gateway Times Issues 1–3 (Feb–May 2026), Gateway Spotlight on Excellence Issues 1–2 (Mar &amp; May 2026). Evidence covers 2025/26 academic year. Achievements relate to sport, arts, leadership, enrichment, CCF and More Able provision across all year groups.</div>
     </div>
 
     <!-- HEADLINE METRICS -->
@@ -4942,9 +4879,9 @@
 
         <div class="metric-card mc-green">
           <div class="metric-label">National Basketball (2025/26)</div>
-          <div class="metric-value mv-green" style="font-size:22px;padding-top:6px;">NBA Finals</div>
-          <div class="metric-plain-label mpl-green">Y7 boys — NBA Finals champions 🏆 · Y7 girls — NBA Finals (UEL)</div>
-          <div class="metric-vs">4 teams in Essex Cup semi-finals · U14 boys last 8 nationally</div>
+          <div class="metric-value mv-green" style="font-size:22px;padding-top:6px;">Last 8 / 16</div>
+          <div class="metric-plain-label mpl-green">U14 boys last 8 nationally · U14 girls last 16</div>
+          <div class="metric-vs">4 teams in Essex Cup semi-finals</div>
           <div class="metric-idsr">ASPIRE regional training camps: 3 U14 pupils selected</div>
         </div>
 
@@ -4966,10 +4903,10 @@
 
         <div class="metric-card mc-green">
           <div class="metric-label">Athletics — District Champions</div>
-          <div class="metric-value mv-green">4 Years</div>
+          <div class="metric-value mv-green">3 Years</div>
           <div class="metric-plain-label mpl-green">Consecutive district title holders</div>
-          <div class="metric-vs">540 pts vs 397 — record winning margin · All 4 ESAA teams Regional Finals</div>
-          <div class="metric-idsr">First time in school history all four ESAA teams reached Regional Finals · Tobi S: English Schools selection</div>
+          <div class="metric-vs">Inter Boys qualified for Regional A Final 2025/26</div>
+          <div class="metric-idsr">Top 12 schools in the region — ESAA Track &amp; Field Cup</div>
         </div>
 
         <div class="metric-card mc-blue">
@@ -5019,23 +4956,23 @@
         </div>
         <div class="dark-point">
           <div class="dark-point-label">Basketball — Junior NBA</div>
-          <div class="dark-point-stat">NBA Finals Champions 🏆</div>
-          <div class="dark-point-text">Y7 boys crowned NBA Finals overall champions — finals held at the University of East London. Y7 girls also reached the NBA Finals (UEL). Earlier in the year: U14 boys last 8 nationally (vs Bullers Wood); U14 girls last 16 (vs Redden Court). 4 teams in Essex Cup semi-finals. 3 U14 pupils selected for ASPIRE regional training camps. Gators club based at Gateway — students attended national tournament in Belgium.</div>
+          <div class="dark-point-stat">3 Teams Near Finals</div>
+          <div class="dark-point-text">Y7 girls, Y7 boys and Y8 girls all one game from reaching Junior NBA finals day (May 2026). Gators club based at Gateway — students attended national tournament in Belgium. 3 U14 pupils selected for ASPIRE regional training camps.</div>
         </div>
         <div class="dark-point">
           <div class="dark-point-label">Athletics</div>
-          <div class="dark-point-stat">4-Year Champions</div>
-          <div class="dark-point-text">District athletics champions for 4 consecutive years — 2025/26 was the most dominant: 540 pts vs 397 (largest winning margin in school history). All four ESAA teams reached Regional Finals for the first time ever. Tobi S: 2nd Triple Jump at County Championships, national qualifying standard, selected for English Schools. Kimani B: 4th discus. 8 pupils selected for County Championships; medals for Joyful I, Heaven M, Aishat W, Allanah F, David A, Aakifah O.</div>
+          <div class="dark-point-stat">3-Year Champions</div>
+          <div class="dark-point-text">District athletics title held for 3 consecutive years. Inter Boys team qualified for ESAA Regional A Final 2025/26 (top 12 in region). Individual standouts: Tobi S (triple jump), Kimani B (discus), Elijah D (hammer), Sam M (100m). Y7: Oluwasola O. 1st in Borough cross-country; Scarlett J. 3rd.</div>
         </div>
         <div class="dark-point">
           <div class="dark-point-label">Netball</div>
           <div class="dark-point-stat">Regional Finals</div>
-          <div class="dark-point-text">U14 girls qualified for Regional Netball Finals (Hertfordshire). Y7 girls finished 3rd in the Borough — an outstanding achievement for a first-year cohort. First win vs William Edwards earlier in the season. 25 sporting badges presented in Y9 assembly — students coaching GLC primary pupils in basketball (Wednesday after school).</div>
+          <div class="dark-point-text">U14 girls qualified for Regional Netball Finals (Hertfordshire). Y7 girls unbeaten across all borough fixtures. First win vs William Edwards. 25 sporting badges presented in Y9 assembly — students coaching GLC primary pupils in basketball (Wednesday after school).</div>
         </div>
         <div class="dark-point">
           <div class="dark-point-label">Rugby</div>
           <div class="dark-point-stat">Essex Plate</div>
-          <div class="dark-point-text">Y7 boys reached the Final of the Essex Plate — finishing 2nd place against well-established rugby schools. A remarkable achievement for a year group new to competitive rugby. U12 and U14 boys also reached Plate semi-finals in county Rugby 7s festivals (U14 lost narrowly to eventual competition winners).</div>
+          <div class="dark-point-text">Y7 boys reached semi-final of Essex Plate competition against well-established rugby schools. U12 and U14 boys reached Plate semi-finals in county Rugby 7s festivals (U14 lost narrowly to eventual competition winners).</div>
         </div>
         <div class="dark-point">
           <div class="dark-point-label">Football</div>
@@ -5070,14 +5007,8 @@
 
         <div class="narrative-card nc-blue">
           <div class="nc-eyebrow">MUSIC</div>
-          <div class="nc-stat">Teatime Concert · Junior Music Festival · Voice Workshop</div>
-          <div class="nc-body">Second annual Teatime Concert (April 30, Ellis Theatre). KS3 Voice Workshop with Create &amp; Sing artist Madeleine (Royal Ballet &amp; Opera Schools / Carmen programme) — singers prepared a festival performance in a 2-hour workshop. Abigail T, Summer M and Joyful I then performed as Guest Artists at the Junior Music Festival (15 July 2026, Civic Hall) alongside other schools. Private vocal lessons ongoing throughout the year.</div>
-        </div>
-
-        <div class="narrative-card nc-purple">
-          <div class="nc-eyebrow">SUMMER ARTS FESTIVAL</div>
-          <div class="nc-stat">9 July 2026 — Ellis Theatre</div>
-          <div class="nc-body">GLC students gathered at the Ellis Theatre to perform across multiple art forms. Students demonstrated considerable skill and confidence, reflecting the time, effort and dedication invested in their creative development throughout the year. Each student demonstrated excellent creativity and commitment across morning and evening performances. Students of the Month in Arts (Drama, Art, Dance, Photography) recognised each half-term — May and June awards presented to standout students across all year groups.</div>
+          <div class="nc-stat">Teatime Concert &amp; Platform Performance</div>
+          <div class="nc-body">Second annual Teatime Concert (April 30, Ellis Theatre): 4 secondary students plus primary students performed. Students Abigail T, Katy W and Scarlet M represented the school at the Thurrock Music Services Informal Platform Performance at Thames Park Secondary School. Private vocal lessons ongoing throughout the year.</div>
         </div>
 
         <div class="narrative-card nc-blue">
@@ -5127,13 +5058,7 @@
         <div class="narrative-card nc-blue">
           <div class="nc-eyebrow">CHESS &amp; ACADEMIC CHALLENGE</div>
           <div class="nc-stat">Inaugural Tournament 2026</div>
-          <div class="nc-body">First Gateway Academy Chess Tournament: 20 players, joint winners Henry C and Finley S-B. Third place: Al-Hakam M. Spotlight on Excellence Issue 3 (July 2026): Bronze, Silver and Gold awards for Overall Attainment and Progress across Y7–Y10 in every subject — externally published recognition of academic achievement. Subject Stars of the Month programme running termly.</div>
-        </div>
-
-        <div class="narrative-card nc-green">
-          <div class="nc-eyebrow">ANIMAL PSYCHOLOGY MASTERCLASS</div>
-          <div class="nc-stat">35 More Able Students · Cambridge</div>
-          <div class="nc-body">15 June 2026: 35 more able students took part in an intellectually challenging masterclass on Animal Psychology, delivered by Abiaz Afzal — a former Gateway Academy student now in his fifth year studying Medicine at the University of Cambridge. Students explored university-level concepts in animal cognition, behaviour and decision-making, examined real research and developed analytical thinking skills. Abiaz also shared his own academic journey, inspiring students to aim high. A powerful example of Gateway's aspiration-raising approach: a student from Tilbury, now at Cambridge, returning to widen horizons for the next generation.</div>
+          <div class="nc-body">First Gateway Academy Chess Tournament: 20 players, joint winners Henry C and Finley S-B. Third place: Al-Hakam M. Spotlight on Excellence awards (Bronze, Silver, Gold) for Progress and Attainment across all year groups each term — externally published recognition of academic achievement from Y7 to Y11 across every subject. Subject Stars of the Month programme running termly.</div>
         </div>
 
         <div class="narrative-card nc-amber">
@@ -5164,17 +5089,17 @@
 
           <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;border-left:4px solid var(--purple);">
             <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--purple);margin-bottom:6px;">Wellbeing &amp; Thurrock Youth Cabinet</div>
-            <div style="font-size:13px;color:var(--text);line-height:1.55;">Lexie and Harry held elections for Thurrock Youth Council across year groups to ensure young people of Tilbury have their voice heard. Student leaders also worked with the Port of Tilbury to launch a youth space for the local community and are engaged in the Youth Zone project. Wellbeing Ambassadors led whole-year assemblies. Student leadership includes Anti-Bullying Ambassadors, Inclusivity Ambassadors, ERIS and Mental Health Ambassadors.</div>
+            <div style="font-size:13px;color:var(--text);line-height:1.55;">Lexi C. (Thurrock Youth Cabinet member) organised a gambling harm charity speaker for Y10 PSHE. Wellbeing Ambassadors led whole-year assemblies. Student leadership includes Anti-Bullying Ambassadors, Inclusivity Ambassadors, ERIS and Mental Health Ambassadors.</div>
           </div>
 
           <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;border-left:4px solid var(--amber);">
             <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--amber);margin-bottom:6px;">Year Group Initiatives</div>
-            <div style="font-size:13px;color:var(--text);line-height:1.55;">2 new student leadership roles created in 2025/26: <strong>New Student Ambassadors</strong> (helping new students settle in) and <strong>Academic Coaches</strong> (helping new students catch up). Grace (Y10) planned the whole new-student afternoon tea event and wrote a welcome booklet for new starters. 25 new students across Y7–11 attended the afternoon tea. <strong>Y7:</strong> Environmental project; bake sales. <strong>Y8:</strong> Resilience projects; Culture Day. <strong>Y9:</strong> Coaching GLC primary pupils in basketball. <strong>Y10:</strong> Podcast; Careers Fair support; environmental awareness; new students welcome.</div>
+            <div style="font-size:13px;color:var(--text);line-height:1.55;"><strong>Y7:</strong> Light/air quality environmental project; fundraising bake sales. <strong>Y8:</strong> Resilience projects; Culture Day planning. <strong>Y9:</strong> Coaching GLC primary pupils in basketball. <strong>Y10:</strong> Sewing club; Gateway Academy Podcast; new students welcome lunch; Careers Fair support; environmental awareness.</div>
           </div>
 
           <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;border-left:4px solid var(--navy);">
             <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--navy);margin-bottom:6px;">Jack Petchey Awards</div>
-            <div style="font-size:13px;color:var(--text);line-height:1.55;">Multiple Jack Petchey Award winners across the school. Year 8 alone: 6 Jack Petchey winners and 12 Golden Ticket winners — a remarkable achievement reflecting the commitment and positive attitudes of that year group. 8 Golden Tickets in Y10; 33 GLC Core Values badges in Y10; 20 Y11 students invited to Celebration Breakfast with Headteacher following exceptional PPE results.</div>
+            <div style="font-size:13px;color:var(--text);line-height:1.55;">Multiple Jack Petchey Award winners recognised for outstanding leadership and contribution to school community. 8 Golden Tickets awarded in Y10 alone for exceptional effort; 33 GLC Core Values badges in Y10; 20 Y11 students invited to Celebration Breakfast with Headteacher following exceptional PPE results.</div>
           </div>
 
           <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;border-left:4px solid var(--green);">
@@ -5200,7 +5125,7 @@
         <div class="narrative-card nc-blue">
           <div class="nc-eyebrow">TRAINING PROGRAMME 2025/26</div>
           <div class="nc-stat">Full Annual Cycle</div>
-          <div class="nc-body">October: Initial camping at Thriftwood, Brentwood. March: Army Air Weapon training (Scorpion system, 20 cadets — all passed). Navigation, map reading, drill, first aid, fieldcraft. June 6th: Weapons training at the Army ranges at Fingringhoe (near Colchester) — over 20 cadets completed their first live shoot on the L98 weapons system, having completed two days intensive training at Merville Barracks with the Cadet Training Team. Cadets fired at targets up to 100 metres; all scored well. July: Week-long central camp in Lincolnshire. Summer: CCF expanding — new recruitment drive. 3 promotions to Lance Corporal: Archie B., Oreoluwa M. and Akmal P.</div>
+          <div class="nc-body">October: Initial camping at Thriftwood, Brentwood. March: Army Air Weapon training (Scorpion system, 20 cadets — all passed). Navigation, map reading, drill, first aid, fieldcraft. May–June: Weapons training at Colchester Barracks. July: Week-long camp in Lincolnshire. Summer: CCF expanding — new recruitment drive. 3 promotions to Lance Corporal: Archie B., Oreoluwa M. and Akmal P.</div>
         </div>
 
         <div class="narrative-card nc-amber">
@@ -5236,27 +5161,12 @@
 
           <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;border-left:4px solid var(--amber);">
             <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--amber);margin-bottom:6px;">Rewards &amp; Recognition Culture</div>
-            <div style="font-size:13px;color:var(--text);line-height:1.55;">Flip Out rewards trips (all year groups for high attendance and merits). Y7/8 disco; Y11 Prom at Orsett Hall. Pizza &amp; Revision events. Celebration Breakfasts with the Headteacher. Termly Academic Awards Ceremonies with Bronze/Silver/Gold trophies and certificates across every subject from Y7 to Y11.</div>
+            <div style="font-size:13px;color:var(--text);line-height:1.55;">Flip Out rewards trips (all year groups for high attendance and merits). Y7/8 disco; Y11 Prom (2 July). Pizza &amp; Revision events. Celebration Breakfasts with the Headteacher. Termly Academic Awards Ceremonies with Bronze/Silver/Gold trophies and certificates across every subject from Y7 to Y11.</div>
           </div>
 
           <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;border-left:4px solid var(--navy);">
             <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--navy);margin-bottom:6px;">Performing Arts in the Community</div>
             <div style="font-size:13px;color:var(--text);line-height:1.55;">Bobby Austin (Y10): lead role in Thameside Theatre production of Annie. Singers performed at Thurrock Music Services Platform Performance. Teatime concerts in Ellis Theatre (cross-phase, primary &amp; secondary). Macie-Lyn P. (Y9) achieved highest dance grade in freestyle externally.</div>
-          </div>
-
-          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;border-left:4px solid var(--green);">
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--blue);margin-bottom:6px;">Scuba Diving — PADI Experience</div>
-            <div style="font-size:13px;color:var(--text);line-height:1.55;">8 students took part in a PADI Discover Scuba Diving (DSD) experience at South Woodham Ferrers. Under qualified PADI instructors, students learned underwater hand signals, mask clearing, pressure equalisation and buoyancy control. By the end of the session they were playing catch underwater — a testament to confidence grown in a single session. The experience challenged students to remain calm under pressure and trust their peers. In a community where such experiences are rare, this represents exactly the kind of horizon-broadening opportunity that defines Gateway's enrichment offer.</div>
-          </div>
-
-          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;border-left:4px solid var(--purple);">
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--purple);margin-bottom:6px;">Y11 Graduation &amp; Prom 2026</div>
-            <div style="font-size:13px;color:var(--text);line-height:1.55;">Graduation Ceremony (19 June) celebrated five years of achievement — both academic and personal. Year 11 Prom was held at Orsett Hall: an exceptional venue reflecting the ambition and high standards the school holds for its students. Students demonstrated throughout the evening the kindness, encouragement and community that defines Gateway. Results Day: 20 August 2026.</div>
-          </div>
-
-          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;border-left:4px solid var(--amber);">
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--amber);margin-bottom:6px;">Y10 Work Experience &amp; Careers</div>
-            <div style="font-size:13px;color:var(--text);line-height:1.55;">Y10 completed block five-day work experience placements — feedback from employers was fantastic. Students also crafted first CVs and took part in a Mock Interview Day, developing professional skills and confidence. A select group of Y9 and Y10 boys attended a university campus visit, gaining a glimpse into higher education. All departing Y11 students have their next steps firmly in place — college, sixth form or apprenticeship — fully prepared for their next chapter.</div>
           </div>
 
           <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;border-left:4px solid var(--green);">
@@ -5275,11 +5185,11 @@
       <div class="dark-points">
         <div class="dark-point">
           <div class="dark-point-label">Breadth of Provision</div>
-          <div class="dark-point-text">Sport (basketball, netball, athletics, rugby, football, cross-country, scuba diving), performing arts (dance, drama, music, visual arts, Summer Arts Festival), CCF, student leadership (4 active groups + new Ambassador and Academic Coach roles), academic enrichment (Mensa, masterclasses including Cambridge Medicine alumnus, competitions), careers. Every student has access — not gatekept to elite groups.</div>
+          <div class="dark-point-text">Sport (basketball, netball, athletics, rugby, football, cross-country), performing arts (dance, drama, music, visual arts), CCF, student leadership, academic enrichment (Mensa, masterclasses, competitions), careers. Every student has access — not gatekept to elite groups.</div>
         </div>
         <div class="dark-point">
           <div class="dark-point-label">Depth &amp; Impact</div>
-          <div class="dark-point-text">Achievements are externally validated: LAMDA distinctions, NBA Finals champions (Y7 boys), 4th consecutive District Athletics title (record margin), all 4 ESAA teams at Regional Finals (first time in school history), Tobi S selected for English Schools Athletics, Junior Music Festival guest artists, PADI scuba qualification, Cambridge alumnus masterclass, Mensa membership, Thames Freeport Scholarship. Not internal badge-giving — genuine external competition and recognition.</div>
+          <div class="dark-point-text">Achievements are externally validated: LAMDA distinctions, regional/national sport, Mensa membership, Cambridge Spelling Bee finals, ASPIRE training camps, Thames Freeport Scholarship. Not internal badge-giving — genuine external competition and recognition.</div>
         </div>
         <div class="dark-point">
           <div class="dark-point-label">Context: Barriers Removed</div>
@@ -5310,7 +5220,7 @@
 
     <div class="idsr-note">
       <span>📋</span>
-      <div>Sources: ClassCharts full-year export (Aug 2025–Jul 2026), Suspensions register — final year to Jul 2026, Behaviour &amp; Attitudes Report Jan 2026, Rewards shop data (full year), Gateway Times Issues 1–3, Gateway Spotlight Issues 1–2, STEER Risk Reports &amp; Action Plans 2025/26 (R1 autumn · R2 spring). This tab is a <strong>pastoral summary for Heads of Year</strong> — not a pupil-level tracking tool (that is SISRA). Figures are whole-year totals unless stated. Suspension incidents = number of suspension events; unique students = number of individual pupils who received at least one suspension. STEER priority students = those with the highest number of polar biases (≥2); action plans = students with active STEER interventions at R2.</div>
+      <div>Sources: ClassCharts full-year export (Sep 2025–Jul 2026), Suspensions register to Jul 2026, Behaviour &amp; Attitudes Report Jan 2026, Rewards shop data (full year), Gateway Times Issues 1–3, Gateway Spotlight Issues 1–2. This tab is a <strong>pastoral summary for Heads of Year</strong> — not a pupil-level tracking tool (that is SISRA). Figures are whole-year totals unless stated. Suspension incidents = number of suspension events; unique students = number of individual pupils who received at least one suspension.</div>
     </div>
 
     <!-- SCHOOL-WIDE CONTEXT STRIP -->
@@ -5346,15 +5256,15 @@
         <div class="metrics-grid" style="margin-bottom:18px;">
           <div class="metric-card mc-green">
             <div class="metric-label">Merits Awarded</div>
-            <div class="metric-value mv-green">61,780</div>
+            <div class="metric-value mv-green">68,509</div>
             <div class="metric-plain-label mpl-green">Full year · ClassCharts</div>
             <div class="metric-vs">2nd highest year group total</div>
           </div>
           <div class="metric-card mc-green">
             <div class="metric-label">Merit : Demerit Ratio</div>
-            <div class="metric-value mv-green">6.0:1</div>
+            <div class="metric-value mv-green">5.9:1</div>
             <div class="metric-plain-label mpl-green">Best in school</div>
-            <div class="metric-vs">10,249 demerits recorded</div>
+            <div class="metric-vs">11,572 demerits recorded</div>
           </div>
           <div class="metric-card mc-green">
             <div class="metric-label">SET Visit Rate</div>
@@ -5407,38 +5317,6 @@
           </div>
         </div>
 
-        <!-- STEER CALLOUT Y7 -->
-        <div style="margin-top:16px;background:#f0fdf4;border:1px solid var(--green-border);border-radius:10px;padding:14px 16px;">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--green);margin-bottom:10px;">🧠 STEER Emotional Wellbeing — 2025/26</div>
-          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px;">
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--amber);">20</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Priority students · R1</div>
-            </div>
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--blue);">10</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Action plans · R2</div>
-            </div>
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--green);">90%</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Assessment improvement</div>
-            </div>
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--green);">8/10</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Positive impact confirmed</div>
-            </div>
-          </div>
-          <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:6px;">Most common focus areas (R2 action plans):</div>
-          <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;">
-            <span class="tag tag-blue">Low Self Disclosure ×5</span>
-            <span class="tag tag-amber">Low Trust Of Self ×2</span>
-            <span class="tag tag-slate">Hidden Vulnerability ×1</span>
-            <span class="tag tag-slate">Low Seeking Change ×1</span>
-            <span class="tag tag-slate">High Trust Of Others ×1</span>
-          </div>
-          <div style="font-size:11px;color:var(--green);font-style:italic;">Strongest outcomes in school — 80% of reviewed plans confirmed Positive Impact. Typical for a new cohort still building confidence and disclosure habits.</div>
-        </div>
-
       </div>
     </div>
 
@@ -5464,7 +5342,7 @@
             <div class="metric-label">Merit : Demerit Ratio</div>
             <div class="metric-value mv-amber">3.9:1</div>
             <div class="metric-plain-label mpl-amber">Area to monitor</div>
-            <div class="metric-vs">16,355 demerits · 4th of 5 year groups</div>
+            <div class="metric-vs">18,088 demerits · 4th of 5 year groups</div>
           </div>
           <div class="metric-card mc-amber">
             <div class="metric-label">SET Visit Rate</div>
@@ -5514,38 +5392,6 @@
               <strong>Watch:</strong> Lateness (259 incidents — highest in school). SET visit rate highest of all year groups. Homework issues (788).
             </div>
           </div>
-        </div>
-
-        <!-- STEER CALLOUT Y8 -->
-        <div style="margin-top:16px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:14px 16px;">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--blue);margin-bottom:10px;">🧠 STEER Emotional Wellbeing — 2025/26</div>
-          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px;">
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--amber);">19</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Priority students · R1</div>
-            </div>
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--blue);">13</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Action plans · R2</div>
-            </div>
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--amber);">62%</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Assessment improvement</div>
-            </div>
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--text-muted);">—</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Teacher review pending</div>
-            </div>
-          </div>
-          <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:6px;">Most common focus areas (R2 action plans):</div>
-          <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;">
-            <span class="tag tag-blue">Low Self Disclosure ×6</span>
-            <span class="tag tag-amber">Over Regulation ×2</span>
-            <span class="tag tag-amber">Hidden Vulnerability ×2</span>
-            <span class="tag tag-slate">Low Seeking Change ×1</span>
-            <span class="tag tag-slate">Low Trust Of Self ×1</span>
-          </div>
-          <div style="font-size:11px;color:var(--blue);font-style:italic;">Low Self Disclosure is the dominant pattern — consistent with Y8 identity development. Over Regulation signals emotional suppression worth monitoring as the year group approaches GCSEs.</div>
         </div>
 
       </div>
@@ -5626,39 +5472,6 @@
           </div>
         </div>
 
-        <!-- STEER CALLOUT Y9 -->
-        <div style="margin-top:16px;background:#fffbeb;border:1px solid var(--amber-border);border-radius:10px;padding:14px 16px;">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--amber);margin-bottom:10px;">🧠 STEER Emotional Wellbeing — 2025/26</div>
-          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px;">
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--amber);">20</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Priority students · R1</div>
-            </div>
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--blue);">13</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Action plans · R2</div>
-            </div>
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--amber);">62%</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Assessment improvement</div>
-            </div>
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--green);">3/13</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Positive impact confirmed</div>
-            </div>
-          </div>
-          <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:6px;">Most common focus areas (R2 action plans):</div>
-          <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;">
-            <span class="tag tag-blue">Low Self Disclosure ×5</span>
-            <span class="tag tag-amber">Over Regulation ×3</span>
-            <span class="tag tag-amber">Hidden Vulnerability ×2</span>
-            <span class="tag tag-slate">Low Seeking Change ×1</span>
-            <span class="tag tag-slate">Low Trust Of Others ×1</span>
-            <span class="tag tag-slate">Hidden Autonomy ×1</span>
-          </div>
-          <div style="font-size:11px;color:var(--amber);font-style:italic;">Over Regulation is prominent — aligns with the behavioural pattern seen in ClassCharts. Students suppressing emotions are more likely to surface unpredictably. Action plans are targeting this directly.</div>
-        </div>
-
       </div>
     </div>
 
@@ -5676,15 +5489,15 @@
         <div class="metrics-grid" style="margin-bottom:18px;">
           <div class="metric-card mc-purple">
             <div class="metric-label">Merits Awarded</div>
-            <div class="metric-value mv-purple">34,469</div>
+            <div class="metric-value mv-purple">36,177</div>
             <div class="metric-plain-label mpl-purple">Full year · ClassCharts</div>
             <div class="metric-vs">Lower volume reflects tighter GCSE focus</div>
           </div>
           <div class="metric-card mc-purple">
             <div class="metric-label">Merit : Demerit Ratio</div>
-            <div class="metric-value mv-purple">4.6:1</div>
+            <div class="metric-value mv-purple">4.4:1</div>
             <div class="metric-plain-label mpl-purple">Strong — 3rd of 5 year groups</div>
-            <div class="metric-vs">7,483 demerits · lowest demerit count</div>
+            <div class="metric-vs">8,224 demerits · lower than Y8 &amp; Y9</div>
           </div>
           <div class="metric-card mc-amber">
             <div class="metric-label">SET Visit Rate</div>
@@ -5738,40 +5551,6 @@
           </div>
         </div>
 
-        <!-- STEER CALLOUT Y10 -->
-        <div style="margin-top:16px;background:#f5f3ff;border:1px solid #c4b5fd;border-radius:10px;padding:14px 16px;">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--purple);margin-bottom:10px;">🧠 STEER Emotional Wellbeing — 2025/26</div>
-          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px;">
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--amber);">20</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Priority students · R1</div>
-            </div>
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--blue);">12</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Action plans · R2</div>
-            </div>
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--amber);">58%</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Assessment improvement</div>
-            </div>
-            <div style="text-align:center;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 4px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--text-muted);">—</div>
-              <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px;">Teacher review pending</div>
-            </div>
-          </div>
-          <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:6px;">Most common focus areas (R2 action plans):</div>
-          <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;">
-            <span class="tag tag-blue">Low Self Disclosure ×3</span>
-            <span class="tag tag-amber">Low Seeking Change ×2</span>
-            <span class="tag tag-amber">Over Regulation ×2</span>
-            <span class="tag tag-slate">Hidden Vulnerability ×1</span>
-            <span class="tag tag-slate">Low Trust Of Others ×1</span>
-            <span class="tag tag-slate">Low Trust Of Self ×1</span>
-            <span class="tag tag-slate">High Trust Of Self ×1</span>
-          </div>
-          <div style="font-size:11px;color:var(--purple);font-style:italic;">Broader spread of focus areas reflects the more complex emotional landscape of Y10 — GCSE pressure, identity, and relationships all emerging simultaneously. Low Seeking Change may indicate anxiety about transition.</div>
-        </div>
-
       </div>
     </div>
 
@@ -5789,7 +5568,7 @@
         <div class="metrics-grid" style="margin-bottom:18px;">
           <div class="metric-card mc-green">
             <div class="metric-label">Merits Awarded</div>
-            <div class="metric-value mv-green">20,170</div>
+            <div class="metric-value mv-green">20,174</div>
             <div class="metric-plain-label mpl-green">Full year · ClassCharts</div>
             <div class="metric-vs">Lower volume — GCSE exam year</div>
           </div>
@@ -5877,65 +5656,65 @@
           <tbody>
             <tr style="background:#f0fdf4;">
               <td style="padding:9px 12px;font-weight:600;color:var(--green);">Year 7</td>
-              <td style="padding:9px 12px;text-align:center;">61,780</td>
-              <td style="padding:9px 12px;text-align:center;">10,249</td>
-              <td style="padding:9px 12px;text-align:center;font-weight:700;color:var(--green);">6.0:1 ✓</td>
+              <td style="padding:9px 12px;text-align:center;">68,509</td>
+              <td style="padding:9px 12px;text-align:center;">11,572</td>
+              <td style="padding:9px 12px;text-align:center;font-weight:700;color:var(--green);">5.9:1 ✓</td>
               <td style="padding:9px 12px;text-align:center;color:var(--green);">36% ✓</td>
               <td style="padding:9px 12px;text-align:center;">255</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--green);">6 ✓</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--green);">2 ✓</td>
+              <td style="padding:9px 12px;text-align:center;color:var(--green);">1 ✓</td>
+              <td style="padding:9px 12px;text-align:center;color:var(--green);">1 ✓</td>
               <td style="padding:9px 12px;text-align:center;color:var(--green);">20.5 ✓</td>
               <td style="padding:9px 12px;text-align:center;">650</td>
               <td style="padding:9px 12px;text-align:right;color:var(--green);">1,560 ✓</td>
             </tr>
             <tr style="background:#eff6ff;">
               <td style="padding:9px 12px;font-weight:600;color:var(--blue);">Year 8</td>
-              <td style="padding:9px 12px;text-align:center;font-weight:700;color:var(--blue);">64,416 ✓</td>
-              <td style="padding:9px 12px;text-align:center;">16,355</td>
+              <td style="padding:9px 12px;text-align:center;font-weight:700;color:var(--blue);">71,132 ✓</td>
+              <td style="padding:9px 12px;text-align:center;">18,088</td>
               <td style="padding:9px 12px;text-align:center;color:var(--amber);">3.9:1</td>
               <td style="padding:9px 12px;text-align:center;color:#dc2626;">47% ↑</td>
               <td style="padding:9px 12px;text-align:center;">328</td>
-              <td style="padding:9px 12px;text-align:center;">23</td>
-              <td style="padding:9px 12px;text-align:center;">9</td>
+              <td style="padding:9px 12px;text-align:center;">10</td>
+              <td style="padding:9px 12px;text-align:center;">8</td>
               <td style="padding:9px 12px;text-align:center;">103</td>
               <td style="padding:9px 12px;text-align:center;">788</td>
               <td style="padding:9px 12px;text-align:right;">1,157</td>
             </tr>
             <tr style="background:#fffbeb;">
               <td style="padding:9px 12px;font-weight:600;color:var(--amber);">Year 9</td>
-              <td style="padding:9px 12px;text-align:center;">57,743</td>
-              <td style="padding:9px 12px;text-align:center;color:#dc2626;">18,174 ↑</td>
+              <td style="padding:9px 12px;text-align:center;">62,700</td>
+              <td style="padding:9px 12px;text-align:center;color:#dc2626;">19,546 ↑</td>
               <td style="padding:9px 12px;text-align:center;color:#dc2626;font-weight:700;">3.2:1 ↓</td>
               <td style="padding:9px 12px;text-align:center;color:var(--amber);">46%</td>
               <td style="padding:9px 12px;text-align:center;color:#dc2626;font-weight:700;">634 ↑</td>
-              <td style="padding:9px 12px;text-align:center;color:#dc2626;font-weight:700;">57 ↑</td>
-              <td style="padding:9px 12px;text-align:center;color:#dc2626;">22</td>
+              <td style="padding:9px 12px;text-align:center;color:#dc2626;font-weight:700;">38 ↑</td>
+              <td style="padding:9px 12px;text-align:center;color:#dc2626;">19</td>
               <td style="padding:9px 12px;text-align:center;color:#dc2626;">236.5</td>
               <td style="padding:9px 12px;text-align:center;color:#dc2626;">836 ↑</td>
               <td style="padding:9px 12px;text-align:right;">950</td>
             </tr>
             <tr style="background:#f5f3ff;">
               <td style="padding:9px 12px;font-weight:600;color:var(--purple);">Year 10</td>
-              <td style="padding:9px 12px;text-align:center;">34,469</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--green);">7,483 ✓</td>
-              <td style="padding:9px 12px;text-align:center;">4.6:1</td>
+              <td style="padding:9px 12px;text-align:center;">36,177</td>
+              <td style="padding:9px 12px;text-align:center;color:var(--green);">8,224 ✓</td>
+              <td style="padding:9px 12px;text-align:center;">4.4:1</td>
               <td style="padding:9px 12px;text-align:center;">46%</td>
               <td style="padding:9px 12px;text-align:center;color:var(--green);">137</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--amber);">47</td>
-              <td style="padding:9px 12px;text-align:center;">18</td>
+              <td style="padding:9px 12px;text-align:center;color:var(--amber);">29</td>
+              <td style="padding:9px 12px;text-align:center;">14</td>
               <td style="padding:9px 12px;text-align:center;">206</td>
               <td style="padding:9px 12px;text-align:center;">723</td>
               <td style="padding:9px 12px;text-align:right;color:var(--amber);">202</td>
             </tr>
             <tr style="background:#f0f9ff;">
               <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Year 11</td>
-              <td style="padding:9px 12px;text-align:center;">20,170</td>
+              <td style="padding:9px 12px;text-align:center;">20,174</td>
               <td style="padding:9px 12px;text-align:center;color:var(--green);">3,476 ✓</td>
               <td style="padding:9px 12px;text-align:center;font-weight:700;color:var(--green);">5.8:1 ✓</td>
               <td style="padding:9px 12px;text-align:center;color:var(--green);">27% ✓</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--green);font-weight:700;">7 ✓</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--amber);">41</td>
-              <td style="padding:9px 12px;text-align:center;">18</td>
+              <td style="padding:9px 12px;text-align:center;color:var(--green);font-weight:700;">8 ✓</td>
+              <td style="padding:9px 12px;text-align:center;color:var(--amber);">8</td>
+              <td style="padding:9px 12px;text-align:center;">6</td>
               <td style="padding:9px 12px;text-align:center;">182.5</td>
               <td style="padding:9px 12px;text-align:center;color:var(--green);">486 ✓</td>
               <td style="padding:9px 12px;text-align:right;">166</td>
@@ -5961,758 +5740,11 @@
 
   </div><!-- /yeargroups -->
 
-  <!-- ═══════════════════════════════════════════════ -->
-  <!-- DEVELOPMENT PLAN TAB                           -->
-  <!-- ═══════════════════════════════════════════════ -->
-  <div class="tab-panel" id="tab-sdp" data-print-title="🏫 School Development Plan 2025/26 — Mapped to Ofsted Framework">
-
-    <div class="idsr-note">
-      <span>🏫</span>
-      <div>Source: Gateway Academy Development Plan 2025–2026. This tab maps SDP priorities to the <strong>November 2025 Ofsted Evaluation Framework</strong> (5 applicable areas + binary Safeguarding). Each area shows SDP intentions, key actions, KPIs, and live evidence already held in this dashboard. Leads shown by initials as per the SDP. Progress indicators reflect current self-assessment position.</div>
-    </div>
-
-    <!-- WIG BANNER -->
-    <div style="background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);border-radius:14px;padding:20px 24px;margin-bottom:28px;color:white;">
-      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#94a8c8;margin-bottom:6px;">Wildly Important Goal (WIG) — Academic Year 2025/26</div>
-      <div style="display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;flex-wrap:wrap;">
-        <div>
-          <div style="font-size:20px;font-weight:800;margin-bottom:6px;">Attainment 8 to 46.5 — above national average — by Summer 2026 results</div>
-          <div style="font-size:12px;color:#cbd5e1;line-height:1.65;">Current position: A8 46.1 (2024/25) = national average exactly. Target requires +0.4 improvement. Supporting goals: EM5+ above national; Disadvantaged P8 sig+ above national for a third consecutive year; whole-school attendance ≥ 94%. See SISRA for subject and pupil-level breakdowns.</div>
-        </div>
-        <div style="display:flex;gap:12px;flex-shrink:0;">
-          <div style="text-align:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:14px 20px;">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:800;color:#94a8c8;">46.1</div>
-            <div style="font-size:10px;color:#94a8c8;margin-top:2px;">Current A8</div>
-          </div>
-          <div style="text-align:center;background:rgba(52,211,153,.15);border:1px solid rgba(52,211,153,.35);border-radius:12px;padding:14px 20px;">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:800;color:#34d399;">46.5</div>
-            <div style="font-size:10px;color:#34d399;margin-top:2px;">WIG Target ↑</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── AREA 1: QUALITY OF EDUCATION ── -->
-    <div style="border:2px solid var(--blue);border-radius:14px;overflow:hidden;margin-bottom:24px;">
-      <div style="background:var(--blue);color:white;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
-        <div>
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;opacity:.75;margin-bottom:2px;">Ofsted Evaluation Area 1</div>
-          <div style="font-size:18px;font-weight:800;">Quality of Education</div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:4px 11px;border-radius:20px;font-size:11px;font-weight:600;">JBT · NHT · AML · DBD · DZE</span>
-          <span style="background:#22c55e;color:white;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;">● On Track</span>
-        </div>
-      </div>
-      <div style="padding:18px 20px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;">
-          <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">SDP Intentions</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>Curriculum coherently sequenced across all subjects and phases</li>
-              <li>High-quality teaching via Explain–Model–Practise–Maintain coaching</li>
-              <li>Rigorous summative assessment; QLAs used at KS4</li>
-              <li>Students highly literate — read, write and speak with confidence</li>
-              <li>More able provision: tutor groups, masterclasses, enrichment</li>
-              <li>AI tools embedded in curriculum planning and assessment (75%+ teams)</li>
-            </ul>
-          </div>
-          <div style="background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Key Actions 2025/26</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>All subjects: fully sequenced curriculum plans audited (JBT)</li>
-              <li>Bi-weekly joint curriculum meetings — core subjects (SSW)</li>
-              <li>QLAs shared with students following every summative assessment (JBT)</li>
-              <li>Re-teach sessions after assessments across all subjects (JBT)</li>
-              <li>Reading ages assessed at 3 points; TR programme for students below SS90 (TRS)</li>
-              <li>More able register reviewed termly; MA tutor groups Y7–9 (DZE)</li>
-              <li>StepLab: 10+ feedback cycles per teacher per year (NHT)</li>
-            </ul>
-          </div>
-          <div style="background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Success Criteria (KPIs)</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>A8 ≥ 46.5 by Summer 2026</li>
-              <li>100% subjects: curriculum plans audited &amp; approved by year end</li>
-              <li>100% KS4 subjects: QLAs shared with students (termly)</li>
-              <li>85%+ students know expected &amp; actual grades within one term</li>
-              <li>75%+ students meet or exceed chronological reading age</li>
-              <li>Thinking Reading programme: average +2 years reading age gain</li>
-              <li>More Able students: average Grade 7.0 at end of Year 11</li>
-              <li>StepLab coaching engagement ≥ 70% each term</li>
-              <li>80%+ teachers applying taught strategies consistently (observations)</li>
-            </ul>
-          </div>
-        </div>
-        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:13px 16px;">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--blue);margin-bottom:10px;">📊 Live Evidence — from this dashboard</div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px;">
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--blue);">46.1</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">A8 2024/25 = national</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">48.2%</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">EM5+ vs 45.4% national</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">+15mo</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Y7 reading gain in 4 months</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">17%</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Bedrock vocabulary gain</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">796</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">StepLab drop-ins 2025/26</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">sig+</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Languages mid-prior 2 yrs (IDSR)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── AREA 2: BEHAVIOUR AND ATTITUDES ── -->
-    <div style="border:2px solid var(--green);border-radius:14px;overflow:hidden;margin-bottom:24px;">
-      <div style="background:var(--green);color:white;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
-        <div>
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;opacity:.75;margin-bottom:2px;">Ofsted Evaluation Area 2</div>
-          <div style="font-size:18px;font-weight:800;">Behaviour and Attitudes</div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:4px 11px;border-radius:20px;font-size:11px;font-weight:600;">JMI · MTS · KKU</span>
-          <span style="background:#22c55e;color:white;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;">● Strong</span>
-        </div>
-      </div>
-      <div style="padding:18px 20px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;">
-          <div style="background:#f0fdf4;border:1px solid var(--green-border);border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:8px;">SDP Intentions</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>Students demonstrate high motivation, resilience and pride</li>
-              <li>Consistent behaviour policy and restorative practices embedded</li>
-              <li>STEER programme: early identification and wellbeing support</li>
-              <li>Merit/Demerit system strengthens positive attitude recognition</li>
-              <li>Whole-school attendance reaches ≥ 94% by July 2026</li>
-              <li>Targeted support for disadvantaged and White British attendance</li>
-            </ul>
-          </div>
-          <div style="background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Key Actions 2025/26</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>Rapid, high-quality pastoral support for targeted students (MTS)</li>
-              <li>Consistent application of behaviour policy (MTS)</li>
-              <li>Continue STEER implementation across all year groups (MTS)</li>
-              <li>Develop Merit/Demerit system; values badge programme (JMI)</li>
-              <li>Targeted attendance programme for priority groups (KKU)</li>
-              <li>Embed CCF to develop leadership and resilience (MTS)</li>
-              <li>Positive framing and SET curriculum school-wide (JMI)</li>
-            </ul>
-          </div>
-          <div style="background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Success Criteria (KPIs)</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>Whole-school attendance ≥ 94% by July 2026</li>
-              <li>Behaviour &amp; Attitudes judged good or better in all reviews</li>
-              <li>STEER risk flags reduce ≥ 20% for students receiving intervention</li>
-              <li>80%+ students articulate Academy values (student voice surveys)</li>
-              <li>95% students: behaviour managed fairly (student survey)</li>
-              <li>40% students receive a values badge in Term 1</li>
-              <li>Suspensions per 100 remain below national average (11.31)</li>
-              <li>90%+ SET call-outs linked to breach of core routines</li>
-            </ul>
-          </div>
-        </div>
-        <div style="background:#f0fdf4;border:1px solid var(--green-border);border-radius:10px;padding:13px 16px;">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:10px;">📊 Live Evidence — from this dashboard</div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px;">
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">93.2%</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Attendance — above national 4 yrs</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">2nd/21</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">of 21 similar schools (attendance)</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">9.4</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Suspensions/100 vs 11.31 national</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">4.3:1</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Merit:Demerit ratio (whole school)</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">−68%</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">SET call-outs vs pre-pandemic</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">75%</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">STEER action plan improvement (R1)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── AREA 3: LEADERSHIP AND MANAGEMENT ── -->
-    <div style="border:2px solid var(--navy);border-radius:14px;overflow:hidden;margin-bottom:24px;">
-      <div style="background:var(--navy);color:white;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
-        <div>
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;opacity:.75;margin-bottom:2px;">Ofsted Evaluation Area 3</div>
-          <div style="font-size:18px;font-weight:800;">Leadership and Management</div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:4px 11px;border-radius:20px;font-size:11px;font-weight:600;">GMN · SLT</span>
-          <span style="background:#22c55e;color:white;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;">● Strong</span>
-        </div>
-      </div>
-      <div style="padding:18px 20px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;">
-          <div style="background:#f0f4ff;border:1px solid #bfdbfe;border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--navy);margin-bottom:8px;">SDP Intentions</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>Leaders at all levels consistently model the Academy's ethos</li>
-              <li>Shared language and mission embedded across all staff</li>
-              <li>Focused, high-quality professional development for all staff</li>
-              <li>Impact plans follow Intent–Implementation–Impact–Next Steps model</li>
-              <li>Documentation for all reviews of consistently highest quality</li>
-              <li>Staff retention ≥ 85%; staff attendance ≥ 96%</li>
-            </ul>
-          </div>
-          <div style="background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Key Actions 2025/26</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>Audit &amp; update all key documents with mission language by Sept 2025 (GMN)</li>
-              <li>Develop shared language programme across all staff (SLT)</li>
-              <li>All staff: CPD aligned to teaching signature strategies (SLT)</li>
-              <li>Probation tracking system: timely, policy-compliant (NHT)</li>
-              <li>All impact plans: Intent–Implementation–Impact format (GMN)</li>
-              <li>Proactive, strategic steps for vulnerable students at all levels (SLT)</li>
-            </ul>
-          </div>
-          <div style="background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Success Criteria (KPIs)</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>100% key documents audited &amp; updated — September 2025</li>
-              <li>90%+ staff accurately articulate mission and values</li>
-              <li>85%+ staff: CPD relevant &amp; impactful (staff survey)</li>
-              <li>100% probation meetings held and tracked centrally</li>
-              <li>100% impact plans follow required Intent–Implementation–Impact format</li>
-              <li>Staff retention ≥ 85% for the academic year</li>
-              <li>Staff attendance ≥ 96% for the academic year</li>
-              <li>Leadership &amp; Management judged outstanding in whole academy review</li>
-            </ul>
-          </div>
-        </div>
-        <div style="background:#f0f4ff;border:1px solid #bfdbfe;border-radius:10px;padding:13px 16px;">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--navy);margin-bottom:10px;">📊 Live Evidence — from this dashboard</div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px;">
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--navy);">95%</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Teacher retention 2025/26</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--navy);">+735</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">FSI rank jump — biggest in Thurrock</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--navy);">7</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Former students now teaching here</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">✓</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Ungraded — standards maintained (Dec 2024)</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">Oversubscribed</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">2025/26 — 80% from GLC feeders</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">1,003</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">CPD modules completed (StepLab)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── AREA 4: PERSONAL DEVELOPMENT AND WELL-BEING ── -->
-    <div style="border:2px solid var(--purple);border-radius:14px;overflow:hidden;margin-bottom:24px;">
-      <div style="background:var(--purple);color:white;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
-        <div>
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;opacity:.75;margin-bottom:2px;">Ofsted Evaluation Area 4</div>
-          <div style="font-size:18px;font-weight:800;">Personal Development and Well-being</div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:4px 11px;border-radius:20px;font-size:11px;font-weight:600;">TBT · DZE · AFR</span>
-          <span style="background:#22c55e;color:white;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;">● Strong</span>
-        </div>
-      </div>
-      <div style="padding:18px 20px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;">
-          <div style="background:#f5f3ff;border:1px solid #c4b5fd;border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--purple);margin-bottom:8px;">SDP Intentions</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>Student leadership curriculum: active role in Academy life</li>
-              <li>PSHE/PAD mapped: health, British values, safeguarding, relationships</li>
-              <li>Mental health: NELFT partnership, counsellors, ambassadors</li>
-              <li>Careers: 100% Gatsby Benchmark compliance, 98%+ Y11 destinations</li>
-              <li>Co-curricular: 95%+ students in at least one activity per year</li>
-              <li>Staff wellbeing offer aligned to GLC people strategy</li>
-            </ul>
-          </div>
-          <div style="background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Key Actions 2025/26</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>Student leadership: taught curriculum, student council active (TBT)</li>
-              <li>PSHE/PAD/assembly fully mapped and monitored (TBT)</li>
-              <li>Enhance mental health via NELFT &amp; ambassador programme (TBT)</li>
-              <li>Careers: events, visits, 1:1 guidance, whole-school Careers Fair (AFR/DZE)</li>
-              <li>CCF and Greenhouse basketball programme embedded (MTS/DZE)</li>
-              <li>School production — sell out, 95% rehearsal attendance (KKU)</li>
-              <li>LAC/KO/PIC: academic and wellbeing support bespoke (TBT)</li>
-            </ul>
-          </div>
-          <div style="background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Success Criteria (KPIs)</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>95%+ students: ≥1 co-curricular activity per year</li>
-              <li>100% Gatsby Benchmark compliance</li>
-              <li>98%+ Year 11 in education, employment or training</li>
-              <li>NEET ≤ 2% from published destinations data</li>
-              <li>Production: sold out both nights; 95% rehearsal attendance</li>
-              <li>85%+ staff: wellbeing support relevant &amp; impactful (survey)</li>
-              <li>Student leadership judged at least good in monitoring</li>
-              <li>Clubs/leadership/CCF participation +10% vs prior year</li>
-            </ul>
-          </div>
-        </div>
-        <div style="background:#f5f3ff;border:1px solid #c4b5fd;border-radius:10px;padding:13px 16px;">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--purple);margin-bottom:10px;">📊 Live Evidence — from this dashboard</div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px;">
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--purple);">91%</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">LAMDA Distinction grade (Y10)</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--purple);">National</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Basketball — last 8/16</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--purple);">26</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Thames Freeport scholars (Y11)</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--purple);">30</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Stallholders — whole-school Careers Fair</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--purple);">18+</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Mensa members across year groups</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">99%</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Pupils feel safe (student voice)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── AREA 5: SEND PROVISION ── -->
-    <div style="border:2px solid var(--amber);border-radius:14px;overflow:hidden;margin-bottom:24px;">
-      <div style="background:var(--amber);color:white;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
-        <div>
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;opacity:.75;margin-bottom:2px;">Ofsted Evaluation Area 5</div>
-          <div style="font-size:18px;font-weight:800;">SEND Provision</div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:4px 11px;border-radius:20px;font-size:11px;font-weight:600;">LHT · ATN · SCS</span>
-          <span style="background:#f59e0b;color:white;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;">● On Track</span>
-        </div>
-      </div>
-      <div style="padding:18px 20px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;">
-          <div style="background:#fffbeb;border:1px solid var(--amber-border);border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber);margin-bottom:8px;">SDP Intentions</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>Curriculum successfully adapted — ambitious for all SEND students</li>
-              <li>High-quality SEND Student Directory driving classroom practice</li>
-              <li>Tailored CPD for inclusion staff via StepLab coaching</li>
-              <li>Embed tutoring programmes for targeted SEND students</li>
-              <li>SEND attendance improves by ≥ 2% on prior year</li>
-              <li>Bespoke careers and Preparing for Adulthood for all SEND students</li>
-            </ul>
-          </div>
-          <div style="background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Key Actions 2025/26</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>SEND directory: high quality, rigorously tracking implementation (LHT)</li>
-              <li>Inclusion staff: tailored CPD package via StepLab (LHT/SCS)</li>
-              <li>Tutoring programmes embedded for targeted SEND (LHT/ATN)</li>
-              <li>Exam access arrangements: robust and efficient (LHT/ATN/SCS)</li>
-              <li>SEND parental events: increase home/school partnership (LHT)</li>
-              <li>Year 6 SEND identification: liaison with GLC SEND Lead (LHT/ATN)</li>
-              <li>Literacy strategies embedded for SEND across all subjects (LHT/DBD)</li>
-            </ul>
-          </div>
-          <div style="background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:13px;">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Success Criteria (KPIs)</div>
-            <ul style="margin:0;padding-left:14px;font-size:12px;line-height:1.75;color:var(--text);">
-              <li>SEND attendance ≥ 91.5% for 2025/26</li>
-              <li>SEND attendance improves ≥ 2% on prior year</li>
-              <li>100% SEND students: high-quality Student Support Plan in place</li>
-              <li>80%+ SEND lesson observations: strategies effectively implemented</li>
-              <li>80%+ targeted SEND: improved reading levels by year end</li>
-              <li>90%+ parents/students satisfied with SEND support (voice survey)</li>
-              <li>80%+ SEND students participate in co-curricular activities</li>
-              <li>100% Inclusion staff meet StepLab coaching goals</li>
-            </ul>
-          </div>
-        </div>
-        <div style="background:#fffbeb;border:1px solid var(--amber-border);border-radius:10px;padding:13px 16px;">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber);margin-bottom:10px;">📊 Live Evidence — from this dashboard</div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px;">
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">90.6%</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">SEN attendance — #1 of 21 similar schools</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">−0.04</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Dis. P8 sig+ above national 2 consecutive yrs</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--amber);">215</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">EAA pupils — 10 arrangement types</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">6</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">LAC students settled and thriving</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--amber);">15</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Triple disadvantaged cohort tracked</div>
-            </div>
-            <div style="background:white;border-radius:8px;padding:9px;text-align:center;border:1px solid var(--border);">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--green);">100%</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:1px;">Inclusion staff enrolled in StepLab coaching</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── SAFEGUARDING ── -->
-    <div style="background:linear-gradient(135deg,#1e293b 0%,#334155 100%);border-radius:14px;padding:20px 24px;color:white;">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px;">
-        <div style="flex:1;">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#94a8c8;margin-bottom:5px;">Safeguarding — Binary Judgement (November 2025 Ofsted Framework)</div>
-          <div style="font-size:17px;font-weight:800;margin-bottom:8px;">Safeguarding is effective</div>
-          <div style="font-size:12px;color:#cbd5e1;line-height:1.65;">Lead: TBT · SLT. Safeguarding arrangements are reviewed at every Ofsted visit. Gateway maintains a robust DSL structure with trained staff at all levels. STEER provides structured early identification of vulnerable students. PSHE/PAD is fully mapped to include safeguarding and relationships. LAC, Looked-After Children and students with a social worker receive bespoke academic and wellbeing support. 99% of pupils report feeling safe. All policies are current and compliant with statutory guidance.</div>
-        </div>
-        <div style="background:#22c55e;color:white;padding:10px 22px;border-radius:20px;font-size:13px;font-weight:700;white-space:nowrap;align-self:flex-start;">✓ Effective</div>
-      </div>
-    </div>
-
-  </div><!-- /sdp -->
-
 
 </div><!-- /main -->
 
 <!-- SCRIPTS -->
 <script>
-
-  // ── WORD DOCUMENT DOWNLOADS ──────────────────────────────────
-
-  function buildWordShell(title, date, bodyHtml) {
-    return '<!DOCTYPE html>\n' +
-      '<html xmlns:o="urn:schemas-microsoft-com:office:office" ' +
-      'xmlns:w="urn:schemas-microsoft-com:office:word" ' +
-      'xmlns="http://www.w3.org/TR/REC-html40">\n' +
-      '<head>\n<meta charset="utf-8">\n<title>' + title + '</title>\n' +
-      '<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View>' +
-      '<w:Zoom>90</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]-->\n' +
-      '<style>\n' +
-      'body{font-family:Arial,sans-serif;font-size:11pt;color:#0f172a;line-height:1.5;margin:0;padding:0;}\n' +
-      'h1{font-size:18pt;font-weight:bold;color:#0f2744;margin:0 0 8pt;}\n' +
-      'h2{font-size:13pt;font-weight:bold;color:#0f2744;margin:16pt 0 4pt;page-break-after:avoid;}\n' +
-      'h3{font-size:10.5pt;font-weight:bold;color:#334155;margin:10pt 0 3pt;}\n' +
-      'p{font-size:10.5pt;margin:0 0 5pt;}\n' +
-      'ul{margin:0 0 7pt 18pt;padding:0;}\n' +
-      'li{font-size:10pt;line-height:1.55;margin-bottom:3pt;}\n' +
-      'table{border-collapse:collapse;width:100%;margin-bottom:10pt;font-size:9.5pt;}\n' +
-      'th{background-color:#0f2744;color:white;padding:5pt 7pt;text-align:left;font-size:8.5pt;font-weight:bold;text-transform:uppercase;letter-spacing:0.3pt;}\n' +
-      'td{padding:5pt 7pt;border:0.5pt solid #dde3ed;vertical-align:top;}\n' +
-      'tr:nth-child(even) td{background-color:#f7f9fc;}\n' +
-      '.area-hdr{border-left:4pt solid #1e5fa8;padding:5pt 0 5pt 10pt;margin:14pt 0 6pt;background:#f8faff;padding-right:10pt;}\n' +
-      '.grade{display:inline-block;padding:2pt 8pt;border-radius:3pt;font-weight:bold;font-size:9.5pt;background:#fef9c3;color:#854d0e;border:0.5pt solid #fde047;}\n' +
-      '.grade-strong{background:#dcfce7;color:#166534;border:0.5pt solid #86efac;}\n' +
-      '.grade-expected{background:#e8f0fb;color:#1e5fa8;border:0.5pt solid #93c5fd;}\n' +
-      '.rationale{background:#eff6ff;border:0.5pt solid #bfdbfe;padding:8pt 10pt;margin:7pt 0;font-size:9.5pt;color:#1e3a5f;}\n' +
-      '.safeguarding{background:#f0fdf4;border:1pt solid #86efac;padding:10pt 12pt;margin-top:14pt;}\n' +
-      '.context-box{background:#fef3c7;border:0.5pt solid #fcd34d;padding:7pt 10pt;margin-bottom:10pt;font-size:9.5pt;color:#78350f;}\n' +
-      '.wig-box{background:#eff6ff;border:0.5pt solid #bfdbfe;padding:10pt 12pt;margin-bottom:14pt;}\n' +
-      '.evidence-box{background:#f8fafc;border:0.5pt solid #dde3ed;padding:7pt 10pt;margin-top:8pt;}\n' +
-      '.stat-val{font-size:13pt;font-weight:bold;color:#1e5fa8;}\n' +
-      '.footer-note{color:#64748b;font-size:8.5pt;border-top:0.5pt solid #dde3ed;padding-top:5pt;margin-top:6pt;}\n' +
-      '.next-steps{background:#eff6ff;border:0.5pt solid #bfdbfe;padding:9pt 11pt;margin-top:14pt;font-size:10pt;}\n' +
-      '.dev-area-hdr{border-left:4pt solid #166534;padding:5pt 0 5pt 10pt;margin:14pt 0 6pt;background:#f0fdf4;padding-right:10pt;}\n' +
-      '@page{margin:2cm 2.2cm;size:A4;}\n' +
-      '</style>\n</head>\n<body>\n' + bodyHtml + '\n</body>\n</html>';
-  }
-
-  function triggerWordDownload(html, filename) {
-    var blob = new Blob(['\ufeff', html], { type: 'application/msword' });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(function() { URL.revokeObjectURL(url); }, 150);
-  }
-
-  // ── SEF WORD DOWNLOAD ──────────────────────────────────────────
-
-  function downloadSEFWord() {
-    var date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-    var tab = document.getElementById('tab-sef');
-    var c = '';
-
-    // Title block
-    c += '<h1>Self Evaluation Form — The Gateway Academy</h1>';
-    c += '<p style="color:#64748b;font-size:9.5pt;">New Ofsted Framework · November 2025 onwards · Five-point scale: Exceptional / Strong Standard / Expected Standard / Needs Attention / Urgent Improvement</p>';
-    c += '<p style="color:#64748b;font-size:9.5pt;">URN: 133114 · Academy Sponsor-Led · Gateway Learning Community · Tilbury, Thurrock</p>';
-    c += '<p style="color:#64748b;font-size:9.5pt;">Head of School: Grainne McLaughlin · Last Ofsted: 10 December 2024 — Ungraded, Standards Maintained</p>';
-    c += '<p style="color:#64748b;font-size:9.5pt;margin-bottom:10pt;">Generated: ' + date + '</p>';
-    c += '<div class="context-box"><strong>Working Draft:</strong> This SEF is a working draft structured around the new Ofsted inspection framework (from November 2025). All six areas are currently graded Exceptional — the Head of School\'s leading position. Grades and evidence are subject to SLT review, alignment with the School Development Plan, and governor approval before inspection. Evidence bullet points will be developed further as additional documentation is added to the dashboard.</div>';
-    c += '<hr style="border:none;border-top:2pt solid #0f2744;margin:14pt 0 10pt;">';
-
-    // Each SEF area
-    var areas = tab.querySelectorAll('.sef-area');
-    areas.forEach(function(area) {
-      var areaNameEl = area.querySelector('.sef-area-name');
-      var areaSubEl  = area.querySelector('.sef-area-sub');
-      var gradeEl    = area.querySelector('.sef-grade-badge');
-      var evTags     = area.querySelectorAll('.sef-evidence-tag');
-      if (!areaNameEl) return;
-
-      var areaName = areaNameEl.textContent.trim();
-      var areaSub  = areaSubEl  ? areaSubEl.textContent.trim()  : '';
-      var grade    = gradeEl    ? gradeEl.textContent.trim()    : '';
-      var gradeClass = (grade === 'Exceptional') ? 'grade' : (grade === 'Strong Standard') ? 'grade grade-strong' : 'grade grade-expected';
-
-      c += '<div class="area-hdr">';
-      c += '<h2 style="margin:0 0 2pt;">' + areaName + '</h2>';
-      if (areaSub) c += '<p style="margin:0 0 4pt;color:#64748b;font-size:9pt;font-style:italic;">' + areaSub + '</p>';
-      c += '<p style="margin:0;">Draft Grade: <span class="' + gradeClass + '">' + grade + '</span></p>';
-      c += '</div>';
-
-      // Walk column children
-      var grid = area.querySelector('.sef-col-grid');
-      if (grid) {
-        Array.from(grid.children).forEach(function(col) {
-          Array.from(col.children).forEach(function(child) {
-            if (child.classList.contains('sef-section-title')) {
-              c += '<h3>' + child.textContent.trim() + '</h3>';
-            } else if (child.classList.contains('sef-bullets')) {
-              c += '<ul>';
-              child.querySelectorAll('li').forEach(function(li) {
-                var spans = li.querySelectorAll('span');
-                var text = spans.length > 1 ? spans[1].innerHTML : li.textContent.trim();
-                c += '<li>' + text + '</li>';
-              });
-              c += '</ul>';
-            } else if (child.classList.contains('sef-dev-box')) {
-              c += '<div class="rationale">' + child.innerHTML + '</div>';
-            }
-          });
-        });
-      }
-
-      // Evidence sources
-      if (evTags.length > 0) {
-        var tags = Array.from(evTags).map(function(t) { return t.textContent.trim(); });
-        c += '<p class="footer-note"><strong>Evidence sources:</strong> ' + tags.join(' &nbsp;·&nbsp; ') + '</p>';
-      }
-      c += '<hr style="border:none;border-top:0.75pt solid #e2e8f0;margin:13pt 0;">';
-    });
-
-    // Safeguarding
-    var sg = tab.querySelector('.sef-safeguarding');
-    if (sg) {
-      var sgGrade = sg.querySelector('.sef-sg-grade');
-      var sgTitle = sg.querySelector('.sef-sg-title');
-      var sgSub   = sg.querySelector('.sef-sg-sub');
-      c += '<div class="safeguarding">';
-      c += '<h2 style="color:#166534;margin:0 0 4pt;">Safeguarding</h2>';
-      if (sgGrade) c += '<p style="font-size:13pt;font-weight:bold;color:#166534;margin:0 0 3pt;">' + sgGrade.textContent.trim() + '</p>';
-      if (sgTitle) c += '<p style="font-weight:bold;margin:0 0 5pt;">' + sgTitle.textContent.trim() + '</p>';
-      if (sgSub)   c += '<p style="font-size:10pt;color:#334155;line-height:1.6;">' + sgSub.textContent.trim() + '</p>';
-      c += '</div>';
-    }
-
-    // Next steps
-    var ns = tab.querySelector('.info-box.ib-blue');
-    if (ns) {
-      c += '<div class="next-steps"><h3 style="margin:0 0 6pt;">Next Steps</h3>' + ns.innerHTML + '</div>';
-    }
-
-    triggerWordDownload(buildWordShell('Gateway Academy — Self Evaluation Form', date, c), 'Gateway_SEF_Draft.doc');
-  }
-
-  // ── DEV PLAN WORD DOWNLOAD ─────────────────────────────────────
-
-  function downloadDevPlanWord() {
-    var date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-    var tab = document.getElementById('tab-sdp');
-    var c = '';
-
-    // Title block
-    c += '<h1>School Development Plan 2025/26 — The Gateway Academy</h1>';
-    c += '<p style="color:#64748b;font-size:9.5pt;">Mapped to the November 2025 Ofsted Evaluation Framework · URN: 133114 · Tilbury, Thurrock · Gateway Learning Community</p>';
-    c += '<p style="color:#64748b;font-size:9.5pt;margin-bottom:10pt;">Generated: ' + date + '</p>';
-    c += '<hr style="border:none;border-top:2pt solid #0f2744;margin:10pt 0 12pt;">';
-
-    // WIG Banner — extract from DOM
-    var wigDiv = tab.querySelector('div[style*="Wildly Important Goal"]');
-    if (!wigDiv) {
-      // fallback: first big styled div after the idsr-note
-      var tabDivs = Array.from(tab.children);
-      for (var i = 0; i < tabDivs.length; i++) {
-        if (tabDivs[i].textContent.indexOf('Wildly Important Goal') > -1) { wigDiv = tabDivs[i]; break; }
-      }
-    }
-    c += '<div class="wig-box">';
-    c += '<p style="font-size:8pt;font-weight:bold;text-transform:uppercase;letter-spacing:0.4pt;color:#64748b;margin:0 0 4pt;">Wildly Important Goal (WIG) — Academic Year 2025/26</p>';
-    if (wigDiv) {
-      // Get the main goal text
-      var wigTitle = wigDiv.querySelector('div[style*="font-size:20px"]');
-      var wigDesc  = wigDiv.querySelector('div[style*="font-size:12px"]');
-      if (wigTitle) c += '<h2 style="margin:0 0 5pt;">' + wigTitle.textContent.trim() + '</h2>';
-      if (wigDesc)  c += '<p style="font-size:10pt;color:#334155;margin:0 0 5pt;">' + wigDesc.textContent.trim() + '</p>';
-      // Current and target values
-      var monoVals = wigDiv.querySelectorAll('div[style*="JetBrains Mono"]');
-      if (monoVals.length >= 2) {
-        c += '<p style="margin:0;"><strong>Current A8: ' + monoVals[0].textContent.trim() + '</strong> &nbsp;&nbsp; <strong>WIG Target: ' + monoVals[1].textContent.trim() + '</strong></p>';
-      }
-    }
-    c += '</div>';
-
-    // Find the 5 area cards — divs that contain "Ofsted Evaluation Area" text
-    var areaCards = Array.from(tab.children).filter(function(el) {
-      return el.tagName === 'DIV' && el.textContent.indexOf('Ofsted Evaluation Area') > -1;
-    });
-
-    var areaHdrColors = ['#1e5fa8','#166534','#0f2744','#6d28d9','#b45309'];
-
-    areaCards.forEach(function(card, idx) {
-      var headerDiv = card.children[0];
-      var bodyDiv   = card.children[1];
-
-      // Extract header data
-      var areaNum  = '';
-      var areaName = '';
-      var leads    = '';
-      var status   = '';
-
-      if (headerDiv) {
-        // Area number: small uppercase div
-        var allLeafDivs = Array.from(headerDiv.querySelectorAll('div')).filter(function(d) { return d.children.length === 0; });
-        allLeafDivs.forEach(function(d) {
-          var t = d.textContent.trim();
-          if (t.startsWith('Ofsted Evaluation Area')) areaNum = t;
-        });
-        // Area name: font-size:18px div
-        var nameDiv = headerDiv.querySelector('div[style*="font-size:18px"]');
-        if (nameDiv) areaName = nameDiv.textContent.trim();
-        // Leads and status: spans
-        var spans = headerDiv.querySelectorAll('span');
-        if (spans[0]) leads  = spans[0].textContent.trim();
-        if (spans[1]) status = spans[1].textContent.trim();
-      }
-
-      var col = areaHdrColors[idx] || '#1e5fa8';
-      c += '<div style="border-left:4pt solid ' + col + ';padding:5pt 10pt;margin:15pt 0 6pt;background:#fafbff;">';
-      c += '<p style="font-size:8.5pt;color:#64748b;text-transform:uppercase;letter-spacing:0.3pt;margin:0 0 2pt;">' + areaNum + '</p>';
-      c += '<h2 style="margin:0 0 2pt;color:#0f2744;">' + areaName + '</h2>';
-      if (leads || status) c += '<p style="margin:0;font-size:9pt;"><strong>Leads:</strong> ' + leads + ' &nbsp;&nbsp; <strong>Status:</strong> ' + status + '</p>';
-      c += '</div>';
-
-      if (bodyDiv) {
-        // Three-column grid
-        var threeCol = bodyDiv.querySelector('div[style*="1fr 1fr 1fr"]');
-        if (threeCol && threeCol.children.length >= 3) {
-          var colTitles = ['SDP Intentions', 'Key Actions 2025/26', 'Success Criteria (KPIs)'];
-          c += '<table>';
-          c += '<tr>';
-          colTitles.forEach(function(t) { c += '<th style="width:33%;">' + t + '</th>'; });
-          c += '</tr><tr>';
-          Array.from(threeCol.children).slice(0, 3).forEach(function(colDiv) {
-            var ul = colDiv.querySelector('ul');
-            c += '<td>';
-            if (ul) {
-              c += '<ul style="margin:0 0 0 14pt;padding:0;">';
-              ul.querySelectorAll('li').forEach(function(li) {
-                c += '<li style="font-size:9pt;line-height:1.5;margin-bottom:2pt;">' + li.textContent.trim() + '</li>';
-              });
-              c += '</ul>';
-            }
-            c += '</td>';
-          });
-          c += '</tr></table>';
-        }
-
-        // Evidence stats
-        var evidenceGrid = bodyDiv.querySelector('div[style*="repeat(auto-fit"]');
-        if (evidenceGrid && evidenceGrid.children.length > 0) {
-          c += '<div class="evidence-box"><p style="font-size:8pt;font-weight:bold;text-transform:uppercase;color:#64748b;margin:0 0 6pt;letter-spacing:0.3pt;">Live Evidence — from this dashboard</p>';
-          c += '<table><tr>';
-          var statCount = 0;
-          Array.from(evidenceGrid.children).forEach(function(statCard) {
-            var divs = statCard.querySelectorAll('div');
-            if (divs.length >= 2) {
-              var val   = divs[0].textContent.trim();
-              var label = divs[1].textContent.trim();
-              if (statCount > 0 && statCount % 4 === 0) c += '</tr><tr>';
-              c += '<td style="text-align:center;border:0.5pt solid #e2e8f0;background:#fff;padding:6pt;">';
-              c += '<div class="stat-val">' + val + '</div>';
-              c += '<div style="font-size:7.5pt;color:#64748b;margin-top:2pt;">' + label + '</div>';
-              c += '</td>';
-              statCount++;
-            }
-          });
-          c += '</tr></table></div>';
-        }
-      }
-
-      c += '<hr style="border:none;border-top:0.75pt solid #e2e8f0;margin:14pt 0;">';
-    });
-
-    // Safeguarding footer
-    c += '<div class="safeguarding">';
-    c += '<h2 style="color:#166534;margin:0 0 5pt;">Safeguarding — Binary Judgement (November 2025 Ofsted Framework)</h2>';
-    var sgDiv = Array.from(tab.children).find(function(el) {
-      return el.tagName === 'DIV' && el.textContent.indexOf('Safeguarding is effective') > -1 && el.textContent.indexOf('Ofsted Evaluation Area') < 0;
-    });
-    if (sgDiv) {
-      var sgTitle = sgDiv.querySelector('div[style*="font-size:17px"]');
-      var sgDesc  = sgDiv.querySelector('div[style*="font-size:12px"]');
-      var sgBadge = sgDiv.querySelector('div[style*="background:#22c55e"]');
-      if (sgBadge) c += '<p style="font-size:12pt;font-weight:bold;color:#166534;margin:0 0 4pt;">' + sgBadge.textContent.trim() + '</p>';
-      if (sgTitle) c += '<p style="font-weight:bold;margin:0 0 5pt;">' + sgTitle.textContent.trim() + '</p>';
-      if (sgDesc)  c += '<p style="font-size:10pt;color:#334155;line-height:1.6;">' + sgDesc.textContent.trim() + '</p>';
-    }
-    c += '</div>';
-
-    triggerWordDownload(buildWordShell('Gateway Academy — School Development Plan 2025/26', date, c), 'Gateway_DevPlan_Draft.doc');
-  }
 
   // ── GOVERNOR PRINT ───────────────────────────────────────────
 
@@ -6979,21 +6011,21 @@ ${body}
           ${hdr('Behaviour &amp; Inclusion Report', 'ClassCharts 2025/26 · Suspensions Register · Rewards Shop Data', date, 'Inclusion Report')}
           <div class="sh">Headline Measures 2025/26</div>
           <div class="sg sg-4 mb8">
-            <div class="sb sb-g"><div class="sl">Suspension Rate / 100</div><div class="sv sv-g">10.6</div><div class="sn">National: 11.31</div><span class="stag tg">Below national</span></div>
-            <div class="sb sb-g"><div class="sl">Merit:Demerit Ratio</div><div class="sv sv-g">4.2:1</div><div class="sn">Summer term: 5.2:1</div><span class="stag tg">Improving every term</span></div>
-            <div class="sb sb-g"><div class="sl">SET-Free Lessons</div><div class="sv sv-g">99.5%</div><div class="sn">2,046 SET call-outs</div><span class="stag tg">Disruption is rare</span></div>
-            <div class="sb sb-g"><div class="sl">SET Reduction vs 2018/19</div><div class="sv sv-g">−68%</div><div class="sn">6,336 → 2,046</div><span class="stag tg">Long-term improvement</span></div>
+            <div class="sb sb-g"><div class="sl">Suspension Rate / 100</div><div class="sv sv-g">10.7</div><div class="sn">National: 11.31</div><span class="stag tg">Below national</span></div>
+            <div class="sb sb-g"><div class="sl">Merit:Demerit Ratio</div><div class="sv sv-g">4.3:1</div><div class="sn">Summer term: 5.2:1</div><span class="stag tg">Improving every term</span></div>
+            <div class="sb sb-g"><div class="sl">SET-Free Lessons</div><div class="sv sv-g">99.0%</div><div class="sn">3,982 SET call-outs</div><span class="stag tg">Disruption is rare</span></div>
+            <div class="sb sb-g"><div class="sl">SET Reduction vs 2018/19</div><div class="sv sv-g">−37%</div><div class="sn">6,336 → 3,982</div><span class="stag tg">Long-term improvement</span></div>
           </div>
           <div class="sh">ClassCharts — Year Group Breakdown 2025/26</div>
           <table class="dt mb8">
             <thead><tr><th>Year Group</th><th>Merits</th><th>Demerits</th><th>Ratio</th><th>SET Call-Outs</th><th>Context</th></tr></thead>
             <tbody>
-              <tr class="hi"><td class="fw">Year 7</td><td class="mono cg">61,451</td><td class="mono">10,201</td><td class="mono cg fw">6.0:1</td><td class="mono">265</td><td style="font-size:7.5pt;">Strongest ratio — excellent embedding</td></tr>
-              <tr><td class="fw">Year 8</td><td class="mono cg">64,546</td><td class="mono">16,268</td><td class="mono cb fw">4.0:1</td><td class="mono">526</td><td style="font-size:7.5pt;">Highest merit volume</td></tr>
-              <tr><td class="fw">Year 9</td><td class="mono">57,420</td><td class="mono ca">18,076</td><td class="mono ca fw">3.2:1</td><td class="mono ca">700</td><td style="font-size:7.5pt;">Most SET — targeted intervention in place</td></tr>
-              <tr><td class="fw">Year 10</td><td class="mono cg">34,315</td><td class="mono">7,412</td><td class="mono cg fw">4.6:1</td><td class="mono">364</td><td style="font-size:7.5pt;">Strong — GCSE focus embedding</td></tr>
-              <tr class="hi"><td class="fw">Year 11</td><td class="mono cg">20,170</td><td class="mono">3,476</td><td class="mono cg fw">5.8:1</td><td class="mono cg">191</td><td style="font-size:7.5pt;">Excellent — exam year maturity</td></tr>
-              <tr class="sub"><td>Total</td><td class="mono">258,724</td><td class="mono">60,908</td><td class="mono">4.2:1</td><td class="mono">2,046</td><td style="font-size:7.5pt;">Full year Aug–Jul · Improving every term: 3.9 → 4.1 → 5.2:1</td></tr>
+              <tr class="hi"><td class="fw">Year 7</td><td class="mono cg">68,509</td><td class="mono">11,572</td><td class="mono cg fw">5.9:1</td><td class="mono">265</td><td style="font-size:7.5pt;">Strongest ratio — excellent embedding</td></tr>
+              <tr><td class="fw">Year 8</td><td class="mono cg">71,132</td><td class="mono">18,088</td><td class="mono cb fw">3.9:1</td><td class="mono">526</td><td style="font-size:7.5pt;">Highest merit volume</td></tr>
+              <tr><td class="fw">Year 9</td><td class="mono">62,700</td><td class="mono ca">19,546</td><td class="mono ca fw">3.2:1</td><td class="mono ca">700</td><td style="font-size:7.5pt;">Most SET — targeted intervention in place</td></tr>
+              <tr><td class="fw">Year 10</td><td class="mono cg">36,177</td><td class="mono">8,224</td><td class="mono cg fw">4.4:1</td><td class="mono">364</td><td style="font-size:7.5pt;">Strong — GCSE focus embedding</td></tr>
+              <tr class="hi"><td class="fw">Year 11</td><td class="mono cg">20,174</td><td class="mono">3,476</td><td class="mono cg fw">5.8:1</td><td class="mono cg">191</td><td style="font-size:7.5pt;">Excellent — exam year maturity</td></tr>
+              <tr class="sub"><td>Total</td><td class="mono">258,692</td><td class="mono">60,906</td><td class="mono">4.3:1</td><td class="mono">3,982</td><td style="font-size:7.5pt;">Improving every term: 3.9 → 4.1 → 5.2:1</td></tr>
             </tbody>
           </table>
           <div class="sh">Suspension Trend</div>
@@ -7004,12 +6036,12 @@ ${body}
               <tr><td class="fw">2022/23</td><td class="mono">1,079</td><td class="mono cg">94</td><td class="mono cg">8.7</td><td class="cg">−2.6 below</td><td class="mono ca">6</td></tr>
               <tr><td class="fw">2023/24</td><td class="mono">1,100</td><td class="mono ca">106</td><td class="mono ca">9.6</td><td class="cg">−1.7 below</td><td class="mono ca">6</td></tr>
               <tr><td class="fw">2024/25</td><td class="mono">1,037</td><td class="mono ca">118</td><td class="mono ca">11.4</td><td class="cg">−0.1 below</td><td class="mono cg">4</td></tr>
-              <tr class="hi"><td class="fw">2025/26 (final year)</td><td class="mono">1,034</td><td class="mono cg fw">110</td><td class="mono cg fw">10.6</td><td class="cg fw">−0.7 below ✓</td><td class="mono ca">5</td></tr>
+              <tr class="hi"><td class="fw">2025/26 (final)</td><td class="mono">1,031</td><td class="mono cg fw">110</td><td class="mono cg fw">10.7</td><td class="cg fw">−0.6 below ✓</td><td class="mono ca">5</td></tr>
             </tbody>
           </table>
           <div class="two">
             <div class="ib ib-g"><strong>Rewards Shop (Jan–Jun 2026):</strong> 3,483 fulfilled transactions · 313 unique students (30% of roll) · 46,290 points redeemed. Year 7: 50% of cohort engaging. Halal provision stocked. 472 stationery purchases — pupils using merits for academic readiness.</div>
-            <div class="ib ib-b"><strong>Disruption is concentrated:</strong> Under 1% of pupils generate 23% of SET demand — enabling precise, targeted intervention. 99.5% of lessons proceeded without a SET call-out. Summer term merit:demerit ratio of 5.2:1 meets the research benchmark for effective behaviour coaching.</div>
+            <div class="ib ib-b"><strong>Disruption is concentrated:</strong> Under 1% of pupils generate the majority of SET demand — enabling precise, targeted intervention. 99.0% of lessons proceeded without a SET call-out. Summer term merit:demerit ratio of 5.2:1 meets the research benchmark for effective behaviour coaching.</div>
           </div>
           ${ft('Behaviour &amp; Inclusion Report', 'ClassCharts 2025/26 · Suspensions Register')}
         </div>`;
@@ -7216,7 +6248,7 @@ ${body}
             <li><span style="color:var(--green)">✅</span><div><strong>P8 +0.07</strong> (2023/24) — above national −0.03. Full recovery from COVID low. P8 not published for 2024/25 or 2025/26 (COVID KS2 gap).</div></li>
             <li><span style="color:var(--green)">✅</span><div><strong>Dis. P8 −0.04</strong> — 0.53 points above national dis. average (−0.57). Above (sig+) in IDSR for two consecutive years.</div></li>
             <li><span style="color:var(--green)">✅</span><div><strong>Attendance 93.2%</strong> — 2nd of 21 similar schools. SEN attendance #1. Zero DfE areas to focus on. ABIE exceeded.</div></li>
-            <li><span style="color:var(--green)">✅</span><div><strong>Suspension rate 9.4</strong> — below national 11.31. 95% of roll departures are parent-initiated. Perm. excl. declining (9 → 2).</div></li>
+            <li><span style="color:var(--green)">✅</span><div><strong>Suspension rate 10.7 / 100</strong> — below national 11.31. 95% of roll departures are parent-initiated. 5 permanent exclusions 2025/26.</div></li>
             <li><span style="color:var(--green)">✅</span><div><strong>Fairer Schools Index — top 37%</strong> nationally, biggest positive jump of any Thurrock school (+735 places).</div></li>
             <li><span style="color:var(--amber)">⚠️</span><div><strong>Low Stability context</strong> — 2024 &amp; 2025 cohorts carry Low Stability flag. High pupil mobility structurally depresses headline measures — recognised Ofsted mitigating factor.</div></li>
             <li><span style="color:var(--amber)">⚠️</span><div><strong>No P8 for 2024/25 or 2025/26</strong> — COVID KS2 gap means no national P8 for these cohorts. All P8 comparisons use 2023/24 — the last valid published year.</div></li>
@@ -7352,7 +6384,7 @@ ${body}
               <tr class="hi"><td class="fw cp">1. Inclusion</td><td><span class="stag" style="background:#fef9c3;color:#854d0e;">Exceptional</span></td><td style="font-size:7.5pt;">Dis P8 Above (sig+) · SEN att. #1 of 21 · FSI +735 · STEER whole-school · 89.8% PP enrichment</td><td style="font-size:7.5pt;">Languages gap (dis.) · pupil voice documentation</td></tr>
               <tr><td class="fw cb">2. Curriculum &amp; Teaching</td><td><span class="stag" style="background:#fef9c3;color:#854d0e;">Exceptional</span></td><td style="font-size:7.5pt;">47% shoutout rate · 0 flagged · 796 drop-ins · StepLab · 12 Signature Strategies embedded</td><td style="font-size:7.5pt;">Science outcomes (sig−) · HPA stretch · curriculum intent statements</td></tr>
               <tr class="hi"><td class="fw cg">3. Achievement</td><td><span class="stag" style="background:#fef9c3;color:#854d0e;">Exceptional</span></td><td style="font-size:7.5pt;">A8 at national · P8 recovery · 79th percentile FSM peers · Dis P8 sig+ · 3-year improvement</td><td style="font-size:7.5pt;">Science outcomes · HPA results · Low Stability context</td></tr>
-              <tr><td class="fw" style="color:#166534;">4. Attendance &amp; Behaviour</td><td><span class="stag" style="background:#fef9c3;color:#854d0e;">Exceptional</span></td><td style="font-size:7.5pt;">2nd of 21 · SEN #1 of 21 · 0 DfE focus areas · 68% SET reduction since 2018 · 9.4 susp/100</td><td style="font-size:7.5pt;">PA 23.6% (in line, not below) · Year 9 behaviour</td></tr>
+              <tr><td class="fw" style="color:#166534;">4. Attendance &amp; Behaviour</td><td><span class="stag" style="background:#fef9c3;color:#854d0e;">Exceptional</span></td><td style="font-size:7.5pt;">2nd of 21 · SEN #1 of 21 · 0 DfE focus areas · 37% SET reduction since 2018 · 10.7 susp/100</td><td style="font-size:7.5pt;">PA 23.6% (in line, not below) · Year 9 behaviour</td></tr>
               <tr class="hi"><td class="fw" style="color:#6d28d9;">5. Personal Development &amp; W-B</td><td><span class="stag tg">Strong Standard</span></td><td style="font-size:7.5pt;">STEER embedded · 44 clinical referrals · 84% Y11 applied Easter · careers programme · enrichment</td><td style="font-size:7.5pt;">Student voice · SMSC documentation · RSE evidence</td></tr>
               <tr><td class="fw ca">6. Leadership &amp; Governance</td><td><span class="stag tg">Strong Standard</span></td><td style="font-size:7.5pt;">3-yr A8 improvement · StepLab coaching culture · PP 3-strand strategy · ECT pipeline</td><td style="font-size:7.5pt;">Governor documentation · staff wellbeing data · MAT evidence</td></tr>
               <tr class="hi"><td class="fw cg">Safeguarding</td><td><span class="stag tg">Met</span></td><td style="font-size:7.5pt;">STEER screening · clinical referrals · CME tracking · EHC reviews · home visit programme</td><td style="font-size:7.5pt;">Strengthen SCR audit trail · governor safeguarding training</td></tr>
@@ -7398,7 +6430,7 @@ ${body}
           <div class="sh" style="color:var(--green);">4. Attendance &amp; Behaviour — Strong Standard</div>
           <ul class="km">
             <li><span class="km-tick">✅</span><div>Attendance 93.2% (2025/26) — 2nd of 21 similar schools · SEN attendance #1 · Zero DfE focus areas · ABIE exceeded · PA below similar schools</div></li>
-            <li><span class="km-tick">✅</span><div>Suspension rate 9.4/100 vs national 11.31 · 95% of roll departures parent-initiated · SET reduced 68% since 2018/19 · 99.5% lessons SET-free</div></li>
+            <li><span class="km-tick">✅</span><div>Suspension rate 10.7/100 vs national 11.31 · 95% of roll departures parent-initiated · SET reduced 37% since 2018/19 · 99.0% lessons SET-free</div></li>
             <li><span class="km-warn">⚠️</span><div>PA 23.6% (2024/25 full year) in line with national — target is clearly below. Y9 merit ratio lowest of any year group at 3.2:1</div></li>
           </ul>
           <div class="sh" style="color:#6d28d9;">5. Personal Development &amp; Well-being — Strong Standard</div>
@@ -7814,20 +6846,20 @@ ${body}
   <div class="three-col" style="margin-bottom:8px;">
     <div class="stat-box sb-green">
       <div class="stat-label">Suspension Rate / 100</div>
-      <div class="stat-value sv-green">9.4</div>
+      <div class="stat-value sv-green">10.7</div>
       <div class="stat-nat">National: 11.31</div>
       <span class="stat-tag tag-g">Below national</span>
     </div>
     <div class="stat-box sb-green">
       <div class="stat-label">Merit:Demerit Ratio</div>
-      <div class="stat-value sv-green">4.2:1</div>
+      <div class="stat-value sv-green">4.3:1</div>
       <div class="stat-nat">Summer term: 5.2:1</div>
       <span class="stat-tag tag-g">Improving every term</span>
     </div>
     <div class="stat-box sb-green">
       <div class="stat-label">SET-Free Lessons</div>
       <div class="stat-value sv-green">99.5%</div>
-      <div class="stat-nat">2,046 SET call-outs</div>
+      <div class="stat-nat">3,982 SET call-outs</div>
       <span class="stat-tag tag-g">Disruption is rare</span>
     </div>
   </div>
@@ -7835,9 +6867,9 @@ ${body}
   <div class="narrative-row">
     <div class="narr-box nb-green">
       <div class="narr-eyebrow">📉 Behaviour Trend</div>
-      <div class="narr-stat">−68% SET</div>
+      <div class="narr-stat">−37% SET</div>
       <div class="narr-title">Long-term reduction from pre-pandemic levels</div>
-      <div class="narr-text">SET call-outs have fallen 68% from 6,336 (2018/19) to 2,046 (2025/26). The summer term merit:demerit ratio of 5.2:1 meets the research benchmark for effective behaviour coaching. Under 1% of pupils generate 23% of SET demand — disruption is isolated, not systemic.</div>
+      <div class="narr-text">SET call-outs have fallen 37% from 6,336 (2018/19) to 3,982 (2025/26). The summer term merit:demerit ratio of 5.2:1 meets the research benchmark for effective behaviour coaching. Under 1% of pupils generate the majority of SET demand — disruption is isolated, not systemic.</div>
     </div>
     <div class="narr-box nb-blue">
       <div class="narr-eyebrow">🏪 ClassCharts Rewards Shop</div>
@@ -7930,7 +6962,7 @@ ${body}
     <li><span class="km-tick">✅</span><div><strong>P8 +0.07</strong> (2023/24) — above national −0.03. Full recovery from COVID low of −0.76 in 2021/22. P8 not published nationally for 2024/25 or 2025/26 (COVID KS2 gap).</div></li>
     <li><span class="km-tick">✅</span><div><strong>Disadvantaged P8 −0.04</strong> — 0.53 points above national disadvantaged average (−0.57). Rated Above (sig+) in the IDSR for two consecutive years — our single strongest statistical indicator.</div></li>
     <li><span class="km-tick">✅</span><div><strong>Attendance 93.2%</strong> — 2nd of 21 DfE-matched similar schools. SEN attendance 90.6% is higher than all 20 similar schools. Zero DfE areas to focus on. ABIE exceeded.</div></li>
-    <li><span class="km-tick">✅</span><div><strong>Suspension rate 9.4 / 100</strong> — below national average of 11.31, despite highest FSM rate in Thurrock. 95% of departures from roll are parent-initiated, not exclusion-related.</div></li>
+    <li><span class="km-tick">✅</span><div><strong>Suspension rate 10.7 / 100</strong> — below national average of 11.31, despite highest FSM rate in Thurrock. 95% of departures from roll are parent-initiated, not exclusion-related.</div></li>
     <li><span class="km-tick">✅</span><div><strong>SEND: 218 pupils (21.2%)</strong> — 59% also PP. Despite highly complex dual-need cohort, low prior attaining pupils achieve Above (sig+) on A8. SEN attendance #1 of 21 similar schools.</div></li>
     <li><span class="km-tick">✅</span><div><strong>Post-16: 84%</strong> of 2023/24 tracked leavers in education or training. 84% of current Y11 applied by Easter 2026; 73% already hold conditional offers. University destinations include Imperial College London.</div></li>
     <li><span class="km-warn">⚠️</span><div><strong>Low Stability (2024 &amp; 2025):</strong> Both KS4 cohorts carry a Low Stability flag — high pupil mobility means pupils join mid-KS4 and count in results without a full Gateway education. All headline measures understate the school's true impact. This is a recognised Ofsted mitigating factor.</div></li>
@@ -7938,7 +6970,7 @@ ${body}
   </ul>
 
   <div class="ctx-box ctx-blue" style="margin-top:12px;margin-bottom:0;">
-    <strong>Overall picture:</strong> Gateway Academy consistently achieves outcomes at or above national average for a school serving one of England's most deprived and mobile communities. The combination of improving attainment trends, strong disadvantaged progress (sig+), top-ranked attendance among similar schools, declining suspension rates, and a 68% reduction in behaviour incidents over six years represents a school in sustained, evidence-based improvement. The school absorbs complexity — high FSM, high SEND, high mobility — rather than deflecting it.
+    <strong>Overall picture:</strong> Gateway Academy consistently achieves outcomes at or above national average for a school serving one of England's most deprived and mobile communities. The combination of improving attainment trends, strong disadvantaged progress (sig+), top-ranked attendance among similar schools, declining suspension rates, and a 37% reduction in SET call-outs over six years represents a school in sustained, evidence-based improvement. The school absorbs complexity — high FSM, high SEND, high mobility — rather than deflecting it.
   </div>
 
   <div class="doc-footer">
@@ -8288,11 +7320,13 @@ ${body}
   new Chart(document.getElementById('chartSENNeeds'), {
     type: 'doughnut',
     data: {
-      labels: ['SEMH (77)', 'Cognition & Learning (71)', 'Communication & Interaction (64)', 'Sensory & Physical (10)'],
+      labels: ['SEMH (79)', 'Mod. Learning Difficulty (63)', 'Speech & Language (32)', 'ASD (31)', 'SPLD / Dyslexia (4)', 'Hearing Impairment (4)', 'Physical Disability (3)', 'Other (2)'],
       datasets: [{
-        data: [77, 71, 64, 10],
+        data: [79, 63, 32, 31, 4, 4, 3, 2],
         backgroundColor: [
-          'rgba(185,28,28,0.75)', 'rgba(30,95,168,0.8)', 'rgba(109,40,217,0.75)', 'rgba(180,83,9,0.75)'
+          'rgba(185,28,28,0.75)', 'rgba(30,95,168,0.8)', 'rgba(109,40,217,0.75)',
+          'rgba(22,101,52,0.75)', 'rgba(180,83,9,0.75)', 'rgba(100,116,139,0.65)',
+          'rgba(30,95,168,0.45)', 'rgba(100,116,139,0.45)'
         ],
         borderWidth: 2, borderColor: '#fff'
       }]
@@ -8313,8 +7347,8 @@ ${body}
       labels: ['Year 7', 'Year 8', 'Year 9', 'Year 10', 'Year 11'],
       datasets: [
         { label: 'EHCP', data: [5,6,8,6,5], backgroundColor: 'rgba(109,40,217,0.8)', borderColor: PURPLE, borderWidth:1.5, borderRadius:3 },
-        { label: 'SEN Support (K)', data: [45,32,39,36,26], backgroundColor: 'rgba(30,95,168,0.75)', borderColor: BLUE, borderWidth:1.5, borderRadius:3 },
-        { label: 'Monitoring (M)', data: [5,6,2,0,1], backgroundColor: 'rgba(100,116,139,0.6)', borderColor: MUTED, borderWidth:1.5, borderRadius:3 }
+        { label: 'SEN Support (K)', data: [44,32,39,34,26], backgroundColor: 'rgba(30,95,168,0.75)', borderColor: BLUE, borderWidth:1.5, borderRadius:3 },
+        { label: 'Monitoring (M)', data: [6,5,1,0,1], backgroundColor: 'rgba(100,116,139,0.6)', borderColor: MUTED, borderWidth:1.5, borderRadius:3 }
       ]
     },
     options: {
@@ -8436,7 +7470,7 @@ ${body}
     data:{
       labels:['2021/22','2022/23','2023/24','2024/25','2025/26*'],
       datasets:[
-        { label:'Gateway per 100 pupils', data:[11.8,8.7,9.6,11.4,10.6], borderColor:BLUE, backgroundColor:'rgba(30,95,168,0.1)', borderWidth:2.5, pointRadius:5, pointBackgroundColor:[RED,GREEN,GREEN,AMBER,GREEN], fill:true, tension:0.3 },
+        { label:'Gateway per 100 pupils', data:[11.8,8.7,9.6,11.4,10.7], borderColor:BLUE, backgroundColor:'rgba(30,95,168,0.1)', borderWidth:2.5, pointRadius:5, pointBackgroundColor:[RED,GREEN,GREEN,AMBER,GREEN], fill:true, tension:0.3 },
         { label:'National avg (11.31)', data:[11.31,11.31,11.31,11.31,11.31], borderColor:MUTED, borderDash:[5,4], borderWidth:2, pointRadius:0, fill:false }
       ]
     },
@@ -8447,8 +7481,8 @@ ${body}
   new Chart(document.getElementById('chartSuspReason'), {
     type:'doughnut',
     data:{
-      labels:['Persistent/disruptive behaviour','Verbal abuse vs adult','Physical assault vs pupil','Verbal abuse vs pupil','Offensive weapon / item','Social media / technology','Racist abuse','Other'],
-      datasets:[{ data:[71,15,13,3,3,3,2,2], backgroundColor:['rgba(30,95,168,0.8)','rgba(180,83,9,0.8)','rgba(185,28,28,0.7)','rgba(185,28,28,0.5)','rgba(109,40,217,0.7)','rgba(100,116,139,0.7)','rgba(185,28,28,0.4)','rgba(100,116,139,0.5)'], borderWidth:2, borderColor:'#fff' }]
+      labels:['Persistent/disruptive behaviour','Verbal abuse vs adult','Physical assault vs pupil','Verbal abuse vs pupil','Offensive weapon / item','Social media / technology','Other'],
+      datasets:[{ data:[62,15,11,2,3,3,4], backgroundColor:['rgba(30,95,168,0.8)','rgba(180,83,9,0.8)','rgba(185,28,28,0.7)','rgba(185,28,28,0.5)','rgba(109,40,217,0.7)','rgba(100,116,139,0.7)','rgba(100,116,139,0.5)'], borderWidth:2, borderColor:'#fff' }]
     },
     options:{
       responsive:true, maintainAspectRatio:false,
